@@ -10,13 +10,14 @@ Please include a summary of the change and which issue is fixed. Please also inc
 -->
 
 **What:**
+
 <!-- Example: This PR introduces the AuthService to manage user authentication. -->
 
 **Why:**
+
 <!-- Example: This is necessary to implement the user sign-in flow via GitHub. -->
 
 **Fixes:** Closes #<!-- Enter the issue number here, e.g., Closes #5 -->
-
 
 ### Type of change
 
@@ -27,7 +28,6 @@ Please include a summary of the change and which issue is fixed. Please also inc
 - [ ] 🛠️ Chore (a task that doesn't add a feature or fix a bug, e.g., updating dependencies)
 - [ ] 📖 Documentation update
 - [ ] 💅 Refactoring
-
 
 ### How has this been tested?
 
@@ -41,11 +41,9 @@ Please describe the tests that you ran to verify your changes. Provide instructi
 - [ ] Unit tests
 - [ ] Integration tests
 
-
 ### Screenshots or GIF (if applicable)
 
 <!-- For UI changes, please provide before/after screenshots or a GIF demonstrating the functionality. -->
-
 
 ### Self-review Checklist:
 

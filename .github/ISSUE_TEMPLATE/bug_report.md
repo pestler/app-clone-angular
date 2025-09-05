@@ -6,10 +6,11 @@ labels: ["bug"]
 ---
 
 ### Bug Description
+
 <!-- A clear and concise description of what the bug is. -->
 
-
 ### Steps to Reproduce
+
 <!--
 Steps to reproduce the behavior.
 Example:
@@ -23,14 +24,14 @@ Example:
 2.
 3.
 
-
 ### Expected Behavior
+
 <!-- A clear and concise description of what you expected to happen. -->
 
-
 ### Actual Behavior
+
 <!-- A clear and concise description of what actually happened. -->
 
-
 ### Screenshots (Optional)
+
 <!-- If applicable, add screenshots to help explain your problem. -->
