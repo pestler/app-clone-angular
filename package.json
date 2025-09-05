@@ -11,6 +11,14 @@
     "prepare": "husky",
     "lint": "ng lint"
   },
+  "lint-staged": {
+    "*.{ts,js,json,html,scss,css,md}": [
+      "prettier --write"
+    ],
+    "*.{ts,js}": [
+      "ng lint client --fix"
+    ]
+  },
   "prettier": {
     "overrides": [
       {
@@ -53,6 +61,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "lint-staged": "^16.1.6",
     "prettier": "^3.6.2",
     "prettier-plugin-organize-imports": "^4.2.0",
     "typescript": "~5.8.2",
