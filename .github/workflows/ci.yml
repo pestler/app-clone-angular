@@ -31,7 +31,7 @@ jobs:
         run: pnpm run lint
 
       - name: Run tests
-        run: pnpm run test -- --no-watch --browsers=ChromeHeadless
+        run: pnpm run test:ci
 
       - name: Build project
         run: pnpm run build
