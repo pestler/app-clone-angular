@@ -1,8 +1,8 @@
 ---
-name: "🐞 Bug Report"
-description: "Create a report to help us improve."
-title: "fix: [Brief bug description]"
-labels: ["bug"]
+name: '🐞 Bug Report'
+description: 'Create a report to help us improve.'
+title: 'fix: [Brief bug description]'
+labels: ['bug']
 ---
 
 ### Bug Description
