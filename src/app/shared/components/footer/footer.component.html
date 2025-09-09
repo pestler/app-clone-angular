@@ -1,0 +1,35 @@
+<footer>
+  <div class="upper-section">
+    <div class="footer-column-wrapper">
+      @for (section of sections; track section) {
+        <div class="footer-column">
+          <h3>{{ section.title }}</h3>
+          <ul>
+            @for (link of section.links; track link) {
+              <li>
+                <a class="link" [href]="link.url" target="_blank">
+                  <span class="icon">{{ link.icon }}</span>
+                  {{ link.label }}
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+    <div class="footer-support">
+      <h3>Thank you for your support!</h3>
+    </div>
+  </div>
+  <div class="lower-section">
+    <div class="socials">
+      @for (social of socials; track social) {
+        <a [href]="social.url" target="_blank">
+          <span class="icon">{{ social.icon }}</span>
+          {{ social.label }}
+        </a>
+      }
+    </div>
+    <p class="copyright">&copy; The Rolling Scopes {{ today | date: 'yyyy' }}</p>
+  </div>
+</footer>
