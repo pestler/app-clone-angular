@@ -1,8 +1,8 @@
 ---
-name: "🚀 New Feature"
-description: "Suggest an idea or new functionality for this project."
-title: "feat: [Brief feature title]"
-labels: ["enhancement", "feature"]
+name: '🚀 New Feature'
+description: 'Suggest an idea or new functionality for this project.'
+title: 'feat: [Brief feature title]'
+labels: ['enhancement', 'feature']
 ---
 
 ### Goal

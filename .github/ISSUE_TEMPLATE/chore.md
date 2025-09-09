@@ -1,8 +1,8 @@
 ---
-name: "🛠️ Technical Task / Chore"
-description: "Tasks related to project setup, refactoring, or documentation."
-title: "chore: [Brief task description]"
-labels: ["chore"]
+name: '🛠️ Technical Task / Chore'
+description: 'Tasks related to project setup, refactoring, or documentation.'
+title: 'chore: [Brief task description]'
+labels: ['chore']
 ---
 
 ### Goal
