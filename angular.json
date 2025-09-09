@@ -8,7 +8,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "client": {
+    "app-rsschool-clone": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -61,10 +61,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "client:build:production"
+              "buildTarget": "app-rsschool-clone:build:production"
             },
             "development": {
-              "buildTarget": "client:build:development"
+              "buildTarget": "app-rsschool-clone:build:development"
             }
           },
           "defaultConfiguration": "development"
