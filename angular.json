@@ -13,10 +13,31 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss",
-          "type": "component"
+          "type": "component",
+          "skipTests": false,
+          "flat": true,
+          "name": ""
         },
-        "@schematics/angular:directive": { "type": "directive" },
-        "@schematics/angular:service": { "type": "service" }
+        "@schematics/angular:guard": {
+          "skipTests": false,
+          "flat": true,
+          "name": ""
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": false,
+          "flat": true,
+          "name": ""
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": false,
+          "flat": true,
+          "name": ""
+        },
+        "@schematics/angular:resolver": {
+          "skipTests": false,
+          "flat": true,
+          "name": ""
+        }
       },
       "root": "",
       "sourceRoot": "src",
@@ -32,7 +53,9 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": ["src/styles.scss"]
           },
@@ -84,7 +107,9 @@
               {
                 "glob": "**/*",
                 "input": "public"
-              }
+              },
+              "src/assets",
+              "src/favicon.ico"
             ],
             "styles": ["src/styles.scss"]
           }

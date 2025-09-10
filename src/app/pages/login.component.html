@@ -1,0 +1,23 @@
+<div class="login-page">
+  <header class="logo-container">
+    <img src="assets/images/rs-school-logo.png" alt="RS School Logo" />
+  </header>
+
+  <mat-card class="login-card">
+    <mat-card-header class="login-card-header">
+      <img mat-card-avatar src="assets/images/github-octocat.png" alt="GitHub Octocat" />
+      <mat-card-title class="login-via-github">Please login via GitHub</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p class="content">
+        In order to access the RS School App, you need to login with your GitHub account.
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-flat-button color="primary" class="login-button" (click)="login()">
+        <span class="github-icon"></span>
+        Sign up with GitHub
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
