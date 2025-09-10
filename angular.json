@@ -12,7 +12,31 @@
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "scss"
+          "style": "scss",
+          "type": "component",
+          "skipTests": false,
+          "flat": true,
+          "name": ""
+        },
+        "@schematics/angular:guard": {
+          "skipTests": false,
+          "flat": true,
+          "name": ""
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": false,
+          "flat": true,
+          "name": ""
+        },
+        "@schematics/angular:interceptor": {
+          "skipTests": false,
+          "flat": true,
+          "name": ""
+        },
+        "@schematics/angular:resolver": {
+          "skipTests": false,
+          "flat": true,
+          "name": ""
         }
       },
       "root": "",
