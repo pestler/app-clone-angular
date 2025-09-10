@@ -78,5 +78,12 @@ mat-card-avatar {
   margin-right: 8px;
   background-color: currentcolor;
   mask: url('/assets/icons/github.svg') no-repeat center / contain;
-  mask: url('/assets/icons/github.svg') no-repeat center / contain;
+}
+
+.login-via-github {
+  font-size: large;
+}
+
+.content {
+  font-size: small;
 }
