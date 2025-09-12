@@ -4,6 +4,7 @@ import { publicGuard } from './core/guards/public-guard';
 import { Layout } from './layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/login/login.component';
+import { NotFoundComponent } from './pages/not-found.component';
 
 export const routes: Routes = [
   {
@@ -25,10 +26,10 @@ export const routes: Routes = [
         redirectTo: 'dashboard',
         pathMatch: 'full',
       },
+      {
+        path: '**',
+        component: NotFoundComponent,
+      },
     ],
-  },
-  {
-    path: '**',
-    redirectTo: 'login',
   },
 ];
