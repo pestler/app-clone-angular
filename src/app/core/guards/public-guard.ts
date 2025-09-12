@@ -3,7 +3,7 @@ import { CanActivateFn, Router } from '@angular/router';
 import { map, take } from 'rxjs/operators';
 import { AuthService } from '../services/auth';
 
-export const authGuard: CanActivateFn = () => {
+export const publicGuard: CanActivateFn = () => {
   const authService = inject(AuthService);
   const router = inject(Router);
 
@@ -11,10 +11,9 @@ export const authGuard: CanActivateFn = () => {
     take(1),
     map((user) => {
       if (user) {
-        return true;
+        return router.createUrlTree(['/dashboard']);
       }
-
-      return router.createUrlTree(['/login']);
+      return true;
     }),
   );
 };
