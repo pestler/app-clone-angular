@@ -4,7 +4,7 @@ export interface MenuItem {
   route?: string;
   url?: string;
   external?: boolean;
-  action?: () => void;
+  action?: string;
 }
 
 export const menuItems: MenuItem[] = [
@@ -17,5 +17,6 @@ export const menuItems: MenuItem[] = [
     url: 'https://rs.school/docs/en',
     external: true,
   },
-  { icon: 'logout', label: 'Logout', action: () => console.log('Log out') },
+
+  { icon: 'logout', label: 'Logout', action: 'logout' },
 ];
