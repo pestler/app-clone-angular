@@ -1,0 +1,107 @@
+@mixin flex($direction, $align: stretch) {
+  display: flex;
+  flex-flow: $direction wrap;
+  align-items: $align;
+}
+
+footer {
+  @include flex(column);
+
+  gap: 1rem;
+  padding: 1rem;
+  background-color: var(--background-color);
+}
+
+.upper-section {
+  @include flex(row, flex-start);
+
+  gap: 1rem;
+
+  @media (width <= 576px) {
+    @include flex(column);
+  }
+}
+
+.lower-section {
+  @include flex(row, center);
+
+  @media (width <= 576px) {
+    @include flex(column, flex-start);
+
+    gap: 1rem;
+  }
+}
+
+.footer-column-wrapper {
+  @include flex(row);
+
+  flex: 2;
+
+  @media (width <= 992px) {
+    @include flex(column);
+
+    gap: 1rem;
+    flex: 1;
+  }
+
+  @media (width <= 576px) {
+    width: 100%;
+  }
+}
+
+.footer-column,
+.footer-support {
+  flex: 1;
+}
+
+.copyright {
+  flex: 1;
+}
+
+h3 {
+  margin: 0 0 5px;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    padding: 16px 8px;
+    border-bottom: 1px solid var(--border-block-end);
+    font-size: 1rem;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  .link {
+    text-decoration: none;
+    color: var(--text-blue);
+
+    &:hover {
+      color: var(--text-blue-hover);
+    }
+  }
+}
+
+.socials {
+  @include flex(row);
+
+  gap: 1rem;
+  flex: 2;
+  font-size: 1rem;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  @media (width <= 992px) {
+    flex: 1;
+  }
+}
