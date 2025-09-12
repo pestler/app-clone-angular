@@ -45,12 +45,24 @@ export const FOOTER_SECTIONS: FooterSection[] = [
 ];
 
 export const SOCIAL_LINKS = [
-  { label: 'GitHub', url: 'https://github.com/rolling-scopes/rsschool-app', icon: '' },
-  { label: 'YouTube', url: 'https://www.youtube.com/c/rollingscopesschool', icon: '' },
-  { label: 'Discord', url: 'https://discord.gg/PRADsJB', icon: '' },
+  {
+    label: 'GitHub',
+    url: 'https://github.com/rolling-scopes/rsschool-app',
+    iconPath: 'assets/icons/github.svg',
+  },
+  {
+    label: 'YouTube',
+    url: 'https://www.youtube.com/c/rollingscopesschool',
+    iconPath: 'assets/icons/youtube.svg',
+  },
+  {
+    label: 'Discord',
+    url: 'https://discord.gg/PRADsJB',
+    iconPath: 'assets/icons/discord.svg',
+  },
   {
     label: 'LinkedIn',
     url: 'https://www.linkedin.com/company/the-rolling-scopes-school/',
-    icon: '',
+    iconPath: 'assets/icons/linkedin.svg',
   },
 ];

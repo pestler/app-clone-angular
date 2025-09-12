@@ -24,8 +24,8 @@
   <div class="lower-section">
     <div class="socials">
       @for (social of socials; track social) {
-        <a [href]="social.url" target="_blank">
-          <span class="icon">{{ social.icon }}</span>
+        <a [href]="social.url" target="_blank" class="social-link">
+          <span class="social-icon" [style.--icon-url]="'url(' + social.iconPath + ')'"> </span>
           {{ social.label }}
         </a>
       }
