@@ -1,0 +1,63 @@
+@use '@angular/material' as mat;
+
+:host {
+  @include mat.icon-overrides(
+    (
+      color: var(--text-blue),
+    )
+  );
+}
+
+@mixin flex($direction) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: center;
+}
+
+.aside {
+  border: 1.1px solid var(--border-menu);
+  border-radius: 8px;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list-item {
+  @include flex(row);
+
+  padding: 10px 16px;
+  font-size: 16px;
+  border-bottom: 1px solid var(--border-block-end);
+}
+
+.list-item:last-child {
+  border-bottom: none;
+}
+
+.link {
+  @include flex(row);
+
+  gap: 4px;
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+}
+
+.label {
+  color: var(--text-blue);
+
+  &:hover {
+    color: var(--text-blue-hover);
+  }
+}
