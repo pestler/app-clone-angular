@@ -3,6 +3,7 @@ import { authGuard } from './core/guards/auth-guard';
 import { publicGuard } from './core/guards/public-guard';
 import { Layout } from './layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { InterviewsComponent } from './pages/interviews/interviews.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NotFoundComponent } from './pages/not-found.component';
 
@@ -20,6 +21,10 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
+      },
+      {
+        path: 'course/student/interviews',
+        component: InterviewsComponent,
       },
       {
         path: '',

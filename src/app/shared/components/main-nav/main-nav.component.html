@@ -2,7 +2,12 @@
   <ul class="list">
     @for (link of courseLinks; track link.name) {
       <li class="list-item">
-        <a mat-button [routerLink]="link.getUrl(mockCourse)" class="link">
+        <a
+          mat-button
+          [routerLink]="[link.getUrl(mockCourse).path]"
+          [queryParams]="link.getUrl(mockCourse).query"
+          class="link"
+        >
           @if (link.icon) {
             <mat-icon [ngStyle]="{ color: link.color }" class="icon">{{ link.icon }}</mat-icon>
           }
