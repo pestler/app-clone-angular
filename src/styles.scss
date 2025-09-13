@@ -18,7 +18,9 @@ html {
 body {
   height: 100%;
   color-scheme: light;
-  background-color: var(--mat-sys-surface);
+
+  // Disabled for now to match the design mockup
+  // background-color: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
   margin: 0;
@@ -27,6 +29,7 @@ body {
 
 :root {
   --text-blue: #4466b3;
+  --text-black: rgb(0 0 0 / 88%);
   --text-blue-hover: #006bff;
   --border-block-end: rgb(5 5 5 / 10%);
   --background-color: #f5f5f5;
@@ -36,4 +39,5 @@ body {
   --icon-pink: rgb(235 47 150);
   --icon-red: rgb(245 97 97);
   --icon-violet: rgb(127 0 255);
+  --icon-black: rgb(0 0 0 / 88%);
 }

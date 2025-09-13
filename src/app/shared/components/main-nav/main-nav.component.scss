@@ -1,0 +1,42 @@
+@mixin flex($direction, $gap) {
+  display: flex;
+  flex-flow: $direction wrap;
+  gap: $gap;
+  align-items: center;
+}
+
+.list {
+  @include flex(row, 0 2rem);
+
+  line-height: 46px;
+  border-bottom: 1px solid var(--border-block-end);
+  padding-left: 16px;
+  margin: 0;
+}
+
+.list-item {
+  list-style: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+  font-size: 16px;
+
+  &:hover {
+    border-bottom: 2px solid var(--text-blue-hover);
+  }
+}
+
+.link {
+  @include flex(row, 8px);
+
+  text-decoration: none;
+
+  & span {
+    color: var(--text-black);
+  }
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+}
