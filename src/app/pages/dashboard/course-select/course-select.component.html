@@ -1,0 +1,14 @@
+<mat-form-field class="form-field">
+  <mat-label class="label">
+    <img class="svg" [src]="selectedCourse?.src" [alt]="selectedCourse?.alt" />
+    <span>{{ selectedCourse?.name }}</span>
+  </mat-label>
+  <mat-select>
+    @for (cource of cources; track cource.name) {
+      <mat-option [value]="cource.name" [ngClass]="{ archived: cource.isArchived }">
+        <img class="svg" [src]="cource.src" [alt]="cource.alt" />
+        {{ cource.name }}
+      </mat-option>
+    }
+  </mat-select>
+</mat-form-field>
