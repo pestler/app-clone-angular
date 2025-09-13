@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { Router, RouterOutlet } from '@angular/router';
 import { FooterComponent } from '../shared/components/footer/footer.component';
 import { HeaderComponent } from '../shared/components/header/header.component';
 
@@ -9,4 +9,9 @@ import { HeaderComponent } from '../shared/components/header/header.component';
   templateUrl: './layout.component.html',
   styleUrl: './layout.component.scss',
 })
-export class Layout {}
+export class Layout {
+  router = inject(Router);
+  isFooterVisible() {
+    return this.router.url === '/dashboard';
+  }
+}
