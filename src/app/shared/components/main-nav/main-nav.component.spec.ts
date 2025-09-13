@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 
 import { MainNavComponent } from './main-nav.component';
 
@@ -9,6 +10,7 @@ describe('MainNavComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MainNavComponent],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(MainNavComponent);
