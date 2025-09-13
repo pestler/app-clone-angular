@@ -1,0 +1,20 @@
+<aside class="aside">
+  <nav>
+    <ul>
+      @for (item of items; track item.label) {
+        <li class="list-item">
+          <a class="link">
+            <mat-icon
+              class="icon"
+              aria-hidden="false"
+              [aria-label]="`${item.label} icon`"
+              [fontIcon]="item.icon"
+              [ngStyle]="{ color: item.color }"
+            ></mat-icon>
+            <span class="label">{{ item.label }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+  </nav>
+</aside>
