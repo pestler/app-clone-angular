@@ -1,0 +1,21 @@
+<div class="stats-card card">
+  <div class="title">Your stats</div>
+  <div class="info-wrapper stats-wrapper">
+    <div class="list-upper-part">
+      <div class="stats-item">
+        <span class="label">Score Points</span>
+        <span class="value">{{ studentStats.scorePoints }}</span>
+      </div>
+      <div class="stats-item">
+        <span class="label">Completed Tasks</span>
+        <span class="value"
+          >{{ studentStats.completedTasks.done }}/{{ studentStats.completedTasks.total }}</span
+        >
+      </div>
+    </div>
+    <div class="stats-item">
+      <span class="label">Status</span>
+      <span class="value status">{{ studentStats.status }}</span>
+    </div>
+  </div>
+</div>

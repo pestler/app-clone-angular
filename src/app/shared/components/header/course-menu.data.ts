@@ -11,9 +11,10 @@ import {
 export interface LinkData {
   name: string;
   icon?: string;
-  getUrl: (course: Course) => string;
+  getUrl: (course: Course) => { path: string; query?: Record<string, string> };
   access: (session: Session, courseId: number) => boolean;
   courseAccess?: (session: Session, course: Course) => boolean;
+  color: string;
 }
 
 const anyAccess = () => true;
@@ -23,93 +24,145 @@ const links: LinkData[] = [
   {
     name: 'Dashboard',
     icon: 'dashboard',
-    getUrl: (course: Course) => `/course/student/dashboard?course=${course.alias}`,
+    getUrl: (course: Course) => ({
+      path: '/course/student/dashboard',
+      query: { course: course.alias },
+    }),
     access: isStudent,
     courseAccess: isCourseNotCompleted,
+    color: 'var(--icon-black)',
   },
   {
     name: 'Dashboard',
     icon: 'apps',
-    getUrl: (course: Course) => `/course/mentor/dashboard?course=${course.alias}`,
+    getUrl: (course: Course) => ({
+      path: '/course/mentor/dashboard',
+      query: { course: course.alias },
+    }),
     access: isMentor,
     courseAccess: isCourseNotCompleted,
+    color: 'var(--icon-black)',
   },
   {
     name: 'Score',
     icon: 'local_fire_department',
-    getUrl: (course: Course) => `/course/score?course=${course.alias}`,
+    getUrl: (course: Course) => ({
+      path: '/course/score',
+      query: { course: course.alias },
+    }),
     access: anyAccess,
+    color: 'var(--icon-orange)',
   },
   {
     name: 'Schedule',
     icon: 'calendar_today',
-    getUrl: (course: Course) => `/course/schedule?course=${course.alias}`,
+    getUrl: (course: Course) => ({
+      path: '/course/schedule',
+      query: { course: course.alias },
+    }),
     access: anyAccess,
+    color: 'var(--icon-pink)',
   },
   {
     name: 'My Students',
     icon: 'emoji_events',
-    getUrl: (course: Course) => `/course/mentor/students?course=${course.alias}`,
+    getUrl: (course: Course) => ({
+      path: '/course/mentor/students',
+      query: { course: course.alias },
+    }),
     access: isMentor,
+    color: '',
   },
   {
     name: 'Cross-Check: Submit',
     icon: 'code',
-    getUrl: (course: Course) => `/course/student/cross-check-submit?course=${course.alias}`,
+    getUrl: (course: Course) => ({
+      path: '/course/student/cross-check-submit',
+      query: { course: course.alias },
+    }),
     access: isActiveStudent,
     courseAccess: isCourseNotCompleted,
+    color: 'var(--icon-black)',
   },
   {
     name: 'Cross-Check: Review',
     icon: 'check_circle',
-    getUrl: (course: Course) => `/course/student/cross-check-review?course=${course.alias}`,
+    getUrl: (course: Course) => ({
+      path: '/course/student/cross-check-review',
+      query: { course: course.alias },
+    }),
     access: isActiveStudent,
     courseAccess: isCourseNotCompleted,
+    color: 'var(--icon-red)',
   },
   {
     name: 'Interviews',
     icon: 'mic',
-    getUrl: (course: Course) => `/course/student/interviews?course=${course.alias}`,
+    getUrl: (course: Course) => ({
+      path: '/course/student/interviews',
+      query: { course: course.alias },
+    }),
     access: isStudent,
     courseAccess: isCourseNotCompleted,
+    color: 'var(--icon-black)',
   },
   {
     name: 'Interviews',
     icon: 'mic',
-    getUrl: (course: Course) => `/course/mentor/interviews?course=${course.alias}`,
+    getUrl: (course: Course) => ({
+      path: '/course/mentor/interviews',
+      query: { course: course.alias },
+    }),
     access: isMentor,
     courseAccess: isCourseNotCompleted,
+    color: 'var(--icon-black)',
   },
   {
     name: 'Auto-Test',
     icon: 'play_circle_outline',
-    getUrl: (course: Course) => `/course/auto-test?course=${course.alias}`,
+    getUrl: (course: Course) => ({
+      path: '/course/auto-test',
+      query: { course: course.alias },
+    }),
     access: (session, courseId) =>
       isCourseManager(session, courseId) || isActiveStudent(session, courseId),
     courseAccess: isCourseNotCompleted,
+    color: 'var(--icon-violet)',
   },
   {
     name: 'Expel/Unassign Student',
     icon: 'stop_circle',
-    getUrl: (course: Course) => `/course/mentor/expel-student?course=${course.alias}`,
+    getUrl: (course: Course) => ({
+      path: '/course/mentor/expel-student',
+      query: { course: course.alias },
+    }),
     access: isMentor,
     courseAccess: isCourseNotCompleted,
+    color: '',
   },
   {
     name: 'Team Distributions',
     icon: 'group_add',
-    getUrl: (course: Course) => `/course/team-distributions?course=${course.alias}`,
+    getUrl: (course: Course) => ({
+      path: '/course/team-distributions',
+      query: { course: course.alias },
+    }),
     access: (session, courseId) =>
       isCourseManager(session, courseId) ||
       isActiveStudent(session, courseId) ||
       isDementor(session, courseId),
     courseAccess: isCourseNotCompleted,
+    color: 'var(--icon-violet)',
   },
   {
     name: 'Course Statistics',
     icon: 'apps',
-    getUrl: (course: Course) => `/course/stats?course=${course.alias}`,
+    getUrl: (course: Course) => ({
+      path: '/course/stats',
+      query: { course: course.alias },
+    }),
     access: anyAccess,
+    color: 'var(--icon-black)',
   },
 ];
 

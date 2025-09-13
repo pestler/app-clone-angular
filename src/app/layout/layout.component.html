@@ -3,5 +3,7 @@
   <section class="content">
     <router-outlet />
   </section>
-  <app-footer></app-footer>
+  @if (isFooterVisible()) {
+    <app-footer></app-footer>
+  }
 </main>
