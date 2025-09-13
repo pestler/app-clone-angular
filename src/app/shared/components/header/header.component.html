@@ -5,8 +5,24 @@
     </a>
     <img class="svg" src="assets/svg/solidarity-Ukraine.svg" alt="Solidarity with Ukraine" />
   </div>
+  <div class="title">
+    <b>{{ title }}</b>
+    @if (showCourseName) {
+      <span>{{ courseName }}</span>
+    }
+  </div>
   <div class="right-section">
     <app-theme-menu></app-theme-menu>
     <app-user-menu></app-user-menu>
   </div>
 </header>
+<nav class="course-nav">
+  @for (link of courseLinks; track link.name) {
+    <a mat-button [routerLink]="link.getUrl(mockCourse)">
+      @if (link.icon) {
+        <mat-icon>{{ link.icon }}</mat-icon>
+      }
+      <span>{{ link.name }}</span>
+    </a>
+  }
+</nav>
