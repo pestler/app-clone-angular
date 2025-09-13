@@ -9,9 +9,11 @@ export interface StudentStats {
 
 export interface MentorInfo {
   name: string;
-  avatarUrl: string;
+  github: string;
+  url: string;
   email: string;
   telegram: string;
+  src: string;
 }
 
 export const mockStudentStats: StudentStats = {
@@ -25,7 +27,9 @@ export const mockStudentStats: StudentStats = {
 
 export const mockMentorInfo: MentorInfo = {
   name: 'Ivan Ivanov',
-  avatarUrl: '',
+  github: 'rolling-scopes-school',
+  url: 'https://github.com/rolling-scopes-school',
   email: 'ivanov@gmail.com',
   telegram: '@ivanov',
+  src: '../assets/svg/im-fine.svg',
 };

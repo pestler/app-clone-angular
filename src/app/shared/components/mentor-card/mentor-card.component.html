@@ -1,0 +1,23 @@
+<div class="mentor-card card">
+  <div class="title">Your mentor</div>
+  <div class="info-wrapper mentor-info-wrapper">
+    <div>
+      <p class="name">{{ mentorInfo.name }}</p>
+      <a class="link" [href]="mentorInfo.url" target="_blank">
+        <div class="img-wrapper">
+          <img class="img" [src]="mentorInfo.src" alt="Photo of mentor" />
+        </div>
+        <span>{{ mentorInfo.github }}</span>
+        <img class="github-icon" src="../../../../assets/icons/github.svg" alt="Github logo" />
+      </a>
+    </div>
+    <div class="card-item">
+      <span class="label">E-mail:</span>
+      <span class="text">{{ mentorInfo.email }}</span>
+    </div>
+    <div class="card-item">
+      <span class="label">Telegram:</span>
+      <span class="text">{{ mentorInfo.telegram }}</span>
+    </div>
+  </div>
+</div>

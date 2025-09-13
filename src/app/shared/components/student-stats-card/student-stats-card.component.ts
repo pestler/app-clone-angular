@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { mockStudentStats } from '../../../core/mocks/student-stats.mock';
 
 @Component({
@@ -10,5 +9,4 @@ import { mockStudentStats } from '../../../core/mocks/student-stats.mock';
 })
 export class StudentStatsCardComponent {
   studentStats = mockStudentStats;
-  router = inject(Router);
 }
