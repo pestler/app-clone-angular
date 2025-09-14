@@ -40,3 +40,7 @@
   height: 16px;
   font-size: 16px;
 }
+
+.shadow {
+  box-shadow: 0 8px 16px -6px var(--border-block-end);
+}

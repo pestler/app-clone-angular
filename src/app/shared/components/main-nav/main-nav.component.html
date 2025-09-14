@@ -1,4 +1,4 @@
-<nav class="course-nav">
+<nav class="course-nav" [ngClass]="{ shadow: !isDashboardPage() }">
   <ul class="list">
     @for (link of courseLinks; track link.name) {
       <li class="list-item">
