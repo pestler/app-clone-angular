@@ -14,6 +14,10 @@
   margin: 0;
 }
 
+.link span {
+  color: var(--text-black);
+}
+
 .list-item {
   list-style: none;
   border-bottom: 2px solid transparent;
@@ -23,16 +27,20 @@
   &:hover {
     border-bottom: 2px solid var(--text-blue-hover);
   }
+
+  &.active {
+    border-bottom: 2px solid var(--text-blue-hover);
+
+    span {
+      color: var(--text-blue-hover);
+    }
+  }
 }
 
 .link {
   @include flex(row, 8px);
 
   text-decoration: none;
-
-  & span {
-    color: var(--text-black);
-  }
 }
 
 .icon {
