@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { mockStudentStats } from '../../../core/mocks/student-stats.mock';
+import { mockStudentStats } from '../../../../core/mocks/student-stats.mock';
 
 @Component({
   selector: 'app-student-stats-card',

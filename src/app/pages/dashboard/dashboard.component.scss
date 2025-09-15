@@ -1,5 +1,12 @@
-.dashboard-cards {
+:host {
   display: flex;
-  flex-direction: column;
-  gap: 24px;
+  justify-content: flex-start;
+}
+
+app-dashboard-card {
+  flex: 0 0 50%;
+
+  @media (width <= 992px) {
+    flex: 0 0 100%;
+  }
 }

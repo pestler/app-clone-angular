@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { InterviewCardComponent } from '../../shared/components/interview-card/interview-card.component';
+import { InterviewCardComponent } from '../../shared/components/cards/interview-card/interview-card.component';
 
 @Component({
   selector: 'app-interviews',

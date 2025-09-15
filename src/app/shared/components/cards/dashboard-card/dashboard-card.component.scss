@@ -1,0 +1,24 @@
+@use './styles/card.shared.scss' as *;
+
+.dashboard-card {
+  @include card;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  padding: 16px 24px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.card-content {
+  padding: 24px;
+  flex-grow: 1;
+}

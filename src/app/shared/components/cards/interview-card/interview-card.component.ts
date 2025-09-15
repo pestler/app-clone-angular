@@ -1,7 +1,7 @@
 import { DatePipe } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { mockInterviewInfo } from '../../../core/mocks/interview.mock';
+import { mockInterviewInfo } from '../../../../core/mocks/interview.mock';
 
 @Component({
   selector: 'app-interview-card',
