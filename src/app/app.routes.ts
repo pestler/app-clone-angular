@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { authGuard } from './core/guards/auth-guard';
 import { publicGuard } from './core/guards/public-guard';
 import { Layout } from './layout/layout.component';
+import { CourseComponent } from './pages/course/course.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { InterviewsComponent } from './pages/interviews/interviews.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -20,6 +21,10 @@ export const routes: Routes = [
     children: [
       {
         path: '',
+        component: CourseComponent,
+      },
+      {
+        path: 'course/student/dashboard',
         component: DashboardComponent,
       },
       {
