@@ -23,7 +23,7 @@ export class AuthService {
     const provider = new GithubAuthProvider();
     try {
       await signInWithPopup(this.auth, provider);
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/']);
     } catch (error) {
       console.error('Authentication error:', error);
     }
