@@ -19,17 +19,12 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       {
-        path: 'dashboard',
+        path: '',
         component: DashboardComponent,
       },
       {
         path: 'course/student/interviews',
         component: InterviewsComponent,
-      },
-      {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full',
       },
       {
         path: '**',

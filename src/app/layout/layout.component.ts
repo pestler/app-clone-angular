@@ -12,6 +12,6 @@ import { HeaderComponent } from '../shared/components/header/header.component';
 export class Layout {
   router = inject(Router);
   isFooterVisible() {
-    return this.router.url === '/dashboard';
+    return this.router.url === '/';
   }
 }

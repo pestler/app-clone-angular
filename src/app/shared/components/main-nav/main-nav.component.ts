@@ -23,6 +23,6 @@ export class MainNavComponent implements OnInit {
   }
 
   isDashboardPage(): boolean {
-    return this.router.url === '/dashboard';
+    return this.router.url === '/';
   }
 }
