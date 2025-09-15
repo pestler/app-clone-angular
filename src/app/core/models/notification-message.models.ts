@@ -9,3 +9,5 @@ export interface NotificationMessage {
   autoClose?: boolean;
   durationMs?: number;
 }
+
+export type NotificationOptions = Pick<NotificationMessage, 'autoClose' | 'durationMs'>;

@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { NotificationMessage, NotificationType } from '../models/notification-message.models';
+import {
+  NotificationMessage,
+  NotificationOptions,
+  NotificationType,
+} from '../models/notification-message.models';
 
 @Injectable({
   providedIn: 'root',
@@ -9,19 +13,15 @@ export class NotificationService {
   private readonly state$ = new BehaviorSubject<NotificationMessage | null>(null);
   readonly notificationState$ = this.state$.asObservable();
 
-  showSuccess(message: string, options?: { autoClose?: boolean; durationMs?: number }) {
+  showSuccess(message: string, options?: NotificationOptions) {
     this.emit(NotificationType.SUCCESS, message, options);
   }
 
-  showError(message: string, options?: { autoClose?: boolean; durationMs?: number }) {
+  showError(message: string, options?: NotificationOptions) {
     this.emit(NotificationType.ERROR, message, options);
   }
 
-  private emit(
-    type: NotificationType,
-    message: string,
-    options?: { autoClose?: boolean; durationMs?: number },
-  ): void {
+  private emit(type: NotificationType, message: string, options?: NotificationOptions): void {
     const NotificatioPpayload: NotificationMessage = {
       type,
       message,
