@@ -8,4 +8,5 @@ export const environment = {
     messagingSenderId: '382122725080',
     appId: '1:382122725080:web:70b8553717ade75ac1d1ad',
   },
+  apiUrl: 'https://rs-app-clone-backend.onrender.com/api',
 };

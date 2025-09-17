@@ -17,7 +17,7 @@ export const sideNavItems: SideNavProps[] = [
     icon: 'mic',
     color: 'var(--icon-blue)',
   },
-  { path: '', label: 'Score', icon: 'home', color: 'var(--icon-orange)' },
+  { path: '', label: 'Score', icon: 'scoreboard', color: 'var(--icon-orange)' },
   { path: '', label: 'Schedule', icon: 'calendar_today', color: 'var(--icon-pink)' },
   { path: '', label: 'Cross-Check: Submit', icon: 'terminal', color: 'var(--icon-blue)' },
   { path: '', label: 'Cross-Check: Review', icon: 'check_circle', color: 'var(--icon-red)' },

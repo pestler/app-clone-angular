@@ -1,0 +1,23 @@
+<mat-card class="repository-card">
+  <mat-card-content>
+    @if (url) {
+      <div>
+        <p><strong>Your repository:</strong></p>
+        <a mat-button [href]="url" target="_blank">
+          <mat-icon svgIcon="github"></mat-icon>
+          {{ repoName }}
+        </a>
+        <div class="button-container">
+          <button mat-stroked-button (click)="onSendInvite()">Fix repository</button>
+        </div>
+      </div>
+    } @else {
+      <div class="no-repo-container">
+        <p class="warning-text">Your repository hasn't been created yet</p>
+        <button mat-raised-button color="primary" (click)="onSendInvite()">
+          Create repository
+        </button>
+      </div>
+    }
+  </mat-card-content>
+</mat-card>

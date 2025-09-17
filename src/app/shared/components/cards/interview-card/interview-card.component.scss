@@ -1,4 +1,4 @@
-@use '../../../shared/styles/card.shared.scss' as *;
+@use '../styles/card.shared.scss' as *;
 
 @mixin flex($direction) {
   display: flex;

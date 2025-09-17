@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { mockMentorInfo } from '../../../core/mocks/student-stats.mock';
+import { Component, Input } from '@angular/core';
+import { mockMentorInfo } from '../../../../core/mocks/student-stats.mock';
+import { Mentor } from '../../../../core/models/dashboard.models';
 
 @Component({
   selector: 'app-mentor-card',
@@ -9,4 +10,5 @@ import { mockMentorInfo } from '../../../core/mocks/student-stats.mock';
 })
 export class MentorCardComponent {
   mentorInfo = mockMentorInfo;
+  @Input() mentor?: Mentor;
 }
