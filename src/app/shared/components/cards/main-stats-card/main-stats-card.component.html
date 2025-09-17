@@ -1,0 +1,30 @@
+<mat-card class="main-stats-card">
+  <mat-card-content>
+    <div class="grid-item">
+      <img class="im-fine-img" src="/assets/svg/im-fine.svg" alt="I'm fine meme" />
+    </div>
+    <mat-divider></mat-divider>
+    <div class="grid-item stats-grid">
+      <div class="stat-item">
+        <span class="secondary-text">
+          <mat-icon>trophy</mat-icon>
+          Position
+        </span>
+        <span class="main-text">
+          @if (position >= DEFAULT_POSITION) {
+            New
+          } @else {
+            {{ position }} / {{ totalStudentsCount }}
+          }
+        </span>
+      </div>
+      <div class="stat-item">
+        <span class="secondary-text">
+          <mat-icon>local_fire_department</mat-icon>
+          Total Score
+        </span>
+        <span class="main-text"> {{ totalScore }} / {{ maxCourseScore }} </span>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>

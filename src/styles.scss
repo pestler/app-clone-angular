@@ -21,10 +21,21 @@ body {
 
   // Disabled for now to match the design mockup
   // background-color: var(--mat-sys-surface);
+  background-color: none;
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
   margin: 0;
   font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+  font-size: 24px;
+  line-height: 1;
 }
 
 :root {

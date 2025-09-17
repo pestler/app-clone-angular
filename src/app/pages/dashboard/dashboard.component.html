@@ -1,1 +1,49 @@
-<app-dashboard-card><app-dashboard-card /> </app-dashboard-card>
+@if (data) {
+  <h2 class="student-curs">Student dashboard: {{ data.course.alias }}</h2>
+
+  <div class="masonry-grid">
+    <app-dashboard-card title="Your stats" class="card-1">
+      <app-main-stats-card
+        [isActive]="data.studentSummary.isActive"
+        [totalScore]="data.studentSummary.totalScore"
+        [position]="data.studentSummary.rank"
+        [maxCourseScore]="data.maxCourseScore"
+        [totalStudentsCount]="data.courseStats.activeStudentsCount"
+      ></app-main-stats-card>
+    </app-dashboard-card>
+
+    <app-dashboard-card title="Tasks Statistics" class="card-2">
+      <app-tasks-stats-card [tasksByStatus]="data.tasksByStatus"></app-tasks-stats-card>
+    </app-dashboard-card>
+
+    <app-dashboard-card title="Available Tasks" class="card-3">
+      <app-next-event-card
+        [nextEvents]="data.nextEvents"
+        [courseAlias]="data.course.alias"
+      ></app-next-event-card>
+      <a
+        [routerLink]="['/course/schedule']"
+        [queryParams]="{ course: data.course.alias }"
+        class="card-extra"
+        >View all</a
+      >
+    </app-dashboard-card>
+
+    <app-dashboard-card title="Cross-check [Review]" class="card-4">
+      <app-available-review-card
+        [availableReviews]="data.availableReviews"
+        [courseAlias]="data.course.alias"
+      ></app-available-review-card>
+    </app-dashboard-card>
+
+    <app-dashboard-card title="Mentor's check" class="card-5">
+      <app-mentor-card [mentor]="data.studentSummary.mentor"></app-mentor-card>
+    </app-dashboard-card>
+
+    <app-dashboard-card title="Your repository" class="card-6">
+      <app-repository-card [url]="data.studentSummary.repository"></app-repository-card>
+    </app-dashboard-card>
+  </div>
+} @else {
+  <h1>Waiting for data...</h1>
+}

@@ -8,9 +8,9 @@
               class="icon"
               aria-hidden="false"
               [aria-label]="`${item.label} icon`"
-              [fontIcon]="item.icon"
               [ngStyle]="{ color: item.color }"
-            ></mat-icon>
+              >{{ item.icon }}</mat-icon
+            >
             <span class="label">{{ item.label }}</span>
           </a>
         </li>
