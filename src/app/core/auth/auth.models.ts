@@ -1,3 +1,10 @@
+import {
+  DocumentData,
+  FirestoreDataConverter,
+  QueryDocumentSnapshot,
+  SnapshotOptions,
+} from '@angular/fire/firestore';
+
 export enum CourseRole {
   Student = 'student',
   Mentor = 'mentor',
@@ -14,13 +21,28 @@ export interface Course {
 }
 
 export interface Session {
+  id: number;
   isAdmin: boolean;
+  isHirer: boolean;
+  githubId: string;
+  appRoles: string[];
+  roles: Record<string, CourseRole>;
   courses: Record<
-    number,
+    string,
     {
       roles: CourseRole[];
+      studentId?: number;
+      mentorId?: number;
       isExpelled?: boolean;
-      mentorId?: string;
     }
   >;
 }
+
+export const sessionConverter: FirestoreDataConverter<Session> = {
+  toFirestore: (data: Session): DocumentData => {
+    return data;
+  },
+  fromFirestore: (snapshot: QueryDocumentSnapshot, options: SnapshotOptions): Session => {
+    return snapshot.data(options) as Session;
+  },
+};
