@@ -3,7 +3,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { take } from 'rxjs';
 import { NotificationType } from '../../../core/models/notification-message.models';
-import { NotificationService } from '../../../core/services/notification';
+import { NotificationService } from '../../../core/services/notification.service';
 
 @Component({
   selector: 'app-toast',
