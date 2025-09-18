@@ -1,0 +1,77 @@
+{
+  "id": 179187,
+  "name": "Aleh Kuis",
+  "githubId": "pestler",
+  "active": true,
+  "cityName": "Minsk",
+  "countryName": "Belarus",
+  "rank": 2,
+  "totalScore": 405.9,
+  "mentor": {
+    "id": 4649,
+    "githubId": "igor2000xp",
+    "name": "Igor Aniskevich"
+  },
+  "totalScoreChangeDate": "2025-09-04T01:01:18.875Z",
+  "crossCheckScore": 0,
+  "repositoryLastActivityDate": "2025-08-21T14:36:57.636Z",
+  "taskResults": [
+    {
+      "courseTaskId": 4732,
+      "score": 100
+    },
+    {
+      "courseTaskId": 4730,
+      "score": 100
+    },
+    {
+      "courseTaskId": 4728,
+      "score": 100
+    },
+    {
+      "courseTaskId": 4648,
+      "score": 100
+    },
+    {
+      "courseTaskId": 4669,
+      "score": 93
+    },
+    {
+      "courseTaskId": 4668,
+      "score": 87
+    },
+    {
+      "courseTaskId": 4645,
+      "score": 93
+    },
+    {
+      "courseTaskId": 4660,
+      "score": 100
+    },
+    {
+      "courseTaskId": 4646,
+      "score": 93
+    },
+    {
+      "courseTaskId": 4666,
+      "score": 100
+    },
+    {
+      "courseTaskId": 4667,
+      "score": 100
+    },
+    {
+      "courseTaskId": 4665,
+      "score": 100
+    },
+    {
+      "courseTaskId": 4644,
+      "score": 93
+    },
+    {
+      "courseTaskId": 4664,
+      "score": 100
+    }
+  ],
+  "isActive": true
+}

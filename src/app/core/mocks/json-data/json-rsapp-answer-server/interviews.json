@@ -1,0 +1,23 @@
+{
+  "data": [
+    {
+      "id": 4746,
+      "name": "Angular interview",
+      "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/angular/modules/interview/README.md",
+      "startDate": "2025-09-08T00:00:00.000Z",
+      "endDate": "2025-09-28T23:59:06.000Z",
+      "completed": false,
+      "status": 0,
+      "interviewer": {
+        "githubId": "irinaosp",
+        "name": "Irina Osipova"
+      },
+      "student": {
+        "id": 179187,
+        "githubId": "pestler",
+        "name": "Aleh Kuis"
+      },
+      "result": null
+    }
+  ]
+}

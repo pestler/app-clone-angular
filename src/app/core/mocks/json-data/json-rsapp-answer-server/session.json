@@ -1,0 +1,124 @@
+{
+  "id": 19513,
+  "isAdmin": false,
+  "isHirer": false,
+  "githubId": "pestler",
+  "appRoles": ["user"],
+  "roles": {
+    "36": "student",
+    "46": "student",
+    "55": "student",
+    "56": "student",
+    "58": "student",
+    "62": "student",
+    "65": "student",
+    "68": "student",
+    "71": "student",
+    "74": "student",
+    "83": "student",
+    "87": "student",
+    "94": "student",
+    "106": "student",
+    "107": "student",
+    "109": "student",
+    "113": "student",
+    "115": "student",
+    "122": "mentor",
+    "124": "student",
+    "125": "student"
+  },
+  "courses": {
+    "36": {
+      "roles": ["student"],
+      "studentId": 25379
+    },
+    "46": {
+      "roles": ["student"],
+      "studentId": 37591,
+      "isExpelled": true
+    },
+    "55": {
+      "roles": ["student"],
+      "studentId": 46163,
+      "isExpelled": true
+    },
+    "56": {
+      "roles": ["student"],
+      "studentId": 64124
+    },
+    "58": {
+      "roles": ["student"],
+      "studentId": 66326,
+      "isExpelled": true
+    },
+    "62": {
+      "roles": ["student"],
+      "studentId": 70089
+    },
+    "65": {
+      "roles": ["student"],
+      "studentId": 91128
+    },
+    "68": {
+      "roles": ["student"],
+      "studentId": 95385
+    },
+    "71": {
+      "roles": ["student"],
+      "studentId": 95387,
+      "isExpelled": true
+    },
+    "74": {
+      "roles": ["student"],
+      "studentId": 95388
+    },
+    "83": {
+      "roles": ["student"],
+      "studentId": 123116,
+      "isExpelled": true
+    },
+    "87": {
+      "roles": ["student"],
+      "studentId": 125496,
+      "isExpelled": true
+    },
+    "94": {
+      "roles": ["student"],
+      "studentId": 145520,
+      "isExpelled": true
+    },
+    "106": {
+      "roles": ["student"],
+      "studentId": 160423,
+      "isExpelled": true
+    },
+    "107": {
+      "roles": ["student"],
+      "studentId": 162801
+    },
+    "109": {
+      "roles": ["student"],
+      "studentId": 168066
+    },
+    "113": {
+      "roles": ["student"],
+      "studentId": 175518
+    },
+    "115": {
+      "roles": ["student"],
+      "studentId": 178585
+    },
+    "122": {
+      "roles": ["mentor"],
+      "mentorId": 4643
+    },
+    "124": {
+      "roles": ["student"],
+      "studentId": 179187
+    },
+    "125": {
+      "roles": ["student"],
+      "studentId": 179248
+    }
+  }
+}
