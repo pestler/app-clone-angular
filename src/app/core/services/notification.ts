@@ -13,7 +13,7 @@ export class NotificationService {
   private readonly exampleSuccess = {
     type: NotificationType.SUCCESS,
     message:
-      "Hello there! We present to your attention a project by the PADAWAN CADERS' GUILD team.",
+      "Hello there! We present to your attention a project by the PADAWAN CODERS' GUILD team.",
     durationMs: 60000,
   };
 
