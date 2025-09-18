@@ -10,8 +10,16 @@ import {
   providedIn: 'root',
 })
 export class NotificationService {
-  private readonly state$ = new BehaviorSubject<NotificationMessage | null>(null);
+  private readonly exampleSuccess = {
+    type: NotificationType.SUCCESS,
+    message:
+      "Hello there! We present to your attention a project by the PADAWAN CODERS' GUILD team.",
+    durationMs: 60000,
+  };
+
+  private readonly state$ = new BehaviorSubject<NotificationMessage | null>(this.exampleSuccess);
   readonly notificationState$ = this.state$.asObservable();
+  private closeTimerId: ReturnType<typeof setTimeout> | null = null;
 
   showSuccess(message: string, options?: NotificationOptions) {
     this.emit(NotificationType.SUCCESS, message, options);
@@ -21,13 +29,33 @@ export class NotificationService {
     this.emit(NotificationType.ERROR, message, options);
   }
 
+  clear() {
+    this.state$.next(null);
+    this.closeTimer();
+  }
+
   private emit(type: NotificationType, message: string, options?: NotificationOptions): void {
-    const NotificatioPpayload: NotificationMessage = {
+    const notificatioPayload: NotificationMessage = {
       type,
       message,
       autoClose: options?.autoClose ?? true,
       durationMs: options?.durationMs ?? 3000,
     };
-    this.state$.next(NotificatioPpayload);
+    this.closeTimer();
+    this.state$.next(notificatioPayload);
+
+    if (notificatioPayload.autoClose && notificatioPayload.durationMs! > 0) {
+      this.closeTimerId = setTimeout(() => {
+        this.state$.next(null);
+        this.closeTimerId = null;
+      }, notificatioPayload.durationMs);
+    }
+  }
+
+  private closeTimer(): void {
+    if (this.closeTimerId != null) {
+      clearTimeout(this.closeTimerId);
+      this.closeTimerId = null;
+    }
   }
 }

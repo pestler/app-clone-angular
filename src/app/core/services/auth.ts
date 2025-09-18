@@ -8,8 +8,8 @@ import {
   User,
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { from, Observable, of } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { from, map, Observable, of, switchMap } from 'rxjs';
+import { APP_ROUTES } from '../../constants/app-routes.const';
 import { ScoreData, scoreDataConverter } from '../models/dashboard.models';
 import { FirestoreService } from './firestore.service';
 
@@ -54,7 +54,7 @@ export class AuthService {
   async signOut(): Promise<void> {
     try {
       await signOut(this.auth);
-      this.router.navigate(['/login']);
+      this.router.navigate([APP_ROUTES.LOGIN]);
     } catch (error) {
       console.error('Sign out error:', error);
     }

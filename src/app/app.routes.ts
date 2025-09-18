@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { APP_ROUTES as AR } from './constants/app-routes.const';
 import { authGuard } from './core/guards/auth-guard';
 import { publicGuard } from './core/guards/public-guard';
 import { Layout } from './layout/layout.component';
@@ -10,7 +11,7 @@ import { NotFoundComponent } from './pages/not-found.component';
 
 export const routes: Routes = [
   {
-    path: 'login',
+    path: AR.LOGIN,
     component: LoginComponent,
     canActivate: [publicGuard],
   },
@@ -24,11 +25,11 @@ export const routes: Routes = [
         component: CourseComponent,
       },
       {
-        path: 'course/student/dashboard',
+        path: `${AR.COURSE}/${AR.STUDENT}/${AR.DASHBOARD}`,
         component: DashboardComponent,
       },
       {
-        path: 'course/student/interviews',
+        path: `${AR.COURSE}/${AR.STUDENT}/${AR.INTERVIEWS}`,
         component: InterviewsComponent,
       },
       {
