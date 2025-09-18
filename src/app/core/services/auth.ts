@@ -9,6 +9,7 @@ import {
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { APP_ROUTES } from '../../constants/app-routes.const';
 
 @Injectable({
   providedIn: 'root',
@@ -32,7 +33,7 @@ export class AuthService {
   async signOut(): Promise<void> {
     try {
       await signOut(this.auth);
-      this.router.navigate(['/login']);
+      this.router.navigate([APP_ROUTES.LOGIN]);
     } catch (error) {
       console.error('Sign out error:', error);
     }

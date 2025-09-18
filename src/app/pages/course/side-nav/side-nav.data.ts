@@ -1,3 +1,5 @@
+import { APP_ROUTES as AR } from '../../../constants/app-routes.const';
+
 export interface SideNavProps {
   path: string;
   label: string;
@@ -12,8 +14,8 @@ export interface SideNavProps {
 export const sideNavItems: SideNavProps[] = [
   { path: '', label: 'Dashboard', icon: 'dashboard', color: 'var(--icon-blue)' },
   {
-    path: 'course/student/interviews',
-    label: 'Interviews',
+    path: `${AR.COURSE}/${AR.STUDENT}/${AR.INTERVIEWS}`,
+    label: 'IAPPnterviews',
     icon: 'mic',
     color: 'var(--icon-blue)',
   },
