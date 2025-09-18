@@ -1,3 +1,4 @@
+import { APP_ROUTES as AR } from '../../../constants/app-routes.const';
 import { Course, Session } from '../../../core/auth/auth.models';
 import {
   isActiveStudent,
@@ -25,7 +26,7 @@ const links: LinkData[] = [
     name: 'Dashboard',
     icon: 'dashboard',
     getUrl: (course: Course) => ({
-      path: '/course/student/dashboard',
+      path: `${AR.COURSE}/${AR.STUDENT}/${AR.DASHBOARD}`,
       query: { course: course.alias },
     }),
     access: isStudent,
@@ -36,7 +37,7 @@ const links: LinkData[] = [
     name: 'Dashboard',
     icon: 'apps',
     getUrl: (course: Course) => ({
-      path: '/course/mentor/dashboard',
+      path: `${AR.COURSE}/${AR.MENTOR}/${AR.DASHBOARD}`,
       query: { course: course.alias },
     }),
     access: isMentor,
@@ -47,7 +48,7 @@ const links: LinkData[] = [
     name: 'Score',
     icon: 'local_fire_department',
     getUrl: (course: Course) => ({
-      path: '/course/score',
+      path: `${AR.COURSE}/${AR.SCORE}`,
       query: { course: course.alias },
     }),
     access: anyAccess,
@@ -57,7 +58,7 @@ const links: LinkData[] = [
     name: 'Schedule',
     icon: 'calendar_today',
     getUrl: (course: Course) => ({
-      path: '/course/schedule',
+      path: `${AR.COURSE}/${AR.SCHEDULE}`,
       query: { course: course.alias },
     }),
     access: anyAccess,
@@ -67,7 +68,7 @@ const links: LinkData[] = [
     name: 'My Students',
     icon: 'emoji_events',
     getUrl: (course: Course) => ({
-      path: '/course/mentor/students',
+      path: `${AR.COURSE}/${AR.MENTOR}/${AR.STUDENTS}`,
       query: { course: course.alias },
     }),
     access: isMentor,
@@ -77,7 +78,7 @@ const links: LinkData[] = [
     name: 'Cross-Check: Submit',
     icon: 'code',
     getUrl: (course: Course) => ({
-      path: '/course/student/cross-check-submit',
+      path: `${AR.COURSE}/${AR.STUDENT}/${AR.CCSUBMIT}`,
       query: { course: course.alias },
     }),
     access: isActiveStudent,
@@ -88,7 +89,7 @@ const links: LinkData[] = [
     name: 'Cross-Check: Review',
     icon: 'check_circle',
     getUrl: (course: Course) => ({
-      path: '/course/student/cross-check-review',
+      path: `${AR.COURSE}/${AR.STUDENT}/${AR.CCREVIEW}`,
       query: { course: course.alias },
     }),
     access: isActiveStudent,
@@ -99,7 +100,7 @@ const links: LinkData[] = [
     name: 'Interviews',
     icon: 'mic',
     getUrl: (course: Course) => ({
-      path: '/course/student/interviews',
+      path: `${AR.COURSE}/${AR.STUDENT}/${AR.INTERVIEWS}`,
       query: { course: course.alias },
     }),
     access: isStudent,
@@ -110,7 +111,7 @@ const links: LinkData[] = [
     name: 'Interviews',
     icon: 'mic',
     getUrl: (course: Course) => ({
-      path: '/course/mentor/interviews',
+      path: `${AR.COURSE}/${AR.MENTOR}/${AR.INTERVIEWS}`,
       query: { course: course.alias },
     }),
     access: isMentor,
@@ -121,7 +122,7 @@ const links: LinkData[] = [
     name: 'Auto-Test',
     icon: 'play_circle_outline',
     getUrl: (course: Course) => ({
-      path: '/course/auto-test',
+      path: `${AR.COURSE}/${AR.AUTOTEST}`,
       query: { course: course.alias },
     }),
     access: (session, courseId) =>
@@ -133,7 +134,7 @@ const links: LinkData[] = [
     name: 'Expel/Unassign Student',
     icon: 'stop_circle',
     getUrl: (course: Course) => ({
-      path: '/course/mentor/expel-student',
+      path: `${AR.COURSE}/${AR.MENTOR}/${AR.EXPELSTUDENT}`,
       query: { course: course.alias },
     }),
     access: isMentor,
@@ -144,7 +145,7 @@ const links: LinkData[] = [
     name: 'Team Distributions',
     icon: 'group_add',
     getUrl: (course: Course) => ({
-      path: '/course/team-distributions',
+      path: `${AR.COURSE}/${AR.TDISTRIBUTIONS}`,
       query: { course: course.alias },
     }),
     access: (session, courseId) =>
@@ -158,7 +159,7 @@ const links: LinkData[] = [
     name: 'Course Statistics',
     icon: 'apps',
     getUrl: (course: Course) => ({
-      path: '/course/stats',
+      path: `${AR.COURSE}/${AR.STATS}`,
       query: { course: course.alias },
     }),
     access: anyAccess,
