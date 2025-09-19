@@ -89,20 +89,6 @@ const filesToUpload = [
   {
     filePath: path.resolve(
       __dirname,
-      '../src/app/core/mocks/json-data/json-rsapp-answer-server/task-status-review.json',
-    ),
-    collectionName: 'taskStatusReview',
-  },
-  {
-    filePath: path.resolve(
-      __dirname,
-      '../src/app/core/mocks/json-data/json-rsapp-answer-server/task-status-submit.json',
-    ),
-    collectionName: 'taskStatusSubmit',
-  },
-  {
-    filePath: path.resolve(
-      __dirname,
       '../src/app/core/mocks/json-data/json-rsapp-answer-server/team-distribution-session.json',
     ),
     collectionName: 'teamDistributionSession',
