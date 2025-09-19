@@ -1,0 +1,71 @@
+<div class="register-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Personal Information</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" placeholder="John" />
+            @if (form.get('firstName')?.hasError('required')) {
+              <mat-error>First Name is required.</mat-error>
+            }
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" placeholder="Doe" />
+            @if (form.get('lastName')?.hasError('required')) {
+              <mat-error>Last Name is required.</mat-error>
+            }
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Location</mat-label>
+            <input matInput formControlName="location" placeholder="Select city" />
+            @if (form.get('location')?.hasError('required')) {
+              <mat-error>Location is required.</mat-error>
+            }
+            <!-- TODO: Implement Google Places Autocomplete -->
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Primary E-mail</mat-label>
+            <input matInput formControlName="primaryEmail" placeholder="user@example.com" />
+            @if (form.get('primaryEmail')?.hasError('required')) {
+              <mat-error>Primary E-mail is required.</mat-error>
+            }
+            @if (form.get('primaryEmail')?.hasError('email')) {
+              <mat-error>Please enter a valid email address.</mat-error>
+            }
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>EPAM E-mail</mat-label>
+            <input matInput formControlName="epamEmail" placeholder="first_last@epam.com" />
+            @if (form.get('epamEmail')?.hasError('email')) {
+              <mat-error>Please enter a valid email address.</mat-error>
+            }
+          </mat-form-field>
+        </p>
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">
+          Submit
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

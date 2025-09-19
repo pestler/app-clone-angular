@@ -5,7 +5,7 @@ export const APP_ROUTES = {
   STUDENTS: 'students',
   MENTOR: 'mentor',
   INTERVIEWS: 'interviews',
-  REGISTER: 'register',
+  REGISTER: 'registry/student',
   DASHBOARD: 'dashboard',
   PROFILE: 'profile',
   SCORE: 'score',

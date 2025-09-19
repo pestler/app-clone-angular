@@ -2,16 +2,18 @@ import { inject, Injectable } from '@angular/core';
 import {
   Auth,
   authState,
+  getAdditionalUserInfo,
   GithubAuthProvider,
   signInWithPopup,
   signOut,
   User,
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { from, map, Observable, of, switchMap } from 'rxjs';
+import { BehaviorSubject, from, map, Observable, of, switchMap } from 'rxjs';
 import { APP_ROUTES } from '../../constants/app-routes.const';
 import { ScoreData, scoreDataConverter } from '../models/dashboard.models';
 import { FirestoreService } from './firestore.service';
+import { User as UserService } from './user';
 
 @Injectable({
   providedIn: 'root',
@@ -20,8 +22,11 @@ export class AuthService {
   private readonly auth: Auth = inject(Auth);
   private readonly router: Router = inject(Router);
   private readonly firestoreService: FirestoreService = inject(FirestoreService);
+  private readonly userService: UserService = inject(UserService);
 
   readonly user$: Observable<User | null> = authState(this.auth);
+  readonly githubUsername$ = new BehaviorSubject<string | null>(null);
+  isNavigatingToRegister = false;
 
   readonly scoreData$: Observable<ScoreData | null> = this.user$.pipe(
     switchMap((user) => {
@@ -41,19 +46,35 @@ export class AuthService {
     map((scoreData) => scoreData ?? null),
   );
 
-  async signInWithGitHub(): Promise<void> {
+  async signInWithGitHub(): Promise<string> {
     const provider = new GithubAuthProvider();
     try {
-      await signInWithPopup(this.auth, provider);
-      this.router.navigate(['/']);
+      const credential = await signInWithPopup(this.auth, provider);
+      const additionalInfo = getAdditionalUserInfo(credential);
+      const githubUsername = additionalInfo?.username;
+      this.githubUsername$.next(githubUsername || null);
+
+      if (githubUsername) {
+        const profileExists = await this.userService.doesUserProfileExist(githubUsername);
+        if (profileExists) {
+          return '/';
+        } else {
+          this.isNavigatingToRegister = true;
+          return APP_ROUTES.REGISTER;
+        }
+      } else {
+        return '/';
+      }
     } catch (error) {
       console.error('Authentication error:', error);
+      return '/';
     }
   }
 
   async signOut(): Promise<void> {
     try {
       await signOut(this.auth);
+      this.githubUsername$.next(null);
       this.router.navigate([APP_ROUTES.LOGIN]);
     } catch (error) {
       console.error('Sign out error:', error);

@@ -8,11 +8,17 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { InterviewsComponent } from './pages/interviews/interviews.component';
 import { LoginComponent } from './pages/login/login.component';
 import { NotFoundComponent } from './pages/not-found.component';
+import { RegisterComponent } from './pages/register.component';
 
 export const routes: Routes = [
   {
     path: AR.LOGIN,
     component: LoginComponent,
+    canActivate: [publicGuard],
+  },
+  {
+    path: AR.REGISTER,
+    component: RegisterComponent,
     canActivate: [publicGuard],
   },
   {
