@@ -1,0 +1,17 @@
+<div class="role-selection-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Select Your Role</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>You have multiple roles. Please select how you want to enter the application:</p>
+      <div class="role-buttons">
+        @for (role of availableRoles; track role) {
+          <button mat-raised-button color="primary" (click)="selectRole(role)">
+            Enter as {{ role | titlecase }}
+          </button>
+        }
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

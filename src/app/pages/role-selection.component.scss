@@ -1,0 +1,41 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.role-selection-container {
+  width: 100%;
+  max-width: 400px;
+  padding: 24px;
+}
+
+mat-card {
+  width: 100%;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
+}
+
+mat-card-title {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+mat-card-content p {
+  text-align: center;
+  margin-bottom: 24px;
+  color: rgb(0 0 0 / 60%);
+}
+
+.role-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 12px 0;
+  font-size: 16px;
+}

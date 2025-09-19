@@ -9,7 +9,7 @@ import {
   User,
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { BehaviorSubject, from, map, Observable, of, switchMap } from 'rxjs';
+import { BehaviorSubject, firstValueFrom, from, map, Observable, of, switchMap } from 'rxjs';
 import { APP_ROUTES } from '../../constants/app-routes.const';
 import { ScoreData, scoreDataConverter } from '../models/dashboard.models';
 import { FirestoreService } from './firestore.service';
@@ -57,7 +57,20 @@ export class AuthService {
       if (githubUsername) {
         const profileExists = await this.userService.doesUserProfileExist(githubUsername);
         if (profileExists) {
-          return '/';
+          const userProfile = await firstValueFrom(this.userService.getUserProfile(githubUsername));
+
+          if (userProfile) {
+            const activeRoles = Object.values(userProfile.roles).filter(
+              (role) => role === true,
+            ).length;
+            if (activeRoles > 1) {
+              return APP_ROUTES.SELECT_ROLE;
+            } else {
+              return '/';
+            }
+          } else {
+            return '/';
+          }
         } else {
           this.isNavigatingToRegister = true;
           return APP_ROUTES.REGISTER_STUDENT;
