@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -14,4 +14,10 @@ export class BaseCardComponent {
   @Input({ required: true }) isEdit!: boolean;
   @Input({ required: true }) title!: string;
   @Input({ required: true }) icon = '';
+
+  @Output() editClick = new EventEmitter<void>();
+
+  onEditClick() {
+    this.editClick.emit();
+  }
 }
