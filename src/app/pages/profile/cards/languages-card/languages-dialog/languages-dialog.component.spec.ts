@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { LanguagesDialogComponent } from './languages-dialog.component';
 
 describe('LanguagesDialogComponent', () => {
@@ -9,6 +10,10 @@ describe('LanguagesDialogComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [LanguagesDialogComponent],
+      providers: [
+        { provide: MatDialogRef, useValue: {} },
+        { provide: MAT_DIALOG_DATA, useValue: { languages: [] } },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(LanguagesDialogComponent);
