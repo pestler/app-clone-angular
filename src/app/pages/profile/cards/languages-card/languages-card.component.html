@@ -1,0 +1,7 @@
+<app-base-card [isEdit]="true" title="My Languages" icon="translate">
+  @if (lanquages.length) {
+    <p class="content">Content</p>
+  } @else {
+    <app-empty-state [type]="EmptyStateType.About"></app-empty-state>
+  }
+</app-base-card>
