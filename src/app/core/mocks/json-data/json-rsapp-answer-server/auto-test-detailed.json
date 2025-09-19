@@ -1,0 +1,3347 @@
+[
+  {
+    "id": 4644,
+    "taskId": 1050,
+    "type": "selfeducation",
+    "name": "Angular test (Directives & Pipes)",
+    "studentStartDate": "2025-07-08T00:00:00.000Z",
+    "studentEndDate": "2025-07-14T23:59:00.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/directives-and-pipes",
+    "checker": "auto-test",
+    "crossCheckStatus": "initial",
+    "crossCheckEndDate": null,
+    "pairsCount": null,
+    "submitText": null,
+    "taskOwner": {
+      "id": 80321,
+      "name": "Natalia Loginova",
+      "githubId": "natalialoginova"
+    },
+    "validations": null,
+    "taskSolutions": null,
+    "studentRegistrationStartDate": null,
+    "publicAttributes": {
+      "maxAttemptsNumber": 3,
+      "numberOfQuestions": 15,
+      "strictAttemptsMode": true,
+      "tresholdPercentage": 70,
+      "questions": [
+        {
+          "question": "Which of the following is true about Angular Directives?",
+          "multiple": true,
+          "answers": [
+            "Component is a particular case of Directives",
+            "Directives can be used to import functionality from other Angular modules",
+            "Directives are used to extend the capabilities of a basic HTML element.",
+            "Directives are capable of adding or removing an element from the DOM tree."
+          ]
+        },
+        {
+          "question": "What is <ng-template> and which of the following statements are true?",
+          "multiple": true,
+          "answers": [
+            "It is rendered immediately when Angular parses the component template.",
+            "It cannot be rendered directly in the DOM.",
+            "It is used as an anchor for structural directives like *ngIf or *ngFor.",
+            "It doesn't create an actual DOM element during render."
+          ]
+        },
+        {
+          "question": "What character is used to define a Pipe chain in the HTML part of Angular?",
+          "multiple": false,
+          "answers": ["-", "|", ":", "?"]
+        },
+        {
+          "question": "What should be used to access a DOM element inside a directive?",
+          "multiple": false,
+          "answers": ["Element", "Host", "ElementRef", "Renderer2"]
+        },
+        {
+          "question": "Which of the listed pipes is used to convert a string to date format?",
+          "multiple": false,
+          "answers": ["dateformat", "date", "formatdate", "dateString"]
+        },
+        {
+          "question": "What is true about DecimalPipe?",
+          "multiple": true,
+          "answers": [
+            "Used to format numbers",
+            "It takes a number format as a parameter",
+            "Available for use in the template through the name \"number\"",
+            "Only used to format currencies",
+            "Converts a value of type Number to a value of type String"
+          ]
+        },
+        {
+          "question": "What is the correct Angular syntax for creating several repeated 'li' elements for each item in an array?",
+          "multiple": false,
+          "answers": [
+            "<li *ngFor='let item of items'>{{ item }}</li>",
+            "<li ngFor='let item of items'>{{ item }}</li>",
+            "<li *ngFor='let item in items'>{{ item }}</li>",
+            "<li ng-repeat='item in items'>{{ item }}</li>"
+          ]
+        },
+        {
+          "question": "What is the purpose of the async pipe in Angular?",
+          "multiple": false,
+          "answers": [
+            "To create asynchronous code",
+            "To manage HTTP requests",
+            "To transform data asynchronously",
+            "To subscribe to Observables and handle data streams"
+          ]
+        },
+        {
+          "question": "In which of the following cases will the 'selected' class be correctly assigned using Angular bindings?",
+          "multiple": true,
+          "answers": [
+            "[class.selected]=\"true\"",
+            "class=\"selected\"",
+            "[ngClass]=\"'selected'\"",
+            "[ngClass]=\"{selected: true}\""
+          ],
+          "correctAnswers": [0, 2, 3]
+        },
+        {
+          "question": "What are the types of directives in Angular?",
+          "multiple": true,
+          "answers": [
+            "Structural directives",
+            "Class directives",
+            "Component directives",
+            "Attribute directives"
+          ]
+        },
+        {
+          "question": "What character is used to pass parameters in Pipe in the HTML part of Angular?",
+          "multiple": false,
+          "answers": ["-", ":", "|", "?"]
+        },
+        {
+          "question": "Which of the following is an example of a structural directive in Angular?",
+          "multiple": false,
+          "answers": ["ngStyle", "ngFor", "ngClass", "ngModel"]
+        },
+        {
+          "question": "In Angular, how do you apply a custom directive to an HTML element?",
+          "multiple": false,
+          "answers": [
+            "Use the *ngIf syntax",
+            "Use the ng-directive attribute",
+            "Use the @Directive decorator",
+            "Use the [directive] binding syntax"
+          ]
+        },
+        {
+          "question": "Which symbol is used for two-way data binding in Angular?",
+          "multiple": false,
+          "answers": ["[]", "()", "[()]", "{{}}"]
+        },
+        {
+          "question": "How can you detect a mouse click event using a directive in Angular?",
+          "multiple": false,
+          "answers": [
+            "Use (click) in the template",
+            "Use @HostListener('click') in the directive",
+            "Use onClick() method in the directive class",
+            "Use ngClick attribute in the template"
+          ]
+        },
+        {
+          "question": "What is the purpose of the NgSwitch directive?",
+          "multiple": false,
+          "answers": [
+            "To switch between different views based on a condition.",
+            "To loop over a set of values.",
+            "To toggle the visibility of an element.",
+            "To apply CSS classes conditionally."
+          ]
+        },
+        {
+          "question": "How does a custom pipe differ from a built-in pipe in Angular?",
+          "multiple": false,
+          "answers": [
+            "Custom pipes are created by the Angular team.",
+            "Custom pipes require the @Pipe decorator.",
+            "Built-in pipes work only with Observables.",
+            "Custom pipes cannot be chained."
+          ]
+        },
+        {
+          "question": "Can you use a pipe inside a directive in Angular?",
+          "multiple": true,
+          "answers": [
+            "Yes, by using the pipe in the directive's host template.",
+            "No, pipes can only be used in component templates.",
+            "Yes, by injecting the pipe class into the directive.",
+            "No, directives and pipes are not compatible."
+          ]
+        },
+        {
+          "question": "Which method should you use to programmatically create a component using a directive?",
+          "multiple": false,
+          "answers": ["createComponent()", "ngOnDestroy()", "compileComponent()", "ngOnInit()"]
+        },
+        {
+          "question": "What is the primary reason to use a pure pipe?",
+          "multiple": false,
+          "answers": [
+            "For performance optimization, as they are only executed when the input changes.",
+            "To transform impure data into pure data.",
+            "Pure pipes are a requirement for Angular applications.",
+            "To handle asynchronous operations."
+          ]
+        },
+        {
+          "question": "What is the main purpose of the '@Input' decorator in a directive?",
+          "multiple": false,
+          "answers": [
+            "To receive data from the parent component.",
+            "To emit events to the parent component.",
+            "To update data within the directive itself.",
+            "To handle HTTP requests."
+          ]
+        },
+        {
+          "question": "How do you make a directive respond to user input?",
+          "multiple": false,
+          "answers": [
+            "By changing the directive's properties.",
+            "By configuring the directive's selector.",
+            "By using the Angular CLI.",
+            "By listening to DOM events."
+          ]
+        },
+        {
+          "question": "What is a 'pure' pipe in Angular?",
+          "multiple": false,
+          "answers": [
+            "A pipe that is part of Angular's core.",
+            "A pipe that does not have any side effects.",
+            "A pipe that can be used in Reactive Forms.",
+            "A pipe that transforms its input based on parameters alone."
+          ]
+        },
+        {
+          "question": "Which hook method is called every time a pipe is executed?",
+          "multiple": false,
+          "answers": ["ngOnInit", "ngOnChanges", "transform", "ngAfterViewChecked"]
+        },
+        {
+          "question": "How can you apply a directive conditionally in Angular?",
+          "multiple": false,
+          "answers": [
+            "Using the '@Input' decorator.",
+            "Using the '*ngIf' directive.",
+            "Using the 'ngStyle' directive.",
+            "Using the 'ngOnChanges' hook."
+          ]
+        },
+        {
+          "question": "What does the 'currency' pipe do in Angular?",
+          "multiple": false,
+          "answers": [
+            "Converts a number to a string formatted in a currency.",
+            "Changes the format of a date to include currency symbols.",
+            "Applies currency exchange rates.",
+            "Filters out a list of transactions based on currency."
+          ]
+        },
+        {
+          "question": "What is the difference between '@ViewChild' and '@ContentChild' in Angular?",
+          "multiple": false,
+          "answers": [
+            "'@ViewChild' accesses a child component in the template, '@ContentChild' accesses a child component passed via 'ng-content'.",
+            "'@ViewChild' and '@ContentChild' are the same.",
+            "'@ContentChild' accesses a parent component, '@ViewChild' accesses a sibling component.",
+            "'@ContentChild' is deprecated in favor of '@ViewChild'."
+          ]
+        },
+        {
+          "question": "How can you control the change detection behavior of a custom pipe in Angular?",
+          "multiple": true,
+          "answers": [
+            "By setting the 'pure' property to 'false' in the @Pipe decorator.",
+            "By implementing a custom change detection strategy.",
+            "By using the 'changeDetection' property in the @Pipe decorator.",
+            "It's not possible to control change detection in pipes."
+          ]
+        },
+        {
+          "question": "Which type of directives can you use to alter the layout of the DOM by adding and removing elements?",
+          "multiple": false,
+          "answers": [
+            "Attribute directives",
+            "Structural directives",
+            "Component directives",
+            "Behavioral directives"
+          ]
+        },
+        {
+          "question": "In Angular, why would you use the 'trackBy' option with a structural directive?",
+          "multiple": false,
+          "answers": [
+            "To optimize performance by tracking an item's identity when iterating over a collection.",
+            "To keep a reference to an element's state.",
+            "To track changes in the directive's properties.",
+            "To enable transition animations during DOM changes."
+          ]
+        }
+      ]
+    },
+    "githubRepoName": "",
+    "sourceGithubRepoUrl": "",
+    "resultsCount": 120
+  },
+  {
+    "id": 4664,
+    "taskId": 1043,
+    "type": "selfeducation",
+    "name": "Angular test (Components)",
+    "studentStartDate": "2025-07-08T00:00:00.000Z",
+    "studentEndDate": "2025-07-16T21:59:00.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/components",
+    "checker": "auto-test",
+    "crossCheckStatus": "initial",
+    "crossCheckEndDate": null,
+    "pairsCount": null,
+    "submitText": null,
+    "taskOwner": {
+      "id": 80321,
+      "name": "Natalia Loginova",
+      "githubId": "natalialoginova"
+    },
+    "validations": null,
+    "taskSolutions": null,
+    "studentRegistrationStartDate": null,
+    "publicAttributes": {
+      "maxAttemptsNumber": 4,
+      "numberOfQuestions": 15,
+      "strictAttemptsMode": true,
+      "tresholdPercentage": 70,
+      "questions": [
+        {
+          "question": "What Components have that Directives don't?",
+          "multiple": false,
+          "answers": ["Template", "Metadata", "Ability to inject services", "Decorators"]
+        },
+        {
+          "question": "Which of these lifecycle hooks can respond to changes in @Input() properties?",
+          "multiple": true,
+          "answers": ["ngOnInit", "ngOnChanges", "ngDoCheck", "ngOnDestroy"]
+        },
+        {
+          "question": "Which one of the following built-in pipes is not pure?\n",
+          "multiple": false,
+          "answers": ["DecimalPipe", "DatePipe", "CurrencyPipe", "AsyncPipe"]
+        },
+        {
+          "question": "Which of the following statements apply to impure pipes in Angular?",
+          "multiple": true,
+          "answers": [
+            "Usage with the same arguments always yields the same result",
+            "Usage with the same arguments may yield different results",
+            "Invoked whenever Angular performs change detection",
+            "May return a new object reference"
+          ]
+        },
+        {
+          "question": "Which of the following lifecycle methods will get called first (assuming the Component has Input values)?",
+          "multiple": false,
+          "answers": ["ngOnInit", "ngDoCheck", "ngOnChanges", "ngAfterContentChecked"]
+        },
+        {
+          "question": "Which directive can be used to render lists of elements?",
+          "multiple": false,
+          "answers": ["ngFor", "ngIf", "ngModel", "ngSwitch"]
+        },
+        {
+          "question": "Which of these elements is best suited for simple unconditional content projection?",
+          "multiple": false,
+          "answers": ["slot", "ng-template", "ng-container", "ng-content"]
+        },
+        {
+          "question": "What is a use case for ngDoCheck hook?",
+          "multiple": false,
+          "answers": [
+            "Initialization of resources",
+            "Defining custom change detection",
+            "Responding to projected content changes",
+            "Reacting to changes in Input properties"
+          ]
+        },
+        {
+          "question": "Which of the following is a use case for ngAfterContentInit hook",
+          "multiple": false,
+          "answers": [
+            "Responding to projected content changes",
+            "Cleanup of resources",
+            "Respond to initialization of child views",
+            "Respond to external content projection into the component's view"
+          ]
+        },
+        {
+          "question": "Which of the following is a use case for ngOnDestroy hook",
+          "multiple": false,
+          "answers": [
+            "Cleanup of resources",
+            "Defining custom change detection",
+            "Reacting to changes in Input properties",
+            "Respond to checked content projected into the component"
+          ]
+        },
+        {
+          "question": "Which of the following is a use case for ngAfterViewInit hook?",
+          "multiple": false,
+          "answers": [
+            "Respond to external content projection into the component's view",
+            "Initialization of resources",
+            "Respond to initialization of child views",
+            "Respond to child views checked"
+          ]
+        },
+        {
+          "question": "Which of the following expressions are discouraged in Angular templates due to potential side effects or performance issues?",
+          "multiple": true,
+          "answers": ["{{ x + y }}", "console.log(x)", "a = 'new value'", "new Date()"]
+        },
+        {
+          "question": "What is the purpose of Pipes?",
+          "multiple": false,
+          "answers": [
+            "They are used to modify behavior of an element",
+            "They are used to transform data",
+            "They are the main building block of an application",
+            "They are dependencies that can be injected into components"
+          ]
+        },
+        {
+          "question": "Which one of these answers has the correct usage of ngFor directive?",
+          "multiple": false,
+          "answers": [
+            "*ngFor=\"var item of items; index as i; trackBy: trackByFn\"",
+            "*ngFor=\"let item in items; index as i; trackBy: trackByFn\"",
+            "*ngFor=\"let item of items; index as i; trackBy: item.id\"",
+            "*ngFor=\"let item of items; index as i; trackBy: trackByFn\""
+          ]
+        },
+        {
+          "question": "What is the purpose of structural directives",
+          "multiple": false,
+          "questionImage": "",
+          "answers": [
+            "They are dependencies that can be injected into components",
+            "They are used to modify the DOM layout",
+            "They are used to modify appearance of an element",
+            "They are used to transform data"
+          ]
+        },
+        {
+          "question": "What is the use of HostBinding and HostListener?",
+          "multiple": true,
+          "answers": [
+            "To bind properties of the host element",
+            "To listen to events on the host element",
+            "To create bindings for native properties",
+            "To communicate with parent components"
+          ]
+        },
+        {
+          "question": "What is the difference between constructor and ngOnInit?",
+          "multiple": false,
+          "answers": [
+            "Constructor is for setup, ngOnInit is for data-bound input properties",
+            "They serve the same purpose",
+            "ngOnInit is not guaranteed to be called",
+            "Constructor is a lifecycle hook"
+          ]
+        },
+        {
+          "question": "What is the Angular-recommended method for sharing data directly between a parent and a child component?",
+          "multiple": false,
+          "answers": [
+            "Via Input and Output decorators",
+            "Using a shared service",
+            "Through local storage",
+            "By calling methods on the child component directly"
+          ]
+        },
+        {
+          "question": "What is the decorator used to define a component in Angular?",
+          "multiple": false,
+          "answers": ["@Component", "@Directive", "@NgModule", "@Injectable"]
+        },
+        {
+          "question": "What is the purpose of the inject() function in Angular?",
+          "multiple": false,
+          "answers": [
+            "It allows dependency injection without using constructor",
+            "It replaces @Injectable()",
+            "It is used only in tests",
+            "It is used to import standalone components"
+          ]
+        },
+        {
+          "question": "How do you bind to a property of a component in Angular?",
+          "multiple": false,
+          "answers": ["()", "[]", "{}", "##"]
+        },
+        {
+          "question": "Which of the following is a correct way to define a standalone component?",
+          "multiple": false,
+          "answers": [
+            "@Component({ standalone: true, imports: [...] })",
+            "@Component({ selector: 'app', standalone: true })",
+            "@Component({ selector: 'app', module: true })",
+            "@Component({ standaloneComponent: true })"
+          ]
+        },
+        {
+          "question": "Which hook should be used to clean up or unsubscribe from an Observable subscription?",
+          "multiple": false,
+          "answers": ["ngOnInit", "ngOnDestroy", "ngAfterViewInit", "ngDoCheck"]
+        },
+        {
+          "question": "How can you access DOM elements in Angular?",
+          "multiple": false,
+          "answers": ["ViewChildren", "QuerySelector", "ViewElements", "getElementById"]
+        },
+        {
+          "question": "Which hook is called once, after the first ngOnChanges()?",
+          "multiple": false,
+          "answers": ["ngOnInit", "ngAfterContentInit", "ngAfterViewInit", "ngAfterViewChecked"]
+        },
+        {
+          "question": "What is the difference between 'ngOnChanges' and 'ngDoCheck' hooks?",
+          "multiple": true,
+          "answers": [
+            "'ngOnChanges' is called when any data-bound input property value changes",
+            "'ngDoCheck' is called during every change detection run even if there are no input property changes",
+            "'ngDoCheck' is called only when a component is initialized",
+            "'ngDoCheck' is used to detect and act upon changes that Angular can't or won't detect on its own"
+          ]
+        },
+        {
+          "question": "Which lifecycle hook should you use to perform action after Angular initializes the component's views and child views?",
+          "multiple": false,
+          "answers": ["ngOnInit", "ngAfterViewInit", "ngAfterContentInit", "ngAfterContentChecked"]
+        },
+        {
+          "question": "What is the main purpose of the 'ngAfterContentChecked' hook?",
+          "multiple": false,
+          "answers": [
+            "To respond to Angular checking the content projected into the component",
+            "To perform complex initializations for component content",
+            "To set the content of the component before it's checked",
+            "To manipulate DOM elements after they are created"
+          ]
+        },
+        {
+          "question": "When is the 'ngOnDestroy' hook executed?",
+          "multiple": false,
+          "answers": [
+            "Just before Angular destroys the directive or component",
+            "Immediately after Angular creates the component",
+            "During every change detection cycle",
+            "After the component's view is checked by Angular"
+          ]
+        },
+        {
+          "question": "What are the characteristics of a standalone component in Angular?",
+          "multiple": true,
+          "answers": [
+            "It can be used without declaring it in an NgModule",
+            "It can declare its own imports directly",
+            "It requires a bootstrap module",
+            "It can only be used with NgZone disabled"
+          ]
+        }
+      ]
+    },
+    "githubRepoName": "",
+    "sourceGithubRepoUrl": "",
+    "resultsCount": 124
+  },
+  {
+    "id": 4665,
+    "taskId": 1042,
+    "type": "selfeducation",
+    "name": "Angular test (Angular CLI, TypeScript)",
+    "studentStartDate": "2025-07-08T00:00:00.000Z",
+    "studentEndDate": "2025-07-16T21:59:00.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/angular/modules/intro",
+    "checker": "auto-test",
+    "crossCheckStatus": "initial",
+    "crossCheckEndDate": null,
+    "pairsCount": null,
+    "submitText": null,
+    "taskOwner": {
+      "id": 13787,
+      "name": "Rustam Satlykov",
+      "githubId": "satlykov"
+    },
+    "validations": null,
+    "taskSolutions": null,
+    "studentRegistrationStartDate": null,
+    "publicAttributes": {
+      "maxAttemptsNumber": 5,
+      "numberOfQuestions": 27,
+      "strictAttemptsMode": true,
+      "tresholdPercentage": 70,
+      "questions": [
+        {
+          "question": "What is Angular CLI and what purpose does it serve in Angular development?",
+          "multiple": false,
+          "answers": [
+            "Component library like Angular Material.",
+            "JavaScript library to be imported into an Angular project.",
+            "Command-line interface tool that you use to initialize, develop, scaffold, and maintain Angular applications.",
+            "All of the above."
+          ]
+        },
+        {
+          "question": "How can you install Angular CLI using npm?",
+          "multiple": false,
+          "answers": [
+            "npm install angular",
+            "npm install -g cli",
+            "npm add @angular/cli",
+            "npm install -g @angular/cli"
+          ]
+        },
+        {
+          "question": "What is the command for creating a new Angular application using Angular CLI?",
+          "multiple": false,
+          "answers": ["ng new my-app", "ng generate my-app", "ng create my-app", "ng init my-app"]
+        },
+        {
+          "question": "How can you use Angular CLI to add a new feature or library to your Angular project, like Angular Material?",
+          "multiple": false,
+          "answers": [
+            "ng add angular/material",
+            "ng add @angular/material",
+            "ng generate library @angular/material",
+            "ng init @angular/material"
+          ]
+        },
+        {
+          "question": "What is the default testing setup in a newly generated Angular application by CLI?",
+          "multiple": false,
+          "answers": ["Mocha", "Jasmine + Karma", "Jest", "Vitest"]
+        },
+        {
+          "question": "How correctly define an array of strings in TypeScript?",
+          "multiple": true,
+          "answers": [
+            "let strArray: string[] = ['a', 'b', 'c'];",
+            "let strArray: [string] = ['a', 'b', 'c'];",
+            "let strArray: []string = ['a', 'b', 'c'];",
+            "let strArray: Array<string> = ['a', 'b', 'c'];"
+          ]
+        },
+        {
+          "question": "How do you define a function that returns a Promise with a specific type in TypeScript?",
+          "multiple": false,
+          "answers": [
+            "async function fetchData(): DataType {}",
+            "function fetchData(): Promise DataType {}",
+            "function fetchData(): Promise<DataType> {}",
+            "async function fetchData() => DataType {}"
+          ]
+        },
+        {
+          "question": "What is a Signal in Angular?",
+          "multiple": false,
+          "answers": [
+            "A decorator for lifecycle hooks.",
+            "A way to define reactive values in Angular services",
+            "A reactive primitive introduced in Angular 16 for tracking and reacting to state changes.",
+            "A directive for DOM event binding."
+          ]
+        },
+        {
+          "question": "What is the purpose of the 'never' type in TypeScript?",
+          "multiple": false,
+          "answers": [
+            "Represents a value that should be ignored.",
+            "Represents a value that will never occur.",
+            "Represents a value that will never be changed.",
+            "Represents a value that is always false."
+          ]
+        },
+        {
+          "question": "How can you specify that a function in TypeScript does not return a value?",
+          "multiple": false,
+          "answers": [
+            "function myFunc(): void {}",
+            "function myFunc(): null {}",
+            "function myFunc(): undefined {}",
+            "function myFunc(): none {}"
+          ]
+        },
+        {
+          "question": "How do you specify that a function in TypeScript accepts a rest parameter?",
+          "multiple": false,
+          "answers": [
+            "function myFunc(...args: number[]) {}",
+            "function myFunc(args: number*[]) {}",
+            "function myFunc(args: ...number[]) {}",
+            "function myFunc(args: number[]...) {}"
+          ]
+        },
+        {
+          "question": "How can you define a type that represents either a number or a string in TypeScript?",
+          "multiple": false,
+          "answers": [
+            "type NumberOrString = number / string;",
+            "type NumberOrString = number & string;",
+            "type NumberOrString = number | string;",
+            "type NumberOrString = number + string;"
+          ]
+        },
+        {
+          "question": "What is the syntax for passing generic type parameters to a function or class in TypeScript?",
+          "multiple": false,
+          "answers": [
+            "function func<type:T>(param: T) {}",
+            "function func(type:T)(param: T) {}",
+            "function func(param: T) {}",
+            "function func<T>(param: T) {}"
+          ]
+        },
+        {
+          "question": "What is the primary configuration file for an Angular project?",
+          "multiple": false,
+          "answers": ["angular.json", "package.json", "tsconfig.json", "webpack.config.js"]
+        },
+        {
+          "question": "How do you update an existing Angular application to the latest version using Angular CLI?",
+          "multiple": false,
+          "answers": ["ng upgrade", "ng update", "npm update", "npm upgrade"]
+        },
+        {
+          "question": "Which file in an Angular project specifies the TypeScript compiler options?",
+          "multiple": false,
+          "answers": [
+            "tsconfig.json",
+            "typescript.json",
+            "compiler.config.json",
+            "tsconfig.app.json"
+          ]
+        },
+        {
+          "question": "What is the purpose of the 'strictPropertyInitialization' flag in the TypeScript configuration for Angular?",
+          "multiple": false,
+          "answers": [
+            "Enforces strict typing for object properties.",
+            "Allows properties to be initialized with any value.",
+            "Validates property bindings in templates.",
+            "Ensures class properties are initialized in the constructor."
+          ]
+        },
+        {
+          "question": "How can you enable the Ahead-of-Time (AOT) compilation for an Angular application?",
+          "multiple": false,
+          "answers": [
+            "By adding the \"compile\": \"aot\" to the package.json file",
+            "Using the command 'ng build --configuration production'.",
+            "Installing the AOT plugin for Angular CLI.",
+            "By adding '@AotEnabled' decorator to the main component."
+          ]
+        },
+        {
+          "question": "In Angular, what is the main advantage of using TypeScript instead of JavaScript?",
+          "multiple": false,
+          "answers": [
+            "TypeScript provides strong typing and compile-time error checking.",
+            "TypeScript can be executed faster than JavaScript.",
+            "TypeScript is required to use Angular CLI.",
+            "TypeScript prevents the use of any JavaScript libraries."
+          ]
+        },
+        {
+          "question": "What TypeScript feature allows for automatic assignment of constructor parameters to class properties?",
+          "multiple": false,
+          "answers": [
+            "Parameter properties",
+            "Destructuring",
+            "Spread operator",
+            "Class decorators"
+          ]
+        },
+        {
+          "question": "How do you define a model in TypeScript for use in Angular?",
+          "multiple": false,
+          "answers": [
+            "By creating a class or an interface.",
+            "Using the 'model' keyword.",
+            "By declaring a JSON object.",
+            "Using the '@model' decorator."
+          ]
+        },
+        {
+          "question": "When to use 'ngOnInit' in TypeScript for Angular components?",
+          "multiple": false,
+          "answers": [
+            "To initialize the component before Angular sets any @Input() values.",
+            "When you need to handle async operations upon component destruction.",
+            "When you need to run code after the component's properties have been set.",
+            "To define event listeners for the component."
+          ]
+        },
+        {
+          "question": "Which TypeScript feature enables defining reusable and type-safe structures such as Array<{ a: string }>?",
+          "multiple": false,
+          "answers": ["Typed arrays", "Generics", "Enums", "Function overloading"]
+        },
+        {
+          "question": "How do you declare a read-only property in a TypeScript class?",
+          "multiple": false,
+          "answers": [
+            "By declaring the property as const inside the class.",
+            "Using the 'readonly' keyword.",
+            "With the '@readonly' decorator.",
+            "By setting the property value in the constructor only."
+          ]
+        },
+        {
+          "question": "Which command would you use to create a new TypeScript configuration file in an existing Angular project?",
+          "multiple": false,
+          "answers": ["tsc --init", "ng generate tsconfig", "tsconfig --new", "typescript --config"]
+        },
+        {
+          "question": "In an Angular application, where do you usually define TypeScript type definitions for external libraries that do not have their own '@types' packages?",
+          "multiple": false,
+          "answers": [
+            "Within the main 'app.module.ts' file.",
+            "Directly in the 'package.json' file.",
+            "In a custom 'typings.d.ts' file.",
+            "Inside the 'vendor.ts' file."
+          ]
+        },
+        {
+          "question": "In Angular, what does the 'ngModel' directive provide when working with forms and TypeScript?",
+          "multiple": false,
+          "answers": [
+            "Two-way data binding for form elements.",
+            "A model class for creating new form controls.",
+            "Type checking of form inputs at compile-time.",
+            "Automated testing for form-related components."
+          ]
+        }
+      ]
+    },
+    "githubRepoName": "",
+    "sourceGithubRepoUrl": "",
+    "resultsCount": 127
+  },
+  {
+    "id": 4667,
+    "taskId": 1045,
+    "type": "selfeducation",
+    "name": "Angular test (Routing)",
+    "studentStartDate": "2025-07-14T22:00:00.000Z",
+    "studentEndDate": "2025-07-21T23:59:00.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/routing",
+    "checker": "auto-test",
+    "crossCheckStatus": "initial",
+    "crossCheckEndDate": null,
+    "pairsCount": null,
+    "submitText": null,
+    "taskOwner": {
+      "id": 84418,
+      "name": "(Empty)",
+      "githubId": "anjx"
+    },
+    "validations": null,
+    "taskSolutions": null,
+    "studentRegistrationStartDate": null,
+    "publicAttributes": {
+      "maxAttemptsNumber": 5,
+      "numberOfQuestions": 15,
+      "strictAttemptsMode": true,
+      "tresholdPercentage": 70,
+      "questions": [
+        {
+          "question": "What is Angular routing primarily used for?",
+          "multiple": false,
+          "answers": [
+            "Data binding",
+            "Component interaction",
+            "Navigation within the application",
+            "Styling"
+          ]
+        },
+        {
+          "question": "What does the RouterOutlet directive do in Angular?",
+          "multiple": false,
+          "answers": [
+            "Handles HTTP requests",
+            "Renders the matched component during routing",
+            "Manages state in an Angular application",
+            "Provides authentication for routes"
+          ]
+        },
+        {
+          "question": "What is the purpose of the routerLink directive?",
+          "multiple": false,
+          "answers": [
+            "It defines the outlet for routing",
+            "It handles HTTP requests in the application.",
+            "It defines route parameters.",
+            "It generates navigation links in templates."
+          ]
+        },
+        {
+          "question": "What is the purpose of routing parameters in Angular?",
+          "multiple": false,
+          "answers": [
+            "To pass data between components",
+            "To configure route guards",
+            "To set up lazy loading",
+            "To define custom routing strategies"
+          ]
+        },
+        {
+          "question": "What are Angular router guards used for?",
+          "multiple": false,
+          "answers": [
+            "Protecting routes from unauthorized access",
+            "Defining custom route animations",
+            "Configuring lazy loading",
+            "Parsing route parameters"
+          ]
+        },
+        {
+          "question": "How can you achieve asynchronous loading of modules in Angular?",
+          "multiple": false,
+          "answers": [
+            "By using the RouterLink directive",
+            "By using the loadComponent or loadChildren properties in route configuration",
+            "By using the ngRoute module",
+            "By manually importing modules in the app component"
+          ]
+        },
+        {
+          "question": "What does an Angular resolver do?",
+          "multiple": false,
+          "answers": [
+            "Resolves HTTP requests",
+            "Resolves routing parameters",
+            "Resolves data before a route is activated",
+            "Resolves asynchronous loading issues"
+          ]
+        },
+        {
+          "question": "Which of the following is true about lazy loading in Angular routing?",
+          "multiple": false,
+          "answers": [
+            "Lazy loading is not supported in Angular routing",
+            "Lazy loading improves the initial loading time of the application",
+            "Lazy loading is only used for CSS and styling",
+            "Lazy loading is achieved using the ngIf directive"
+          ]
+        },
+        {
+          "question": "What is the purpose of canActivate route guard in Angular?",
+          "multiple": false,
+          "answers": [
+            "To activate a route",
+            "To allow or deny access to a route based on a logic",
+            "To handle routing parameters",
+            "To load external libraries asynchronously"
+          ]
+        },
+        {
+          "question": "Which directive is used to define the target outlet for a route in Angular?",
+          "multiple": false,
+          "answers": ["routerLink", "ngOutlet", "RouterOutlet", "routeOutlet"]
+        },
+        {
+          "question": "How do you pass route parameters to a component in Angular?",
+          "multiple": false,
+          "answers": [
+            "Use the ActivatedRoute service",
+            "Define them in the component's template",
+            "Use the routerData attribute in the component",
+            "Pass them as query parameters in the URL"
+          ]
+        },
+        {
+          "question": "Which router configuration keyword is used to resolve data before a route is activated?",
+          "multiple": false,
+          "answers": ["canActivate", "canDeactivate", "canLoad", "resolve"]
+        },
+        {
+          "question": "In Angular routing, what does a wildcard route (**) signify?",
+          "multiple": false,
+          "answers": [
+            "A route that matches any URL",
+            "A route that only matches the root URL",
+            "A route that redirects to the home page",
+            "A route that is not accessible"
+          ]
+        },
+        {
+          "question": "What is the purpose of the canDeactivate route guard in Angular?",
+          "multiple": false,
+          "answers": [
+            "To activate a route",
+            "To guard against route activation",
+            "To handle route deactivation",
+            "To load external libraries asynchronously"
+          ]
+        },
+        {
+          "question": "How do you configure a route with the loadChildren property for lazy loading in Angular?",
+          "multiple": false,
+          "answers": [
+            "By specifying the component to load directly",
+            "By specifying a URL to load the component from",
+            "By using a dynamic import with a module path",
+            "By using the ngIf directive"
+          ]
+        },
+        {
+          "question": "What would you use to define multiple routes with different paths in Angular?",
+          "multiple": false,
+          "answers": [
+            "A single RouterModule.forRoot call",
+            "Multiple RouterModule.forChild calls",
+            "An array of routes in the app-routing.module.ts",
+            "Separate template files for each route"
+          ]
+        },
+        {
+          "question": "How do you specify a default route in Angular?",
+          "multiple": true,
+          "answers": [
+            "By using the 'default' keyword in route configuration",
+            "By using the pathMatch property with value 'full'",
+            "By setting a route path to '*'",
+            "By leaving the path property empty in route configuration"
+          ]
+        },
+        {
+          "question": "In Angular, how are routes integrated within the application module?",
+          "multiple": false,
+          "answers": [
+            "Through the ngModel directive",
+            "By passing the routes array to RouterModule.forRoot()",
+            "By declaring the routes in the @Injectable decorator",
+            "By importing the HttpClientModule"
+          ]
+        },
+        {
+          "question": "Which of the following is used to navigate programmatically in Angular?",
+          "multiple": false,
+          "answers": [
+            "Router.navigate() method",
+            "RouterLink.activate() method",
+            "ActivatedRoute.navigate() method",
+            "Router.navigateByUrl() method"
+          ]
+        },
+        {
+          "question": "What is the purpose of path matching strategies in Angular routing?",
+          "multiple": false,
+          "answers": [
+            "To apply CSS styles to active routes",
+            "To control how routes are matched to URL paths",
+            "To specify different HTTP methods for fetching data",
+            "To set user permissions for accessing routes"
+          ]
+        },
+        {
+          "question": "What is the recommended way for user redirection to a different route after a successful route guard check in Angular?",
+          "multiple": false,
+          "answers": [
+            "By returning false in the canActivate guard",
+            "By returning true in the canActivate guard",
+            "By returning a UrlTree with the new route",
+            "By using the Router.navigateByUrl() method in the guard"
+          ]
+        },
+        {
+          "question": "What is the significance of the order of routes in Angular's routing configuration?",
+          "multiple": false,
+          "answers": [
+            "The order does not matter",
+            "Routes are matched from the bottom to the top",
+            "Routes are matched from the top to the bottom, with the first match being used",
+            "Routes are matched based on the length of the path"
+          ]
+        },
+        {
+          "question": "What determines when a Child Route is activated in Angular?",
+          "multiple": false,
+          "answers": [
+            "When the root route is activated",
+            "When its corresponding parent route is activated",
+            "When a user has the correct permissions",
+            "When it is defined with loadChildren"
+          ]
+        },
+        {
+          "question": "Why would you use named router outlets in Angular?",
+          "multiple": false,
+          "answers": [
+            "To display multiple components simultaneously",
+            "To rename components dynamically",
+            "To specify the HTTP method for routing requests",
+            "To increase the performance of the application"
+          ]
+        },
+        {
+          "question": "What is a Route Module in Angular?",
+          "multiple": false,
+          "answers": [
+            "A module that only contains services",
+            "A module that contains routing rules for child routes",
+            "A standalone application CSS module",
+            "A module that enables route animations"
+          ]
+        },
+        {
+          "question": "Which type of routes would you configure using RouterModule.forChild() in Angular?",
+          "multiple": false,
+          "answers": ["Root routes", "Child routes", "Standalone routes", "Wildcard routes"]
+        },
+        {
+          "question": "How does Angular preserve query parameters during navigation?",
+          "multiple": false,
+          "answers": [
+            "By default, query parameters are not preserved",
+            "By setting preserveQueryParams to true",
+            "By using the queryParamsHandling option",
+            "By using the preserveFragment option"
+          ]
+        },
+        {
+          "question": "In Angular, what is the equivalent of an anchor link navigation?",
+          "multiple": false,
+          "answers": [
+            "Using the Router.navigate() method with a URL string",
+            "Setting the fragment property on a router link",
+            "Using the HashLocationStrategy",
+            "Defining a route with a 'hash' symbol"
+          ]
+        },
+        {
+          "question": "How do you define a 404 Not Found page using Angular's routing configuration?",
+          "multiple": false,
+          "answers": [
+            "By setting the errorCode property in the route to 404",
+            "By creating a route with '**' path and a custom Not Found component",
+            "By using the HttpModule to catch 404 responses",
+            "By configuring the server to redirect 404 responses to an Angular route"
+          ]
+        },
+        {
+          "question": "Which property in Angular's route configuration specifies a guard to run when navigating away from a route?",
+          "multiple": false,
+          "answers": ["canActivate", "canDeactivate", "canLoad", "canActivateChild"]
+        }
+      ]
+    },
+    "githubRepoName": "",
+    "sourceGithubRepoUrl": "",
+    "resultsCount": 105
+  },
+  {
+    "id": 4666,
+    "taskId": 1044,
+    "type": "selfeducation",
+    "name": "Angular test (Modules, Services)",
+    "studentStartDate": "2025-07-15T00:00:00.000Z",
+    "studentEndDate": "2025-07-24T21:59:00.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/modules-and-services",
+    "checker": "auto-test",
+    "crossCheckStatus": "initial",
+    "crossCheckEndDate": null,
+    "pairsCount": null,
+    "submitText": null,
+    "taskOwner": {
+      "id": 84572,
+      "name": "(Empty)",
+      "githubId": "dianakogut"
+    },
+    "validations": null,
+    "taskSolutions": null,
+    "studentRegistrationStartDate": null,
+    "publicAttributes": {
+      "maxAttemptsNumber": 6,
+      "numberOfQuestions": 29,
+      "strictAttemptsMode": true,
+      "tresholdPercentage": 70,
+      "questions": [
+        {
+          "question": "How many instances of a service are created if it is provided in two different components via their providers metadata?",
+          "multiple": false,
+          "answers": ["1", "2", "0"]
+        },
+        {
+          "question": "Which tag is used to render a component via a selected route in Angular?",
+          "multiple": false,
+          "answers": [
+            "<router></router>",
+            "<router-output></router-output>",
+            "<router-outlet></router-outlet>",
+            "<router-display></router-display>"
+          ]
+        },
+        {
+          "question": "Which method is used in AppModule to provide the root routes?",
+          "multiple": false,
+          "answers": [
+            "RouterModule.forRoot",
+            "RouterModule.update",
+            "RouterModule.forChild",
+            "RouterModule.createRoot"
+          ]
+        },
+        {
+          "question": "Which symbol defines the wildcard route in Angular?",
+          "multiple": false,
+          "answers": ["*", "**", "''", "#", "~"]
+        },
+        {
+          "question": "Can there be multiple <router-outlet> elements in an Angular application?",
+          "multiple": false,
+          "answers": ["true", "false"]
+        },
+        {
+          "question": "Which service is used to retrieve route parameters inside a component?",
+          "multiple": false,
+          "answers": ["Router", "RouterOutlet", "ActivatedRoute", "Route"]
+        },
+        {
+          "question": "Which of the following is correct about Angular architecture?",
+          "multiple": true,
+          "answers": [
+            "Template in Angular defines the view",
+            "Module in Angular is used to group related components",
+            "Service in Angular provides business logic or data access",
+            "None of the above"
+          ]
+        },
+        {
+          "question": "Which statements are true regarding Angular Routing?",
+          "multiple": true,
+          "answers": [
+            "The router matches the navigation URL to the route configuration",
+            "canDeactivate is used to check lazy loading eligibility",
+            "canActivate guards control access to routes",
+            "Routing directs users to components based on the URL"
+          ]
+        },
+        {
+          "question": "What decorator is used to define an Angular module?",
+          "multiple": false,
+          "answers": ["@NgConfigure", "@NgModule", "@NgClass", "@NgAngular"]
+        },
+        {
+          "question": "In the following AppModule, what can we say?\n@NgModule({\n  declarations: [AppComponent, UserComponent],\n  imports: [BrowserModule],\n  providers: [UserService],\n  bootstrap: [AppComponent]\n})",
+          "multiple": true,
+          "answers": [
+            "UserComponent can be used throughout the application",
+            "UserService is available in the entire AppModule",
+            "UserComponent must be declared in other modules if reused",
+            "AppComponent is the root component",
+            "None of the above"
+          ]
+        },
+        {
+          "question": "What does the following code mean?\nconstructor(@Optional() private myService: MyService){}",
+          "multiple": false,
+          "answers": [
+            "myService is injected optionally and must be checked before use",
+            "myService does not need to be injected",
+            "myService will throw an error if missing",
+            "myService will be injected as singleton only"
+          ]
+        },
+        {
+          "question": "Which module is directly related to Angular routing?",
+          "multiple": false,
+          "answers": ["RouterModule", "FormsModule", "NgModule", "BrowserModule"]
+        },
+        {
+          "question": "Given the following route config:\nconst appRoutes: Routes = [\n  { path: '**', component: NotFoundComponent },\n  { path: '', component: HomeComponent },\n  { path: 'about', component: AboutComponent }\n];\n\nWhat component will be rendered for my.app.com/about?",
+          "multiple": false,
+          "answers": ["NotFoundComponent", "HomeComponent", "AboutComponent"]
+        },
+        {
+          "question": "What is the main purpose of Dependency Injection (DI) in Angular?",
+          "multiple": false,
+          "answers": [
+            "To reduce application size",
+            "To manage styles",
+            "To promote modular, testable code",
+            "To improve animations"
+          ]
+        },
+        {
+          "question": "Which of the following are valid Angular Router events?",
+          "multiple": true,
+          "answers": [
+            "NavigationStart",
+            "RouteConfigLoadStart",
+            "NavigationEnd",
+            "NavigationCancel",
+            "GuardsCheckStart",
+            "ResolveEnd",
+            "Click",
+            "Scroll",
+            "Navigate"
+          ]
+        },
+        {
+          "question": "What is true about Angular RouterState?",
+          "multiple": true,
+          "answers": [
+            "It is a tree of activated routes",
+            "Each node has data about URL segments and parameters",
+            "It can be accessed via router.routerState"
+          ]
+        },
+        {
+          "question": "How do you provide a singleton service in Angular?",
+          "multiple": true,
+          "answers": [
+            "Add providedIn: 'root' in @Injectable()",
+            "Provide the service in a module that is imported once (e.g. AppModule)"
+          ]
+        },
+        {
+          "question": "Which statements are true about the CanActivate guard?",
+          "multiple": true,
+          "answers": [
+            "Runs before activating the route",
+            "Can cancel or allow navigation",
+            "Can return boolean, UrlTree, Promise or Observable",
+            "Defined in @angular/router"
+          ]
+        },
+        {
+          "question": "What can CanActivate return?",
+          "multiple": true,
+          "answers": ["Observable<boolean>", "boolean", "UrlTree", "Promise<UrlTree>"]
+        },
+        {
+          "question": "As of Angular 17, how many parameters does the canActivate() method accept?",
+          "multiple": false,
+          "answers": ["1", "2", "3", "4"]
+        },
+        {
+          "question": "What is the purpose of the CanDeactivate guard?",
+          "multiple": false,
+          "answers": [
+            "Decides if navigation from the current route should proceed",
+            "Decides if a component can be lazy-loaded",
+            "Cancels all routing when called"
+          ]
+        },
+        {
+          "question": "What are the parameters passed to canDeactivate()?",
+          "multiple": true,
+          "answers": ["component", "currentRoute", "currentState", "nextState"]
+        },
+        {
+          "question": "Which concepts are unique to Angular (not common in React or Vue)?",
+          "multiple": true,
+          "answers": ["Ivy", "NgModules", "Dependency Injection", "Zone.js"]
+        },
+        {
+          "question": "Which Angular class decorators allow constructor-based dependency injection?",
+          "multiple": true,
+          "answers": ["@Component", "@Directive", "@NgModule", "@Injectable"]
+        },
+        {
+          "question": "What is Dependency Injection?",
+          "multiple": true,
+          "answers": [
+            "A pattern where classes receive dependencies from outside",
+            "Helps decouple service logic from components",
+            "Allows services to be reused and tested easily"
+          ]
+        },
+        {
+          "question": "Which CLI command generates a service?",
+          "multiple": false,
+          "answers": [
+            "ng generate service service-name",
+            "ng g component service-name",
+            "ng add service service-name",
+            "ng build service service-name"
+          ]
+        },
+        {
+          "question": "Why should services not reference component classes directly?",
+          "multiple": true,
+          "answers": [
+            "To avoid circular dependencies",
+            "To keep services reusable",
+            "To improve testability"
+          ]
+        },
+        {
+          "question": "Which lifecycle hook is most appropriate for calling services in a component?",
+          "multiple": false,
+          "answers": ["ngOnInit", "ngAfterViewInit", "constructor", "ngOnChanges"]
+        },
+        {
+          "question": "What does `providedIn: 'root'` do in @Injectable?",
+          "multiple": false,
+          "answers": [
+            "Makes the service available app-wide",
+            "Registers the service with component scope only",
+            "Disables injection for other services",
+            "Requires manual module registration"
+          ]
+        }
+      ]
+    },
+    "githubRepoName": "",
+    "sourceGithubRepoUrl": "",
+    "resultsCount": 109
+  },
+  {
+    "id": 4728,
+    "taskId": 1229,
+    "type": "jstask",
+    "name": "Angular. Smart home UI. Part 1",
+    "studentStartDate": "2025-07-14T22:00:00.000Z",
+    "studentEndDate": "2025-07-24T21:59:18.000Z",
+    "maxScore": 100,
+    "scoreWeight": 1,
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/tasks/angular-smart-home-ui/smart-home-part-1.md",
+    "checker": "mentor",
+    "crossCheckStatus": "initial",
+    "crossCheckEndDate": null,
+    "pairsCount": null,
+    "submitText": null,
+    "taskOwner": {
+      "id": 2480,
+      "name": "Pavel Razuvalau",
+      "githubId": "pavelrazuvalau"
+    },
+    "validations": null,
+    "taskSolutions": null,
+    "studentRegistrationStartDate": null,
+    "publicAttributes": {},
+    "githubRepoName": "",
+    "sourceGithubRepoUrl": "",
+    "resultsCount": 69
+  },
+  {
+    "id": 4668,
+    "taskId": 1046,
+    "type": "selfeducation",
+    "name": "Angular test (RxJS & Observables)",
+    "studentStartDate": "2025-07-22T00:00:00.000Z",
+    "studentEndDate": "2025-08-04T23:59:00.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/rxjs",
+    "checker": "auto-test",
+    "crossCheckStatus": "initial",
+    "crossCheckEndDate": null,
+    "pairsCount": null,
+    "submitText": null,
+    "taskOwner": {
+      "id": 84093,
+      "name": "Oleh Duleba",
+      "githubId": "olehdulebaepam"
+    },
+    "validations": null,
+    "taskSolutions": null,
+    "studentRegistrationStartDate": null,
+    "publicAttributes": {
+      "maxAttemptsNumber": 4,
+      "numberOfQuestions": 15,
+      "strictAttemptsMode": true,
+      "tresholdPercentage": 70,
+      "questions": [
+        {
+          "question": "Observables could be created by",
+          "multiple": true,
+          "answers": [
+            "new Observable",
+            "using from(), timer(), of() functions",
+            "using tap(), reduce(), switchMap() functions",
+            "using subscribe() function"
+          ]
+        },
+        {
+          "question": "Which of the following are typical stages in the life cycle of an RxJS Observable?",
+          "multiple": true,
+          "answers": ["Creation", "Subscription", "Error propagation", "Completion", "Styling"]
+        },
+        {
+          "question": "Creation Operators",
+          "multiple": true,
+          "answers": ["of", "from", "to", "EMPTY", "default", "generate", "defer"]
+        },
+        {
+          "question": "RxJS Subject is a special type of Observable that allows values to be multicasted to many Observers",
+          "multiple": false,
+          "answers": ["true", "false"]
+        },
+        {
+          "question": "The concept of a hot Observable",
+          "multiple": false,
+          "answers": [
+            "The data is produced by the Observable itself",
+            "The data is produced outside the Observable"
+          ]
+        },
+        {
+          "question": "The concept of a cold Observable",
+          "multiple": false,
+          "answers": [
+            "Observable is able to share data between multiple subscribers",
+            "For each subscriber the Observable starts a new execution, resulting in the fact that the data is not shared"
+          ]
+        },
+        {
+          "question": "Which of the following is not a Subject",
+          "multiple": true,
+          "answers": [
+            "BehaviorSubject",
+            "ReferenceSubject",
+            "ReplaySubject",
+            "AsyncSubject",
+            "ChildSubject"
+          ]
+        },
+        {
+          "question": "Choose true statements",
+          "multiple": true,
+          "answers": [
+            "Observable starts immediately",
+            "Promise only starts if you subscribe to it",
+            "Observable also has the advantage over Promise to be cancellable",
+            "Observable is one-off stream",
+            "Observable could be hot and cold"
+          ]
+        },
+        {
+          "question": "What happens when you call unsubscribe on a subscription?",
+          "multiple": false,
+          "answers": [
+            "It stops the Observable from emitting values.",
+            "It cancels the subscription and releases resources.",
+            "It completes the Observable.",
+            "It pauses the Observable."
+          ]
+        },
+        {
+          "question": "In a marble diagram, what does the \"|\" symbol represent?",
+          "multiple": false,
+          "answers": [
+            "The beginning of an Observable sequence",
+            "A completed Observable",
+            "A delayed emission",
+            "An error"
+          ]
+        },
+        {
+          "question": "In RxJS marble diagrams, what does the \\\"x\\\" symbol typically represent?",
+          "multiple": false,
+          "answers": [
+            "The emission of a value",
+            "A delayed emission",
+            "A completed Observable",
+            "An error occurrence"
+          ]
+        },
+        {
+          "question": "switchMap - will unsubscribe from the Observable returned by its argument as soon as it calls it again on a new element.",
+          "multiple": false,
+          "answers": ["true", "false"]
+        },
+        {
+          "question": "What will we see in the console when we execute the following RxJS code?\n\ninterval(1000).pipe(\n   map(console.log),\n   startWith('Angular')\n);",
+          "multiple": false,
+          "answers": [
+            "----0-----1-----2-----3-----4--->",
+            "----Angular-----1-----2-----3-----4--->",
+            "Angular----0-----1-----2-----3-----4--->",
+            "nothing is output"
+          ]
+        },
+        {
+          "question": "What abstract schema is correct for stream:\n\ninterval(1000)\n.pipe(\n  take(2),\n  concatMap(\n    () => interval(100).pipe(take(3))\n  )\n)",
+          "multiple": false,
+          "answers": [
+            "----0-----1",
+            "----0-----0-----1-----1-----2-----2",
+            "----0-----1-----2-----0-----1-----2",
+            "----2-----1-----0-----2-----1-----0",
+            "---0-----0-----0-----0-----0-----0",
+            "----0-----0-----1-----1"
+          ]
+        },
+        {
+          "question": "What abstract schema is correct for stream:\n\ninterval(100)\n.pipe(\n  take(2),\n  mergeMap(\n    () => interval(1000).pipe(take(3))\n  )\n)",
+          "multiple": false,
+          "answers": [
+            "----0-----1-----0-----2-----1-----2",
+            "----0-----1-----0-----1",
+            "----0-----1-----2-----3",
+            "----0-----0-----0-----0-----0-----0",
+            "----0-----0-----1-----1-----2-----2"
+          ]
+        },
+        {
+          "question": "What is the correct marble diagram output for the following RxJS stream?\n\ninterval(100)\n.pipe(\n  take(2),\n  switchMap(\n    () => interval(1000).pipe(take(3))\n  )\n)",
+          "multiple": false,
+          "answers": [
+            "----0----1",
+            "----0----1-----------------0----1----2|",
+            "----0---------------1----2----0---------------1----2",
+            "----0----1----2----0----1----2"
+          ]
+        },
+        {
+          "question": "What abstract schema is correct for stream:\n\ntimer(500, 1000).pipe(\n  filter(x => !x % 2),\n  take(3)\n)",
+          "multiple": false,
+          "questionImage": "",
+          "answers": [
+            "----0----1----2",
+            "----0---------2",
+            "---------1-----|",
+            "----0----------|",
+            "----------------|"
+          ]
+        },
+        {
+          "question": "What abstract schema is correct for stream:\n\nfrom(['a', 'b', 'c']).pipe(\n  delay(1000)\n)\n  ",
+          "multiple": false,
+          "answers": ["(abc)", "----(abc)", "----a----b----c", "a----b----c"]
+        },
+        {
+          "question": "What is the correct output for the RxJS stream using the audit and takeUntil operators as specified:\n\ninterval(100).pipe(\n  audit(() => interval(1000)),\n  takeUntil(interval(3500))\n)",
+          "multiple": false,
+          "answers": [
+            "----0-------------------1-------------------(completed)",
+            "----0----1----2----3----(completed)",
+            "0---------1---------2----3----(completed)",
+            "----(no emissions)----0----1----2----(completed)",
+            "----0---------1---------2----(completed)"
+          ]
+        },
+        {
+          "question": "What abstract schema is correct for stream:\n\ninterval(100).pipe(\n  audit(x => interval(x * 1000)),\n  takeUntil(interval(3500))\n)",
+          "multiple": false,
+          "answers": ["----0----1", "0----1", "0----10", "0----11", "----0----11"]
+        },
+        {
+          "question": "What result does stream produce:\n\nforkJoin([\n  timer(500, 1000),\n  of(1, 2, 3)\n])",
+          "multiple": false,
+          "answers": ["nothing is output", "3", "[1,1]", "[1,3]"]
+        },
+        {
+          "question": "What result does stream produce:\n\nforkJoin([\n  timer(500, 1000),\n  of(1, 2, 3),\n  EMPTY\n])",
+          "multiple": false,
+          "answers": ["nothing is output", "3", "[1,1]", "[1,3]"]
+        },
+        {
+          "question": "What abstract schema is correct for stream:\n\nrace(\n  interval(1000).pipe(take(3)),\n  Promise.resolve(1),\n  of(10)\n)",
+          "multiple": false,
+          "answers": ["----0----1----2", "10", "----10", "1", "1----1", "----1"]
+        },
+        {
+          "question": "Which operator would you use to convert an array into an Observable stream in RxJS?",
+          "multiple": false,
+          "answers": ["from", "of", "toArray", "split"]
+        },
+        {
+          "question": "How do you handle an error from an Observable in RxJS?",
+          "multiple": false,
+          "answers": [
+            "Using the catchError operator",
+            "By adding a second callback to the subscribe method",
+            "Using the throwError operator",
+            "Using the try/catch block"
+          ]
+        },
+        {
+          "question": "Which of the following is NOT an RxJS higher-order mapping operator?",
+          "multiple": false,
+          "answers": ["mergeMap", "concatMap", "exhaustMap", "forEachMap"]
+        },
+        {
+          "question": "What does the 'debounceTime' operator do in RxJS?",
+          "multiple": false,
+          "answers": [
+            "Delays the emission of items from the source Observable",
+            "Emits a value from the source Observable only after a particular time span has passed without another source emission",
+            "Debounces errors from the source Observable",
+            "Sets a timer for the source Observable's completion"
+          ]
+        },
+        {
+          "question": "What is the result of subscribing to the 'EMPTY' observable in RxJS?",
+          "multiple": false,
+          "answers": [
+            "It emits one default value",
+            "It emits a sequence of numbers",
+            "It immediately completes without emitting any items",
+            "It never completes"
+          ]
+        },
+        {
+          "question": "What is the purpose of the shareReplay operator in RxJS?",
+          "multiple": false,
+          "answers": [
+            "To share a single execution path among multiple subscribers and replay a specified number of emissions",
+            "To allow multiple subscribers to an observable without replaying any emissions",
+            "To repeat failed HTTP requests a certain number of times",
+            "To create a new observable for each subscriber"
+          ]
+        },
+        {
+          "question": "In RxJS, what is the return type of the 'pipe' method on an Observable?",
+          "multiple": false,
+          "answers": [
+            "A new Observable",
+            "The same Observable it was called on",
+            "A Promise",
+            "A Subscription"
+          ]
+        }
+      ]
+    },
+    "githubRepoName": "",
+    "sourceGithubRepoUrl": "",
+    "resultsCount": 87
+  },
+  {
+    "id": 4646,
+    "taskId": 1051,
+    "type": "selfeducation",
+    "name": "Angular test (Forms)",
+    "studentStartDate": "2025-07-22T00:00:00.000Z",
+    "studentEndDate": "2025-08-04T23:59:00.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/forms",
+    "checker": "auto-test",
+    "crossCheckStatus": "initial",
+    "crossCheckEndDate": null,
+    "pairsCount": null,
+    "submitText": null,
+    "taskOwner": {
+      "id": 6911,
+      "name": "Kirill Britsyn",
+      "githubId": "kbritsyn"
+    },
+    "validations": null,
+    "taskSolutions": null,
+    "studentRegistrationStartDate": null,
+    "publicAttributes": {
+      "maxAttemptsNumber": 3,
+      "numberOfQuestions": 15,
+      "strictAttemptsMode": true,
+      "tresholdPercentage": 70,
+      "questions": [
+        {
+          "question": "What is the main role of the FormsModule in Angular’s template-driven forms?",
+          "multiple": false,
+          "answers": [
+            "It provides data binding features",
+            "It facilitates form submission",
+            "It enables template-driven forms",
+            "It allows for reactive forms"
+          ]
+        },
+        {
+          "question": "Which form control directive is used to track changes and validation of an input element in Angular?",
+          "multiple": false,
+          "answers": ["ngModel", "ngControl", "ngFormControl", "ngValue"]
+        },
+        {
+          "question": "In Angular, how can you conditionally disable a form control based on a certain condition?",
+          "multiple": false,
+          "answers": [
+            "Using the 'disabled' attribute",
+            "Using the 'ngDisabled' directive",
+            "Using the 'readonly' attribute",
+            "Using the 'ngReadonly' directive"
+          ]
+        },
+        {
+          "question": "In Angular, how can you reset a form programmatically?",
+          "multiple": false,
+          "answers": [
+            "Using the reset() method on the form control",
+            "Using the resetForm() method on the form group",
+            "Using the reset() method on the form group",
+            "Using the reset() method on the form"
+          ]
+        },
+        {
+          "question": "In Angular, what is the purpose of the FormBuilder service?",
+          "multiple": false,
+          "answers": [
+            "It simplifies form control creation and management",
+            "It handles form submission",
+            "It provides form validation",
+            "It creates animations for forms"
+          ]
+        },
+        {
+          "question": "In Angular, how can you dynamically add form controls to a form group?",
+          "multiple": false,
+          "answers": [
+            "Using the addControl() method on the form group",
+            "Using the createControl() method on the form group",
+            "Using the addFormControl() method on the form",
+            "Using the add() method on the form group"
+          ]
+        },
+        {
+          "question": "In Angular, how can you display a custom error message for a specific validation rule on a form control?",
+          "multiple": false,
+          "answers": [
+            "Using the addError() method on the form control",
+            "Using the setCustomError() method on the form control",
+            "Using the setErrors() method on the form control",
+            "Using the setError() method on the form control"
+          ]
+        },
+        {
+          "question": "How can you validate that two form controls have matching values, such as for confirming a password?",
+          "multiple": false,
+          "answers": [
+            "Using a custom validator function",
+            "Using the 'match' attribute",
+            "Using the 'compare' directive",
+            "Using the 'confirm' directive"
+          ]
+        },
+        {
+          "question": "Which directive can be used to display validation error messages?",
+          "multiple": false,
+          "answers": ["ngError", "ngValidation", "ngMessage", "ngIf"]
+        },
+        {
+          "question": "Which of the following is not a built-in Validator?",
+          "multiple": false,
+          "answers": ["minLength", "email", "pattern", "range"]
+        },
+        {
+          "question": "What is the difference between getRawValue() method and 'value' property of an enabled FormGroup?",
+          "multiple": false,
+          "answers": [
+            "'value' returns only valid child values while getRawValue() returns all values",
+            "'value' returns only values of enabled children while getRawValue() returns all values",
+            "'value' returns only values of 'touched' children while getRawValue() returns all values",
+            "There is no difference between the two"
+          ]
+        },
+        {
+          "question": "What does 'dirty' state of a control mean?",
+          "multiple": false,
+          "answers": [
+            "The control is invalid",
+            "User has touched the control",
+            "User has changed the value of the control",
+            "Async validation is progress"
+          ]
+        },
+        {
+          "question": "What does 'pending' status of a control mean?",
+          "multiple": false,
+          "answers": [
+            "Async validation is progress",
+            "Control's value hasn't been changed yet",
+            "The control is valid",
+            "The control is invalid"
+          ]
+        },
+        {
+          "question": "How can you remove a form control from a form group?",
+          "multiple": false,
+          "answers": [
+            "Using the removeControl() method on the form group",
+            "Using the remove() method on the form control",
+            "Using the deleteControl() method on the form group",
+            "Using the delete() method on the form control"
+          ]
+        },
+        {
+          "question": "Which of the bindings is correct assuming the component has defined 'form1' FormGroup with 'input1' control?",
+          "multiple": false,
+          "answers": [
+            "[formControlName]=\"form1.get('input1')\"",
+            "formControlName=\"input1\"",
+            "[formControlName]=\"input1\"",
+            "formControl=\"input1\""
+          ]
+        },
+        {
+          "question": "Which class should you use to create a new form control with an initial value?",
+          "multiple": false,
+          "answers": ["FormControlService", "FormGroup", "FormControl", "FormBuilder"]
+        },
+        {
+          "question": "Which property can you set to organize controls into groups, subgroups, arrays, and so on?",
+          "multiple": false,
+          "answers": ["formControl", "formGroup", "formArray", "formControlName"]
+        },
+        {
+          "question": "What is the Angular module that provides reactive form features?",
+          "multiple": false,
+          "answers": ["FormsModule", "ReactiveFormsModule", "FormModule", "ReactiveModule"]
+        },
+        {
+          "question": "What is a use case for the 'updateOn' option in form controls?",
+          "multiple": false,
+          "answers": [
+            "To specify custom validation messages",
+            "To delay form submission",
+            "To control when validation occurs",
+            "To update the form's value in local storage"
+          ]
+        },
+        {
+          "question": "How can you listen to changes on a form control?",
+          "multiple": false,
+          "answers": [
+            "Using the 'onChange' property",
+            "Using the 'valueChanges' observable",
+            "Using the 'watch' method",
+            "Using the 'subscribeTo' method"
+          ]
+        },
+        {
+          "question": "Which of the following methods can be used to set the value of a reactive form control programmatically?",
+          "multiple": true,
+          "answers": ["setValue()", "patchValue()", "reset()", "markAsTouched()"]
+        },
+        {
+          "question": "In Angular, which method would you use to programmatically set a form control's value?",
+          "multiple": false,
+          "answers": ["setValue()", "patchValue()", "updateValue()", "changeValue()"]
+        },
+        {
+          "question": "Which property of a FormControl becomes true when the user leaves a form field after focusing it?",
+          "multiple": false,
+          "answers": ["pristine", "dirty", "touched", "untouched"]
+        },
+        {
+          "question": "When using form validators, which property indicates if the control is awaiting async validation completion?",
+          "multiple": false,
+          "answers": ["valid", "pristine", "pending", "async"]
+        },
+        {
+          "question": "Which directive would you use to group multiple controls into a single object within a form?",
+          "multiple": false,
+          "answers": ["formControl", "formGroupName", "formArrayName", "formGroup"]
+        },
+        {
+          "question": "What Angular feature encapsulates the management of form control states and validation?",
+          "multiple": false,
+          "answers": ["formControlState", "formStateManager", "AbstractControl", "controlManager"]
+        },
+        {
+          "question": "In a reactive form, how do you state that a form control's validator should check for a required field?",
+          "multiple": false,
+          "answers": ["requiredValidator", "mustHave", "mandatory", "Validators.required"]
+        },
+        {
+          "question": "Which built-in directive should you use to check user's input as they type and provide immediate feedback?",
+          "multiple": false,
+          "answers": ["ngModel", "formControlName", "formStatus", "ngCheck"]
+        },
+        {
+          "question": "How can you group FormControls into an array?",
+          "multiple": false,
+          "answers": ["formControlArray()", "controlGroup()", "formArray()", "arrayOfControls()"]
+        },
+        {
+          "question": "How would you access errors for a specific control in the template?",
+          "multiple": false,
+          "answers": [
+            "control.errors",
+            "control.getErrors()",
+            "form.get('controlName').errors",
+            "getControlErrors('controlName')"
+          ]
+        }
+      ]
+    },
+    "githubRepoName": "",
+    "sourceGithubRepoUrl": "",
+    "resultsCount": 89
+  },
+  {
+    "id": 4645,
+    "taskId": 1048,
+    "type": "selfeducation",
+    "name": "Angular test (Redux & NgRx)",
+    "studentStartDate": "2025-07-29T00:00:00.000Z",
+    "studentEndDate": "2025-08-04T23:59:00.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/redux",
+    "checker": "auto-test",
+    "crossCheckStatus": "initial",
+    "crossCheckEndDate": null,
+    "pairsCount": null,
+    "submitText": null,
+    "taskOwner": {
+      "id": 84093,
+      "name": "Oleh Duleba",
+      "githubId": "olehdulebaepam"
+    },
+    "validations": null,
+    "taskSolutions": null,
+    "studentRegistrationStartDate": null,
+    "publicAttributes": {
+      "maxAttemptsNumber": 3,
+      "numberOfQuestions": 15,
+      "strictAttemptsMode": true,
+      "tresholdPercentage": 70,
+      "questions": [
+        {
+          "question": "What is NgRx in Angular?",
+          "multiple": false,
+          "answers": [
+            "A testing framework",
+            "A state management library",
+            "Angular's routing module",
+            "A styling library"
+          ]
+        },
+        {
+          "question": "What problem does NgRx address in Angular applications?",
+          "multiple": false,
+          "answers": [
+            "Component rendering performance",
+            "Form validation",
+            "State management",
+            "Routing"
+          ]
+        },
+        {
+          "question": "Which of the following is not a core concept of NgRx?",
+          "multiple": false,
+          "answers": ["Actions", "Reducers", "Modules", "Effects"]
+        },
+        {
+          "question": "What is the purpose of NgRx Actions?",
+          "multiple": false,
+          "answers": [
+            "Define the structure of the state",
+            "Handle side effects",
+            "Describe unique events or user interactions",
+            "Create reusable components"
+          ]
+        },
+        {
+          "question": "Which NgRx concept is responsible for modifying the application state in a predictable way?",
+          "multiple": false,
+          "answers": ["Actions", "Reducers", "Effects", "Selectors"]
+        },
+        {
+          "question": "What is the role of NgRx Effects in an Angular application?",
+          "multiple": false,
+          "answers": [
+            "Handle HTTP requests and side effects",
+            "Define the structure of the state",
+            "Create reusable components",
+            "Implement routing logic"
+          ]
+        },
+        {
+          "question": "What is the purpose of selectors in NgRx?",
+          "multiple": false,
+          "answers": [
+            "Manage the application's navigation",
+            "Select the appropriate CSS styles for components",
+            "Compose and memoize complex state selections",
+            "Define actions for user interactions"
+          ]
+        },
+        {
+          "question": "How do you retrieve a slice of state from the store in NgRx?",
+          "multiple": false,
+          "answers": ["map", "select", "filter", "reduce"]
+        },
+        {
+          "question": "What is the recommended way to add NgRx to an Angular project?",
+          "multiple": false,
+          "answers": [
+            "Include it as a script tag in the HTML file",
+            "Use the Angular CLI to generate NgRx files",
+            "Manually copy and paste NgRx code into the project",
+            "Use the Angular CLI with 'ng add @ngrx/store'"
+          ]
+        },
+        {
+          "question": "Which of the following features is not provided by NgRx itself?",
+          "multiple": false,
+          "answers": [
+            "Time-travel debugging",
+            "Middleware for HTTP requests",
+            "Lazy loading modules",
+            "Immutable state updates"
+          ]
+        },
+        {
+          "question": "What does the createFeatureSelector function do in NgRx?",
+          "multiple": true,
+          "answers": [
+            "It creates a new NgRx feature module.",
+            "It selects a specific feature's state from the store.",
+            "It generates a new action for feature-specific events.",
+            "It initializes feature-specific effects."
+          ]
+        },
+        {
+          "question": "In NgRx, what is the key difference between a Store and a BehaviorSubject for managing state?",
+          "multiple": true,
+          "answers": [
+            "Store provides built-in support for effects.",
+            "BehaviorSubject supports time-travel debugging.",
+            "Store enforces immutability of the state.",
+            "BehaviorSubject allows synchronous updates of state."
+          ]
+        },
+        {
+          "question": "What is the purpose of the NgRx RouterStore in an Angular application?",
+          "multiple": false,
+          "answers": [
+            "It manages the application's internal routing.",
+            "It synchronizes the router state with the store.",
+            "It handles HTTP requests and side effects.",
+            "It provides styling for the router links."
+          ]
+        },
+        {
+          "question": "What is a meta-reducer in NgRx used for?",
+          "multiple": false,
+          "answers": [
+            "It modifies action payloads before they reach reducers.",
+            "It handles side effects in the application.",
+            "It enhances the store's performance by optimizing queries.",
+            "It intercepts and transforms actions and state changes."
+          ]
+        },
+        {
+          "question": "When should you use the createReducer function in NgRx instead of a traditional reducer function?",
+          "multiple": false,
+          "answers": [
+            "When working with feature selectors",
+            "When defining effects",
+            "When handling asynchronous actions",
+            "When defining complex state transitions"
+          ]
+        },
+        {
+          "question": "What is the purpose of the NgRx EntityAdapter in managing entity-based state?",
+          "multiple": false,
+          "answers": [
+            "It simplifies CRUD operations on entity collections.",
+            "It handles routing within the application.",
+            "It creates selectors for feature-specific state.",
+            "It helps normalize and manage collections of entities."
+          ]
+        },
+        {
+          "question": "What is the purpose of the @ngrx/component-store library?",
+          "multiple": false,
+          "answers": [
+            "Managing application routing",
+            "Simplifying the creation of selectors",
+            "Handling HTTP requests and side effects",
+            "Managing local component state in a reactive way"
+          ]
+        },
+        {
+          "question": "What is the purpose of the ngrx-store-freeze library when working with NgRx?",
+          "multiple": false,
+          "answers": [
+            "It prevents accidental state mutation by freezing the state object.",
+            "It optimizes the store's performance for large applications.",
+            "It provides additional security for HTTP requests.",
+            "It enables hot module replacement in development."
+          ]
+        },
+        {
+          "question": "In NgRx, when should you use the @ngrx/effects library to manage side effects?",
+          "multiple": false,
+          "answers": [
+            "Only for handling HTTP requests",
+            "Only for feature-specific state management",
+            "Whenever your application interacts with external services",
+            "Only for small, simple applications"
+          ]
+        },
+        {
+          "question": "What is the purpose of the catchError operator in NgRx Effects?",
+          "multiple": false,
+          "answers": [
+            "It handles errors within an observable and returns a new observable.",
+            "It automatically dispatches an error action to the store.",
+            "It retries a failed observable based on a provided strategy.",
+            "It logs errors to a monitoring service."
+          ]
+        },
+        {
+          "question": "Which file typically holds the initial state in an NgRx application?",
+          "multiple": false,
+          "answers": [
+            "The app component file",
+            "The actions file",
+            "The reducers file",
+            "The effects file"
+          ]
+        },
+        {
+          "question": "How can you optimize the performance of components in an NgRx application when selecting data from the store?",
+          "multiple": false,
+          "answers": [
+            "By using the select operator with a pure function",
+            "By caching all Http requests",
+            "By always fetching new state from the server",
+            "By avoiding the use of selectors altogether"
+          ]
+        },
+        {
+          "question": "What does a 'feature state' represent in the context of NgRx?",
+          "multiple": false,
+          "answers": [
+            "The global state of the application",
+            "The state associated with a specific lazily loaded module",
+            "A temporary state that resets on every action",
+            "The server's state of the data"
+          ]
+        },
+        {
+          "question": "In NgRx, which concept best describes a function that takes the current state and an action, and returns a new state?",
+          "multiple": false,
+          "answers": ["Service", "Component", "Selector", "Reducer"]
+        },
+        {
+          "question": "What does the term 'memoization' mean in the context of NgRx selectors?",
+          "multiple": false,
+          "answers": [
+            "Storing actions for replay at a later time",
+            "Saving server responses to reduce network calls",
+            "Caching of selector results to avoid unnecessary recalculations",
+            "Memory optimization techniques for large state trees"
+          ]
+        },
+        {
+          "question": "What is the purpose of NgRx Devtools?",
+          "multiple": false,
+          "answers": [
+            "To provide command line tools for creating actions and reducers",
+            "To enhance Angular's template debugging",
+            "To enable time-travel debugging and state inspection",
+            "To integrate third-party developer tools with NgRx"
+          ]
+        },
+        {
+          "question": "In NgRx, what is an action's type property used for?",
+          "multiple": false,
+          "answers": [
+            "To specify the HTTP method in effects",
+            "To determine the type of state mutation that should occur",
+            "To categorize actions into features",
+            "To define the return type of selector functions"
+          ]
+        },
+        {
+          "question": "What is the role of NgRx Store in state management?",
+          "multiple": false,
+          "answers": [
+            "To provide a centralized location for storing and managing state",
+            "To dispatch actions directly to the server",
+            "To store UI components for reuse",
+            "To manage routing configuration for the application"
+          ]
+        },
+        {
+          "question": "When using NgRx, how do effects dispatch new actions?",
+          "multiple": false,
+          "answers": [
+            "By returning an observable of actions",
+            "By calling a dispatch method on the state",
+            "By using HTTP interceptors",
+            "By updating the state directly"
+          ]
+        },
+        {
+          "question": "Which of the following best describes the use of the `combineReducers` function in NgRx?",
+          "multiple": false,
+          "answers": [
+            "To combine multiple HTTP responses into a single state update",
+            "To merge the state from different feature modules",
+            "To concatenate actions from different sources",
+            "To compose multiple reducer functions into a single reducing function"
+          ]
+        }
+      ]
+    },
+    "githubRepoName": "",
+    "sourceGithubRepoUrl": "",
+    "resultsCount": 82
+  },
+  {
+    "id": 4660,
+    "taskId": 1047,
+    "type": "selfeducation",
+    "name": "Angular test (HTTP)",
+    "studentStartDate": "2025-07-22T00:00:00.000Z",
+    "studentEndDate": "2025-08-04T23:59:59.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/http",
+    "checker": "auto-test",
+    "crossCheckStatus": "initial",
+    "crossCheckEndDate": null,
+    "pairsCount": null,
+    "submitText": null,
+    "taskOwner": {
+      "id": 84418,
+      "name": "(Empty)",
+      "githubId": "anjx"
+    },
+    "validations": null,
+    "taskSolutions": null,
+    "studentRegistrationStartDate": null,
+    "publicAttributes": {
+      "maxAttemptsNumber": 3,
+      "numberOfQuestions": 15,
+      "strictAttemptsMode": true,
+      "tresholdPercentage": 70,
+      "questions": [
+        {
+          "question": "In Angular the HttpClientModule is used",
+          "multiple": false,
+          "answers": [
+            "To handle HTTP errors",
+            "To intercept HTTP requests and responses",
+            "To provide HTTP services to components",
+            "All of the above"
+          ]
+        },
+        {
+          "question": "How to make a GET request using HttpClient in Angular?",
+          "multiple": true,
+          "answers": [
+            "Import HttpClientModule into the AppModule.",
+            "Inject the HttpClientModule into the constructor of the service where you want to use it.",
+            "Inject the HttpClient into the constructor of the service where you want to use it.",
+            "Import HttpClient into the AppModule."
+          ]
+        },
+        {
+          "question": "Which Angular module is responsible for importing and configuring the HttpClient ",
+          "multiple": false,
+          "answers": ["RouterModule", "FormsModule", "HttpClientModule", "BrowserModule"]
+        },
+        {
+          "question": "In Angular, which HTTP request method is used to retrieve data from a server?",
+          "multiple": false,
+          "answers": ["POST", "PUT", "GET", "DELETE"]
+        },
+        {
+          "question": "What is the primary role of the HttpClient service provided by HttpModule?",
+          "multiple": false,
+          "answers": [
+            "Handling user authentication",
+            "Managing application state",
+            "Making HTTP requests to remote servers",
+            "Rendering components"
+          ]
+        },
+        {
+          "question": "Which of the following is a correct way to import the HttpModule in an Angular application?",
+          "multiple": false,
+          "answers": [
+            "import { HttpModule } from '@angular/core';",
+            "import { HttpClientModule } from '@angular/common/http';",
+            "import { Http } from '@angular/http';",
+            "import { HttpClient } from '@angular/common';"
+          ]
+        },
+        {
+          "question": "In Angular, what is the purpose of the HttpClientModule configuration in the application's imports array?",
+          "multiple": false,
+          "answers": [
+            " It configures routing for the application.",
+            "It configures the application's form handling.",
+            "It configures the HTTP client for use in the application.",
+            "It configures the application's authentication settings."
+          ]
+        },
+        {
+          "question": "Which Angular decorator is used to make a class injectable so that services like HttpClient can be injected?",
+          "multiple": false,
+          "answers": ["@Injectable", "@Component", "@NgModule", "@Inject"]
+        },
+        {
+          "question": "How do you handle errors when making an HTTP request using the HttpClient service in Angular?",
+          "multiple": false,
+          "answers": [
+            "Use try-catch blocks to catch errors.",
+            "Use the .catchError() operator or .subscribe() error callback.",
+            "Errors are automatically handled by Angular.",
+            "Use the .handleError() method provided by the HttpClient service."
+          ]
+        },
+        {
+          "question": "Which HTTP interceptor is commonly used to add authentication tokens to outgoing HTTP requests in Angular?",
+          "multiple": false,
+          "answers": ["HttpHeaders", "HttpInterceptor", "HttpClientInterceptor", "HttpGuard"]
+        },
+        {
+          "question": "In Angular, which method of the HttpClient service is used to send an HTTP POST request?",
+          "multiple": false,
+          "answers": ["get()", "put()", "post()", "delete()"]
+        },
+        {
+          "question": "How can you set headers for an HTTP request in Angular using the HttpClient service?",
+          "multiple": false,
+          "answers": [
+            "Using the headers property of the request object",
+            "By passing headers as a parameter to the HttpClient constructor",
+            "Using the setHeaders() method on the response object",
+            "Headers cannot be set for HTTP requests in Angular."
+          ]
+        },
+        {
+          "question": "In Angular, what is the role of the HttpParams class when making HTTP requests?",
+          "multiple": false,
+          "answers": [
+            "It defines the HTTP request method (e.g., GET, POST).",
+            "It specifies the URL for the HTTP request.",
+            "It allows you to append query parameters to the request.",
+            "It handles the response data from the server."
+          ]
+        },
+        {
+          "question": "Which RxJS operator is commonly used to transform the response of an HTTP request made using HttpClient?",
+          "multiple": false,
+          "answers": ["subscribe()", "map()", "catchError()", "pipe()"]
+        },
+        {
+          "question": "What is the purpose of the HttpInterceptor interface in Angular's HttpClient module?",
+          "multiple": false,
+          "answers": [
+            "To define custom HTTP request methods",
+            "To define HTTP headers for outgoing requests",
+            "To handle and transform HTTP requests and responses globally",
+            "To create custom HTTP error messages"
+          ]
+        },
+        {
+          "question": "What is the purpose of the 'responseType' option in Angular's HttpClient?",
+          "multiple": false,
+          "answers": [
+            "To specify the expected format of the response data.",
+            "To set the timeout for the HTTP request.",
+            "To define the type of the request body.",
+            "To indicate the security level of the response."
+          ]
+        },
+        {
+          "question": "How can caching be implemented for HTTP requests in Angular?",
+          "multiple": false,
+          "answers": [
+            "By using a service worker.",
+            "Angular automatically caches all HTTP requests.",
+            "By setting cache-control headers in the HTTP response.",
+            "Caching cannot be implemented in Angular."
+          ]
+        },
+        {
+          "question": "Which Angular interface allows you to listen to the progress of an HTTP request?",
+          "multiple": false,
+          "answers": ["HttpResponse", "HttpProgressEvent", "HttpEvent", "HttpRequest"]
+        },
+        {
+          "question": "How does retry logic typically get implemented when using HttpClient?",
+          "multiple": false,
+          "answers": [
+            "Angular automatically retries failed requests.",
+            "Using the .retry() RxJS operator.",
+            "By implementing a custom service that retries requests.",
+            "By using the 'retry' HTTP header."
+          ]
+        },
+        {
+          "question": "How can you add query parameters to an HTTP GET request in Angular?",
+          "multiple": false,
+          "answers": [
+            "By manually appending them to the URL.",
+            "By using the 'params' option of the HttpClient get method.",
+            "By setting them in the request headers.",
+            "Query parameters are not supported in HTTP GET requests."
+          ]
+        },
+        {
+          "question": "What should be done to ensure an HTTP request is sent with credentials (cookies/auth headers) in Angular?",
+          "multiple": false,
+          "answers": [
+            "Set the 'withCredentials' option to true.",
+            "It is automatically handled by Angular.",
+            "Include credentials in the request body.",
+            "Send credentials as separate HTTP requests."
+          ]
+        },
+        {
+          "question": "What is a 'silent refresh' in the context of Angular HTTP and authentication?",
+          "multiple": false,
+          "answers": [
+            "Automatically refreshing a page without a request.",
+            "Refreshing an access token in the background.",
+            "Making a request without updating the UI.",
+            "Sending a request without any error handling."
+          ]
+        },
+        {
+          "question": "What is the benefit of using the async pipe with HttpClient in Angular templates?",
+          "multiple": false,
+          "answers": [
+            "It automatically subscribes and unsubscribes from observables.",
+            "It increases the speed of the HTTP request.",
+            "It removes the need for importing the HttpClient module.",
+            "It enables multi-threading in the template."
+          ]
+        },
+        {
+          "question": "What is the use of the 'observe' option in HttpClient method calls in Angular?",
+          "multiple": false,
+          "answers": [
+            "To add observer design pattern implementations.",
+            "To observe and debug the HTTP request pipeline.",
+            "To specify what type of response to return, such as 'response' or 'events'.",
+            "To enable automatic error observation."
+          ]
+        },
+        {
+          "question": "How do you set the content type for an HTTP request in Angular?",
+          "multiple": false,
+          "answers": [
+            "Using the 'Content-Type' HTTP header.",
+            "Through the URL of the HTTP request.",
+            "Within the request body directly.",
+            "Content type is set automatically by Angular."
+          ]
+        },
+        {
+          "question": "How can an Angular application handle multiple HTTP requests at the same time?",
+          "multiple": false,
+          "answers": [
+            "Using RxJS operators like `forkJoin` or `combineLatest`.",
+            "Angular can only handle one HTTP request at a time.",
+            "By setting up a timer to delay the requests.",
+            "By implementing multi-threading in the application."
+          ]
+        },
+        {
+          "question": "What is the effect of unsubscribing from an HTTP request observable in Angular?",
+          "multiple": false,
+          "answers": [
+            "It cancels the request if it has not yet completed.",
+            "It has no effect; the request will complete anyway.",
+            "It speeds up the request processing.",
+            "It retries the request automatically."
+          ]
+        },
+        {
+          "question": "What is one way to improve performance of HTTP requests in Angular applications?",
+          "multiple": false,
+          "answers": [
+            "By optimizing the server's response time.",
+            "By minimizing the payload size of the request and response.",
+            "By increasing the number of concurrent requests.",
+            "By using longer timeouts for the requests."
+          ]
+        },
+        {
+          "question": "When using Angular's HttpClient, how can you enable request retry for specific status codes?",
+          "multiple": false,
+          "answers": [
+            "By using the .retryWhen() RxJS operator along with a condition for specific status codes.",
+            "By configuring the HttpClientModule with a retry option.",
+            "Angular HttpClient automatically retries requests with certain status codes.",
+            "By manually calling the HttpClient request method in the error callback."
+          ]
+        },
+        {
+          "question": "What is the main advantage of using Angular's HttpInterceptor over custom service methods for HTTP requests?",
+          "multiple": false,
+          "answers": [
+            "Custom service methods are not capable of modifying HTTP requests.",
+            "HttpInterceptors are faster than custom service methods.",
+            "Custom service methods do not allow for error handling.",
+            "HttpInterceptors allow for centralized, global configuration that applies to all HTTP requests."
+          ]
+        }
+      ]
+    },
+    "githubRepoName": "",
+    "sourceGithubRepoUrl": "",
+    "resultsCount": 86
+  },
+  {
+    "id": 4730,
+    "taskId": 1230,
+    "type": "jstask",
+    "name": "Angular. Smart home UI. Part 2",
+    "studentStartDate": "2025-07-24T22:00:00.000Z",
+    "studentEndDate": "2025-08-07T21:59:59.000Z",
+    "maxScore": 100,
+    "scoreWeight": 1,
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/tasks/angular-smart-home-ui/smart-home-part-2.md",
+    "checker": "mentor",
+    "crossCheckStatus": "initial",
+    "crossCheckEndDate": null,
+    "pairsCount": null,
+    "submitText": null,
+    "taskOwner": {
+      "id": 2480,
+      "name": "Pavel Razuvalau",
+      "githubId": "pavelrazuvalau"
+    },
+    "validations": null,
+    "taskSolutions": null,
+    "studentRegistrationStartDate": null,
+    "publicAttributes": {},
+    "githubRepoName": "",
+    "sourceGithubRepoUrl": "",
+    "resultsCount": 56
+  },
+  {
+    "id": 4669,
+    "taskId": 1130,
+    "type": "selfeducation",
+    "name": "Angular test (Signals)",
+    "studentStartDate": "2025-08-05T00:00:00.000Z",
+    "studentEndDate": "2025-08-12T00:00:00.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/signals",
+    "checker": "auto-test",
+    "crossCheckStatus": "initial",
+    "crossCheckEndDate": null,
+    "pairsCount": null,
+    "submitText": null,
+    "taskOwner": {
+      "id": 80321,
+      "name": "Natalia Loginova",
+      "githubId": "natalialoginova"
+    },
+    "validations": null,
+    "taskSolutions": null,
+    "studentRegistrationStartDate": null,
+    "publicAttributes": {
+      "maxAttemptsNumber": 4,
+      "numberOfQuestions": 15,
+      "strictAttemptsMode": true,
+      "tresholdPercentage": 70,
+      "questions": [
+        {
+          "question": "What is a signal in Angular?",
+          "multiple": false,
+          "answers": [
+            "An event emitter that notifies the service when a value changes.",
+            "A wrapper around a value that notifies interested consumers when that value changes.",
+            "A type of observable that emits a value when it changes.",
+            "A subscription to an observable that can emit multiple values."
+          ]
+        },
+        {
+          "question": "What is the purpose of a getter function in a signal?",
+          "multiple": false,
+          "answers": [
+            "It sets the value of the signal.",
+            "It retrieves the current value of the signal and allows Angular to track where the signal is used.",
+            "It triggers the change detection mechanism in Angular.",
+            "It prevents the signal from emitting unnecessary values."
+          ]
+        },
+        {
+          "question": "How does a writable signal differ from a read-only signal?",
+          "multiple": false,
+          "answers": [
+            "Writable signals can change their value directly, while read-only signals cannot.",
+            "Writable signals only emit values when explicitly called, while read-only signals constantly emit values.",
+            "Writable signals are automatically destroyed when no longer used, while read-only signals need to be manually destroyed.",
+            "Writable signals can have multiple values at the same time, while read-only signals can only have one."
+          ]
+        },
+        {
+          "question": "What function do you use to create a computed signal in Angular?",
+          "multiple": false,
+          "answers": ["signal()", "computed()", "readSignal()", "createSignal()"]
+        },
+        {
+          "question": "Why are computed signals lazily evaluated in Angular?",
+          "multiple": false,
+          "answers": [
+            "To reduce memory usage by not storing unnecessary interim computations.",
+            "To speed up application performance by reducing the number of unnecessary recalculations.",
+            "To ensure that data changes have been fully propagated before the signal's value is updated.",
+            "To prevent race conditions from occurring when multiple signals are updated simultaneously."
+          ]
+        },
+        {
+          "question": "When using signals within an OnPush component's template, how does Angular handle change detection?",
+          "multiple": false,
+          "answers": [
+            "Angular marks the component to be updated when the signal's value changes.",
+            "Angular runs change detection immediately when the signal's value changes.",
+            "Angular only runs change detection if the signal's value has changed and the component is currently visible on the screen.",
+            "Angular disables automatic change detection and requires the developer to manually trigger updates when the signal's value changes."
+          ]
+        },
+        {
+          "question": "What is an effect function used for in Angular?",
+          "multiple": false,
+          "answers": [
+            "It is used to create writable or computed signals.",
+            "It is used to manage dependencies between different signals.",
+            "It is used for operations that run whenever one or more signal values change.",
+            "It is used to manually trigger change detection in a component."
+          ]
+        },
+        {
+          "question": "When should you avoid using effects in Angular?",
+          "multiple": false,
+          "answers": [
+            "When propagating state changes, as it can lead to unwanted side effects.",
+            "When testing the application, as it can produce inconsistent results.",
+            "When synchronizing data with external sources, as it may cause data loss.",
+            "When dealing with complex data structures, as it can lead to performance issues."
+          ]
+        },
+        {
+          "question": "What is the purpose of the .destroy() method in effect functions?",
+          "multiple": false,
+          "answers": [
+            "It clears the memory used by the effect function, freeing up resources for other parts of the application.",
+            "It prevents the effect function from running again in the future.",
+            "It removes the effect function from the list of dependencies, preventing it from triggering other signals.",
+            "It cancels any currently running operations started by the effect function, and cleans up any resources it was using."
+          ]
+        },
+        {
+          "question": "What is the untracked function used for in Angular signals?",
+          "multiple": false,
+          "answers": [
+            "It stops a signal from emitting values temporarily.",
+            "It allows reading a signal without creating a dependency.",
+            "It creates a copy of a signal with the same initial value, but without any dependencies.",
+            "It removes all current dependencies from a signal, allowing it to be freely changed without affecting other parts of the application."
+          ]
+        },
+        {
+          "question": "When were Angular Signals introduced?",
+          "multiple": false,
+          "answers": ["Angular 10", "Angular 11", "Angular 15", "Angular 17"]
+        },
+        {
+          "question": "Can we read the value of a signal from a computed signal without creating a dependency?",
+          "multiple": false,
+          "answers": ["Yes", "No"]
+        },
+        {
+          "question": "How does Angular determine the dependencies of a signal?",
+          "multiple": false,
+          "answers": [
+            "Based on the initial call to the computed function",
+            "Dynamically based on its last calculated value"
+          ]
+        },
+        {
+          "question": "What happens when you directly mutate the value of a signal?",
+          "multiple": false,
+          "answers": [
+            "It causes the application to crash",
+            "It bypasses the Signal system and may cause bugs",
+            "It updates the value and all dependencies",
+            "Nothing"
+          ]
+        },
+        {
+          "question": "What is the main advantage of using signals instead of primitive values?",
+          "multiple": false,
+          "answers": [
+            "Signals provide better performance",
+            "You can get notified when the signal value changes",
+            "Signals are easier to use",
+            "Signals compile faster"
+          ]
+        },
+        {
+          "question": "What is the purpose of the 'update' Signal API?",
+          "multiple": false,
+          "answers": [
+            "It provides a mechanism to update the value of a signal",
+            "It severs the dependency between two signals",
+            "It re-renders the component",
+            "It updates the UI"
+          ]
+        },
+        {
+          "question": "What type of values can a signal represent?",
+          "multiple": false,
+          "answers": [
+            "Only primitive values",
+            "Only arrays and objects",
+            "Both primitive values and complex types such as arrays and objects",
+            "Only string values"
+          ]
+        },
+        {
+          "question": "Which signal API is used to create signals that depend on other signals?",
+          "multiple": false,
+          "answers": ["derived()", "dependsOn()", "computed()", "createSignal()"]
+        },
+        {
+          "question": "How does a signal know when to update its value?",
+          "multiple": false,
+          "answers": [
+            "It checks for value changes continuously",
+            "It listens for a specific event",
+            "It polls its dependencies at regular intervals",
+            "It gets notified by its dependencies when they change"
+          ]
+        },
+        {
+          "question": "How to manually trigger an update of a signal?",
+          "multiple": false,
+          "answers": [
+            "Call the signal's triggerUpdate() method",
+            "Set a new value for the signal using the set() method",
+            "Call the signal's update() method with a new value",
+            "It's not possible to manually trigger an update of a signal"
+          ]
+        },
+        {
+          "question": "What does the computed() Signal API do?",
+          "multiple": false,
+          "answers": [
+            "Creates a new signal from existing signals",
+            "Computes the initial value of a signal",
+            "Triggers an update of a signal",
+            "Tells Angular to watch for changes in a signal"
+          ]
+        },
+        {
+          "question": "What does the untracked() function do?",
+          "multiple": false,
+          "answers": [
+            "Prevents Angular from tracking changes to a signal",
+            "Allows reading a signal without creating a dependency",
+            "Frees up resources used by a signal",
+            "Tells Angular to stop updating a signal"
+          ]
+        },
+        {
+          "question": "How does Angular handle signals with array and object values?",
+          "multiple": false,
+          "answers": [
+            "It prevents the mutation of signal values",
+            "It allows signal values to be mutated directly",
+            "It throws an error when attempting to mutate signal values",
+            "It silently ignores attempts to mutate signal values"
+          ]
+        },
+        {
+          "question": "How do Angular signals relate to reactivity?",
+          "multiple": false,
+          "answers": [
+            "Signals make Angular reactive by default",
+            "Signals can be used to build applications in reactive style",
+            "Signals have no influence on reactivity",
+            "Reactivity is a prerequisite for signals"
+          ]
+        },
+        {
+          "question": "What is the purpose of the effect() API in Angular Signals?",
+          "multiple": false,
+          "answers": [
+            "To define side effects that run when a signal's value changes",
+            "To create an effect that changes a signal's value",
+            "To define the visual effect that a signal has on the UI",
+            "To detect and handle errors in a signal"
+          ]
+        },
+        {
+          "question": "Does the Signals API provide a mechanism to prevent misuse, such as directly mutating the value of a signal?",
+          "multiple": false,
+          "answers": [
+            "Yes, the API doesn't allow direct mutations of signal values",
+            "No, the API doesn't prevent mutations of signal values",
+            "Yes, the API throws an error when attempting to mutate a signal value",
+            "No, the API allows direct mutations but provides a warning"
+          ]
+        },
+        {
+          "question": "Why does Angular include the 'untracked()' function in its Signals API?",
+          "multiple": false,
+          "answers": [
+            "To allow reading a signal without creating a dependency",
+            "To allow a signal to bypass change detection",
+            "To give developers control over memory management",
+            "To improve performance by preventing unnecessary updates"
+          ]
+        },
+        {
+          "question": "Are Angular Signals affected by multi-threading in typical browser applications?",
+          "multiple": false,
+          "answers": [
+            "Yes, Angular ensures thread safety for signals",
+            "No, because browser-based Angular apps run in a single main thread",
+            "Yes, but only for signals with primitive values",
+            "No, thread safety should be ensured by the developer"
+          ]
+        },
+        {
+          "question": "Can two signals have each other as dependencies?",
+          "multiple": false,
+          "answers": [
+            "Yes, it is possible but may lead to an infinite loop",
+            "No, Angular prevents this to avoid cyclic dependencies",
+            "Yes, Angular handles this gracefully without any issues",
+            "No, a signal can only have a single dependency"
+          ]
+        },
+        {
+          "question": "Are Signals in Angular backward-compatible?",
+          "multiple": false,
+          "answers": [
+            "Yes, Signals are designed with backward compatibility in mind",
+            "No, Signals can cause issues with older versions of Angular",
+            "Only if the dependencies of a Signal do not change",
+            "There is no clear consensus on this"
+          ]
+        }
+      ]
+    },
+    "githubRepoName": "",
+    "sourceGithubRepoUrl": "",
+    "resultsCount": 65
+  },
+  {
+    "id": 4648,
+    "taskId": 1049,
+    "type": "selfeducation",
+    "name": "Angular test (Unit test)",
+    "studentStartDate": "2025-08-12T00:00:00.000Z",
+    "studentEndDate": "2025-08-18T23:59:59.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/unit-test",
+    "checker": "auto-test",
+    "crossCheckStatus": "initial",
+    "crossCheckEndDate": null,
+    "pairsCount": null,
+    "submitText": null,
+    "taskOwner": {
+      "id": 80321,
+      "name": "Natalia Loginova",
+      "githubId": "natalialoginova"
+    },
+    "validations": null,
+    "taskSolutions": null,
+    "studentRegistrationStartDate": null,
+    "publicAttributes": {
+      "maxAttemptsNumber": 4,
+      "numberOfQuestions": 15,
+      "strictAttemptsMode": true,
+      "tresholdPercentage": 70,
+      "questions": [
+        {
+          "question": "Which of the following can be used to run unit tests in Angular?",
+          "multiple": false,
+          "answers": ["Karma", "Protractor"]
+        },
+        {
+          "question": "Which of the following can be used to run end-to-end tests in Angular?",
+          "multiple": false,
+          "answers": ["Karma", "Protractor"]
+        },
+        {
+          "question": "In which type of tests are mocks (test doubles) most commonly used to isolate the unit under test from its dependencies?",
+          "multiple": true,
+          "answers": ["Unit tests", "End-to-end tests", "Both of the above"]
+        },
+        {
+          "question": "Which of the following will need Angular testing utilities for unit testing?",
+          "multiple": false,
+          "answers": ["Services", "Components", "Both of the above"]
+        },
+        {
+          "question": "Which utility is used to create a testing module for the class to be tested?",
+          "multiple": false,
+          "answers": ["AngularTestUtil", "NgTest", "NgTestBed", "TestBed"]
+        },
+        {
+          "question": "It is recommended to write isolated unit tests for which of the following?",
+          "multiple": false,
+          "answers": ["Services", "Pipes", "Both of the above", "None of the above"]
+        },
+        {
+          "question": "Which extension is required for Karma test files?",
+          "multiple": false,
+          "answers": [".test.ts", ".spec.ts"]
+        },
+        {
+          "question": "Which TestBed method is used to configure the testing module?",
+          "multiple": false,
+          "answers": [
+            "createTestModule",
+            "configureTestModule",
+            "configureTestingModule",
+            "createTestingModule"
+          ]
+        },
+        {
+          "question": "Which TestBed method is used to create an Angular component under test?",
+          "multiple": false,
+          "answers": [
+            "createComponent",
+            "createTestingComponent",
+            "configureComponent",
+            "configureTestingComponent"
+          ]
+        },
+        {
+          "question": "Can you re-configure TestBed after calling createComponent?",
+          "multiple": false,
+          "answers": ["True", "False"]
+        },
+        {
+          "question": "What does the detectChanges method do in Angular unit testing?",
+          "multiple": false,
+          "answers": [
+            "It detects changes in the browser's rendering engine.",
+            "It triggers change detection in the Angular component.",
+            "It handles asynchronous HTTP requests."
+          ]
+        },
+        {
+          "question": "Which Angular module is commonly used for setting up unit tests?",
+          "multiple": false,
+          "answers": [
+            "@angular/core",
+            "@angular/core/testing",
+            "@angular/unit-testing",
+            "@angular/jasmine"
+          ]
+        },
+        {
+          "question": "In Angular unit testing, what is the role of a 'fixture'?",
+          "multiple": false,
+          "answers": [
+            "A function that helps configure test cases",
+            "A tool for mocking HTTP requests",
+            "A wrapper around a component for testing",
+            "A unit testing framework"
+          ]
+        },
+        {
+          "question": "How can you test a component method that depends on a service without calling the real service?",
+          "multiple": false,
+          "answers": [
+            "Use a mock service that provides predefined responses",
+            "Use the actual service and handle its HTTP requests",
+            "Mock the entire component to avoid service dependencies",
+            "Use the @Spy() decorator to simulate service responses"
+          ]
+        },
+        {
+          "question": "Which Angular decorator is used for injecting services in unit tests?",
+          "multiple": false,
+          "answers": ["@Injectable", "@InjectService", "@Service", "@Inject"]
+        },
+        {
+          "question": "What does the tick() function do in Angular unit testing?",
+          "multiple": false,
+          "answers": [
+            "It advances virtual time forward",
+            "It flags the component to be checked for changes",
+            "It 'ticks' off completed tests",
+            "It schedules a function to be run in the future"
+          ]
+        },
+        {
+          "question": "What will the toBeTruthy() matcher test for?",
+          "multiple": false,
+          "answers": [
+            "A to be equal to B",
+            "Whether the test value is null or undefined",
+            "Whether the test value is truthy (like if() would evaluate it to true)",
+            "Whether the test value is false"
+          ]
+        },
+        {
+          "question": "In unit testing, what does 'mocking' mean?",
+          "multiple": false,
+          "answers": [
+            "Creating a fake version of an object with the same interface",
+            "Making fun of the code you're testing",
+            "Copying the behavior of external dependencies",
+            "Throwing an exception in a test"
+          ]
+        },
+        {
+          "question": "What is 'shallow testing' in Angular?",
+          "multiple": false,
+          "answers": [
+            "Testing a component without its child components",
+            "Testing a component without its dependencies",
+            "Writing tests that only cover the 'happy path'",
+            "Running tests without compiling the template"
+          ]
+        },
+        {
+          "question": "What function is used to define a group of related tests in Jasmine?",
+          "multiple": false,
+          "answers": ["it()", "describe()", "group()", "suite()"]
+        },
+        {
+          "question": "What does async() do in Angular unit testing?",
+          "multiple": false,
+          "answers": [
+            "It pauses the test until all promises are resolved.",
+            "It triggers change detection for the component.",
+            "It starts the Http Testing Controller.",
+            "It lets the test runner know that the test is asynchronous."
+          ]
+        },
+        {
+          "question": "What is the purpose of a TestBed in Angular?",
+          "multiple": false,
+          "answers": [
+            "It serves as a framework for writing comprehensive component tests.",
+            "It provides mock objects and spies.",
+            "It creates a dynamic test module where we can configure and initialize the environment for the class we want to test.",
+            "It allows for the simulation of user behavior on the component."
+          ]
+        },
+        {
+          "question": "What decorator is required for a service?",
+          "multiple": false,
+          "answers": ["@Injectable", "@Service", "@Component", "@Injector"]
+        },
+        {
+          "question": "Which method is used for creating a component fixture?",
+          "multiple": false,
+          "answers": [
+            "TestBed.createComponent()",
+            "TestBed.inject()",
+            "TestBed.configureTestingModule()",
+            "TestBed.overrideTemplate()"
+          ]
+        },
+        {
+          "question": "Which of the following will you import from @angular/core/testing?",
+          "multiple": true,
+          "answers": ["TestBed", "getTestBed", "ComponentFixture", "waitForAsync"]
+        },
+        {
+          "question": "What is the use of inject() in Angular testing?",
+          "multiple": false,
+          "answers": [
+            "It injects services into the tests.",
+            "It creates components for the tests.",
+            "It provides test modules.",
+            "It simulates user actions in the tests."
+          ]
+        },
+        {
+          "question": "What type of tests verify the interaction of several units together?",
+          "multiple": false,
+          "answers": ["Unit tests", "Integration tests", "Functional tests", "End-to-end tests"]
+        },
+        {
+          "question": "What kind of test covers the functionality of a complete application?",
+          "multiple": false,
+          "answers": ["End-to-end test", "Functional test", "Unit test", "Integration test"]
+        },
+        {
+          "question": "What is TestBed.configureTestingModule() used for?",
+          "multiple": false,
+          "answers": [
+            "To configure and prepare the testing module for unit tests.",
+            "To compile all components used in the test.",
+            "To destroy the testing module after all unit tests are done.",
+            "To create a component fixture."
+          ]
+        },
+        {
+          "question": "What class is primarily used in Angular to test components?",
+          "multiple": false,
+          "answers": ["TestBed", "NgModule", "ComponentFixture", "ComponentRef"]
+        }
+      ]
+    },
+    "githubRepoName": "",
+    "sourceGithubRepoUrl": "",
+    "resultsCount": 68
+  },
+  {
+    "id": 4732,
+    "taskId": 1232,
+    "type": "jstask",
+    "name": "Angular. Smart home UI. Part 3",
+    "studentStartDate": "2025-08-08T22:00:00.000Z",
+    "studentEndDate": "2025-08-31T21:59:51.000Z",
+    "maxScore": 100,
+    "scoreWeight": 1,
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/tasks/angular-smart-home-ui/smart-home-part-3.md",
+    "checker": "mentor",
+    "crossCheckStatus": "initial",
+    "crossCheckEndDate": null,
+    "pairsCount": null,
+    "submitText": null,
+    "taskOwner": {
+      "id": 2480,
+      "name": "Pavel Razuvalau",
+      "githubId": "pavelrazuvalau"
+    },
+    "validations": null,
+    "taskSolutions": null,
+    "studentRegistrationStartDate": null,
+    "publicAttributes": {},
+    "githubRepoName": "",
+    "sourceGithubRepoUrl": "",
+    "resultsCount": 20
+  },
+  {
+    "id": 4750,
+    "taskId": 1234,
+    "type": "jstask",
+    "name": "RS Clone Demo",
+    "studentStartDate": "2025-09-18T14:00:00.000Z",
+    "studentEndDate": "2025-09-19T23:04:12.000Z",
+    "maxScore": 20,
+    "scoreWeight": 1,
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/demo",
+    "checker": "taskOwner",
+    "crossCheckStatus": "initial",
+    "crossCheckEndDate": null,
+    "pairsCount": null,
+    "submitText": null,
+    "taskOwner": {
+      "id": 8133,
+      "name": "Raman Kamarou",
+      "githubId": "pomakom"
+    },
+    "validations": null,
+    "taskSolutions": null,
+    "studentRegistrationStartDate": null,
+    "publicAttributes": {},
+    "githubRepoName": "",
+    "sourceGithubRepoUrl": "",
+    "resultsCount": 0
+  },
+  {
+    "id": 4744,
+    "taskId": 1233,
+    "type": "jstask",
+    "name": "RS Clone Angular",
+    "studentStartDate": "2025-09-01T00:00:00.000Z",
+    "studentEndDate": "2025-09-28T23:59:02.000Z",
+    "maxScore": 600,
+    "scoreWeight": 1,
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/rsclone",
+    "checker": "crossCheck",
+    "crossCheckStatus": "initial",
+    "crossCheckEndDate": "2025-10-01T23:59:59.000Z",
+    "pairsCount": 3,
+    "submitText": null,
+    "taskOwner": {
+      "id": 2084,
+      "name": "Dzmitry Varabei",
+      "githubId": "dzmitry-varabei"
+    },
+    "validations": {},
+    "taskSolutions": null,
+    "studentRegistrationStartDate": null,
+    "publicAttributes": {},
+    "githubRepoName": "",
+    "sourceGithubRepoUrl": "",
+    "resultsCount": 0
+  },
+  {
+    "id": 4746,
+    "taskId": 1059,
+    "type": "interview",
+    "name": "Angular interview",
+    "studentStartDate": "2025-09-08T00:00:00.000Z",
+    "studentEndDate": "2025-09-28T23:59:06.000Z",
+    "maxScore": 10,
+    "scoreWeight": 10,
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/angular/modules/interview/README.md",
+    "checker": "mentor",
+    "crossCheckStatus": "initial",
+    "crossCheckEndDate": null,
+    "pairsCount": null,
+    "submitText": null,
+    "taskOwner": {
+      "id": 9569,
+      "name": "Nataļja Eina",
+      "githubId": "natein"
+    },
+    "validations": null,
+    "taskSolutions": null,
+    "studentRegistrationStartDate": "2025-08-28T15:04:33.506Z",
+    "publicAttributes": {},
+    "githubRepoName": null,
+    "sourceGithubRepoUrl": null,
+    "resultsCount": 2
+  },
+  {
+    "id": 4745,
+    "taskId": 1146,
+    "type": "jstask",
+    "name": "Presentation (Final task) Angular course",
+    "studentStartDate": "2025-09-29T00:00:00.000Z",
+    "studentEndDate": "2025-10-05T23:59:51.000Z",
+    "maxScore": 40,
+    "scoreWeight": 1,
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/peresentation",
+    "checker": "taskOwner",
+    "crossCheckStatus": "initial",
+    "crossCheckEndDate": null,
+    "pairsCount": null,
+    "submitText": null,
+    "taskOwner": {
+      "id": 8133,
+      "name": "Raman Kamarou",
+      "githubId": "pomakom"
+    },
+    "validations": null,
+    "taskSolutions": null,
+    "studentRegistrationStartDate": null,
+    "publicAttributes": {},
+    "githubRepoName": "",
+    "sourceGithubRepoUrl": "",
+    "resultsCount": 0
+  }
+]

@@ -1,0 +1,16 @@
+[
+  {
+    "id": 16,
+    "name": "RS Clone Team Task Distribution",
+    "startDate": "2025-08-27T23:00:48.000Z",
+    "endDate": "2025-09-04T08:59:13.000Z",
+    "description": "Build a production-quality Angular app in a team of 3. You have 1 month for implementation.",
+    "minTeamSize": 2,
+    "maxTeamSize": 4,
+    "strictTeamSize": 3,
+    "strictTeamSizeMode": true,
+    "minTotalScore": 10,
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/rsclone",
+    "registrationStatus": "distributed"
+  }
+]

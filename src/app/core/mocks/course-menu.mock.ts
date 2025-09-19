@@ -7,10 +7,18 @@ export const mockCourse: Course = {
 };
 
 export const mockSession: Session = {
+  id: 999,
   isAdmin: false,
+  isHirer: false,
+  githubId: 'mock-user',
+  appRoles: ['user'],
+  roles: {
+    [mockCourse.id]: CourseRole.Student,
+  },
   courses: {
     [mockCourse.id]: {
       roles: [CourseRole.Student],
+      studentId: 99999,
     },
   },
 };

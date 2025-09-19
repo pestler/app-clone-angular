@@ -48,3 +48,6 @@ rsapp
 .firebase
 *-debug.log
 .runtimeconfig.json
+
+# Firebase service account key
+  scripts/service-account-key.json

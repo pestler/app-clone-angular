@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { of } from 'rxjs';
-import { AuthService } from '../core/services/auth';
+import { AuthService } from '../core/services/auth.service';
 import { Layout } from './layout.component';
 
 const mockAuthService = {

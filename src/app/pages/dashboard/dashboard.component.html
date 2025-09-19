@@ -1,4 +1,4 @@
-@if (data) {
+@if (data$ | async; as data) {
   <h2 class="student-curs">Student dashboard: {{ data.course.alias }}</h2>
 
   <div class="masonry-grid">
@@ -8,7 +8,7 @@
         [totalScore]="data.studentSummary.totalScore"
         [position]="data.studentSummary.rank"
         [maxCourseScore]="data.maxCourseScore"
-        [totalStudentsCount]="data.courseStats.activeStudentsCount"
+        [totalStudentsCount]="data.courseStats.studentsStats.activeStudentsCount"
       ></app-main-stats-card>
     </app-dashboard-card>
 

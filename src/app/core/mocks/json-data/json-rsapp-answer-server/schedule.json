@@ -1,0 +1,681 @@
+[
+  {
+    "id": 2189,
+    "name": "Angular Course. Kick-off",
+    "startDate": "2025-07-07T15:00:25.000Z",
+    "endDate": "2025-07-07T16:00:33.000Z",
+    "maxScore": null,
+    "scoreWeight": null,
+    "organizer": {
+      "id": 2480,
+      "name": "Pavel Razuvalau",
+      "githubId": "pavelrazuvalau"
+    },
+    "status": "archived",
+    "score": null,
+    "tag": "lecture",
+    "descriptionUrl": "https://www.youtube.com/watch?v=giM9ET6YoZ4",
+    "type": "courseEvent"
+  },
+  {
+    "id": 2181,
+    "name": "Angular. Components",
+    "startDate": "2025-07-08T00:00:00.000Z",
+    "endDate": "2025-07-14T23:59:51.000Z",
+    "maxScore": null,
+    "scoreWeight": null,
+    "organizer": {
+      "id": 6911,
+      "name": "Kirill Britsyn",
+      "githubId": "kbritsyn"
+    },
+    "status": "archived",
+    "score": null,
+    "tag": "self-study",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/angular/modules/components",
+    "type": "courseEvent"
+  },
+  {
+    "id": 2182,
+    "name": "Angular. Directives & Pipes",
+    "startDate": "2025-07-08T00:00:00.000Z",
+    "endDate": "2025-07-14T23:59:45.000Z",
+    "maxScore": null,
+    "scoreWeight": null,
+    "organizer": {
+      "id": 80321,
+      "name": "Natalia Loginova",
+      "githubId": "natalialoginova"
+    },
+    "status": "archived",
+    "score": null,
+    "tag": "self-study",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/angular/modules/directives-and-pipes",
+    "type": "courseEvent"
+  },
+  {
+    "id": 2190,
+    "name": "Angular. Intro",
+    "startDate": "2025-07-08T00:00:04.000Z",
+    "endDate": "2025-07-14T23:59:54.000Z",
+    "maxScore": null,
+    "scoreWeight": null,
+    "organizer": {
+      "id": 13787,
+      "name": "Rustam Satlykov",
+      "githubId": "satlykov"
+    },
+    "status": "archived",
+    "score": null,
+    "tag": "self-study",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/intro",
+    "type": "courseEvent"
+  },
+  {
+    "id": 4664,
+    "name": "Angular test (Components)",
+    "startDate": "2025-07-08T00:00:00.000Z",
+    "endDate": "2025-07-16T21:59:00.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "organizer": {
+      "id": 80321,
+      "name": "Natalia Loginova",
+      "githubId": "natalialoginova"
+    },
+    "status": "done",
+    "score": 100,
+    "tag": "test",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/components",
+    "type": "courseTask"
+  },
+  {
+    "id": 4644,
+    "name": "Angular test (Directives & Pipes)",
+    "startDate": "2025-07-08T00:00:00.000Z",
+    "endDate": "2025-07-14T23:59:00.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "organizer": {
+      "id": 80321,
+      "name": "Natalia Loginova",
+      "githubId": "natalialoginova"
+    },
+    "status": "done",
+    "score": 93,
+    "tag": "test",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/directives-and-pipes",
+    "type": "courseTask"
+  },
+  {
+    "id": 4665,
+    "name": "Angular test (Angular CLI, TypeScript)",
+    "startDate": "2025-07-08T00:00:00.000Z",
+    "endDate": "2025-07-16T21:59:00.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "organizer": {
+      "id": 13787,
+      "name": "Rustam Satlykov",
+      "githubId": "satlykov"
+    },
+    "status": "done",
+    "score": 100,
+    "tag": "test",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/angular/modules/intro",
+    "type": "courseTask"
+  },
+  {
+    "id": 2210,
+    "name": "Angular. Week #1 Q&A",
+    "startDate": "2025-07-14T15:00:29.000Z",
+    "endDate": "2025-07-14T16:00:29.000Z",
+    "maxScore": null,
+    "scoreWeight": null,
+    "organizer": {
+      "id": 2480,
+      "name": "Pavel Razuvalau",
+      "githubId": "pavelrazuvalau"
+    },
+    "status": "archived",
+    "score": null,
+    "tag": "self-study",
+    "descriptionUrl": "https://www.youtube.com/watch?v=TAVhb8Mbb_E",
+    "type": "courseEvent"
+  },
+  {
+    "id": 4667,
+    "name": "Angular test (Routing)",
+    "startDate": "2025-07-14T22:00:00.000Z",
+    "endDate": "2025-07-21T23:59:00.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "organizer": {
+      "id": 84418,
+      "name": "(Empty)",
+      "githubId": "anjx"
+    },
+    "status": "done",
+    "score": 100,
+    "tag": "test",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/routing",
+    "type": "courseTask"
+  },
+  {
+    "id": 4728,
+    "name": "Angular. Smart home UI. Part 1",
+    "startDate": "2025-07-14T22:00:00.000Z",
+    "endDate": "2025-07-24T21:59:18.000Z",
+    "maxScore": 100,
+    "scoreWeight": 1,
+    "organizer": {
+      "id": 2480,
+      "name": "Pavel Razuvalau",
+      "githubId": "pavelrazuvalau"
+    },
+    "status": "done",
+    "score": 100,
+    "tag": "coding",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/tasks/angular-smart-home-ui/smart-home-part-1.md",
+    "type": "courseTask"
+  },
+  {
+    "id": 2183,
+    "name": "Angular. Modules & Services, Dependency injection",
+    "startDate": "2025-07-15T00:00:00.000Z",
+    "endDate": "2025-07-21T23:59:09.000Z",
+    "maxScore": null,
+    "scoreWeight": null,
+    "organizer": {
+      "id": 84572,
+      "name": "(Empty)",
+      "githubId": "dianakogut"
+    },
+    "status": "archived",
+    "score": null,
+    "tag": "self-study",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/angular/modules/modules-and-services",
+    "type": "courseEvent"
+  },
+  {
+    "id": 2184,
+    "name": "Angular. Routing",
+    "startDate": "2025-07-15T00:00:00.000Z",
+    "endDate": "2025-07-21T23:59:22.000Z",
+    "maxScore": null,
+    "scoreWeight": null,
+    "organizer": {
+      "id": 84418,
+      "name": "(Empty)",
+      "githubId": "anjx"
+    },
+    "status": "archived",
+    "score": null,
+    "tag": "self-study",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/angular/modules/routing",
+    "type": "courseEvent"
+  },
+  {
+    "id": 4666,
+    "name": "Angular test (Modules, Services)",
+    "startDate": "2025-07-15T00:00:00.000Z",
+    "endDate": "2025-07-24T21:59:00.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "organizer": {
+      "id": 84572,
+      "name": "(Empty)",
+      "githubId": "dianakogut"
+    },
+    "status": "done",
+    "score": 100,
+    "tag": "test",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/modules-and-services",
+    "type": "courseTask"
+  },
+  {
+    "id": 2211,
+    "name": "Angular. Week #2 Q&A",
+    "startDate": "2025-07-21T15:00:06.000Z",
+    "endDate": "2025-07-21T16:00:06.000Z",
+    "maxScore": null,
+    "scoreWeight": null,
+    "organizer": {
+      "id": 2480,
+      "name": "Pavel Razuvalau",
+      "githubId": "pavelrazuvalau"
+    },
+    "status": "archived",
+    "score": null,
+    "tag": "self-study",
+    "descriptionUrl": "https://www.youtube.com/watch?v=qszBIH7TOoQ",
+    "type": "courseEvent"
+  },
+  {
+    "id": 2178,
+    "name": "Angular. RxJS & Observables",
+    "startDate": "2025-07-22T00:00:00.000Z",
+    "endDate": "2025-08-04T23:59:07.000Z",
+    "maxScore": null,
+    "scoreWeight": null,
+    "organizer": {
+      "id": 84093,
+      "name": "Oleh Duleba",
+      "githubId": "olehdulebaepam"
+    },
+    "status": "archived",
+    "score": null,
+    "tag": "self-study",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/angular/modules/rxjs",
+    "type": "courseEvent"
+  },
+  {
+    "id": 2179,
+    "name": "Angular. HTTP",
+    "startDate": "2025-07-22T00:00:00.000Z",
+    "endDate": "2025-08-04T23:59:32.000Z",
+    "maxScore": null,
+    "scoreWeight": null,
+    "organizer": {
+      "id": 84418,
+      "name": "(Empty)",
+      "githubId": "anjx"
+    },
+    "status": "archived",
+    "score": null,
+    "tag": "self-study",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/angular/modules/http",
+    "type": "courseEvent"
+  },
+  {
+    "id": 2180,
+    "name": "Angular. Forms",
+    "startDate": "2025-07-22T00:00:00.000Z",
+    "endDate": "2025-08-04T23:59:03.000Z",
+    "maxScore": null,
+    "scoreWeight": null,
+    "organizer": {
+      "id": 6911,
+      "name": "Kirill Britsyn",
+      "githubId": "kbritsyn"
+    },
+    "status": "archived",
+    "score": null,
+    "tag": "self-study",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/angular/modules/forms",
+    "type": "courseEvent"
+  },
+  {
+    "id": 4646,
+    "name": "Angular test (Forms)",
+    "startDate": "2025-07-22T00:00:00.000Z",
+    "endDate": "2025-08-04T23:59:00.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "organizer": {
+      "id": 6911,
+      "name": "Kirill Britsyn",
+      "githubId": "kbritsyn"
+    },
+    "status": "done",
+    "score": 93,
+    "tag": "test",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/forms",
+    "type": "courseTask"
+  },
+  {
+    "id": 4660,
+    "name": "Angular test (HTTP)",
+    "startDate": "2025-07-22T00:00:00.000Z",
+    "endDate": "2025-08-04T23:59:59.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "organizer": {
+      "id": 84418,
+      "name": "(Empty)",
+      "githubId": "anjx"
+    },
+    "status": "done",
+    "score": 100,
+    "tag": "test",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/http",
+    "type": "courseTask"
+  },
+  {
+    "id": 4668,
+    "name": "Angular test (RxJS & Observables)",
+    "startDate": "2025-07-22T00:00:00.000Z",
+    "endDate": "2025-08-04T23:59:00.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "organizer": {
+      "id": 84093,
+      "name": "Oleh Duleba",
+      "githubId": "olehdulebaepam"
+    },
+    "status": "done",
+    "score": 87,
+    "tag": "test",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/rxjs",
+    "type": "courseTask"
+  },
+  {
+    "id": 2176,
+    "name": "Angular. HTTP and Forms",
+    "startDate": "2025-07-23T07:00:01.000Z",
+    "endDate": "2025-07-23T08:00:28.000Z",
+    "maxScore": null,
+    "scoreWeight": null,
+    "organizer": {
+      "id": 84418,
+      "name": "(Empty)",
+      "githubId": "anjx"
+    },
+    "status": "archived",
+    "score": null,
+    "tag": "lecture",
+    "descriptionUrl": "https://wearecommunity.io",
+    "type": "courseEvent"
+  },
+  {
+    "id": 4730,
+    "name": "Angular. Smart home UI. Part 2",
+    "startDate": "2025-07-24T22:00:00.000Z",
+    "endDate": "2025-08-07T21:59:59.000Z",
+    "maxScore": 100,
+    "scoreWeight": 1,
+    "organizer": {
+      "id": 2480,
+      "name": "Pavel Razuvalau",
+      "githubId": "pavelrazuvalau"
+    },
+    "status": "done",
+    "score": 100,
+    "tag": "coding",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/tasks/angular-smart-home-ui/smart-home-part-2.md",
+    "type": "courseTask"
+  },
+  {
+    "id": 2212,
+    "name": "Angular. Week #3 Q&A",
+    "startDate": "2025-07-28T15:00:18.000Z",
+    "endDate": "2025-07-28T16:00:18.000Z",
+    "maxScore": null,
+    "scoreWeight": null,
+    "organizer": {
+      "id": 2480,
+      "name": "Pavel Razuvalau",
+      "githubId": "pavelrazuvalau"
+    },
+    "status": "archived",
+    "score": null,
+    "tag": "self-study",
+    "descriptionUrl": "https://www.youtube.com/@RSSchool",
+    "type": "courseEvent"
+  },
+  {
+    "id": 2185,
+    "name": "Angular. Redux & NgRx",
+    "startDate": "2025-07-29T00:00:00.000Z",
+    "endDate": "2025-08-04T23:59:45.000Z",
+    "maxScore": null,
+    "scoreWeight": null,
+    "organizer": {
+      "id": 84093,
+      "name": "Oleh Duleba",
+      "githubId": "olehdulebaepam"
+    },
+    "status": "archived",
+    "score": null,
+    "tag": "self-study",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/angular/modules/redux",
+    "type": "courseEvent"
+  },
+  {
+    "id": 4645,
+    "name": "Angular test (Redux & NgRx)",
+    "startDate": "2025-07-29T00:00:00.000Z",
+    "endDate": "2025-08-04T23:59:00.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "organizer": {
+      "id": 84093,
+      "name": "Oleh Duleba",
+      "githubId": "olehdulebaepam"
+    },
+    "status": "done",
+    "score": 93,
+    "tag": "test",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/redux",
+    "type": "courseTask"
+  },
+  {
+    "id": 2213,
+    "name": "Angular. Week #4 Q&A",
+    "startDate": "2025-08-01T17:00:03.000Z",
+    "endDate": "2025-08-01T18:00:03.000Z",
+    "maxScore": null,
+    "scoreWeight": null,
+    "organizer": {
+      "id": 2480,
+      "name": "Pavel Razuvalau",
+      "githubId": "pavelrazuvalau"
+    },
+    "status": "archived",
+    "score": null,
+    "tag": "self-study",
+    "descriptionUrl": "https://www.youtube.com/@RSSchool",
+    "type": "courseEvent"
+  },
+  {
+    "id": 2175,
+    "name": "Angular. Signals",
+    "startDate": "2025-08-05T00:00:56.000Z",
+    "endDate": "2025-08-12T00:00:56.000Z",
+    "maxScore": null,
+    "scoreWeight": null,
+    "organizer": {
+      "id": 13787,
+      "name": "Rustam Satlykov",
+      "githubId": "satlykov"
+    },
+    "status": "archived",
+    "score": null,
+    "tag": "self-study",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/signals",
+    "type": "courseEvent"
+  },
+  {
+    "id": 4669,
+    "name": "Angular test (Signals)",
+    "startDate": "2025-08-05T00:00:00.000Z",
+    "endDate": "2025-08-12T00:00:00.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "organizer": {
+      "id": 80321,
+      "name": "Natalia Loginova",
+      "githubId": "natalialoginova"
+    },
+    "status": "done",
+    "score": 93,
+    "tag": "test",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/signals",
+    "type": "courseTask"
+  },
+  {
+    "id": 4732,
+    "name": "Angular. Smart home UI. Part 3",
+    "startDate": "2025-08-08T22:00:00.000Z",
+    "endDate": "2025-08-31T21:59:51.000Z",
+    "maxScore": 100,
+    "scoreWeight": 1,
+    "organizer": {
+      "id": 2480,
+      "name": "Pavel Razuvalau",
+      "githubId": "pavelrazuvalau"
+    },
+    "status": "done",
+    "score": 100,
+    "tag": "coding",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/tasks/angular-smart-home-ui/smart-home-part-3.md",
+    "type": "courseTask"
+  },
+  {
+    "id": 2186,
+    "name": "Angular. Unit testing",
+    "startDate": "2025-08-12T00:00:00.000Z",
+    "endDate": "2025-08-18T23:59:37.000Z",
+    "maxScore": null,
+    "scoreWeight": null,
+    "organizer": {
+      "id": 50086,
+      "name": "George Simonov",
+      "githubId": "jirisimonov"
+    },
+    "status": "archived",
+    "score": null,
+    "tag": "self-study",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/angular/modules/unit-test",
+    "type": "courseEvent"
+  },
+  {
+    "id": 4648,
+    "name": "Angular test (Unit test)",
+    "startDate": "2025-08-12T00:00:00.000Z",
+    "endDate": "2025-08-18T23:59:59.000Z",
+    "maxScore": 100,
+    "scoreWeight": 0.1,
+    "organizer": {
+      "id": 80321,
+      "name": "Natalia Loginova",
+      "githubId": "natalialoginova"
+    },
+    "status": "done",
+    "score": 100,
+    "tag": "test",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/unit-test",
+    "type": "courseTask"
+  },
+  {
+    "id": 2177,
+    "name": "Angular. Unit Testing.",
+    "startDate": "2025-08-12T15:00:54.000Z",
+    "endDate": "2025-08-12T16:30:54.000Z",
+    "maxScore": null,
+    "scoreWeight": null,
+    "organizer": {
+      "id": 13787,
+      "name": "Rustam Satlykov",
+      "githubId": "satlykov"
+    },
+    "status": "archived",
+    "score": null,
+    "tag": "lecture",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/unit-test",
+    "type": "courseEvent"
+  },
+  {
+    "id": 16,
+    "name": "RS Clone Team Task Distribution",
+    "startDate": "2025-08-27T23:00:48.000Z",
+    "endDate": "2025-09-04T08:59:13.000Z",
+    "maxScore": null,
+    "scoreWeight": null,
+    "organizer": null,
+    "status": "done",
+    "score": null,
+    "tag": "team-distribution",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/rsclone",
+    "type": "courseTeamDistribution"
+  },
+  {
+    "id": 4744,
+    "name": "RS Clone Angular",
+    "startDate": "2025-09-01T00:00:00.000Z",
+    "endDate": "2025-09-28T23:59:02.000Z",
+    "maxScore": 600,
+    "scoreWeight": 1,
+    "organizer": {
+      "id": 2084,
+      "name": "Dzmitry Varabei",
+      "githubId": "dzmitry-varabei"
+    },
+    "status": "available",
+    "score": null,
+    "tag": "cross-check-submit",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/rsclone",
+    "type": "courseTask"
+  },
+  {
+    "id": 4746,
+    "name": "Angular interview",
+    "startDate": "2025-09-08T00:00:00.000Z",
+    "endDate": "2025-09-28T23:59:06.000Z",
+    "maxScore": 10,
+    "scoreWeight": 10,
+    "organizer": {
+      "id": 9569,
+      "name": "Nataļja Eina",
+      "githubId": "natein"
+    },
+    "status": "review",
+    "score": null,
+    "tag": "interview",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/blob/master/angular/modules/interview/README.md",
+    "type": "courseTask"
+  },
+  {
+    "id": 4750,
+    "name": "RS Clone Demo",
+    "startDate": "2025-09-18T14:00:00.000Z",
+    "endDate": "2025-09-19T23:04:12.000Z",
+    "maxScore": 20,
+    "scoreWeight": 1,
+    "organizer": {
+      "id": 8133,
+      "name": "Raman Kamarou",
+      "githubId": "pomakom"
+    },
+    "status": "future",
+    "score": null,
+    "tag": "coding",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/demo",
+    "type": "courseTask"
+  },
+  {
+    "id": 4745,
+    "name": "Presentation (Final task) Angular course",
+    "startDate": "2025-09-29T00:00:00.000Z",
+    "endDate": "2025-10-05T23:59:51.000Z",
+    "maxScore": 40,
+    "scoreWeight": 1,
+    "organizer": {
+      "id": 8133,
+      "name": "Raman Kamarou",
+      "githubId": "pomakom"
+    },
+    "status": "future",
+    "score": null,
+    "tag": "coding",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/peresentation",
+    "type": "courseTask"
+  },
+  {
+    "id": 4744,
+    "name": "RS Clone Angular",
+    "startDate": "2025-09-28T23:59:02.000Z",
+    "endDate": "2025-10-01T23:59:59.000Z",
+    "maxScore": 600,
+    "scoreWeight": 1,
+    "organizer": {
+      "id": 2084,
+      "name": "Dzmitry Varabei",
+      "githubId": "dzmitry-varabei"
+    },
+    "status": "future",
+    "score": null,
+    "tag": "cross-check-review",
+    "descriptionUrl": "https://github.com/rolling-scopes-school/tasks/tree/master/angular/modules/rsclone"
+  }
+]
