@@ -60,7 +60,7 @@ export class AuthService {
           return '/';
         } else {
           this.isNavigatingToRegister = true;
-          return APP_ROUTES.REGISTER;
+          return APP_ROUTES.REGISTER_STUDENT;
         }
       } else {
         return '/';

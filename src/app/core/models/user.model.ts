@@ -22,6 +22,7 @@ export interface UserProfile {
     githubId: string;
     name: string;
   };
+  courses?: string[];
   roles: {
     student: boolean;
     mentor: boolean;
@@ -35,7 +36,6 @@ export const userProfileConverter: FirestoreDataConverter<UserProfile> = {
   },
   fromFirestore: (snapshot: QueryDocumentSnapshot, options: SnapshotOptions): UserProfile => {
     const data = snapshot.data(options);
-
     return {
       githubId: data['githubId'],
       id: data['id'],
@@ -49,6 +49,7 @@ export const userProfileConverter: FirestoreDataConverter<UserProfile> = {
       countryName: data['countryName'],
       epamEmail: data['epamEmail'],
       mentor: data['mentor'],
+      courses: data['courses'],
       roles: data['roles'],
     } as UserProfile;
   },

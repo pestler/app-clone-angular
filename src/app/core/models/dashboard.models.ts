@@ -65,6 +65,7 @@ export interface ScoreData {
   crossCheckScore: number;
   repositoryLastActivityDate: string | null;
   taskResults: TaskResult[];
+  repository?: string;
 }
 export const scoreDataConverter = createConverter<ScoreData>();
 
@@ -153,9 +154,15 @@ export interface AvailableReview {
 }
 
 export interface Course {
+  id: number;
+  name: string;
+  startDate: string;
+  logo: string;
   alias: string;
   usePrivateRepositories: boolean;
+  maxCourseScore?: number;
 }
+export const courseConverter = createConverter<Course>();
 
 export interface DashboardData {
   studentSummary: StudentSummary;

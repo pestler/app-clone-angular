@@ -1,15 +1,20 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { filter, switchMap, take, tap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { filter, Observable, switchMap, take, tap } from 'rxjs';
 
-import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatSelectModule } from '@angular/material/select';
 
 import { AuthService } from '../core/services/auth.service';
+import { CourseService } from '../core/services/course';
 import { NotificationService } from '../core/services/notification.service';
 import { User as UserService } from '../core/services/user';
 
-import { MatButtonModule } from '@angular/material/button';
+import { Course } from '../core/models/dashboard.models';
+
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -24,6 +29,8 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    MatSelectModule,
+    MatChipsModule,
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
@@ -34,25 +41,79 @@ export class RegisterComponent implements OnInit {
   private readonly authService = inject(AuthService);
   private readonly userService = inject(UserService);
   private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+  private readonly courseService = inject(CourseService);
 
   form!: FormGroup;
+  formType: 'student' | 'mentor' = 'student';
+  isStudentForm = true;
+  disciplinesList: string[] = [
+    'NodeJS',
+    'iOS',
+    'Android',
+    'AWS',
+    'Go',
+    'React',
+    'Angular',
+    'JavaScript',
+    'DevOps',
+    'Gen AI',
+  ];
+  languagesList: string[] = [
+    'English',
+    'Spanish',
+    'German',
+    'French',
+    'Polish',
+    'Ukrainian',
+    'Russian',
+    'Chinese',
+    'Hindi',
+    'Portuguese',
+  ];
+  courses$: Observable<Course[]> | undefined;
   private currentUserGithubId: string | null = null;
 
   ngOnInit(): void {
+    this.formType = this.route.snapshot.data['formType'] || 'student';
+    this.isStudentForm = this.formType === 'student';
     this.authService.isNavigatingToRegister = false;
     this.initForm();
     this.prefillForm();
+    this.courses$ = this.courseService
+      .getCourses()
+      .pipe(tap((courses) => console.log('DEBUG: Loaded courses:', courses)));
   }
 
   private initForm(): void {
-    this.form = this.fb.group({
+    const baseForm = {
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       location: ['', [Validators.required]],
       primaryEmail: ['', [Validators.required, Validators.email]],
       epamEmail: ['', [Validators.email]],
       githubId: [''],
-    });
+      telegram: [''],
+      skype: [''],
+      whatsApp: [''],
+      phone: [''],
+      notes: [''],
+      aboutYourself: [''],
+      languages: [[]],
+      courses: [[]],
+    };
+
+    if (!this.isStudentForm) {
+      const mentorForm = {
+        ...baseForm,
+        disciplines: [[], [Validators.required]],
+        studentsCount: ['', [Validators.required]],
+        studentsLocation: ['Anywhere'],
+      };
+      this.form = this.fb.group(mentorForm);
+    } else {
+      this.form = this.fb.group(baseForm);
+    }
   }
 
   private prefillForm(): void {
@@ -99,7 +160,11 @@ export class RegisterComponent implements OnInit {
 
     const profileData = {
       ...this.form.value,
-      roles: { student: true, admin: false, mentor: false },
+      roles: {
+        student: this.isStudentForm,
+        mentor: !this.isStudentForm,
+        admin: false,
+      },
     };
 
     this.userService

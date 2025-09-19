@@ -17,9 +17,16 @@ export const routes: Routes = [
     canActivate: [publicGuard],
   },
   {
-    path: AR.REGISTER,
+    path: AR.REGISTER_STUDENT,
     component: RegisterComponent,
     canActivate: [publicGuard],
+    data: { formType: 'student' },
+  },
+  {
+    path: AR.REGISTER_MENTOR,
+    component: RegisterComponent,
+    canActivate: [publicGuard],
+    data: { formType: 'mentor' },
   },
   {
     path: '',
