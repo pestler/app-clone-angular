@@ -1,0 +1,54 @@
+@mixin flex($direction) {
+  display: flex;
+  flex-flow: $direction wrap;
+  align-items: center;
+}
+
+@mixin icon($size) {
+  width: $size;
+  height: $size;
+  font-size: $size;
+}
+
+.card-wrapper {
+  border: 1px solid var(--border-block-end);
+  border-radius: 8px;
+  background-color: transparent;
+}
+
+.card-header {
+  @include flex(row);
+
+  justify-content: space-between;
+  padding: 20px 24px;
+  color: var(--text-black);
+  border-bottom: 1px solid var(--border-block-end);
+}
+
+.title-wrapper {
+  @include flex(row);
+
+  gap: 4px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.icon {
+  @include icon(18px);
+}
+
+.title-edit-icon {
+  @include icon(20px);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.content {
+  padding: 24px;
+}

@@ -1,0 +1,16 @@
+<mat-card appearance="outlined" class="card-wrapper">
+  <mat-card-header class="card-header">
+    <mat-card-title class="title-wrapper">
+      <mat-icon class="icon">{{ icon }}</mat-icon>
+      <p class="title">{{ title }}</p>
+    </mat-card-title>
+    @if (isEdit) {
+      <button mat-icon-button (click)="onEditClick()">
+        <mat-icon class="title-edit-icon">edit</mat-icon>
+      </button>
+    }
+  </mat-card-header>
+  <mat-card-content class="content">
+    <ng-content></ng-content>
+  </mat-card-content>
+</mat-card>
