@@ -14,6 +14,7 @@ import {
   TaskResult,
   TaskStatus,
 } from '../models/dashboard.models';
+import { CourseService } from './course';
 import { FirestoreService } from './firestore.service';
 
 @Injectable({
@@ -21,6 +22,7 @@ import { FirestoreService } from './firestore.service';
 })
 export class DashboardService {
   private readonly firestoreService = inject(FirestoreService);
+  private readonly courseService = inject(CourseService);
 
   getDashboardData(courseId: number, student: ScoreData): Observable<DashboardData> {
     const tasksPromise = this.firestoreService.getCollection<Task>('tasks', taskConverter);
@@ -33,13 +35,27 @@ export class DashboardService {
       'ZlY12vO9qy29M4a9v03l',
       courseStatisticsConverter,
     );
+    const coursePromise = this.courseService.getCourses().pipe(
+      map(
+        (courses) =>
+          courses.find((c) => c.alias === 'angular-2025q3') || {
+            id: 0,
+            name: 'Unknown Course',
+            startDate: '',
+            logo: '',
+            alias: 'unknown',
+            usePrivateRepositories: false,
+          },
+      ),
+    );
 
     return forkJoin({
       allTasks: from(tasksPromise),
       schedule: from(schedulePromise),
       courseStats: from(courseStatsPromise),
+      course: coursePromise,
     }).pipe(
-      map(({ allTasks, schedule, courseStats }) => {
+      map(({ allTasks, schedule, courseStats, course }) => {
         const studentSummary: StudentSummary = {
           rank: student.rank,
           totalScore: student.totalScore,
@@ -109,14 +125,11 @@ export class DashboardService {
             courseTasks: [],
             studentsCertificatesCountries: { countries: [] },
           },
-          maxCourseScore: 600,
+          maxCourseScore: course.maxCourseScore || 600,
           tasksByStatus,
           nextEvents,
           availableReviews: [],
-          course: {
-            alias: 'angular-2025q3',
-            usePrivateRepositories: true,
-          },
+          course: course!,
         };
 
         return dashboardData;

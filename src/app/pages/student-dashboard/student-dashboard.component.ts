@@ -15,7 +15,7 @@ import { RepositoryCardComponent } from '../../shared/components/cards/repositor
 import { TasksStatsCardComponent } from '../../shared/components/cards/tasks-stats-card/tasks-stats-card.component';
 
 @Component({
-  selector: 'app-dashboard',
+  selector: 'app-student-dashboard',
   standalone: true,
   imports: [
     CommonModule,
@@ -28,10 +28,10 @@ import { TasksStatsCardComponent } from '../../shared/components/cards/tasks-sta
     RepositoryCardComponent,
     RouterModule,
   ],
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
+  templateUrl: './student-dashboard.component.html',
+  styleUrls: ['./student-dashboard.component.scss'],
 })
-export class DashboardComponent {
+export class StudentDashboardComponent {
   private readonly authService = inject(AuthService);
   private readonly dashboardService = inject(DashboardService);
 

@@ -1,20 +1,27 @@
-import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import {
+  MatCard,
+  MatCardActions,
+  MatCardContent,
+  MatCardHeader,
+  MatCardTitle,
+} from '@angular/material/card';
+import { Router } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
 
 @Component({
   selector: 'app-login',
-  standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [MatCardActions, MatCardContent, MatCardTitle, MatCard, MatCardHeader],
 })
 export class LoginComponent {
-  private authService = inject(AuthService);
+  private readonly authService: AuthService = inject(AuthService);
+  private readonly router: Router = inject(Router);
 
-  login(): void {
-    this.authService.signInWithGitHub();
+  async login(): Promise<void> {
+    const redirectUrl = await this.authService.signInWithGitHub();
+    this.router.navigate([redirectUrl]);
   }
 }

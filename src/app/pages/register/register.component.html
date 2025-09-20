@@ -1,0 +1,198 @@
+<div class="register-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          @if (isStudentForm) {
+            Welcome to RS School
+          } @else {
+            Mentors registration
+          }
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input matInput formControlName="firstName" placeholder="John" />
+            @if (form.get('firstName')?.hasError('required')) {
+              <mat-error>First Name is required.</mat-error>
+            }
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+            <input matInput formControlName="lastName" placeholder="Doe" />
+            @if (form.get('lastName')?.hasError('required')) {
+              <mat-error>Last Name is required.</mat-error>
+            }
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Location</mat-label>
+            <input matInput formControlName="location" placeholder="Select city" />
+            @if (form.get('location')?.hasError('required')) {
+              <mat-error>Location is required.</mat-error>
+            }
+            <!-- TODO: Implement Google Places Autocomplete -->
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Primary E-mail</mat-label>
+            <input matInput formControlName="primaryEmail" placeholder="user@example.com" />
+            @if (form.get('primaryEmail')?.hasError('required')) {
+              <mat-error>Primary E-mail is required.</mat-error>
+            }
+            @if (form.get('primaryEmail')?.hasError('email')) {
+              <mat-error>Please enter a valid email address.</mat-error>
+            }
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>EPAM E-mail</mat-label>
+            <input matInput formControlName="epamEmail" placeholder="first_last@epam.com" />
+            @if (form.get('epamEmail')?.hasError('email')) {
+              <mat-error>Please enter a valid email address.</mat-error>
+            }
+          </mat-form-field>
+        </p>
+
+        <hr />
+        <h3 class="mat-subheading-2">Contact Information</h3>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Telegram</mat-label>
+            <input matInput formControlName="telegram" placeholder="johnny" />
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Skype</mat-label>
+            <input matInput formControlName="skype" placeholder="johnsmith" />
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>WhatsApp</mat-label>
+            <input matInput formControlName="whatsApp" placeholder="johndoe" />
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Phone</mat-label>
+            <input matInput formControlName="phone" placeholder="+1234567890" />
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Contact Notes</mat-label>
+            <textarea
+              matInput
+              formControlName="notes"
+              placeholder="Preferable time to contact, planned days off etc."
+            ></textarea>
+          </mat-form-field>
+        </p>
+
+        <hr />
+        <h3 class="mat-subheading-2">Additional Information</h3>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>About Yourself</mat-label>
+            <textarea
+              matInput
+              formControlName="aboutYourself"
+              placeholder="A couple words about yourself..."
+            ></textarea>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>{{
+              isStudentForm ? 'My Languages' : 'Languages you can mentor in'
+            }}</mat-label>
+            <mat-select formControlName="languages" multiple>
+              @for (language of languagesList; track language) {
+                <mat-option [value]="language">{{ language }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </p>
+
+        <hr />
+        <h3 class="mat-subheading-2">Course Details</h3>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Preferred Courses</mat-label>
+            <mat-select formControlName="courses" multiple>
+              @if (courses$ | async; as courses) {
+                @for (course of courses; track course.id) {
+                  <mat-option [value]="course.alias">{{ course.name }}</mat-option>
+                }
+              }
+            </mat-select>
+          </mat-form-field>
+        </p>
+
+        @if (!isStudentForm) {
+          <h3 class="mat-subheading-2">Mentor Information</h3>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Disciplines you can mentor</mat-label>
+              <mat-select formControlName="disciplines" multiple>
+                @for (discipline of disciplinesList; track discipline) {
+                  <mat-option [value]="discipline">{{ discipline }}</mat-option>
+                }
+              </mat-select>
+              @if (form.get('disciplines')?.hasError('required')) {
+                <mat-error>Please select at least one discipline.</mat-error>
+              }
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Count of students</mat-label>
+              <input matInput formControlName="studentsCount" type="number" placeholder="1" />
+              @if (form.get('studentsCount')?.hasError('required')) {
+                <mat-error>Students count is required.</mat-error>
+              }
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field appearance="outline">
+              <mat-label>Students location</mat-label>
+              <mat-select formControlName="studentsLocation">
+                <mat-option value="Anywhere">Anywhere</mat-option>
+                <mat-option value="My country only">My country only</mat-option>
+                <mat-option value="My city only">My city only</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </p>
+        }
+      </mat-card-content>
+
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">
+          Submit
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

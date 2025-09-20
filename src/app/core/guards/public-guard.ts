@@ -10,7 +10,7 @@ export const publicGuard: CanActivateFn = () => {
   return authService.user$.pipe(
     take(1),
     map((user) => {
-      if (user) {
+      if (user && !authService.isNavigatingToRegister) {
         return router.createUrlTree(['/']);
       }
       return true;
