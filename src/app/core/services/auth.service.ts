@@ -33,8 +33,8 @@ export class AuthService {
       if (user && user.displayName) {
         return from(
           this.firestoreService.findDoc<ScoreData>(
-            'scores',
-            'name',
+            'courses/angular-2025Q3/students',
+            'displayName',
             user.displayName,
             scoreDataConverter,
           ),

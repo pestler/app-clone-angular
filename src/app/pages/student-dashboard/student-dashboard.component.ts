@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
-import { filter, switchMap } from 'rxjs/operators';
+import { filter, switchMap, tap } from 'rxjs/operators';
 import { DashboardData, ScoreData } from '../../core/models/dashboard.models';
 import { AuthService } from '../../core/services/auth.service';
 import { DashboardService } from '../../core/services/dashboard.service';
@@ -42,7 +42,9 @@ export class StudentDashboardComponent {
       filter((scoreData): scoreData is ScoreData => !!scoreData),
       switchMap((scoreData) => {
         const courseId = 124;
-        return this.dashboardService.getDashboardData(courseId, scoreData);
+        return this.dashboardService
+          .getDashboardData(courseId, scoreData)
+          .pipe(tap((res) => console.log(res)));
       }),
     );
   }
