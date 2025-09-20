@@ -1,24 +1,29 @@
 <button mat-icon-button [matMenuTriggerFor]="userMenu">
   <mat-icon>account_circle</mat-icon>
 </button>
-<mat-menu class="menu" #userMenu="matMenu">
+<mat-menu #userMenu="matMenu" class="menu">
   @for (item of matMenuItems; track item.label) {
     @if (item.route) {
-      <button mat-menu-item [routerLink]="item.route">
-        <mat-icon>{{ item.icon }}</mat-icon>
-        <span>{{ item.label }}</span>
+      <button mat-menu-item [routerLink]="item.route" class="button">
+        <mat-icon class="icon">{{ item.icon }}</mat-icon>
+        <span class="label">{{ item.label }}</span>
       </button>
     }
     @if (item.url) {
-      <a mat-menu-item [href]="item.url" [attr.target]="item.external ? '_blank' : null">
-        <mat-icon>{{ item.icon }}</mat-icon>
-        <span>{{ item.label }}</span>
+      <a
+        mat-menu-item
+        [href]="item.url"
+        [attr.target]="item.external ? '_blank' : null"
+        class="button"
+      >
+        <mat-icon class="icon">{{ item.icon }}</mat-icon>
+        <span class="label">{{ item.label }}</span>
       </a>
     }
     @if (item.action) {
-      <button mat-menu-item (click)="handleAction(item.action)">
-        <mat-icon>{{ item.icon }}</mat-icon>
-        <span>{{ item.label }}</span>
+      <button mat-menu-item (click)="handleAction(item.action)" class="button">
+        <mat-icon class="icon">{{ item.icon }}</mat-icon>
+        <span class="label">{{ item.label }}</span>
       </button>
     }
   }

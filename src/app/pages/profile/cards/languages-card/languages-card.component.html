@@ -1,0 +1,11 @@
+<app-base-card [isEdit]="true" title="My Languages" icon="translate" (editClick)="openDialog()">
+  @if (lanquages.length) {
+    <div class="items-wrapper">
+      @for (lanquage of lanquages; track lanquage) {
+        <div class="item">{{ lanquage | languageName }}</div>
+      }
+    </div>
+  } @else {
+    <app-empty-state [type]="EmptyStateType.Languages"></app-empty-state>
+  }
+</app-base-card>

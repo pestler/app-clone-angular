@@ -9,6 +9,7 @@ import { InterviewsComponent } from './pages/interviews/interviews.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MentorDashboardComponent } from './pages/mentor-dashboard/mentor-dashboard.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { RoleSelectionComponent } from './pages/role-selection/role-selection.component';
 import { StudentDashboardComponent } from './pages/student-dashboard/student-dashboard.component';
@@ -60,6 +61,10 @@ export const routes: Routes = [
       {
         path: AR.ADMIN_DASHBOARD,
         component: AdminDashboardComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
       },
       {
         path: '**',
