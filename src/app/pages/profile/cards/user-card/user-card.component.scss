@@ -7,6 +7,19 @@
   text-align: center;
   border: 1px solid var(--border-block-end);
   border-radius: 8px;
+  position: relative;
+}
+
+.edit-btn {
+  position: absolute;
+  right: 24px;
+  top: 20px;
+}
+
+.edit-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .avatar-wrapper {
