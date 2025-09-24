@@ -1,17 +1,14 @@
 import { inject, Injectable } from '@angular/core';
 import { forkJoin, from, map, Observable, take } from 'rxjs';
 import {
+  Course,
   CourseStatistics,
   courseStatisticsConverter,
   DashboardData,
-  Event,
-  ScheduleEvent,
-  scheduleEventConverter,
   ScoreData,
   StudentSummary,
   Task,
   taskConverter,
-  TaskResult,
   TaskStatus,
 } from '../models/dashboard.models';
 import { UserProfile, userProfileConverter } from '../models/user.model';
@@ -25,78 +22,53 @@ export class DashboardService {
   private readonly firestoreService = inject(FirestoreService);
   private readonly courseService = inject(CourseService);
 
-  getDashboardData(courseId: number, student: ScoreData): Observable<DashboardData> {
+  getDashboardData(student: ScoreData, courseAlias: string): Observable<DashboardData> {
+    const tasks$ = from(
+      this.firestoreService.getCollection<Task>(`courses/${courseAlias}/tasks`, taskConverter),
+    );
+
     const userDoc$ = from(
       this.firestoreService.getDoc<UserProfile>('users', student.githubId, userProfileConverter),
     );
 
-    const tasks$ = from(this.firestoreService.getCollection<Task>('tasks', taskConverter));
-    const schedule$ = from(
-      this.firestoreService.getCollection<ScheduleEvent>('schedule', scheduleEventConverter),
-    );
     const courseStats$ = from(
-      this.firestoreService.getDoc<CourseStatistics>(
+      this.firestoreService.getDoc(
         'courseStatistics',
         'ZlY12vO9qy29M4a9v03l',
         courseStatisticsConverter,
       ),
     );
+
     const course$ = this.courseService.getCourses().pipe(
-      map(
-        (courses) =>
-          courses.find((c) => c.alias === 'angular-2025q3') || {
-            id: 0,
-            name: 'Unknown Course',
-            startDate: '',
-            logo: '',
-            alias: 'unknown',
-            usePrivateRepositories: false,
-            maxCourseScore: 600,
-          },
-      ),
+      map((courses) => courses.find((c) => c.alias === courseAlias) || null),
       take(1),
     );
 
     return forkJoin({
       allTasks: tasks$,
-      schedule: schedule$,
       courseStats: courseStats$,
       course: course$,
       userDoc: userDoc$,
     }).pipe(
-      map(({ allTasks, schedule, courseStats, course, userDoc }) => {
+      map(({ allTasks, courseStats, course, userDoc }) => {
         const safeAllTasks = allTasks ?? [];
-        const safeSchedule = schedule ?? [];
-        const safeCourseStats = courseStats ?? {
-          studentsCountries: { countries: [] },
-          studentsStats: {
-            totalStudents: 0,
-            activeStudentsCount: 0,
-            studentsWithMentorCount: 0,
-            certifiedStudentsCount: 0,
-            eligibleForCertificationCount: 0,
-          },
-          mentorsCountries: { countries: [] },
-          mentorsStats: {
-            mentorsTotalCount: 0,
-            mentorsActiveCount: 0,
-            epamMentorsCount: 0,
-          },
-          courseTasks: [],
-          studentsCertificatesCountries: { countries: [] },
-        };
+        const studentTaskIds = new Set((student.taskResults ?? []).map((tr) => tr.courseTaskId));
+
+        const safeCourseStats: CourseStatistics =
+          courseStats ??
+          ({
+            studentsStats: { activeStudentsCount: 0 },
+          } as CourseStatistics);
+
+        const safeCourse: Course = course ?? ({} as Course);
 
         const studentSummary: StudentSummary = {
           rank: student.rank,
           totalScore: student.totalScore,
           isActive: student.active,
-          repository: `https://github.com/${student.githubId}/your-repo`,
+          repository: student.repository,
           mentor: userDoc?.mentor,
         };
-
-        const studentTaskIds = new Set(
-          (student.taskResults ?? []).map((tr: TaskResult) => tr.courseTaskId),
-        );
 
         const tasksByStatus: Record<TaskStatus, Task[]> = {
           [TaskStatus.Checked]: [],
@@ -115,26 +87,14 @@ export class DashboardService {
           }
         });
 
-        const nextEvents: Event[] = safeSchedule
-          .filter((event: ScheduleEvent) => new Date(event.startDate) > new Date())
-          .map((event: ScheduleEvent) => ({
-            topic: event.name,
-            date: event.startDate,
-            time: new Date(event.startDate).toLocaleTimeString('ru-RU', {
-              hour: '2-digit',
-              minute: '2-digit',
-            }),
-          }))
-          .slice(0, 2);
-
         const dashboardData: DashboardData = {
           studentSummary,
           courseStats: safeCourseStats,
-          maxCourseScore: course.maxCourseScore ?? 600,
+          maxCourseScore: safeCourse.maxCourseScore ?? 600,
           tasksByStatus,
-          nextEvents,
+          nextEvents: [],
           availableReviews: [],
-          course,
+          course: safeCourse,
         };
 
         return dashboardData;

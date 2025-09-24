@@ -1,22 +1,21 @@
 @use '@angular/material' as mat;
 
 :host {
-  @include mat.icon-overrides(
-    (
-      color: var(--text-blue),
-    )
-  );
+  display: block;
+  width: 100%;
+  max-width: 240px;
+  background-color: var(--background-default);
+  border: 1.1px solid var(--border-menu);
+  border-radius: 8px;
+  padding: 8px;
+  box-sizing: border-box;
+  flex-shrink: 0;
 }
 
 @mixin flex($direction) {
   display: flex;
   flex-direction: $direction;
   align-items: center;
-}
-
-.aside {
-  border: 1.1px solid var(--border-menu);
-  border-radius: 8px;
 }
 
 ul {
@@ -26,38 +25,41 @@ ul {
 }
 
 .list-item {
-  @include flex(row);
-
-  padding: 10px 16px;
-  font-size: 14px;
+  width: 100%;
   border-bottom: 1px solid var(--border-block-end);
-}
 
-.list-item:last-child {
-  border-bottom: none;
+  &:last-child {
+    border-bottom: none;
+  }
 }
 
 .link {
   @include flex(row);
 
-  gap: 4px;
+  gap: 16px;
+  padding: 10px 16px;
+  font-size: 14px;
   text-decoration: none;
+  color: var(--text-blue);
+  border-radius: 6px;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 
   &:hover {
     cursor: pointer;
+    background-color: var(--background-hover);
+    color: var(--text-blue-hover);
   }
 }
 
 .icon {
-  width: 16px;
-  height: 16px;
-  font-size: 16px;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
 }
 
-.label {
-  color: var(--text-blue);
-
-  &:hover {
-    color: var(--text-blue-hover);
-  }
+.list-item.active .link {
+  background-color: var(--primary-light);
+  color: var(--primary-main);
 }

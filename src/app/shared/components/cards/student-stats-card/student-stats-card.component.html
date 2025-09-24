@@ -4,18 +4,18 @@
     <div class="list-upper-part">
       <div class="stats-item">
         <span class="label">Score Points</span>
-        <span class="value">{{ studentStats.scorePoints }}</span>
+        <span class="value">{{ studentData?.totalScore ?? 0 }}</span>
       </div>
       <div class="stats-item">
         <span class="label">Completed Tasks</span>
-        <span class="value"
-          >{{ studentStats.completedTasks.done }}/{{ studentStats.completedTasks.total }}</span
-        >
+        <span class="value">{{ studentData?.taskResults?.length ?? 0 }} / [Total]</span>
       </div>
     </div>
     <div class="stats-item">
       <span class="label">Status</span>
-      <span class="value status">{{ studentStats.status }}</span>
+      <span class="value status" [class.active]="isActive">{{
+        isActive ? 'Active' : 'Inactive'
+      }}</span>
     </div>
   </div>
 </div>

@@ -161,7 +161,9 @@ export interface Course {
   alias: string;
   usePrivateRepositories: boolean;
   maxCourseScore?: number;
+  completed: boolean;
 }
+
 export const courseConverter = createConverter<Course>();
 
 export interface DashboardData {

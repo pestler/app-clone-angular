@@ -1,14 +1,27 @@
-<mat-form-field class="form-field">
-  <mat-label class="label">
-    <img class="svg" [src]="selectedCourse?.src" [alt]="selectedCourse?.alt" />
-    <span>{{ selectedCourse?.name }}</span>
-  </mat-label>
-  <mat-select>
-    @for (cource of cources; track cource.name) {
-      <mat-option [value]="cource.name" [ngClass]="{ archived: cource.isArchived }">
-        <img class="svg" [src]="cource.src" [alt]="cource.alt" />
-        {{ cource.name }}
-      </mat-option>
-    }
-  </mat-select>
-</mat-form-field>
+@if (courses().length) {
+  <mat-form-field class="form-field">
+    <mat-select
+      [value]="selectedCourseAlias()"
+      (selectionChange)="onCourseChange($event)"
+      panelClass="course-select-panel"
+    >
+      <mat-select-trigger>
+        @if (selectedCourse(); as course) {
+          <div class="option-content">
+            <img class="svg" [src]="course.logo" [alt]="course.name" />
+            <span>{{ course.name }}</span>
+          </div>
+        }
+      </mat-select-trigger>
+
+      @for (course of courses(); track course.id) {
+        <mat-option [value]="course.alias">
+          <div class="option-content">
+            <img class="svg" [src]="course.logo" [alt]="course.name" />
+            <span>{{ course.name }}</span>
+          </div>
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+}

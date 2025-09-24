@@ -1,180 +1,100 @@
 import { APP_ROUTES as AR } from '../../../constants/app-routes.const';
-import { Course, Session } from '../../../core/auth/auth.models';
-import {
-  isActiveStudent,
-  isAdmin,
-  isCourseManager,
-  isDementor,
-  isMentor,
-  isStudent,
-} from '../../../core/auth/user-roles';
+import { Course } from '../../../core/models/dashboard.models';
 
 export interface LinkData {
   name: string;
   icon?: string;
   getUrl: (course: Course) => { path: string; query?: Record<string, string> };
-  access: (session: Session, courseId: number) => boolean;
-  courseAccess?: (session: Session, course: Course) => boolean;
   color: string;
 }
 
-const anyAccess = () => true;
-const isCourseNotCompleted = (_: Session, course: Course) => !course.completed;
-
-const links: LinkData[] = [
+const studentCourseLinks: LinkData[] = [
   {
     name: 'Dashboard',
     icon: 'dashboard',
+    color: 'var(--icon-black)',
     getUrl: (course: Course) => ({
       path: `${AR.COURSE}/${AR.STUDENT}/${AR.DASHBOARD}`,
       query: { course: course.alias },
     }),
-    access: isStudent,
-    courseAccess: isCourseNotCompleted,
-    color: 'var(--icon-black)',
-  },
-  {
-    name: 'Dashboard',
-    icon: 'apps',
-    getUrl: (course: Course) => ({
-      path: `${AR.COURSE}/${AR.MENTOR}/${AR.DASHBOARD}`,
-      query: { course: course.alias },
-    }),
-    access: isMentor,
-    courseAccess: isCourseNotCompleted,
-    color: 'var(--icon-black)',
   },
   {
     name: 'Score',
     icon: 'local_fire_department',
+    color: 'var(--icon-orange)',
     getUrl: (course: Course) => ({
-      path: `${AR.COURSE}/${AR.SCORE}`,
+      path: `${AR.COURSE}/${AR.STUDENT}/${AR.SCORE}`,
       query: { course: course.alias },
     }),
-    access: anyAccess,
-    color: 'var(--icon-orange)',
   },
   {
     name: 'Schedule',
     icon: 'calendar_today',
-    getUrl: (course: Course) => ({
-      path: `${AR.COURSE}/${AR.SCHEDULE}`,
-      query: { course: course.alias },
-    }),
-    access: anyAccess,
     color: 'var(--icon-pink)',
-  },
-  {
-    name: 'My Students',
-    icon: 'emoji_events',
     getUrl: (course: Course) => ({
-      path: `${AR.COURSE}/${AR.MENTOR}/${AR.STUDENTS}`,
+      path: `${AR.COURSE}/${AR.STUDENT}/${AR.SCHEDULE}`,
       query: { course: course.alias },
     }),
-    access: isMentor,
-    color: '',
   },
   {
     name: 'Cross-Check: Submit',
     icon: 'code',
+    color: 'var(--icon-black)',
     getUrl: (course: Course) => ({
       path: `${AR.COURSE}/${AR.STUDENT}/${AR.CCSUBMIT}`,
       query: { course: course.alias },
     }),
-    access: isActiveStudent,
-    courseAccess: isCourseNotCompleted,
-    color: 'var(--icon-black)',
   },
   {
     name: 'Cross-Check: Review',
     icon: 'check_circle',
+    color: 'var(--icon-red)',
     getUrl: (course: Course) => ({
       path: `${AR.COURSE}/${AR.STUDENT}/${AR.CCREVIEW}`,
       query: { course: course.alias },
     }),
-    access: isActiveStudent,
-    courseAccess: isCourseNotCompleted,
-    color: 'var(--icon-red)',
   },
   {
     name: 'Interviews',
     icon: 'mic',
+    color: 'var(--icon-black)',
     getUrl: (course: Course) => ({
       path: `${AR.COURSE}/${AR.STUDENT}/${AR.INTERVIEWS}`,
       query: { course: course.alias },
     }),
-    access: isStudent,
-    courseAccess: isCourseNotCompleted,
-    color: 'var(--icon-black)',
-  },
-  {
-    name: 'Interviews',
-    icon: 'mic',
-    getUrl: (course: Course) => ({
-      path: `${AR.COURSE}/${AR.MENTOR}/${AR.INTERVIEWS}`,
-      query: { course: course.alias },
-    }),
-    access: isMentor,
-    courseAccess: isCourseNotCompleted,
-    color: 'var(--icon-black)',
   },
   {
     name: 'Auto-Test',
     icon: 'play_circle_outline',
-    getUrl: (course: Course) => ({
-      path: `${AR.COURSE}/${AR.AUTOTEST}`,
-      query: { course: course.alias },
-    }),
-    access: (session, courseId) =>
-      isCourseManager(session, courseId) || isActiveStudent(session, courseId),
-    courseAccess: isCourseNotCompleted,
     color: 'var(--icon-violet)',
-  },
-  {
-    name: 'Expel/Unassign Student',
-    icon: 'stop_circle',
     getUrl: (course: Course) => ({
-      path: `${AR.COURSE}/${AR.MENTOR}/${AR.EXPELSTUDENT}`,
+      path: `${AR.COURSE}/${AR.STUDENT}/${AR.AUTOTEST}`,
       query: { course: course.alias },
     }),
-    access: isMentor,
-    courseAccess: isCourseNotCompleted,
-    color: '',
   },
   {
     name: 'Team Distributions',
     icon: 'group_add',
+    color: 'var(--icon-violet)',
     getUrl: (course: Course) => ({
-      path: `${AR.COURSE}/${AR.TDISTRIBUTIONS}`,
+      path: `${AR.COURSE}/${AR.STUDENT}/${AR.TDISTRIBUTIONS}`,
       query: { course: course.alias },
     }),
-    access: (session, courseId) =>
-      isCourseManager(session, courseId) ||
-      isActiveStudent(session, courseId) ||
-      isDementor(session, courseId),
-    courseAccess: isCourseNotCompleted,
-    color: 'var(--icon-violet)',
   },
   {
     name: 'Course Statistics',
     icon: 'apps',
+    color: 'var(--icon-black)',
     getUrl: (course: Course) => ({
-      path: `${AR.COURSE}/${AR.STATS}`,
+      path: `${AR.COURSE}/${AR.STUDENT}/${AR.STATS}`,
       query: { course: course.alias },
     }),
-    access: anyAccess,
-    color: 'var(--icon-black)',
   },
 ];
 
-export function getCourseLinks(session: Session, activeCourse: Course | null): LinkData[] {
+export function getCourseLinks(activeCourse: Course | null): LinkData[] {
   if (!activeCourse) {
     return [];
   }
-  return links.filter(
-    (route) =>
-      isAdmin(session) ||
-      (route.access(session, activeCourse.id) &&
-        (route.courseAccess?.(session, activeCourse) ?? true)),
-  );
+  return studentCourseLinks;
 }

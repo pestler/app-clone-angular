@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { Observable } from 'rxjs';
-import { filter, switchMap, tap } from 'rxjs/operators';
+import { Component, computed, inject, Signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute, RouterModule } from '@angular/router';
+import { filter, map, switchMap } from 'rxjs/operators';
 import { DashboardData, ScoreData } from '../../core/models/dashboard.models';
 import { AuthService } from '../../core/services/auth.service';
 import { DashboardService } from '../../core/services/dashboard.service';
@@ -34,18 +34,29 @@ import { TasksStatsCardComponent } from '../../shared/components/cards/tasks-sta
 export class StudentDashboardComponent {
   private readonly authService = inject(AuthService);
   private readonly dashboardService = inject(DashboardService);
+  private readonly route = inject(ActivatedRoute);
 
-  public readonly data$: Observable<DashboardData>;
+  public readonly data: Signal<DashboardData | null> = toSignal(
+    this.route.queryParams.pipe(
+      map((params) => params['course'] as string),
+      filter((courseAlias) => !!courseAlias),
 
-  constructor() {
-    this.data$ = this.authService.scoreData$.pipe(
-      filter((scoreData): scoreData is ScoreData => !!scoreData),
-      switchMap((scoreData) => {
-        const courseId = 124;
-        return this.dashboardService
-          .getDashboardData(courseId, scoreData)
-          .pipe(tap((res) => console.log(res)));
-      }),
-    );
-  }
+      switchMap((courseAlias) =>
+        this.authService
+          .getScoreData(courseAlias)
+          .pipe(map((scoreData) => ({ scoreData, courseAlias }))),
+      ),
+
+      filter(
+        (result): result is { scoreData: ScoreData; courseAlias: string } => !!result.scoreData,
+      ),
+
+      switchMap(({ scoreData, courseAlias }) =>
+        this.dashboardService.getDashboardData(scoreData, courseAlias),
+      ),
+    ),
+    { initialValue: null },
+  );
+
+  public readonly isLoading: Signal<boolean> = computed(() => !this.data());
 }

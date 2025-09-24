@@ -1,4 +1,4 @@
-@if (data$ | async; as data) {
+@if (data(); as data) {
   <h2 class="student-curs">Student dashboard: {{ data.course.alias }}</h2>
 
   <div class="masonry-grid">

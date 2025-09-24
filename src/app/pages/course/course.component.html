@@ -1,8 +1,14 @@
 <app-course-select></app-course-select>
 <div class="content">
   <app-side-nav></app-side-nav>
+
   <div class="right-side">
-    <app-student-stats-card></app-student-stats-card>
-    <app-mentor-card></app-mentor-card>
+    @if (userProfile(); as profile) {
+      <app-student-stats-card [studentData]="studentData()" [isActive]="isActiveInCourse()">
+      </app-student-stats-card>
+      <app-mentor-card [mentor]="profile.mentor"></app-mentor-card>
+    } @else {
+      <p>Loading...</p>
+    }
   </div>
 </div>

@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { collection, collectionData, Firestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 import { Course, courseConverter } from '../models/dashboard.models';
 
 @Injectable({
@@ -9,8 +9,20 @@ import { Course, courseConverter } from '../models/dashboard.models';
 export class CourseService {
   private readonly firestore: Firestore = inject(Firestore);
 
+  private courses$: Observable<Course[]> | null = null;
+
   getCourses(): Observable<Course[]> {
-    const coursesCollection = collection(this.firestore, 'courses').withConverter(courseConverter);
-    return collectionData(coursesCollection);
+    if (!this.courses$) {
+      console.log('[CourseService] Fetching courses from Firestore...');
+      const coursesCollection = collection(this.firestore, 'courses').withConverter(
+        courseConverter,
+      );
+
+      this.courses$ = (collectionData(coursesCollection) as Observable<Course[]>).pipe(
+        shareReplay(1),
+      );
+    }
+
+    return this.courses$;
   }
 }

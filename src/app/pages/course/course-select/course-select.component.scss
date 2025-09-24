@@ -1,24 +1,15 @@
-.label {
+.option-content {
   display: flex;
-  flex-direction: row;
   align-items: center;
   gap: 8px;
+}
 
-  & span {
-    font-weight: 500;
-    font-size: 1rem;
-  }
+.svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
 }
 
 .form-field {
   width: 300px;
-}
-
-.svg {
-  width: 18px;
-}
-
-.archived {
-  color: gray;
-  opacity: 0.5;
 }
