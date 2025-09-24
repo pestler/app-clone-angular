@@ -9,10 +9,20 @@ import {
   User,
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { BehaviorSubject, firstValueFrom, from, map, Observable, of, switchMap } from 'rxjs';
+import {
+  BehaviorSubject,
+  catchError,
+  firstValueFrom,
+  from,
+  map,
+  Observable,
+  of,
+  switchMap,
+} from 'rxjs';
 import { APP_ROUTES } from '../../constants/app-routes.const';
 import { ScoreData, scoreDataConverter } from '../models/dashboard.models';
 import { FirestoreService } from './firestore.service';
+import { NotificationService } from './notification.service';
 import { User as UserService } from './user';
 
 @Injectable({
@@ -23,6 +33,7 @@ export class AuthService {
   private readonly router: Router = inject(Router);
   private readonly firestoreService: FirestoreService = inject(FirestoreService);
   private readonly userService: UserService = inject(UserService);
+  private readonly notification: NotificationService = inject(NotificationService);
 
   readonly user$: Observable<User | null> = authState(this.auth);
   readonly githubUsername$ = new BehaviorSubject<string | null>(null);
@@ -38,6 +49,13 @@ export class AuthService {
             user.displayName,
             scoreDataConverter,
           ),
+        ).pipe(
+          catchError((error) => {
+            this.notification.showError(
+              error.message || 'Couldn’t load score data. Please try again later.',
+            );
+            return of(null);
+          }),
         );
       } else {
         return of(null);
@@ -79,7 +97,10 @@ export class AuthService {
         return '/';
       }
     } catch (error) {
-      console.error('Authentication error:', error);
+      const errorMessage = 'Authentication error';
+      console.error(`${errorMessage}: `, error);
+
+      this.notification.showError(errorMessage);
       return '/';
     }
   }
@@ -90,7 +111,10 @@ export class AuthService {
       this.githubUsername$.next(null);
       this.router.navigate([APP_ROUTES.LOGIN]);
     } catch (error) {
-      console.error('Sign out error:', error);
+      const errorMessage = 'Sign out error';
+      console.error(`${errorMessage}: `, error);
+
+      this.notification.showError(errorMessage);
     }
   }
 }

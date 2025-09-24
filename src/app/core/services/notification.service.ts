@@ -10,14 +10,7 @@ import {
   providedIn: 'root',
 })
 export class NotificationService {
-  private readonly exampleSuccess = {
-    type: NotificationType.SUCCESS,
-    message:
-      "Hello there! We present to your attention a project by the PADAWAN CODERS' GUILD team.",
-    durationMs: 60000,
-  };
-
-  private readonly state$ = new BehaviorSubject<NotificationMessage | null>(this.exampleSuccess);
+  private readonly state$ = new BehaviorSubject<NotificationMessage | null>(null);
   readonly notificationState$ = this.state$.asObservable();
   private closeTimerId: ReturnType<typeof setTimeout> | null = null;
 
