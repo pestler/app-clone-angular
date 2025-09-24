@@ -9,6 +9,8 @@ import {
   StudentSummary,
   Task,
   taskConverter,
+  taskResultConverter,
+  TaskResultDoc,
   TaskStatus,
 } from '../models/dashboard.models';
 import { CourseService } from './course';
@@ -22,6 +24,13 @@ export class DashboardService {
   private readonly courseService = inject(CourseService);
 
   getDashboardData(student: ScoreData, courseAlias: string): Observable<DashboardData> {
+    const taskResults$ = from(
+      this.firestoreService.getCollection<TaskResultDoc>(
+        `courses/${courseAlias}/students/${student.githubId}/taskResults`,
+        taskResultConverter,
+      ),
+    );
+
     const tasks$ = from(
       this.firestoreService.getCollection<Task>(`courses/${courseAlias}/tasks`, taskConverter),
     );
@@ -41,12 +50,13 @@ export class DashboardService {
 
     return forkJoin({
       allTasks: tasks$,
+      taskResults: taskResults$,
       courseStats: courseStats$,
       course: course$,
     }).pipe(
-      map(({ allTasks, courseStats, course }) => {
+      map(({ allTasks, taskResults, courseStats, course }) => {
         const safeAllTasks = allTasks ?? [];
-        const studentTaskIds = new Set((student.taskResults ?? []).map((tr) => tr.courseTaskId));
+        const studentTaskIds = new Set((taskResults ?? []).map((tr) => tr.id));
 
         const safeCourseStats: CourseStatistics =
           courseStats ??
@@ -65,19 +75,41 @@ export class DashboardService {
         };
 
         const tasksByStatus: Record<TaskStatus, Task[]> = {
-          [TaskStatus.Checked]: [],
-          [TaskStatus.InProgress]: [],
-          [TaskStatus.ToDo]: [],
-          [TaskStatus.Checking]: [],
+          [TaskStatus.Done]: [],
+          [TaskStatus.Available]: [],
+          [TaskStatus.Review]: [],
+          [TaskStatus.Missed]: [],
+          [TaskStatus.Future]: [],
         };
 
+        const now = new Date('2025-09-24T12:00:00.000Z');
+
         safeAllTasks.forEach((task: Task) => {
-          const taskItem: Task = { ...task, status: TaskStatus.ToDo };
-          if (studentTaskIds.has(task.id as number)) {
-            taskItem.status = TaskStatus.Checked;
-            tasksByStatus[TaskStatus.Checked].push(taskItem);
+          const taskItem: Task = { ...task };
+
+          if (studentTaskIds.has(String(task.id))) {
+            taskItem.status = TaskStatus.Done;
+            tasksByStatus[TaskStatus.Done].push(taskItem);
+            return;
+          }
+
+          const startDate = new Date(task.studentStartDate!);
+          const endDate = new Date(task.studentEndDate!);
+
+          if (now < startDate) {
+            taskItem.status = TaskStatus.Future;
+            tasksByStatus[TaskStatus.Future].push(taskItem);
+          } else if (now > endDate) {
+            taskItem.status = TaskStatus.Missed;
+            tasksByStatus[TaskStatus.Missed].push(taskItem);
           } else {
-            tasksByStatus[TaskStatus.ToDo].push(taskItem);
+            if (task.checker === 'crossCheck') {
+              taskItem.status = TaskStatus.Review;
+              tasksByStatus[TaskStatus.Review].push(taskItem);
+            } else {
+              taskItem.status = TaskStatus.Available;
+              tasksByStatus[TaskStatus.Available].push(taskItem);
+            }
           }
         });
 

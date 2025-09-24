@@ -51,6 +51,23 @@ export interface TaskResult {
   score: number;
 }
 
+export interface TaskResultDoc {
+  id: string;
+  score: number;
+}
+export const taskResultConverter: FirestoreDataConverter<TaskResultDoc> = {
+  toFirestore: (data: TaskResultDoc): DocumentData => {
+    return { score: data.score };
+  },
+  fromFirestore: (snapshot: QueryDocumentSnapshot, options: SnapshotOptions): TaskResultDoc => {
+    const data = snapshot.data(options);
+    return {
+      id: snapshot.id,
+      score: data['score'],
+    };
+  },
+};
+
 export interface ScoreData {
   id: string;
   name: string;
@@ -64,7 +81,6 @@ export interface ScoreData {
   totalScoreChangeDate: string;
   crossCheckScore: number;
   repositoryLastActivityDate: string | null;
-  taskResults: TaskResult[];
   repository?: string;
 }
 export const scoreDataConverter = createConverter<ScoreData>();
@@ -97,10 +113,11 @@ export interface CourseStatistics {
 }
 
 export enum TaskStatus {
-  Checked = 'Checked',
-  InProgress = 'InProgress',
-  ToDo = 'ToDo',
-  Checking = 'Checking',
+  Done = 'Done',
+  Available = 'Available',
+  Review = 'Review',
+  Missed = 'Missed',
+  Future = 'Future',
 }
 
 export interface Task {
