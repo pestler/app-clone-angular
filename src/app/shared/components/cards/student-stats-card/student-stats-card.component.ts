@@ -12,4 +12,6 @@ import { ScoreData } from '../../../../core/models/dashboard.models';
 export class StudentStatsCardComponent {
   @Input() studentData: ScoreData | null | undefined = null;
   @Input() isActive = false;
+  @Input() completedTasksCount = 0;
+  @Input() totalTasksCount = 0;
 }

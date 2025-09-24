@@ -4,6 +4,7 @@ import {
   doc,
   Firestore,
   FirestoreDataConverter,
+  getCountFromServer,
   getDoc,
   getDocs,
   limit,
@@ -24,6 +25,23 @@ export class FirestoreService {
     const colRef = collection(this.firestore, collectionName).withConverter(converter);
     const snapshot = await getDocs(colRef);
     return snapshot.docs.map((d) => d.data());
+  }
+
+  async getCollectionCount(collectionName: string): Promise<number> {
+    const colRef = collection(this.firestore, collectionName);
+    const snapshot = await getCountFromServer(colRef);
+    return snapshot.data().count;
+  }
+
+  async getFilteredCollectionCount(
+    collectionName: string,
+    field: string,
+    value: unknown,
+  ): Promise<number> {
+    const colRef = collection(this.firestore, collectionName);
+    const q = query(colRef, where(field, '==', value));
+    const snapshot = await getCountFromServer(q);
+    return snapshot.data().count;
   }
 
   async getDoc<T>(

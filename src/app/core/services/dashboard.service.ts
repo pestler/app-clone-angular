@@ -55,7 +55,7 @@ export class DashboardService {
       course: course$,
     }).pipe(
       map(({ allTasks, taskResults, courseStats, course }) => {
-        const safeAllTasks = allTasks ?? [];
+        const safeAllTasks = (allTasks ?? []).filter((task) => task.type === 'courseTask');
         const studentTaskIds = new Set((taskResults ?? []).map((tr) => tr.id));
 
         const safeCourseStats: CourseStatistics =

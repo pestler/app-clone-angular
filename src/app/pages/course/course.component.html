@@ -4,7 +4,11 @@
 
   <div class="right-side">
     @if (studentData(); as student) {
-      <app-student-stats-card [studentData]="student" [isActive]="isActiveInCourse()">
+      <app-student-stats-card
+        [studentData]="student"
+        [completedTasksCount]="completedTasksCount()"
+        [totalTasksCount]="totalTasksCount()"
+      >
       </app-student-stats-card>
       <app-mentor-card [mentor]="student.mentor"></app-mentor-card>
     } @else {
