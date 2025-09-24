@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './dialog-button.component.scss',
 })
 export class DialogButtonComponent {
-  @Input() variant: 'cancel' | 'save' = 'save';
+  @Input() variant: 'cancel' | 'save' | 'save-disabled' = 'save';
   @Input() action?: () => void;
   @Input() label = '';
 }

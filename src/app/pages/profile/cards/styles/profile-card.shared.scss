@@ -22,3 +22,9 @@
   font-size: 18px;
   font-weight: 500;
 }
+
+.btn-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 8px;
+}

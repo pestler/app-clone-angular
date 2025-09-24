@@ -50,6 +50,7 @@
 .interview-info-wrapper {
   @include flex(row);
 
+  gap: 24px 16px;
   padding: 12px 0;
 
   & > * {
