@@ -3,10 +3,10 @@
   <app-side-nav></app-side-nav>
 
   <div class="right-side">
-    @if (userProfile(); as profile) {
-      <app-student-stats-card [studentData]="studentData()" [isActive]="isActiveInCourse()">
+    @if (studentData(); as student) {
+      <app-student-stats-card [studentData]="student" [isActive]="isActiveInCourse()">
       </app-student-stats-card>
-      <app-mentor-card [mentor]="profile.mentor"></app-mentor-card>
+      <app-mentor-card [mentor]="student.mentor"></app-mentor-card>
     } @else {
       <p>Loading...</p>
     }

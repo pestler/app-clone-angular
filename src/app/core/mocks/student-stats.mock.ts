@@ -24,12 +24,3 @@ export const mockStudentStats: StudentStats = {
   },
   status: 'Active',
 };
-
-export const mockMentorInfo: MentorInfo = {
-  name: 'Ivan Ivanov',
-  github: 'rolling-scopes-school',
-  url: 'https://github.com/rolling-scopes-school',
-  email: 'ivanov@gmail.com',
-  telegram: '@ivanov',
-  src: '../assets/svg/im-fine.svg',
-};

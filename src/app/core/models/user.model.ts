@@ -17,11 +17,6 @@ export interface UserProfile {
   cityName: string;
   countryName: string;
   epamEmail?: string;
-  mentor?: {
-    id: number;
-    githubId: string;
-    name: string;
-  };
   courses?: string[];
   roles: {
     student: boolean;
@@ -48,7 +43,6 @@ export const userProfileConverter: FirestoreDataConverter<UserProfile> = {
       cityName: data['cityName'],
       countryName: data['countryName'],
       epamEmail: data['epamEmail'],
-      mentor: data['mentor'],
       courses: data['courses'],
       roles: data['roles'],
     } as UserProfile;

@@ -11,7 +11,6 @@ import {
   taskConverter,
   TaskStatus,
 } from '../models/dashboard.models';
-import { UserProfile, userProfileConverter } from '../models/user.model';
 import { CourseService } from './course';
 import { FirestoreService } from './firestore.service';
 
@@ -25,10 +24,6 @@ export class DashboardService {
   getDashboardData(student: ScoreData, courseAlias: string): Observable<DashboardData> {
     const tasks$ = from(
       this.firestoreService.getCollection<Task>(`courses/${courseAlias}/tasks`, taskConverter),
-    );
-
-    const userDoc$ = from(
-      this.firestoreService.getDoc<UserProfile>('users', student.githubId, userProfileConverter),
     );
 
     const courseStats$ = from(
@@ -48,9 +43,8 @@ export class DashboardService {
       allTasks: tasks$,
       courseStats: courseStats$,
       course: course$,
-      userDoc: userDoc$,
     }).pipe(
-      map(({ allTasks, courseStats, course, userDoc }) => {
+      map(({ allTasks, courseStats, course }) => {
         const safeAllTasks = allTasks ?? [];
         const studentTaskIds = new Set((student.taskResults ?? []).map((tr) => tr.courseTaskId));
 
@@ -67,7 +61,7 @@ export class DashboardService {
           totalScore: student.totalScore,
           isActive: student.active,
           repository: student.repository,
-          mentor: userDoc?.mentor,
+          mentor: student.mentor,
         };
 
         const tasksByStatus: Record<TaskStatus, Task[]> = {
