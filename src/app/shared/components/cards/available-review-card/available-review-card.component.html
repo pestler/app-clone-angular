@@ -15,7 +15,7 @@
           >
           <mat-progress-bar
             mode="determinate"
-            [value]="calculatePercent(review)"
+            [value]="review | percentFromChecks"
           ></mat-progress-bar>
           <div class="progress-label">
             {{ review.completedChecksCount }} / {{ review.checksCount }}

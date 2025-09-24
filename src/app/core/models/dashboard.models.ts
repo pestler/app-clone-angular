@@ -153,6 +153,8 @@ export interface AvailableReview {
   checksCount: number;
 }
 
+export type AvailableReviewCounts = Pick<AvailableReview, 'checksCount' | 'completedChecksCount'>;
+
 export interface Course {
   id: number;
   name: string;
