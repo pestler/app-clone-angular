@@ -6,6 +6,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { RouterModule } from '@angular/router';
 import { AvailableReview } from '../../../../core/models/dashboard.models';
+import { PercentFromChecksPipe } from '../../../pipes/percent-from-checks-pipe';
 
 @Component({
   selector: 'app-available-review-card',
@@ -17,6 +18,7 @@ import { AvailableReview } from '../../../../core/models/dashboard.models';
     MatProgressBarModule,
     MatButtonModule,
     MatDividerModule,
+    PercentFromChecksPipe,
   ],
   templateUrl: './available-review-card.component.html',
   styleUrls: ['./available-review-card.component.scss'],
@@ -24,9 +26,4 @@ import { AvailableReview } from '../../../../core/models/dashboard.models';
 export class AvailableReviewCardComponent {
   @Input() availableReviews: AvailableReview[] = [];
   @Input() courseAlias = '';
-
-  calculatePercent(item: AvailableReview): number {
-    if (!item.checksCount) return 0;
-    return (item.completedChecksCount / item.checksCount) * 100;
-  }
 }
