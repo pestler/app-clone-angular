@@ -8,6 +8,11 @@ import { map } from 'rxjs';
 import { Course } from '../../../core/models/dashboard.models';
 import { CourseService } from '../../../core/services/course';
 
+const logoNameMap: Record<string, string> = {
+  nodejsAws: 'nodejs-aws',
+  ml: 'machine-learning',
+};
+
 @Component({
   selector: 'app-course-select',
   standalone: true,
@@ -21,9 +26,20 @@ export class CourseSelectComponent {
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
 
-  public courses: Signal<Course[]> = toSignal(this.courseService.getCourses(), {
-    initialValue: [],
-  });
+  public courses: Signal<Course[]> = toSignal(
+    this.courseService.getCourses().pipe(
+      map((courses) =>
+        courses.map((course) => {
+          const logoName = logoNameMap[course.logo] || course.logo;
+          return {
+            ...course,
+            logo: `assets/svg/${logoName}.svg`,
+          };
+        }),
+      ),
+    ),
+    { initialValue: [] },
+  );
 
   public selectedCourseAlias: Signal<string | undefined> = toSignal(
     this.route.queryParams.pipe(map((params) => params['course'])),
