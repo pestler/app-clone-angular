@@ -1,12 +1,12 @@
 :host {
   display: flex;
   justify-content: flex-start;
-}
 
-app-interview-card {
-  flex: 0 0 50%;
+  & * {
+    flex: 0 0 50%;
 
-  @media (width <= 992px) {
-    flex: 0 0 100%;
+    @media (width <= 992px) {
+      flex: 0 0 100%;
+    }
   }
 }
