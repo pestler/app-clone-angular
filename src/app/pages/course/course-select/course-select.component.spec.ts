@@ -10,6 +10,7 @@ describe('CourseSelectComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CourseSelectComponent],
+
       providers: [{ provide: Firestore, useValue: {} }],
     }).compileComponents();
 
