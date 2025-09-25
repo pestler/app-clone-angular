@@ -14,12 +14,6 @@ export enum CourseRole {
   Dementor = 'dementor',
 }
 
-export interface Course {
-  id: number;
-  alias: string;
-  completed: boolean;
-}
-
 export interface Session {
   id: number;
   isAdmin: boolean;

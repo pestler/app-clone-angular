@@ -26,10 +26,11 @@ export class TasksStatsCardComponent implements OnChanges {
   totalTasks = 0;
 
   statusColors: Record<string, string> = {
-    [TaskStatus.Checked]: '#52c41a',
-    [TaskStatus.InProgress]: '#1890ff',
-    [TaskStatus.ToDo]: '#faad14',
-    [TaskStatus.Checking]: '#f5222d',
+    [TaskStatus.Done]: '#52c41a',
+    [TaskStatus.Available]: '#faad14',
+    [TaskStatus.Review]: '#1890ff',
+    [TaskStatus.Missed]: '#f5222d',
+    [TaskStatus.Future]: '#888888',
   };
 
   ngOnChanges(): void {

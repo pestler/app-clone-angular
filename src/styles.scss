@@ -18,9 +18,6 @@ html {
 body {
   height: 100%;
   color-scheme: light;
-
-  // Disabled for now to match the design mockup
-  // background-color: var(--mat-sys-surface);
   background-color: none;
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-medium);
@@ -78,4 +75,8 @@ body {
   --button-disabled: rgb(0 0 0 / 4%);
   --button-blue: #1677ff;
   --button-hover-blue: #4096ff;
+}
+
+.mat-mdc-form-field-infix {
+  padding: 8px 0 0;
 }

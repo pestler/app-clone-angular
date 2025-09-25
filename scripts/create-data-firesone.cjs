@@ -42,12 +42,9 @@ async function uploadData() {
 
   // 4. Загрузка студентов и их результатов
   for (const student of scores) {
-    // !!! ВАЖНО: Здесь вам нужно будет придумать, как сгенерировать userId.
-    // Для примера используем githubId. В реальном приложении это будет uid из Auth.
     const userId = student.githubId;
 
-    // Создаем запись в /users
-    await db.collection('users').doc(userId).set({
+    const userDocPayload = {
       displayName: student.name,
       githubId: student.githubId,
       roles: { student: true, admin: false, mentor: false }, // По умолчанию
@@ -55,17 +52,24 @@ async function uploadData() {
       active: student.active,
       cityName: student.cityName,
       countryName: student.countryName,
-      mentor: student.mentor
-    });
+    };
 
-    // Создаем запись в /courses/{alias}/students
-    await db.collection('courses').doc(courseAlias).collection('students').doc(userId).set({
+    const studentDocPayload = {
         displayName: student.name,
         githubId: student.githubId,
         rank: student.rank,
         totalScore: student.totalScore,
-        // mentorId нужно будет связать позже
-    });
+    };
+
+    if (student.mentor) {
+        studentDocPayload.mentor = student.mentor;
+    }
+
+    // Создаем запись в /users
+    await db.collection('users').doc(userId).set(userDocPayload);
+
+    // Создаем запись в /courses/{alias}/students
+    await db.collection('courses').doc(courseAlias).collection('students').doc(userId).set(studentDocPayload);
 
     // Создаем записи в /courses/{alias}/students/{id}/taskResults
     for (const result of student.taskResults) {

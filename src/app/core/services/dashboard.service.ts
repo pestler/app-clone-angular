@@ -1,17 +1,16 @@
 import { inject, Injectable } from '@angular/core';
-import { forkJoin, from, map, Observable } from 'rxjs';
+import { forkJoin, from, map, Observable, take } from 'rxjs';
 import {
+  Course,
   CourseStatistics,
   courseStatisticsConverter,
   DashboardData,
-  Event,
-  ScheduleEvent,
-  scheduleEventConverter,
   ScoreData,
   StudentSummary,
   Task,
   taskConverter,
-  TaskResult,
+  taskResultConverter,
+  TaskResultDoc,
   TaskStatus,
 } from '../models/dashboard.models';
 import { CourseService } from './course';
@@ -24,112 +23,104 @@ export class DashboardService {
   private readonly firestoreService = inject(FirestoreService);
   private readonly courseService = inject(CourseService);
 
-  getDashboardData(courseId: number, student: ScoreData): Observable<DashboardData> {
-    const tasksPromise = this.firestoreService.getCollection<Task>('tasks', taskConverter);
-    const schedulePromise = this.firestoreService.getCollection<ScheduleEvent>(
-      'schedule',
-      scheduleEventConverter,
-    );
-    const courseStatsPromise = this.firestoreService.getDoc<CourseStatistics>(
-      'courseStatistics',
-      'ZlY12vO9qy29M4a9v03l',
-      courseStatisticsConverter,
-    );
-    const coursePromise = this.courseService.getCourses().pipe(
-      map(
-        (courses) =>
-          courses.find((c) => c.alias === 'angular-2025q3') || {
-            id: 0,
-            name: 'Unknown Course',
-            startDate: '',
-            logo: '',
-            alias: 'unknown',
-            usePrivateRepositories: false,
-          },
+  getDashboardData(student: ScoreData, courseAlias: string): Observable<DashboardData> {
+    const taskResults$ = from(
+      this.firestoreService.getCollection<TaskResultDoc>(
+        `courses/${courseAlias}/students/${student.githubId}/taskResults`,
+        taskResultConverter,
       ),
     );
 
+    const tasks$ = from(
+      this.firestoreService.getCollection<Task>(`courses/${courseAlias}/tasks`, taskConverter),
+    );
+
+    const courseStats$ = from(
+      this.firestoreService.getDoc(
+        'courseStatistics',
+        'ZlY12vO9qy29M4a9v03l',
+        courseStatisticsConverter,
+      ),
+    );
+
+    const course$ = this.courseService.getCourses().pipe(
+      map((courses) => courses.find((c) => c.alias === courseAlias) || null),
+      take(1),
+    );
+
     return forkJoin({
-      allTasks: from(tasksPromise),
-      schedule: from(schedulePromise),
-      courseStats: from(courseStatsPromise),
-      course: coursePromise,
+      allTasks: tasks$,
+      taskResults: taskResults$,
+      courseStats: courseStats$,
+      course: course$,
     }).pipe(
-      map(({ allTasks, schedule, courseStats, course }) => {
+      map(({ allTasks, taskResults, courseStats, course }) => {
+        const safeAllTasks = (allTasks ?? []).filter((task) => task.type === 'courseTask');
+        const studentTaskIds = new Set((taskResults ?? []).map((tr) => tr.id));
+
+        const safeCourseStats: CourseStatistics =
+          courseStats ??
+          ({
+            studentsStats: { activeStudentsCount: 0 },
+          } as CourseStatistics);
+
+        const safeCourse: Course = course ?? ({} as Course);
+
         const studentSummary: StudentSummary = {
           rank: student.rank,
           totalScore: student.totalScore,
           isActive: student.active,
-          repository: `https://github.com/${student.githubId}/your-repo`,
-          mentor: student.mentor
-            ? {
-                id: student.mentor.id,
-                name: student.mentor.name,
-                githubId: student.mentor.githubId,
-              }
-            : undefined,
+          repository: student.repository,
+          mentor: student.mentor,
         };
 
-        const studentTaskIds = new Set(
-          student.taskResults.map((tr: TaskResult) => tr.courseTaskId),
-        );
         const tasksByStatus: Record<TaskStatus, Task[]> = {
-          [TaskStatus.Checked]: [],
-          [TaskStatus.InProgress]: [],
-          [TaskStatus.ToDo]: [],
-          [TaskStatus.Checking]: [],
+          [TaskStatus.Done]: [],
+          [TaskStatus.Available]: [],
+          [TaskStatus.Review]: [],
+          [TaskStatus.Missed]: [],
+          [TaskStatus.Future]: [],
         };
 
-        allTasks.forEach((task: Task) => {
-          const taskItem: Task = {
-            ...task,
-            status: TaskStatus.ToDo,
-          };
-          if (studentTaskIds.has(task.id as number)) {
-            taskItem.status = TaskStatus.Checked;
-            tasksByStatus[TaskStatus.Checked].push(taskItem);
+        const now = new Date('2025-09-24T12:00:00.000Z');
+
+        safeAllTasks.forEach((task: Task) => {
+          const taskItem: Task = { ...task };
+
+          if (studentTaskIds.has(String(task.id))) {
+            taskItem.status = TaskStatus.Done;
+            tasksByStatus[TaskStatus.Done].push(taskItem);
+            return;
+          }
+
+          const startDate = new Date(task.studentStartDate!);
+          const endDate = new Date(task.studentEndDate!);
+
+          if (now < startDate) {
+            taskItem.status = TaskStatus.Future;
+            tasksByStatus[TaskStatus.Future].push(taskItem);
+          } else if (now > endDate) {
+            taskItem.status = TaskStatus.Missed;
+            tasksByStatus[TaskStatus.Missed].push(taskItem);
           } else {
-            tasksByStatus[TaskStatus.ToDo].push(taskItem);
+            if (task.checker === 'crossCheck') {
+              taskItem.status = TaskStatus.Review;
+              tasksByStatus[TaskStatus.Review].push(taskItem);
+            } else {
+              taskItem.status = TaskStatus.Available;
+              tasksByStatus[TaskStatus.Available].push(taskItem);
+            }
           }
         });
 
-        const nextEvents: Event[] = (schedule || [])
-          .filter((event: ScheduleEvent) => new Date(event.startDate) > new Date())
-          .map((event: ScheduleEvent) => ({
-            topic: event.name,
-            date: event.startDate,
-            time: new Date(event.startDate).toLocaleTimeString('ru-RU', {
-              hour: '2-digit',
-              minute: '2-digit',
-            }),
-          }))
-          .slice(0, 2);
-
         const dashboardData: DashboardData = {
           studentSummary,
-          courseStats: courseStats || {
-            studentsCountries: { countries: [] },
-            studentsStats: {
-              totalStudents: 0,
-              activeStudentsCount: 0,
-              studentsWithMentorCount: 0,
-              certifiedStudentsCount: 0,
-              eligibleForCertificationCount: 0,
-            },
-            mentorsCountries: { countries: [] },
-            mentorsStats: {
-              mentorsTotalCount: 0,
-              mentorsActiveCount: 0,
-              epamMentorsCount: 0,
-            },
-            courseTasks: [],
-            studentsCertificatesCountries: { countries: [] },
-          },
-          maxCourseScore: course.maxCourseScore || 600,
+          courseStats: safeCourseStats,
+          maxCourseScore: safeCourse.maxCourseScore ?? 600,
           tasksByStatus,
-          nextEvents,
+          nextEvents: [],
           availableReviews: [],
-          course: course!,
+          course: safeCourse,
         };
 
         return dashboardData;

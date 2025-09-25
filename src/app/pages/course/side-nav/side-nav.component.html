@@ -1,20 +1,32 @@
-<aside class="aside">
-  <nav>
-    <ul>
-      @for (item of items; track item.label) {
-        <li class="list-item">
-          <a class="link">
-            <mat-icon
-              class="icon"
-              aria-hidden="false"
-              [aria-label]="`${item.label} icon`"
-              [ngStyle]="{ color: item.color }"
-              >{{ item.icon }}</mat-icon
+<aside>
+  @if (currentCourse(); as course) {
+    <nav>
+      <ul>
+        @for (item of courseLinks(); track item.name) {
+          <li
+            class="list-item"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <a
+              class="link"
+              [routerLink]="[item.getUrl(course).path]"
+              [queryParams]="item.getUrl(course).query"
             >
-            <span class="label">{{ item.label }}</span>
-          </a>
-        </li>
-      }
-    </ul>
-  </nav>
+              @if (item.icon) {
+                <mat-icon
+                  class="icon"
+                  aria-hidden="false"
+                  [aria-label]="`${item.name} icon`"
+                  [ngStyle]="{ color: item.color }"
+                  >{{ item.icon }}</mat-icon
+                >
+              }
+              <span class="label">{{ item.name }}</span>
+            </a>
+          </li>
+        }
+      </ul>
+    </nav>
+  }
 </aside>
