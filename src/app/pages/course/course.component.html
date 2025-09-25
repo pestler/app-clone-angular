@@ -10,6 +10,7 @@
         [studentData]="student"
         [completedTasksCount]="completedTasksCount()"
         [totalTasksCount]="totalTasksCount()"
+        [isActive]="isActiveInCourse()"
       >
       </app-student-stats-card>
       <app-mentor-card [mentor]="student.mentor"></app-mentor-card>

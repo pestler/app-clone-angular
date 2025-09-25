@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Signal } from '@angular/core';
+import { Component, computed, inject, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
 import { combineLatest, filter, from, map, of, switchMap } from 'rxjs';
@@ -85,4 +85,10 @@ export class CourseComponent {
     this.data$.pipe(map((d) => d.totalTasksCount)),
     { initialValue: 0 },
   );
+  public readonly isActiveInCourse: Signal<boolean> = computed(() => {
+    const profile = this.userProfile();
+    const courseData = this.studentData();
+
+    return !!(profile?.active && courseData);
+  });
 }
