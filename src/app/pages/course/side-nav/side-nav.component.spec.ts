@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Auth } from '@angular/fire/auth';
 import { Firestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { SideNavComponent } from './side-nav.component';
@@ -16,6 +17,7 @@ describe('SideNavComponent', () => {
           useValue: { snapshot: { params: {} } },
         },
         { provide: Firestore, useValue: {} },
+        { provide: Auth, useValue: {} },
       ],
     }).compileComponents();
 
