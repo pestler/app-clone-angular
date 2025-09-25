@@ -9,10 +9,14 @@ describe('Layout', () => {
   let component: Layout;
   let fixture: ComponentFixture<Layout>;
 
-  const firestoreMock = {
-    collection: () => ({
-      valueChanges: () => of([]),
+  const mockCollectionRef = {
+    withConverter: jasmine.createSpy('withConverter').and.returnValue({
+      valueChanges: jasmine.createSpy('valueChanges').and.returnValue(of([])),
     }),
+  };
+
+  const firestoreMock = {
+    collection: jasmine.createSpy('collection').and.returnValue(mockCollectionRef),
   };
 
   beforeEach(async () => {
