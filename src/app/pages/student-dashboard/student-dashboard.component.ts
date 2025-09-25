@@ -2,8 +2,9 @@ import { CommonModule } from '@angular/common';
 import { Component, computed, inject, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { of } from 'rxjs';
 import { filter, map, switchMap } from 'rxjs/operators';
-import { DashboardData, ScoreData } from '../../core/models/dashboard.models';
+import { DashboardData } from '../../core/models/dashboard.models';
 import { AuthService } from '../../core/services/auth.service';
 import { DashboardService } from '../../core/services/dashboard.service';
 import { AvailableReviewCardComponent } from '../../shared/components/cards/available-review-card/available-review-card.component';
@@ -36,26 +37,22 @@ export class StudentDashboardComponent {
   private readonly dashboardService = inject(DashboardService);
   private readonly route = inject(ActivatedRoute);
 
-  public readonly data: Signal<DashboardData | null> = toSignal(
+  public readonly data: Signal<DashboardData | undefined | null> = toSignal(
     this.route.queryParams.pipe(
       map((params) => params['course'] as string),
       filter((courseAlias) => !!courseAlias),
 
       switchMap((courseAlias) =>
-        this.authService
-          .getScoreData(courseAlias)
-          .pipe(map((scoreData) => ({ scoreData, courseAlias }))),
-      ),
-
-      filter(
-        (result): result is { scoreData: ScoreData; courseAlias: string } => !!result.scoreData,
-      ),
-
-      switchMap(({ scoreData, courseAlias }) =>
-        this.dashboardService.getDashboardData(scoreData, courseAlias),
+        this.authService.getScoreData(courseAlias).pipe(
+          switchMap((scoreData) => {
+            if (scoreData) {
+              return this.dashboardService.getDashboardData(scoreData, courseAlias);
+            }
+            return of(null);
+          }),
+        ),
       ),
     ),
-    { initialValue: null },
   );
 
   public readonly isLoading: Signal<boolean> = computed(() => !this.data());

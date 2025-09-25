@@ -74,3 +74,10 @@
   cursor: pointer;
   transition: color 0.3s;
 }
+
+.no-data-message {
+  text-align: center;
+  font-size: 1.2em;
+  color: #888;
+  margin-top: 20px;
+}

@@ -3,7 +3,9 @@
   <app-side-nav></app-side-nav>
 
   <div class="right-side">
-    @if (studentData(); as student) {
+    @if (studentData() === undefined) {
+      <p>Loading...</p>
+    } @else if (studentData(); as student) {
       <app-student-stats-card
         [studentData]="student"
         [completedTasksCount]="completedTasksCount()"
@@ -12,7 +14,7 @@
       </app-student-stats-card>
       <app-mentor-card [mentor]="student.mentor"></app-mentor-card>
     } @else {
-      <p>Loading...</p>
+      <p class="no-data-message">No data for this course.</p>
     }
   </div>
 </div>

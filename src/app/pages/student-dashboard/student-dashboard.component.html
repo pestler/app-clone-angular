@@ -1,4 +1,6 @@
-@if (data(); as data) {
+@if (data() === undefined) {
+  <h1>Waiting for data...</h1>
+} @else if (data(); as data) {
   <h2 class="student-curs">Student dashboard: {{ data.course.alias }}</h2>
 
   <div class="masonry-grid">
@@ -45,5 +47,5 @@
     </app-dashboard-card>
   </div>
 } @else {
-  <h1>Waiting for data...</h1>
+  <h2 class="no-data-message">No dashboard data for this course. Please select another course.</h2>
 }
