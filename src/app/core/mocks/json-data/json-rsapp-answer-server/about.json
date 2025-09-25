@@ -1,0 +1,87 @@
+{
+  "data": {
+    "generalInfo": {
+      "githubId": "pestler",
+      "location": {
+        "countryName": "Belarus",
+        "cityName": "Minsk"
+      },
+      "aboutMyself": "I am a curious and hardworking person. I am constantly learning and improving my skills every day. I have experience in developing client and server parts of applications, working with databases, creating SPA applications. Able to effectively self-manage during independent projects, as well as collaborate as part of a productive team.",
+      "educationHistory": [],
+      "englishLevel": "a2",
+      "name": "Aleh Kuis",
+      "languages": ["RU", "EN", "AR"]
+    },
+    "contacts": {
+      "phone": "+375295576089",
+      "email": "pestleralex@gmail.com",
+      "epamEmail": null,
+      "skype": "",
+      "telegram": "pestler",
+      "notes": null,
+      "linkedIn": null,
+      "whatsApp": ""
+    },
+    "discord": {
+      "username": "pestler",
+      "discriminator": "0",
+      "id": "780368282909409280"
+    },
+    "publicFeedback": [
+      {
+        "feedbackDate": "2025-09-21T13:31:21.352Z",
+        "badgeId": "Thank_you",
+        "comment": "Большое спасибо за комфортную атмосферу на интервью! Было приятно проходить интервью и узнать что-то новое) ",
+        "fromUser": {
+          "name": "Eugeniusz Potapczuk",
+          "githubId": "squallerq"
+        }
+      },
+      {
+        "feedbackDate": "2025-06-20T10:42:47.783Z",
+        "badgeId": "Jury_Team",
+        "comment": "Спасибо за участие в жюри! Благодаря тебе наши студенты смогли показать свои крутые работы и получить бесценный опыт!",
+        "fromUser": {
+          "name": "Mikhail Aleinik",
+          "githubId": "mikaleinik"
+        }
+      },
+      {
+        "feedbackDate": "2025-04-28T19:04:51.404Z",
+        "badgeId": "Congratulations",
+        "comment": "Congratulations on successfully completing the course!\n\nYou are a great team, real ReactHeroes, and the mark for the final assignment confirms it\n\nMay all your plans come true.",
+        "fromUser": {
+          "name": "Marharyta Malets",
+          "githubId": "margaryta-maletz"
+        }
+      },
+      {
+        "feedbackDate": "2025-04-28T18:59:12.434Z",
+        "badgeId": "Thank_you",
+        "comment": "I want to thank all of you for being my students. I have learned a lot of new things with you. The course is over. \nYou did your best. Not all of you finished this course successfully, but I believe that all of you achieved your goals and made the right choice. \nI wish you all the best!",
+        "fromUser": {
+          "name": "Marharyta Malets",
+          "githubId": "margaryta-maletz"
+        }
+      },
+      {
+        "feedbackDate": "2024-01-19T20:25:12.300Z",
+        "badgeId": "Thank_you",
+        "comment": "Thank you ever so much for sharing your code with me! It will help me to analyse what I could’ve done better/differently while building the hangman game with classes.",
+        "fromUser": {
+          "name": "Ekaterina Pavlova",
+          "githubId": "schemingcate"
+        }
+      },
+      {
+        "feedbackDate": "2022-06-08T18:15:45.171Z",
+        "badgeId": "Thank_you",
+        "comment": "Спасибо за приятный комментарий к проверке self-introduction, мне было очень приятно читать🌸",
+        "fromUser": {
+          "name": "Ksenya Voitekhovich",
+          "githubId": "voitehovichxenia"
+        }
+      }
+    ]
+  }
+}
