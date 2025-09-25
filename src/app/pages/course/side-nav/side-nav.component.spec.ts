@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SideNavComponent } from './side-nav.component'; // Убедитесь, что путь к компоненту верный
-
+import { Firestore } from '@angular/fire/firestore';
 import { ActivatedRoute } from '@angular/router';
+import { SideNavComponent } from './side-nav.component';
 
 describe('SideNavComponent', () => {
   let component: SideNavComponent;
@@ -10,14 +10,12 @@ describe('SideNavComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [SideNavComponent],
-
       providers: [
         {
           provide: ActivatedRoute,
-          useValue: {
-            snapshot: { params: {} },
-          },
+          useValue: { snapshot: { params: {} } },
         },
+        { provide: Firestore, useValue: {} },
       ],
     }).compileComponents();
 
