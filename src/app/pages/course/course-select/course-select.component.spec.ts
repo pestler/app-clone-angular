@@ -9,10 +9,14 @@ describe('CourseSelectComponent', () => {
   let component: CourseSelectComponent;
   let fixture: ComponentFixture<CourseSelectComponent>;
 
-  const firestoreMock = {
-    collection: () => ({
-      valueChanges: () => of([]),
+  const mockCollectionRef = {
+    withConverter: jasmine.createSpy('withConverter').and.returnValue({
+      valueChanges: jasmine.createSpy('valueChanges').and.returnValue(of([])),
     }),
+  };
+
+  const firestoreMock = {
+    collection: jasmine.createSpy('collection').and.returnValue(mockCollectionRef),
   };
 
   beforeEach(async () => {
