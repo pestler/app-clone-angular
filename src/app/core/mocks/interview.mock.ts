@@ -1,9 +1,11 @@
 import { MentorInfo } from './student-stats.mock';
 
+type InterviewStatus = 'Not Completed' | 'Completed' | 'No Interview';
+
 export interface InterviewInfo {
   title: string;
   interviewer: MentorInfo;
-  status: 'Not Completed' | 'Completed' | 'No Interview';
+  status: InterviewStatus;
   result: number | null;
   period: {
     start: string;
@@ -28,3 +30,8 @@ export const mockInterviewInfo: InterviewInfo = {
     end: '2025-09-29',
   },
 };
+
+export interface InterviewStateMentor {
+  status: InterviewStatus;
+  rating: number | null;
+}
