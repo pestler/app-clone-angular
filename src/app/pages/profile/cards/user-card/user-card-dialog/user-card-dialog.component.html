@@ -1,0 +1,24 @@
+<div class="wrap">
+  <h2 mat-dialog-title class="title">Profile information</h2>
+
+  <form [formGroup]="form" class="form">
+    <mat-form-field appearance="outline" floatLabel="always" class="full-width">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Enter your name" formControlName="nameCtrl" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" floatLabel="always" class="full-width">
+      <mat-label>Location</mat-label>
+      <input matInput placeholder="Enter city, country" formControlName="locationCtrl" />
+    </mat-form-field>
+  </form>
+
+  <mat-dialog-actions align="end" class="btn-wrapper">
+    <app-dialog-button variant="cancel" label="Cancel" [action]="cancel"></app-dialog-button>
+    <app-dialog-button
+      [variant]="form.valid && changed() ? 'save' : 'save-disabled'"
+      label="Save"
+      [action]="save"
+    ></app-dialog-button>
+  </mat-dialog-actions>
+</div>

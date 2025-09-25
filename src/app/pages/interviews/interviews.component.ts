@@ -1,10 +1,13 @@
 import { Component } from '@angular/core';
-import { InterviewCardComponent } from '../../shared/components/cards/interview-card/interview-card.component';
+import { InterviewMentorCardComponent } from '../../shared/components/cards/interview-card/interview-mentor-card/interview-mentor-card.component';
+import { InterviewStudentCardComponent } from '../../shared/components/cards/interview-card/interview-student-card/interview-student-card.component';
 
 @Component({
   selector: 'app-interviews',
-  imports: [InterviewCardComponent],
+  imports: [InterviewMentorCardComponent, InterviewStudentCardComponent],
   templateUrl: './interviews.component.html',
   styleUrl: './interviews.component.scss',
 })
-export class InterviewsComponent {}
+export class InterviewsComponent {
+  role = 'mentor';
+}

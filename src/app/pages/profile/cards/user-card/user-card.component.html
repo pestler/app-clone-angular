@@ -2,6 +2,9 @@
   <div class="avatar-wrapper">
     <img [src]="user.avatarUrl" alt="avatar" class="avatar" />
   </div>
+  <button mat-icon-button (click)="openDialog()" class="edit-btn">
+    <mat-icon class="edit-icon">edit</mat-icon>
+  </button>
   <p class="name">{{ user.name }}</p>
   <div class="github-info">
     <img class="github-icon" src="../../../../assets/icons/github.svg" alt="Github logo" />

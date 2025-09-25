@@ -1,0 +1,55 @@
+<div class="interview card">
+  <div class="title interview-title">
+    <a class="title-link" [href]="taskUrl" target="_blank">
+      {{ title }}
+    </a>
+
+    <div class="interview-period-wrapper">
+      <mat-icon class="icon" fontIcon="calendar_today_outline"></mat-icon>
+      <p class="interview-period">
+        {{ period.start | date: 'MMM dd' }} - {{ period.end | date: 'MMM dd' }}
+      </p>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="info-wrapper interview-info-wrapper">
+      <ng-content select="[person-slot]"></ng-content>
+
+      <div class="interview-info-item">
+        <p class="label">Status :</p>
+        <p
+          class="status"
+          [class.not-completed]="status === 'Not Completed'"
+          [class.completed]="status === 'Completed'"
+        >
+          {{ status }}
+        </p>
+      </div>
+
+      <div class="interview-info-item">
+        <p class="label">Result :</p>
+        <p class="result">
+          {{ result !== null ? result : '—' }}
+        </p>
+      </div>
+    </div>
+
+    <div class="image-wrapper not-complete-image-wrapper">
+      <div class="not-complete-descirption">
+        <mat-icon aria-hidden="false" aria-label="Info icon">info_outline</mat-icon>
+        <p>
+          {{ status === 'Not Completed' ? notCompletedMessage : completedMessage }}
+        </p>
+      </div>
+
+      <img
+        class="image"
+        [src]="status === 'Not Completed' ? notCompletedImage : completedImage"
+        [alt]="status === 'Not Completed' ? 'Prepare' : 'Congratulations'"
+      />
+    </div>
+
+    <ng-content select="[actions-slot]"></ng-content>
+  </div>
+</div>

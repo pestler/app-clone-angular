@@ -13,6 +13,7 @@ import { BehaviorSubject, firstValueFrom, from, map, Observable, of, switchMap }
 import { APP_ROUTES } from '../../constants/app-routes.const';
 import { ScoreData, scoreDataConverter } from '../models/dashboard.models';
 import { FirestoreService } from './firestore.service';
+import { NotificationService } from './notification.service';
 import { User as UserService } from './user';
 
 const GITHUB_USERNAME_KEY = 'githubUsername';
@@ -25,6 +26,7 @@ export class AuthService {
   private readonly router: Router = inject(Router);
   private readonly firestoreService: FirestoreService = inject(FirestoreService);
   private readonly userService: UserService = inject(UserService);
+  private readonly notification: NotificationService = inject(NotificationService);
 
   readonly user$: Observable<User | null> = authState(this.auth);
 
@@ -77,7 +79,10 @@ export class AuthService {
       }
       return '/';
     } catch (error) {
-      console.error('Authentication error:', error);
+      const errorMessage = 'Authentication error';
+      console.error(`${errorMessage}: `, error);
+
+      this.notification.showError(errorMessage);
       return '/';
     }
   }
@@ -89,7 +94,10 @@ export class AuthService {
       this.githubUsername$.next(null);
       this.router.navigate([APP_ROUTES.LOGIN]);
     } catch (error) {
-      console.error('Sign out error:', error);
+      const errorMessage = 'Sign out error';
+      console.error(`${errorMessage}: `, error);
+
+      this.notification.showError(errorMessage);
     }
   }
 }
