@@ -50,7 +50,7 @@ export class RoleSelectionComponent implements OnInit {
   selectRole(role: string): void {
     this.userRoleService.setActiveRole(role);
     if (role === 'student') {
-      this.router.navigate([`${APP_ROUTES.COURSE}/${APP_ROUTES.STUDENT}/${APP_ROUTES.DASHBOARD}`]);
+      this.router.navigate(['/']);
     } else if (role === 'mentor') {
       this.router.navigate([APP_ROUTES.MENTOR_DASHBOARD]);
     } else if (role === 'admin') {
