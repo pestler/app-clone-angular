@@ -5,6 +5,7 @@ import { publicGuard } from './core/guards/public-guard';
 import { Layout } from './layout/layout.component';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { CourseComponent } from './pages/course/course.component';
+import { CrossCheckSubmitComponent } from './pages/cross-check-submit/cross-check-submit.component';
 import { InterviewsComponent } from './pages/interviews/interviews.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MentorDashboardComponent } from './pages/mentor-dashboard/mentor-dashboard.component';
@@ -65,6 +66,10 @@ export const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
+      },
+      {
+        path: `${AR.COURSE}/${AR.STUDENT}/${AR.CCSUBMIT}`,
+        component: CrossCheckSubmitComponent,
       },
       {
         path: '**',
