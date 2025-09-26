@@ -41,10 +41,6 @@
     <app-dashboard-card title="Mentor's check" class="card-5">
       <app-mentor-card [mentor]="data.studentSummary.mentor"></app-mentor-card>
     </app-dashboard-card>
-
-    <app-dashboard-card title="Your repository" class="card-6">
-      <app-repository-card [url]="data.studentSummary.repository"></app-repository-card>
-    </app-dashboard-card>
   </div>
 } @else {
   <h2 class="no-data-message">No dashboard data for this course. Please select another course.</h2>

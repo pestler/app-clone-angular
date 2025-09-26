@@ -12,7 +12,7 @@ import { DashboardCardComponent } from '../../shared/components/cards/dashboard-
 import { MainStatsCardComponent } from '../../shared/components/cards/main-stats-card/main-stats-card.component';
 import { MentorCardComponent } from '../../shared/components/cards/mentor-card/mentor-card.component';
 import { NextEventCardComponent } from '../../shared/components/cards/next-event-card/next-event-card.component';
-import { RepositoryCardComponent } from '../../shared/components/cards/repository-card/repository-card.component';
+
 import { TasksStatsCardComponent } from '../../shared/components/cards/tasks-stats-card/tasks-stats-card.component';
 
 @Component({
@@ -26,7 +26,6 @@ import { TasksStatsCardComponent } from '../../shared/components/cards/tasks-sta
     NextEventCardComponent,
     AvailableReviewCardComponent,
     MentorCardComponent,
-    RepositoryCardComponent,
     RouterModule,
   ],
   templateUrl: './student-dashboard.component.html',
