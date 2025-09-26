@@ -30,12 +30,6 @@ export const FOOTER_SECTIONS: FooterSection[] = [
     title: 'Feedback',
     links: [
       {
-        label: 'Say Thank you (Discord >> #gratitude)',
-        url: 'https://app.rs.school/gratitude',
-        icon: '👍',
-      },
-      { label: 'Heroes page', url: 'https://app.rs.school/heroes', icon: '🏆' },
-      {
         label: 'Feedback on RS School',
         url: 'https://docs.google.com/forms/d/1F4NeS0oBq-CY805aqiPVp6CIrl4_nIYJ7Z_vUcMOFrQ/viewform',
         icon: '💗',
