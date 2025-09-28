@@ -4,6 +4,7 @@ import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import {
   AbstractControl,
   FormBuilder,
+  FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
@@ -17,14 +18,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, of, switchMap } from 'rxjs';
 import { CrossCheckFeedback, SolutionReview, TaskSolution } from '../../core/models/solution.model';
 import { TaskDetails } from '../../core/models/task-details.model';
-import { Task, TaskPhase } from '../../core/models/task.model'; // Added TaskPhase
+import { Task, TaskPhase } from '../../core/models/task.model';
 import { AuthService } from '../../core/services/auth.service';
 import { CourseService } from '../../core/services/course';
 import { CourseTaskSelectComponent } from '../../shared/components/course-task-select/course-task-select.component';
 import { SubmittedStatusComponent } from '../../shared/components/submitted-status/submitted-status.component';
 
 function urlValidator(control: AbstractControl): ValidationErrors | null {
-  const url = control.value;
+  const url = control.value as string;
   if (!url) {
     return null;
   }
@@ -32,6 +33,11 @@ function urlValidator(control: AbstractControl): ValidationErrors | null {
     return { invalidUrl: true };
   }
   return null;
+}
+
+interface SubmitForm {
+  url: FormControl<string | null>;
+  review: FormControl<SolutionReview[] | null>;
 }
 
 @Component({
@@ -56,7 +62,7 @@ export class CrossCheckSubmitComponent implements OnInit {
   private router = inject(Router);
   private authService = inject(AuthService);
   private fb = inject(FormBuilder);
-  form: FormGroup;
+  form: FormGroup<SubmitForm>;
 
   constructor() {
     this.form = this.fb.group({
@@ -192,7 +198,7 @@ export class CrossCheckSubmitComponent implements OnInit {
     if (courseId && taskId && githubId) {
       const { url, review } = this.form.value;
       this.courseService
-        .postTaskSolution(courseId, taskId, githubId, url, review, [])
+        .postTaskSolution(courseId, taskId, githubId, url ?? '', review ?? [], [])
         .then(() => {
           console.log('Solution submitted successfully');
           this.form.reset();

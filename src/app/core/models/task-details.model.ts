@@ -18,19 +18,23 @@ export interface TaskDetails {
     name: string;
     githubId: string;
   };
-  validations: unknown; // Changed from any
-  taskSolutions: unknown; // Changed from any
+  validations: unknown;
+  taskSolutions: unknown;
   studentRegistrationStartDate: string | null;
   publicAttributes: {
     maxAttemptsNumber?: number;
     numberOfQuestions?: number;
     strictAttemptsMode?: boolean;
     tresholdPercentage?: number;
-    questions?: Question[]; // Changed from any[]
+    questions?: Question[];
   };
   githubRepoName: string;
   sourceGithubRepoUrl: string;
   resultsCount: number;
 }
 
-export type Question = Record<string, unknown>;
+export interface Question {
+  title: string;
+  description: string;
+  max: number;
+}

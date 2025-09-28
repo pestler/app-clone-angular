@@ -2,6 +2,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import {
   ApplicationConfig,
   ErrorHandler,
+  importProvidersFrom,
   inject,
   provideAppInitializer,
   provideZoneChangeDetection,
@@ -11,6 +12,7 @@ import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { MatIconRegistry } from '@angular/material/icon';
 import { provideRouter } from '@angular/router';
+import { MarkdownModule } from 'ngx-markdown';
 import { environment } from '../environments/environment';
 import { routes } from './app.routes';
 export class GlobalErrorHandler implements ErrorHandler {
@@ -25,6 +27,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
     provideHttpClient(withInterceptorsFromDi()),
+
+    importProvidersFrom(MarkdownModule.forRoot()),
 
     provideAppInitializer(() => {
       const iconRegistry = inject(MatIconRegistry);
