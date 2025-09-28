@@ -11,12 +11,11 @@ import {
 import { Router } from '@angular/router';
 import { BehaviorSubject, firstValueFrom, from, map, Observable, of, switchMap } from 'rxjs';
 import { APP_ROUTES } from '../../constants/app-routes.const';
+import { GITHUB_USERNAME_KEY } from '../../token';
 import { ScoreData, scoreDataConverter } from '../models/dashboard.models';
 import { FirestoreService } from './firestore.service';
 import { NotificationService } from './notification.service';
 import { User as UserService } from './user';
-
-const GITHUB_USERNAME_KEY = 'githubUsername';
 
 @Injectable({
   providedIn: 'root',
@@ -24,6 +23,7 @@ const GITHUB_USERNAME_KEY = 'githubUsername';
 export class AuthService {
   private readonly auth: Auth = inject(Auth);
   private readonly router: Router = inject(Router);
+  private readonly githubUsernameKey = inject(GITHUB_USERNAME_KEY);
   private readonly firestoreService: FirestoreService = inject(FirestoreService);
   private readonly userService: UserService = inject(UserService);
   private readonly notification: NotificationService = inject(NotificationService);
@@ -31,7 +31,7 @@ export class AuthService {
   readonly user$: Observable<User | null> = authState(this.auth);
 
   readonly githubUsername$ = new BehaviorSubject<string | null>(
-    localStorage.getItem(GITHUB_USERNAME_KEY),
+    localStorage.getItem(this.githubUsernameKey),
   );
   isNavigatingToRegister = false;
 
@@ -59,7 +59,7 @@ export class AuthService {
       const githubUsername = additionalInfo?.username;
 
       if (githubUsername) {
-        localStorage.setItem(GITHUB_USERNAME_KEY, githubUsername);
+        localStorage.setItem(this.githubUsernameKey, githubUsername);
         this.githubUsername$.next(githubUsername);
 
         const profileExists = await this.userService.doesUserProfileExist(githubUsername);
@@ -90,7 +90,7 @@ export class AuthService {
   async signOut(): Promise<void> {
     try {
       await signOut(this.auth);
-      localStorage.removeItem(GITHUB_USERNAME_KEY);
+      localStorage.removeItem(this.githubUsernameKey);
       this.githubUsername$.next(null);
       this.router.navigate([APP_ROUTES.LOGIN]);
     } catch (error) {
