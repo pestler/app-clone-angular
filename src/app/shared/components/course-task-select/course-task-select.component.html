@@ -1,0 +1,13 @@
+<mat-form-field>
+  <mat-label>Task</mat-label>
+  <mat-select [ngModel]="selectedTaskId" (ngModelChange)="taskSelected.emit($event)">
+    <mat-option [value]="null">Select a task</mat-option>
+    @for (group of groupedTasks(); track group[0]) {
+      <mat-optgroup [label]="group[0]">
+        @for (task of group[1]; track task.id) {
+          <mat-option [value]="task.id">{{ task.name }}</mat-option>
+        }
+      </mat-optgroup>
+    }
+  </mat-select>
+</mat-form-field>

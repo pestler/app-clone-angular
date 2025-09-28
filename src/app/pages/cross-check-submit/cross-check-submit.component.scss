@@ -1,0 +1,16 @@
+.page-layout {
+  width: auto;
+  max-width: 45%;
+  margin-left: 0;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.buttons-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+}
