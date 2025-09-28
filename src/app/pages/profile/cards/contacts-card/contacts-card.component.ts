@@ -27,6 +27,8 @@ export class ContactsCardComponent {
     const current = this.contactsSig() ?? {};
     const dialogRef = this.dialog.open(ContactsDialogComponent, {
       width: '500px',
+      maxHeight: '90vh',
+      autoFocus: false,
       data: { ...current },
     });
 
