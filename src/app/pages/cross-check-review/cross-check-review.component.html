@@ -1,0 +1,138 @@
+<div class="page-layout">
+  <div class="review-container">
+    <div class="form-column">
+      <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+        <mat-card>
+          <mat-card-content>
+            <h1 class="form-title">Cross-Check Review</h1>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Task</mat-label>
+              <mat-select
+                [ngModel]="selectedTaskId()"
+                (ngModelChange)="onTaskChange($event)"
+                [ngModelOptions]="{ standalone: true }"
+              >
+                @for (task of courseTasks(); track task.id) {
+                  <mat-option [value]="task.id">{{ task.name }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+            @if (selectedTaskId()) {
+              <mat-form-field appearance="outline">
+                <mat-label>Student</mat-label>
+                <mat-select
+                  [ngModel]="selectedStudentId()"
+                  (ngModelChange)="onStudentChange($event)"
+                  [ngModelOptions]="{ standalone: true }"
+                >
+                  @if (submittedStudents().length === 0) {
+                    <mat-option [disabled]="true">No students to review</mat-option>
+                  }
+                  @for (student of submittedStudents(); track student.studentId) {
+                    <mat-option [value]="student.studentId">{{ student.studentId }}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            }
+
+            <fieldset [disabled]="!selectedStudentId()">
+              @if (studentSolution(); as solution) {
+                <section class="submission-link">
+                  <strong>Student's Submission:</strong>
+                  <a [href]="solution.url" target="_blank" title="{{ solution.url }}">
+                    <mat-icon>link</mat-icon>
+                    <span>{{ solution.url }}</span>
+                  </a>
+                </section>
+              }
+
+              @if (taskCriteria()) {
+                <div class="criteria-header">
+                  <h2>Review Criteria</h2>
+                </div>
+
+                <div formArrayName="criteria" class="criteria-list">
+                  @for (criterion of criteriaFormArray.controls; track $index) {
+                    <div [formGroupName]="$index" class="criterion-item">
+                      <h4 class="criterion-title">{{ criterion.value.title }}</h4>
+                      <p class="criterion-description">{{ criterion.value.description }}</p>
+
+                      <div class="score-container">
+                        <mat-form-field appearance="outline" class="score-input">
+                          <mat-label>Score</mat-label>
+                          <input
+                            matInput
+                            type="number"
+                            formControlName="score"
+                            min="0"
+                            [max]="criterion.value.max || 100"
+                          />
+                        </mat-form-field>
+                        <span class="score-value">/ {{ criterion.value.max || 100 }}</span>
+                      </div>
+
+                      <mat-form-field appearance="outline">
+                        <mat-label>Criterion Comment</mat-label>
+                        <textarea matInput formControlName="comment"></textarea>
+                      </mat-form-field>
+                    </div>
+                  }
+                </div>
+
+                <div class="total-score-container">
+                  <h3>Total Score: {{ totalScore() }} / {{ maxScore() }}</h3>
+                </div>
+              }
+
+              <mat-form-field appearance="outline">
+                <mat-label>Comment (markdown syntax is supported)</mat-label>
+                @if (!isPreviewing()) {
+                  <textarea matInput formControlName="mainComment" rows="5"></textarea>
+                } @else {
+                  <div class="preview-container">
+                    <markdown [data]="reviewForm.controls['mainComment'].value"></markdown>
+                  </div>
+                }
+              </mat-form-field>
+
+              <div class="comment-actions">
+                <button mat-stroked-button type="button" (click)="togglePreview()">
+                  {{ isPreviewing() ? 'Write' : 'Preview' }}
+                </button>
+                <a
+                  mat-button
+                  href="https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax"
+                  target="_blank"
+                  >About markdown</a
+                >
+              </div>
+
+              <mat-checkbox formControlName="isAnonymous" class="anonymity-checkbox">
+                Make my name visible in feedback
+              </mat-checkbox>
+
+              <button
+                mat-raised-button
+                color="primary"
+                type="submit"
+                [disabled]="reviewForm.invalid"
+              >
+                Submit Review
+              </button>
+            </fieldset>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+
+    <div class="history-column">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>History</mat-card-title>
+        </mat-card-header>
+        <mat-card-content> </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

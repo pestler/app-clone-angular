@@ -14,3 +14,9 @@ mat-form-field {
   align-items: center;
   justify-content: space-between;
 }
+
+@media (width <= 700px) {
+  .page-layout {
+    max-width: 100%;
+  }
+}
