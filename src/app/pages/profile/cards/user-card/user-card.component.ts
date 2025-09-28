@@ -20,8 +20,9 @@ export class UserCardComponent {
   readonly userGithubUrl = studentMockInfo.githubUrl;
   readonly dialog = inject(MatDialog);
   private readonly store = inject(Store);
-
   userSig = this.store.selectSignal(selectUserView);
+
+  Boolean = Boolean;
 
   openDialog() {
     const current = this.userSig() ?? {};

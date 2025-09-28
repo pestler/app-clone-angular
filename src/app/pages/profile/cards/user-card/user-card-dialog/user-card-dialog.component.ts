@@ -33,36 +33,19 @@ export class UserCardDialogComponent {
 
   form = new FormGroup({
     displayName: new FormControl(this.data?.displayName, [Validators.required]),
-    location: new FormControl(this.combineLocation(this.data?.cityName, this.data?.countryName)),
+    cityName: new FormControl(this.data?.cityName ?? '', []),
+    countryName: new FormControl(this.data?.countryName ?? '', []),
   });
 
   formValue = toSignal(this.form.valueChanges, { initialValue: this.form.value });
-  changed = computed(
-    () =>
-      JSON.stringify(this.formValue()) !==
-      JSON.stringify({
-        displayName: this.initialData.displayName,
-        location: this.combineLocation(this.initialData.cityName, this.initialData.countryName),
-      }),
-  );
-
-  private combineLocation(city?: string, country?: string): string {
-    if (city && country) return `${city}, ${country}`;
-    return city || country || '';
-  }
-
-  private splitLocation(location: string): { cityName: string; countryName: string } {
-    const [city = '', country = ''] = (location ?? '').split(',').map((s) => s.trim());
-    return { cityName: city, countryName: country };
-  }
+  changed = computed(() => JSON.stringify(this.formValue()) !== JSON.stringify(this.initialData));
 
   save = () => {
     if (this.changed() && this.form.valid) {
-      const { cityName, countryName } = this.splitLocation(this.form.value.location ?? '');
       const result: UserProfileCard = {
         displayName: this.form.value.displayName ?? '',
-        cityName,
-        countryName,
+        cityName: this.form.value.cityName ?? '',
+        countryName: this.form.value.countryName ?? '',
       };
       this.dialogRef.close(result);
     }

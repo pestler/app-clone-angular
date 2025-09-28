@@ -13,6 +13,8 @@
 
   <div class="location">
     <mat-icon class="icon">location_on</mat-icon>
-    <span>{{ userSig().cityName }}, {{ userSig().countryName }}</span>
+    <span>
+      {{ [userSig().cityName, userSig().countryName].filter(Boolean).join(', ') }}
+    </span>
   </div>
 </div>
