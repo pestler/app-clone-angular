@@ -33,26 +33,25 @@ export interface UserProfile {
   publicFeedback: string[];
 }
 
-// export const userProfileConverter: FirestoreDataConverter<UserProfile> = {
-//   toFirestore: (profile: UserProfile): DocumentData => {
-//     return profile;
-//   },
-//   fromFirestore: (snapshot: QueryDocumentSnapshot, options: SnapshotOptions): UserProfile => {
-//     const data = snapshot.data(options);
-//     return {
-//       githubId: data['githubId'],
-//       id: data['id'],
-//       displayName: data['displayName'],
-//       primaryEmail: data['primaryEmail'],
-//       firstName: data['firstName'],
-//       lastName: data['lastName'],
-//       location: data['location'],
-//       active: data['active'],
-//       cityName: data['cityName'],
-//       countryName: data['countryName'],
-//       epamEmail: data['epamEmail'],
-//       courses: data['courses'],
-//       roles: data['roles'],
-//     } as UserProfile;
-//   },
-// };
+export const userProfileConverter: FirestoreDataConverter<UserProfile> = {
+  toFirestore: (profile: UserProfile): DocumentData => {
+    return profile;
+  },
+  fromFirestore: (snapshot: QueryDocumentSnapshot, options: SnapshotOptions): UserProfile => {
+    const data = snapshot.data(options);
+    return {
+      githubId: data['githubId'],
+      id: data['id'],
+      displayName: data['displayName'],
+      active: data['active'],
+      courses: data['courses'],
+      roles: data['roles'],
+      about: data['about'],
+      languages: data['languages'],
+      generalInfo: data['generalInfo'],
+      contacts: data['contacts'],
+      discord: data['discord'],
+      publicFeedback: data['publicFeedback'],
+    } as UserProfile;
+  },
+};
