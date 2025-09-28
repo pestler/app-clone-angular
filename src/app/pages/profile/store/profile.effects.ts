@@ -82,11 +82,12 @@ export class ProfileEffects {
 
   //       if (dirty.contacts) payload.contacts = { ...profile.contacts, ...drafts.contacts };
   //       if (dirty.about) payload.about = drafts.about ?? profile.about;
-  //       if (dirty.languages) payload.languages = { ...profile.languages, ...drafts.languages };
+  //       if (dirty.languages) payload.languages = drafts.languages ?? profile.languages;
+
   //       if (!Object.keys(payload).length)
   //         return of(ProfileActions.saveProfileSuccess({ saved: {} }));
 
-  //       return this.api.saveUserProfile(githubId, payload).pipe(
+  //       return from(this.api.saveUserProfile(githubId, payload)).pipe(
   //         map((saved) => ProfileActions.saveProfileSuccess({ saved })),
   //         catchError((error) => {
   //           const message = error?.message ?? 'Load failed';
