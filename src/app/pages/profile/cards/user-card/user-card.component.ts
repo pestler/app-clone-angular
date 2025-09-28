@@ -32,14 +32,15 @@ export class UserCardComponent {
     const dialogRef = this.dialog.open(UserCardDialogComponent, {
       width: '500px',
       data: {
-        name: current.displayName,
-        location: this.location,
-      },
+        displayName: current.displayName,
+        countryName: current.countryName,
+        cityName: current.cityName,
+      } satisfies UserProfileCardModal,
     });
 
     dialogRef.afterClosed().subscribe((result: UserProfileCardModal | null) => {
       if (result) {
-        this.store.dispatch(ProfileActions.updateUserDraft({ patch: result }));
+        this.store.dispatch(ProfileActions.updateUserDraft({ patch: { ...result } }));
       }
     });
   }

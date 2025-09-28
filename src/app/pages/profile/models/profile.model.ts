@@ -9,9 +9,7 @@ export type UserProfileCard = Pick<UserProfile, 'githubId' | 'displayName'> &
   UserProfile['generalInfo']['location'];
 
 export interface UserProfileCardModal {
-  displayName: string;
-  location: {
-    countryName: string;
-    cityName: string;
-  };
+  displayName: string | undefined;
+  countryName: string | undefined;
+  cityName: string | undefined;
 }
