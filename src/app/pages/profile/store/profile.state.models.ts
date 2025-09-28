@@ -10,8 +10,8 @@ export interface ProfileState {
   drafts: {
     user?: Partial<UserProfileCard>;
     contacts?: Partial<UserProfileContact>;
-    about?: Partial<string>;
-    languages?: Partial<string[]>;
+    about?: string;
+    languages?: string[];
   };
   dirty: {
     user: boolean;

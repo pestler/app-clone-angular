@@ -5,5 +5,5 @@ export type Contact = Partial<ContactModal>;
 
 export type UserProfileContact = Partial<ContactModal>;
 
-export type UserProfileCard = Pick<UserProfile, 'githubId'> &
+export type UserProfileCard = Pick<UserProfile, 'githubId' | 'displayName'> &
   UserProfile['generalInfo']['location'];

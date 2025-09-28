@@ -1,8 +1,11 @@
 import { KeyValuePipe, TitleCasePipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
 import { EmptyStateType } from '../../models/empty-state.enum';
-import { Contact } from '../../models/profile.model';
+import { UserProfileContact } from '../../models/profile.model';
+import { ProfileActions } from '../../store/profile.actions';
+import { selectContactsView } from '../../store/profile.selectors';
 import { BaseCardComponent } from '../base-card/base-card.component';
 import { EmptyStateComponent } from '../empty-state/empty-state.component';
 import { ContactsDialogComponent } from './contacts-dialog/contacts-dialog.component';
@@ -14,28 +17,28 @@ import { ContactsDialogComponent } from './contacts-dialog/contacts-dialog.compo
   styleUrl: './contacts-card.component.scss',
 })
 export class ContactsCardComponent {
-  contacts: Contact = {
-    email: 'example@ex.com',
-    telegram: '@smith-mentor',
-  };
   EmptyStateType = EmptyStateType;
-
+  private readonly store = inject(Store);
   readonly dialog = inject(MatDialog);
 
+  contactsSig = this.store.selectSignal(selectContactsView);
+
   openDialog() {
+    const current = this.contactsSig() ?? {};
     const dialogRef = this.dialog.open(ContactsDialogComponent, {
       width: '500px',
-      data: { ...this.contacts },
+      data: { ...current },
     });
 
-    dialogRef.afterClosed().subscribe((result: Contact | undefined) => {
+    dialogRef.afterClosed().subscribe((result: UserProfileContact | null) => {
       if (result) {
-        this.contacts = result;
+        this.store.dispatch(ProfileActions.updateContactsDraft({ patch: result }));
       }
     });
   }
 
-  hasContacts(): boolean {
-    return Object.values(this.contacts).some((v) => v != null && v.toString().trim() !== '');
-  }
+  hasContacts = computed(() => {
+    const c = this.contactsSig() ?? {};
+    return Object.values(c).some((v) => v != null && String(v).trim() !== '');
+  });
 }

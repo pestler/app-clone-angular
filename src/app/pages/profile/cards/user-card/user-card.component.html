@@ -1,18 +1,18 @@
 <div class="card-wrapper">
   <div class="avatar-wrapper">
-    <img [src]="user.avatarUrl" alt="avatar" class="avatar" />
+    <img [src]="userAvater" alt="avatar" class="avatar" />
   </div>
   <button mat-icon-button (click)="openDialog()" class="edit-btn">
     <mat-icon class="edit-icon">edit</mat-icon>
   </button>
-  <p class="name">{{ user.name }}</p>
+  <p class="name">{{ userSig().displayName }}</p>
   <div class="github-info">
     <img class="github-icon" src="../../../../assets/icons/github.svg" alt="Github logo" />
-    <a [href]="user.githubUrl" target="_blank" class="link">{{ user.github }}</a>
+    <a [href]="userGithubUrl" target="_blank" class="link">{{ userSig().githubId }}</a>
   </div>
 
   <div class="location">
     <mat-icon class="icon">location_on</mat-icon>
-    <span>{{ user.location }}</span>
+    <span>{{ location }}</span>
   </div>
 </div>

@@ -19,15 +19,15 @@ export class AboutCardComponent {
   private readonly store = inject(Store);
   readonly dialog = inject(MatDialog);
 
-  aboutSig = toSignal(this.store.select(selectAboutView), { initialValue: '' });
+  aboutSig = toSignal(this.store.select(selectAboutView), { initialValue: null });
 
   openDialog() {
     const dialogRef = this.dialog.open(AboutDialogComponent, {
-      data: { about: this.aboutSig },
+      data: { about: this.aboutSig() },
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (typeof result === 'string') {
-        this.store.dispatch(ProfileActions.updateAboutDraft({ patch: { about: result } }));
+        this.store.dispatch(ProfileActions.updateAboutDraft({ about: result }));
       }
     });
   }

@@ -1,12 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
-import { catchError, exhaustMap, map, of, withLatestFrom } from 'rxjs';
-import { UserProfile } from '../../../core/models/user.model';
+import { catchError, exhaustMap, map, of } from 'rxjs';
 import { NotificationService } from '../../../core/services/notification.service';
 import { User } from '../../../core/services/user';
 import { ProfileActions } from './profile.actions';
-import { selectDirty, selectDrafts, selectProfile } from './profile.selectors';
 import { ProfileState } from './profile.state.models';
 
 @Injectable()
@@ -32,6 +30,7 @@ export class ProfileEffects {
               user: data
                 ? {
                     githubId: data.githubId,
+                    displayName: data.displayName,
                     countryName: data.generalInfo.location.countryName,
                     cityName: data.generalInfo.location.cityName,
                   }
@@ -63,33 +62,40 @@ export class ProfileEffects {
     ),
   );
 
-  save$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ProfileActions.saveProfile),
-      withLatestFrom(
-        this.store.select(selectProfile),
-        this.store.select(selectDrafts),
-        this.store.select(selectDirty),
-      ),
-      exhaustMap(([_, profile, drafts, dirty]) => {
-        const payload: Partial<UserProfile> = {};
-        if (dirty.user) payload.user = { ...profile.user, ...drafts.user };
-        if (dirty.contacts) payload.contacts = { ...profile.contacts, ...drafts.contacts };
-        if (dirty.about) payload.about = { ...profile.about, ...drafts.about };
-        if (dirty.languages) payload.languages = { ...profile.languages, ...drafts.languages };
-        if (!Object.keys(payload).length)
-          return of(ProfileActions.saveProfileSuccess({ saved: {} }));
+  // save$ = createEffect(() =>
+  //   this.actions$.pipe(
+  //     ofType(ProfileActions.saveProfile),
+  //     withLatestFrom(
+  //       this.store.select(selectProfile),
+  //       this.store.select(selectDrafts),
+  //       this.store.select(selectDirty),
+  //     ),
+  //     exhaustMap(([_, profile, drafts, dirty]) => {
+  //       const payload: Partial<UserProfile> = {};
 
-        return this.api.saveUserProfile(githubId, payload).pipe(
-          map((saved) => ProfileActions.saveProfileSuccess({ saved })),
-          catchError((error) => {
-            const message = error?.message ?? 'Load failed';
-            this.notification.showError(message);
+  //       if (dirty.user) {
+  //         const resultUser = { ...profile.user, ...drafts.user };
+  //         payload.displayName = resultUser.displayName;
+  //         payload.generalInfo.location.countryName = resultUser.countryName;
+  //         payload.generalInfo.location.cityName = resultUser.cityName;
+  //       }
 
-            return of(ProfileActions.saveProfileFailure({ error: message }));
-          }),
-        );
-      }),
-    ),
-  );
+  //       if (dirty.contacts) payload.contacts = { ...profile.contacts, ...drafts.contacts };
+  //       if (dirty.about) payload.about = drafts.about ?? profile.about;
+  //       if (dirty.languages) payload.languages = { ...profile.languages, ...drafts.languages };
+  //       if (!Object.keys(payload).length)
+  //         return of(ProfileActions.saveProfileSuccess({ saved: {} }));
+
+  //       return this.api.saveUserProfile(githubId, payload).pipe(
+  //         map((saved) => ProfileActions.saveProfileSuccess({ saved })),
+  //         catchError((error) => {
+  //           const message = error?.message ?? 'Load failed';
+  //           this.notification.showError(message);
+
+  //           return of(ProfileActions.saveProfileFailure({ error: message }));
+  //         }),
+  //       );
+  //     }),
+  //   ),
+  // );
 }
