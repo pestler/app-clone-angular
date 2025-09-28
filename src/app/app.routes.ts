@@ -79,7 +79,14 @@ export const routes: Routes = [
           import('./pages/profile/profile.component').then((m) => m.ProfileComponent),
         data: { title: 'Profile' },
       },
-
+      {
+        path: 'notifications',
+        loadComponent: () => 
+          import('./pages/notifications/notifications.component').then(
+            (m) => m.NotificationsComponent
+          ),
+        data: { title: 'Notifications' },
+      },
       {
         path: `${AR.COURSE}/${AR.STUDENT}/${AR.CCSUBMIT}`,
         component: CrossCheckSubmitComponent,
