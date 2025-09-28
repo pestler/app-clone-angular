@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import {
   collection,
   collectionData,
+  collectionGroup,
   deleteDoc,
   doc,
   docData,
@@ -13,11 +14,12 @@ import {
 import { Observable, shareReplay } from 'rxjs';
 import { Course, courseConverter } from '../models/dashboard.models';
 import {
+  CrossCheckAssignment,
   CrossCheckFeedback,
   SolutionComment,
   SolutionReview,
   TaskSolution,
-} from '../models/solution.model'; // New import
+} from '../models/solution.model';
 import { TaskDetails } from '../models/task-details.model';
 import { Task } from '../models/task.model';
 
@@ -61,7 +63,14 @@ export class CourseService {
       this.firestore,
       `courses/${courseId}/students/${githubId}/solutions/${taskId}`,
     );
-    return setDoc(solutionDoc, { url, review, comments });
+    return setDoc(solutionDoc, {
+      url,
+      review,
+      comments,
+      courseId: courseId,
+      taskId: taskId,
+      studentId: githubId,
+    });
   }
 
   deleteTaskSolution(courseId: string, taskId: number, githubId: string): Promise<void> {
@@ -92,8 +101,45 @@ export class CourseService {
   getMyCrossCheckFeedbacks(courseId: string, taskId: number): Observable<CrossCheckFeedback[]> {
     const feedbackCollection = collection(
       this.firestore,
-      `courses/${courseId}/tasks/${taskId}/feedback`,
+      `courses/${courseId}/tasks/${taskId}/cross-check`,
     );
     return collectionData(feedbackCollection) as Observable<CrossCheckFeedback[]>;
+  }
+
+  getCrossCheckAssignments(
+    courseId: string,
+    taskId: number,
+    reviewerId: string,
+  ): Observable<CrossCheckAssignment[]> {
+    const assignmentsCollection = collection(
+      this.firestore,
+      `courses/${courseId}/tasks/${taskId}/assignments`,
+    );
+    const q = query(assignmentsCollection, where('reviewerId', '==', reviewerId));
+    return collectionData(q) as Observable<CrossCheckAssignment[]>;
+  }
+
+  getAllSolutionsForTask(courseId: string, taskId: number): Observable<TaskSolution[]> {
+    const solutionsCollection = collectionGroup(this.firestore, 'solutions');
+    const q = query(
+      solutionsCollection,
+      where('courseId', '==', courseId),
+      where('taskId', '==', taskId),
+    );
+    return collectionData(q) as Observable<TaskSolution[]>;
+  }
+
+  postCrossCheckReview(
+    courseId: string,
+    taskId: number,
+    review: CrossCheckFeedback,
+  ): Promise<void> {
+    const customId = `${review.studentId}_${review.reviewerId}`;
+    const reviewDocRef = doc(
+      this.firestore,
+      `courses/${courseId}/tasks/${taskId}/cross-check`,
+      customId,
+    );
+    return setDoc(reviewDocRef, review);
   }
 }

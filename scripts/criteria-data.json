@@ -1,0 +1,36 @@
+{
+  "publicAttributes": {
+    "questions": [
+      {
+        "title": "Signals & Reactivity",
+        "description": "Using Signals for state management, including computed values, effects with cleanup, RxJS integration, and signal inputs/queries to simplify code.",
+        "max": 150
+      },
+      {
+        "title": "Testing",
+        "description": "Comprehensive test coverage: unit tests for key logic and components with edge case handling, plus E2E tests for main user flows, including happy path and error scenarios.",
+        "max": 130
+      },
+      {
+        "title": "Routing & Navigation",
+        "description": "Implementation of modern navigation using functional routes, lazy loading, guards/resolvers for route protection and data fetching, and error handling (404).",
+        "max": 110
+      },
+      {
+        "title": "Architecture & Components",
+        "description": "Designing a scalable architecture (feature-sliced), creating reusable UI components with clear APIs, and applying custom directives and pipes.",
+        "max": 90
+      },
+      {
+        "title": "HTTP & Data",
+        "description": "Creating a typed data access layer, using interceptors for authentication, consistent error handling with request cancellation, and local caching.",
+        "max": 80
+      },
+      {
+        "title": "TypeScript & Typing",
+        "description": "Ensuring strong typing in the project (strict: true), and using advanced TypeScript features like generics, type guards, and utility types.",
+        "max": 40
+      }
+    ]
+  }
+}

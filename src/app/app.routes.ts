@@ -80,6 +80,13 @@ export const routes: Routes = [
         component: CrossCheckSubmitComponent,
       },
       {
+        path: `${AR.COURSE}/${AR.STUDENT}/${AR.CCREVIEW}`,
+        loadComponent: () =>
+          import('./pages/cross-check-review/cross-check-review.component').then(
+            (m) => m.CrossCheckReviewComponent,
+          ),
+      },
+      {
         path: '**',
         loadComponent: () =>
           import('./pages/not-found/not-found.component').then((m) => m.NotFoundComponent),

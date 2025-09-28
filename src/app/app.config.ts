@@ -2,6 +2,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import {
   ApplicationConfig,
   ErrorHandler,
+  importProvidersFrom,
   inject,
   isDevMode,
   provideAppInitializer,
@@ -15,6 +16,7 @@ import { provideRouter } from '@angular/router';
 import { provideEffects } from '@ngrx/effects';
 import { provideStore } from '@ngrx/store';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { MarkdownModule } from 'ngx-markdown';
 import { environment } from '../environments/environment';
 import { routes } from './app.routes';
 import { ProfileEffects } from './pages/profile/store/profile.effects';
@@ -31,6 +33,8 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
     provideHttpClient(withInterceptorsFromDi()),
+
+    importProvidersFrom(MarkdownModule.forRoot()),
     provideAppInitializer(() => {
       const iconRegistry = inject(MatIconRegistry);
       iconRegistry.setDefaultFontSetClass('material-symbols-outlined');

@@ -1,11 +1,13 @@
 @if (solution) {
   <mat-card class="submitted-status success">
     <mat-card-content>
-      <p class="submit-text">
-        Submitted
-        <br />
-        <a [href]="solution.url" target="_blank" class="target">{{ solution.url }}</a>
-      </p>
+      <div class="submit-text">
+        <span>Submitted:</span>
+        <a [href]="solution.url" target="_blank" class="target" title="{{ solution.url }}">
+          <mat-icon>link</mat-icon>
+          <span>{{ solution.url }}</span>
+        </a>
+      </div>
     </mat-card-content>
   </mat-card>
 } @else {
