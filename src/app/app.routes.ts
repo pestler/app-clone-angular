@@ -3,6 +3,7 @@ import { APP_ROUTES as AR } from './constants/app-routes.const';
 import { authGuard } from './core/guards/auth-guard';
 import { publicGuard } from './core/guards/public-guard';
 import { Layout } from './layout/layout.component';
+import { CrossCheckSubmitComponent } from './pages/cross-check-submit/cross-check-submit.component';
 
 export const routes: Routes = [
   {
@@ -72,6 +73,11 @@ export const routes: Routes = [
         path: 'profile',
         loadComponent: () =>
           import('./pages/profile/profile.component').then((m) => m.ProfileComponent),
+      },
+
+      {
+        path: `${AR.COURSE}/${AR.STUDENT}/${AR.CCSUBMIT}`,
+        component: CrossCheckSubmitComponent,
       },
       {
         path: '**',
