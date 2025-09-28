@@ -6,7 +6,7 @@ import { MAT_DIALOG_DATA, MatDialogActions, MatDialogRef } from '@angular/materi
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DialogButtonComponent } from '../../../../../shared/components/dialog-button/dialog-button.component';
-import { UserProfileCardModal } from '../../../models/profile.model';
+import { UserProfileCard } from '../../../models/profile.model';
 
 @Component({
   selector: 'app-user-card-dialog',
@@ -25,22 +25,46 @@ export class UserCardDialogComponent {
   private dialogRef = inject(MatDialogRef<UserCardDialogComponent>);
   private data = inject(MAT_DIALOG_DATA);
 
-  initialData: UserProfileCardModal = {
-    nameCtrl: this.data?.name ?? '',
-    locationCtrl: this.data?.location ?? '',
+  initialData: UserProfileCard = {
+    displayName: this.data?.displayName ?? '',
+    countryName: this.data?.countryName ?? '',
+    cityName: this.data?.cityName ?? '',
   };
 
   form = new FormGroup({
-    nameCtrl: new FormControl(this.data?.name, [Validators.required]),
-    locationCtrl: new FormControl(this.data?.location),
+    displayName: new FormControl(this.data?.displayName, [Validators.required]),
+    location: new FormControl(this.combineLocation(this.data?.cityName, this.data?.countryName)),
   });
 
   formValue = toSignal(this.form.valueChanges, { initialValue: this.form.value });
-  changed = computed(() => JSON.stringify(this.formValue()) !== JSON.stringify(this.initialData));
+  changed = computed(
+    () =>
+      JSON.stringify(this.formValue()) !==
+      JSON.stringify({
+        displayName: this.initialData.displayName,
+        location: this.combineLocation(this.initialData.cityName, this.initialData.countryName),
+      }),
+  );
+
+  private combineLocation(city?: string, country?: string): string {
+    if (city && country) return `${city}, ${country}`;
+    return city || country || '';
+  }
+
+  private splitLocation(location: string): { cityName: string; countryName: string } {
+    const [city = '', country = ''] = (location ?? '').split(',').map((s) => s.trim());
+    return { cityName: city, countryName: country };
+  }
 
   save = () => {
     if (this.changed() && this.form.valid) {
-      this.dialogRef.close(this.form.value);
+      const { cityName, countryName } = this.splitLocation(this.form.value.location ?? '');
+      const result: UserProfileCard = {
+        displayName: this.form.value.displayName ?? '',
+        cityName,
+        countryName,
+      };
+      this.dialogRef.close(result);
     }
   };
 

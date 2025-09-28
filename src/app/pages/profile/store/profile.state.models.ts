@@ -1,8 +1,12 @@
-import { UserProfileCard, UserProfileContact } from '../models/profile.model';
+import {
+  UserProfileCard,
+  UserProfileCardWithGithub,
+  UserProfileContact,
+} from '../models/profile.model';
 
 export interface ProfileState {
   profile: {
-    user: UserProfileCard | null;
+    user: UserProfileCardWithGithub | null;
     contacts: UserProfileContact | null;
     about: string | null;
     languages: string[] | null;

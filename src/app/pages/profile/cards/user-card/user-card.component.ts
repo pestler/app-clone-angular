@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 import { studentMockInfo } from '../../../../core/mocks/student.mock';
-import { UserProfileCardModal } from '../../models/profile.model';
+import { UserProfileCard } from '../../models/profile.model';
 import { ProfileActions } from '../../store/profile.actions';
 import { selectUserView } from '../../store/profile.selectors';
 import { UserCardDialogComponent } from './user-card-dialog/user-card-dialog.component';
@@ -29,16 +29,22 @@ export class UserCardComponent {
     const dialogRef = this.dialog.open(UserCardDialogComponent, {
       width: '500px',
       data: {
-        displayName: current.displayName,
-        countryName: current.countryName,
-        cityName: current.cityName,
-      } satisfies UserProfileCardModal,
+        displayName: current.displayName ?? '',
+        countryName: current.countryName ?? '',
+        cityName: current.cityName ?? '',
+      } satisfies UserProfileCard,
     });
 
-    dialogRef.afterClosed().subscribe((result: UserProfileCardModal | null) => {
+    dialogRef.afterClosed().subscribe((result: UserProfileCard | null) => {
       if (result) {
-        const githubId = this.userSig()?.githubId;
-        this.store.dispatch(ProfileActions.updateUserDraft({ patch: { githubId, ...result } }));
+        this.store.dispatch(
+          ProfileActions.updateUserDraft({
+            patch: {
+              ...result,
+              githubId: this.userSig()?.githubId ?? '',
+            },
+          }),
+        );
       }
     });
   }

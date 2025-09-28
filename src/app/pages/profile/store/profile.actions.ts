@@ -1,12 +1,12 @@
 import { createActionGroup, emptyProps, props } from '@ngrx/store';
 
-import { UserProfileCard, UserProfileContact } from '../models/profile.model';
+import { UserProfileCardWithGithub, UserProfileContact } from '../models/profile.model';
 import { ProfileState } from './profile.state.models';
 
 export const ProfileActions = createActionGroup({
   source: 'Profile',
   events: {
-    'Update User Draft': props<{ patch: Partial<UserProfileCard> }>(),
+    'Update User Draft': props<{ patch: Partial<UserProfileCardWithGithub> }>(),
     'Update Contacts Draft': props<{ patch: Partial<UserProfileContact> }>(),
     'Update About Draft': props<{ about: string }>(),
     'Update Languages Draft': props<{ languages: string[] }>(),

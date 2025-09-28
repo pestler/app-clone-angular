@@ -5,11 +5,7 @@ export type Contact = Partial<ContactModal>;
 
 export type UserProfileContact = Partial<ContactModal>;
 
-export type UserProfileCard = Pick<UserProfile, 'githubId' | 'displayName'> &
+export type UserProfileCard = Pick<UserProfile, 'displayName'> &
   UserProfile['generalInfo']['location'];
 
-export interface UserProfileCardModal {
-  displayName: string | undefined;
-  countryName: string | undefined;
-  cityName: string | undefined;
-}
+export type UserProfileCardWithGithub = UserProfileCard & { githubId?: string };
