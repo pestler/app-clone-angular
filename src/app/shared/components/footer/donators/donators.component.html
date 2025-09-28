@@ -1,0 +1,19 @@
+<div class="donators-wrapper">
+  @for (donator of donators; track donator.id) {
+    <a [href]="donator.profileUrl" target="_blank" class="donator">
+      <ng-container
+        *ngTemplateOutlet="
+          donator.avatarUrl ? avatarTemplate : initialsTemplate;
+          context: { $implicit: donator }
+        "
+      ></ng-container>
+    </a>
+  }
+  <ng-template #avatarTemplate let-donor>
+    <img [src]="donor.avatarUrl" [alt]="donor.name" class="avatar" />
+  </ng-template>
+
+  <ng-template #initialsTemplate let-donor>
+    <div class="initials">{{ donor.initials }}</div>
+  </ng-template>
+</div>

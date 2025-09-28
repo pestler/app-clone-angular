@@ -38,6 +38,7 @@ export class Layout implements OnInit {
   }
 
   isFooterVisible() {
-    return this.router.url === '/';
+    const pathName = this.router.url.split('?')[0];
+    return pathName === '/' || pathName === '';
   }
 }

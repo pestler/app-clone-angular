@@ -3,39 +3,34 @@ import { APP_ROUTES as AR } from './constants/app-routes.const';
 import { authGuard } from './core/guards/auth-guard';
 import { publicGuard } from './core/guards/public-guard';
 import { Layout } from './layout/layout.component';
-import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
-import { CourseComponent } from './pages/course/course.component';
 import { CrossCheckSubmitComponent } from './pages/cross-check-submit/cross-check-submit.component';
-import { InterviewsComponent } from './pages/interviews/interviews.component';
-import { LoginComponent } from './pages/login/login.component';
-import { MentorDashboardComponent } from './pages/mentor-dashboard/mentor-dashboard.component';
-import { NotFoundComponent } from './pages/not-found/not-found.component';
-import { ProfileComponent } from './pages/profile/profile.component';
-import { RegisterComponent } from './pages/register/register.component';
-import { RoleSelectionComponent } from './pages/role-selection/role-selection.component';
-import { StudentDashboardComponent } from './pages/student-dashboard/student-dashboard.component';
 
 export const routes: Routes = [
   {
     path: AR.LOGIN,
-    component: LoginComponent,
     canActivate: [publicGuard],
+    loadComponent: () => import('./pages/login/login.component').then((m) => m.LoginComponent),
   },
   {
     path: AR.REGISTER_STUDENT,
-    component: RegisterComponent,
+    loadComponent: () =>
+      import('./pages/register/register.component').then((m) => m.RegisterComponent),
     canActivate: [publicGuard],
     data: { formType: 'student' },
   },
   {
     path: AR.REGISTER_MENTOR,
-    component: RegisterComponent,
+    loadComponent: () =>
+      import('./pages/register/register.component').then((m) => m.RegisterComponent),
     canActivate: [publicGuard],
     data: { formType: 'mentor' },
   },
   {
     path: AR.SELECT_ROLE,
-    component: RoleSelectionComponent,
+    loadComponent: () =>
+      import('./pages/role-selection/role-selection.component').then(
+        (m) => m.RoleSelectionComponent,
+      ),
     canActivate: [authGuard],
   },
   {
@@ -45,35 +40,49 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        component: CourseComponent,
+        loadComponent: () =>
+          import('./pages/course/course.component').then((m) => m.CourseComponent),
       },
       {
         path: `${AR.COURSE}/${AR.STUDENT}/${AR.DASHBOARD}`,
-        component: StudentDashboardComponent,
+        loadComponent: () =>
+          import('./pages/student-dashboard/student-dashboard.component').then(
+            (m) => m.StudentDashboardComponent,
+          ),
       },
       {
         path: `${AR.COURSE}/${AR.STUDENT}/${AR.INTERVIEWS}`,
-        component: InterviewsComponent,
+        loadComponent: () =>
+          import('./pages/interviews/interviews.component').then((m) => m.InterviewsComponent),
       },
       {
         path: AR.MENTOR_DASHBOARD,
-        component: MentorDashboardComponent,
+        loadComponent: () =>
+          import('./pages/mentor-dashboard/mentor-dashboard.component').then(
+            (m) => m.MentorDashboardComponent,
+          ),
       },
       {
         path: AR.ADMIN_DASHBOARD,
-        component: AdminDashboardComponent,
+        loadComponent: () =>
+          import('./pages/admin-dashboard/admin-dashboard.component').then(
+            (m) => m.AdminDashboardComponent,
+          ),
       },
       {
         path: 'profile',
-        component: ProfileComponent,
+        loadComponent: () =>
+          import('./pages/profile/profile.component').then((m) => m.ProfileComponent),
       },
+
       {
         path: `${AR.COURSE}/${AR.STUDENT}/${AR.CCSUBMIT}`,
         component: CrossCheckSubmitComponent,
       },
       {
         path: '**',
-        component: NotFoundComponent,
+        loadComponent: () =>
+          import('./pages/not-found/not-found.component').then((m) => m.NotFoundComponent),
       },
     ],
   },
