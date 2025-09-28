@@ -22,9 +22,6 @@ export class UserCardComponent {
   private readonly store = inject(Store);
 
   userSig = this.store.selectSignal(selectUserView);
-  private isLocation = this.userSig().cityName || this.userSig().countryName ? true : false;
-
-  location = this.isLocation ? `${this.userSig().cityName}, ${this.userSig().countryName}` : null;
 
   openDialog() {
     const current = this.userSig() ?? {};
@@ -40,7 +37,8 @@ export class UserCardComponent {
 
     dialogRef.afterClosed().subscribe((result: UserProfileCardModal | null) => {
       if (result) {
-        this.store.dispatch(ProfileActions.updateUserDraft({ patch: { ...result } }));
+        const githubId = this.userSig()?.githubId;
+        this.store.dispatch(ProfileActions.updateUserDraft({ patch: { githubId, ...result } }));
       }
     });
   }
