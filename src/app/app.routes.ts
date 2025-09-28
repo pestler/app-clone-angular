@@ -49,11 +49,13 @@ export const routes: Routes = [
           import('./pages/student-dashboard/student-dashboard.component').then(
             (m) => m.StudentDashboardComponent,
           ),
+        data: { title: 'Student Dashboard' },
       },
       {
         path: `${AR.COURSE}/${AR.STUDENT}/${AR.INTERVIEWS}`,
         loadComponent: () =>
           import('./pages/interviews/interviews.component').then((m) => m.InterviewsComponent),
+        data: { title: 'Interview' },
       },
       {
         path: AR.MENTOR_DASHBOARD,
@@ -61,6 +63,7 @@ export const routes: Routes = [
           import('./pages/mentor-dashboard/mentor-dashboard.component').then(
             (m) => m.MentorDashboardComponent,
           ),
+        data: { title: 'Mentor Dashboard' },
       },
       {
         path: AR.ADMIN_DASHBOARD,
@@ -68,16 +71,26 @@ export const routes: Routes = [
           import('./pages/admin-dashboard/admin-dashboard.component').then(
             (m) => m.AdminDashboardComponent,
           ),
+        data: { title: 'Admin Dashboard' },
       },
       {
         path: 'profile',
         loadComponent: () =>
           import('./pages/profile/profile.component').then((m) => m.ProfileComponent),
+        data: { title: 'Profile' },
       },
-
+      {
+        path: 'notifications',
+        loadComponent: () => 
+          import('./pages/notifications/notifications.component').then(
+            (m) => m.NotificationsComponent
+          ),
+        data: { title: 'Notifications' },
+      },
       {
         path: `${AR.COURSE}/${AR.STUDENT}/${AR.CCSUBMIT}`,
         component: CrossCheckSubmitComponent,
+        data: { title: 'Cross-Check Submit' },
       },
       {
         path: `${AR.COURSE}/${AR.STUDENT}/${AR.CCREVIEW}`,
@@ -85,6 +98,7 @@ export const routes: Routes = [
           import('./pages/cross-check-review/cross-check-review.component').then(
             (m) => m.CrossCheckReviewComponent,
           ),
+        data: { title: 'Cross-Check Review' },
       },
       {
         path: '**',
