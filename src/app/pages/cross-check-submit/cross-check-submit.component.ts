@@ -202,4 +202,21 @@ export class CrossCheckSubmitComponent implements OnInit {
         });
     }
   }
+
+  cancelSubmission(): void {
+    const courseId = this.route.snapshot.queryParamMap.get('course');
+    const taskId = this.selectedTaskId();
+    const githubId = this.authService.githubUsername$.value;
+
+    if (courseId && taskId && githubId) {
+      this.courseService
+        .deleteTaskSolution(courseId, taskId, githubId)
+        .then(() => {
+          console.log('Submission cancelled successfully');
+        })
+        .catch((err: Error) => {
+          console.error('Error cancelling submission:', err);
+        });
+    }
+  }
 }

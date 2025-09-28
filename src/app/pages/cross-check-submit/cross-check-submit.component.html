@@ -25,7 +25,7 @@
               [deadlinePassed]="!submitAllowed()"
             ></app-submitted-status>
 
-            <ng-container *ngIf="submitAllowed()">
+            @if (submitAllowed()) {
               <mat-form-field>
                 <mat-label>Solution URL</mat-label>
                 <input
@@ -46,27 +46,35 @@
                 }
               </mat-form-field>
 
-              <div *ngIf="task.submitText">
-                <p>{{ task.submitText }}</p>
+              @if (task.submitText) {
+                <div>
+                  <p>{{ task.submitText }}</p>
+                </div>
+              }
+            }
+
+            @if (submitAllowed() && newCrossCheck()) {
+              <div>
+                <p>CriteriaForm component placeholder</p>
               </div>
-            </ng-container>
+            }
 
-            <div *ngIf="submitAllowed() && newCrossCheck()">
-              <p>CriteriaForm component placeholder</p>
-            </div>
+            @if (submitAllowed() && newCrossCheck()) {
+              <div>
+                <p>ScoreInput component placeholder</p>
+              </div>
+            }
 
-            <div *ngIf="submitAllowed() && newCrossCheck()">
-              <p>ScoreInput component placeholder</p>
-            </div>
-
-            <div *ngIf="submitAllowed()">
+            @if (submitAllowed()) {
               <div class="buttons-container" style="margin-top: 16px">
                 <button mat-raised-button color="primary" type="submit">Submit</button>
-                <button *ngIf="submittedSolution()" mat-stroked-button color="warn">
-                  Cancel Submit
-                </button>
+                @if (submittedSolution()) {
+                  <button mat-stroked-button color="warn" (click)="cancelSubmission()">
+                    Cancel Submit
+                  </button>
+                }
               </div>
-            </div>
+            }
           }
         </form>
       </div>
