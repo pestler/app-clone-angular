@@ -105,7 +105,7 @@ export class CrossCheckReviewComponent {
   studentSolution = computed(() => this.reviewData()?.[0] ?? null);
   taskCriteria = computed(() => this.reviewData()?.[1]?.publicAttributes?.questions ?? null);
 
-  private formValue: Signal<SolutionReview | undefined>;
+  formValue: Signal<SolutionReview | undefined>;
 
   totalScore = computed(() => {
     const criteria = this.formValue()?.criteria;

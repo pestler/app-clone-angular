@@ -131,7 +131,21 @@ export class RegisterComponent implements OnInit {
       )
       .subscribe((profile: UserProfile | undefined) => {
         if (profile) {
-          this.form.patchValue(profile);
+          const [firstName, ...lastNameParts] = profile.displayName.split(' ');
+          this.form.patchValue({
+            firstName: firstName || '',
+            lastName: lastNameParts.join(' ') || '',
+            location: profile.generalInfo?.location?.cityName || '',
+            primaryEmail: profile.contacts?.email || '',
+            epamEmail: profile.contacts?.epamEmail || '',
+            telegram: profile.contacts?.telegram || '',
+            whatsApp: profile.contacts?.whatsapp || '',
+            phone: profile.contacts?.phone || '',
+            notes: profile.contacts?.notes || '',
+            aboutYourself: profile.about || '',
+            languages: profile.languages || [],
+            courses: profile.courses || [],
+          });
         }
       });
 
@@ -143,7 +157,7 @@ export class RegisterComponent implements OnInit {
       .subscribe((user: FirebaseUser) => {
         const [firstName, ...lastNameParts] = user.displayName?.split(' ') || ['', ''];
         this.form.patchValue({
-          primaryEmail: user.email,
+          primaryEmail: this.form.value.primaryEmail || user.email,
           firstName: this.form.value.firstName || firstName,
           lastName: this.form.value.lastName || lastNameParts.join(' '),
         });
@@ -160,8 +174,30 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    const profileData = {
-      ...this.form.value,
+    const formVal = this.form.value;
+
+    const profileData: Partial<UserProfile> = {
+      displayName: `${formVal.firstName} ${formVal.lastName}`.trim(),
+      active: true,
+      githubId: this.currentUserGithubId,
+      about: formVal.aboutYourself,
+      languages: formVal.languages,
+      courses: formVal.courses,
+      generalInfo: {
+        englishLevel: '',
+        location: {
+          countryName: '',
+          cityName: formVal.location,
+        },
+      },
+      contacts: {
+        phone: formVal.phone,
+        email: formVal.primaryEmail,
+        epamEmail: formVal.epamEmail,
+        telegram: formVal.telegram,
+        whatsapp: formVal.whatsApp,
+        notes: formVal.notes,
+      },
       roles: {
         student: this.isStudentForm,
         mentor: !this.isStudentForm,

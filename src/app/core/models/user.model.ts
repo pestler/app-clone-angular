@@ -9,20 +9,35 @@ export interface UserProfile {
   githubId: string;
   id: number;
   displayName: string;
-  primaryEmail: string;
-  firstName: string;
-  lastName: string;
-  location: string;
   active: boolean;
-  cityName: string;
-  countryName: string;
-  epamEmail?: string;
   courses?: string[];
   roles: {
     student: boolean;
     mentor: boolean;
     admin: boolean;
   };
+  about: string;
+  languages: string[];
+  generalInfo: {
+    englishLevel: string;
+    location: {
+      countryName: string;
+      cityName: string;
+    };
+  };
+  contacts: {
+    phone: string;
+    email: string;
+    epamEmail?: string;
+    telegram: string;
+    whatsapp: string;
+    notes: string;
+  };
+  discord: {
+    username: string;
+    id: string;
+  };
+  publicFeedback: string[];
 }
 
 export const userProfileConverter: FirestoreDataConverter<UserProfile> = {
@@ -35,16 +50,15 @@ export const userProfileConverter: FirestoreDataConverter<UserProfile> = {
       githubId: data['githubId'],
       id: data['id'],
       displayName: data['displayName'],
-      primaryEmail: data['primaryEmail'],
-      firstName: data['firstName'],
-      lastName: data['lastName'],
-      location: data['location'],
       active: data['active'],
-      cityName: data['cityName'],
-      countryName: data['countryName'],
-      epamEmail: data['epamEmail'],
       courses: data['courses'],
       roles: data['roles'],
+      about: data['about'],
+      languages: data['languages'],
+      generalInfo: data['generalInfo'],
+      contacts: data['contacts'],
+      discord: data['discord'],
+      publicFeedback: data['publicFeedback'],
     } as UserProfile;
   },
 };
