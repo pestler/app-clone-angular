@@ -28,7 +28,7 @@ export class LanguagesCardComponent {
     });
     dialogRef.afterClosed().subscribe((languages) => {
       if (Array.isArray(languages)) {
-        this.store.dispatch(ProfileActions.updateLanguagesDraft({ languages })); //need to check shorthand
+        this.store.dispatch(ProfileActions.updateLanguagesDraft({ languages }));
       }
     });
   }

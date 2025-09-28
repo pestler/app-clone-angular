@@ -7,3 +7,11 @@ export type UserProfileContact = Partial<ContactModal>;
 
 export type UserProfileCard = Pick<UserProfile, 'githubId' | 'displayName'> &
   UserProfile['generalInfo']['location'];
+
+export interface UserProfileCardModal {
+  displayName: string;
+  location: {
+    countryName: string;
+    cityName: string;
+  };
+}

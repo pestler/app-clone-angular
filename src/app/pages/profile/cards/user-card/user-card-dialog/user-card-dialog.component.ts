@@ -6,6 +6,7 @@ import { MAT_DIALOG_DATA, MatDialogActions, MatDialogRef } from '@angular/materi
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DialogButtonComponent } from '../../../../../shared/components/dialog-button/dialog-button.component';
+import { UserProfileCardModal } from '../../../models/profile.model';
 
 @Component({
   selector: 'app-user-card-dialog',
@@ -24,7 +25,7 @@ export class UserCardDialogComponent {
   private dialogRef = inject(MatDialogRef<UserCardDialogComponent>);
   private data = inject(MAT_DIALOG_DATA);
 
-  initialData = {
+  initialData: UserProfileCardModal = {
     nameCtrl: this.data?.name ?? '',
     locationCtrl: this.data?.location ?? '',
   };

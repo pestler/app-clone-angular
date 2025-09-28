@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { Store } from '@ngrx/store';
 import { studentMockInfo } from '../../../../core/mocks/student.mock';
-import { UserProfileCard } from '../../models/profile.model';
+import { UserProfileCardModal } from '../../models/profile.model';
 import { ProfileActions } from '../../store/profile.actions';
 import { selectUserView } from '../../store/profile.selectors';
 import { UserCardDialogComponent } from './user-card-dialog/user-card-dialog.component';
@@ -16,27 +16,28 @@ import { UserCardDialogComponent } from './user-card-dialog/user-card-dialog.com
   styleUrl: './user-card.component.scss',
 })
 export class UserCardComponent {
-  readonly userAvater = studentMockInfo.avatarUrl;
+  readonly userAvatar = studentMockInfo.avatarUrl;
   readonly userGithubUrl = studentMockInfo.githubUrl;
   readonly dialog = inject(MatDialog);
   private readonly store = inject(Store);
 
   userSig = this.store.selectSignal(selectUserView);
+  private isLocation = this.userSig().cityName || this.userSig().countryName ? true : false;
 
-  location = `${this.userSig().cityName}, ${this.userSig().countryName}`;
+  location = this.isLocation ? `${this.userSig().cityName}, ${this.userSig().countryName}` : null;
 
   openDialog() {
     const current = this.userSig() ?? {};
-    // const isLocation = this.userSig().cityName || this.userSig().countryName ? true : false;
 
     const dialogRef = this.dialog.open(UserCardDialogComponent, {
       width: '500px',
       data: {
         name: current.displayName,
-        location,
+        location: this.location,
       },
     });
-    dialogRef.afterClosed().subscribe((result: UserProfileCard | null) => {
+
+    dialogRef.afterClosed().subscribe((result: UserProfileCardModal | null) => {
       if (result) {
         this.store.dispatch(ProfileActions.updateUserDraft({ patch: result }));
       }
