@@ -1,8 +1,8 @@
 import { KeyValuePipe, TitleCasePipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Contact } from '../../models/contacts.model';
 import { EmptyStateType } from '../../models/empty-state.enum';
+import { Contact } from '../../models/profile.model';
 import { BaseCardComponent } from '../base-card/base-card.component';
 import { EmptyStateComponent } from '../empty-state/empty-state.component';
 import { ContactsDialogComponent } from './contacts-dialog/contacts-dialog.component';

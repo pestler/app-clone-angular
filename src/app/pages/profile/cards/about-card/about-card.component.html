@@ -1,6 +1,6 @@
 <app-base-card [isEdit]="true" title="About" icon="error_outline" (editClick)="openDialog()">
-  @if ((about || '').trim().length) {
-    <div class="content">{{ about }}</div>
+  @if (aboutSig().trim().length) {
+    <div class="content">{{ aboutSig() }}</div>
   } @else {
     <app-empty-state [type]="EmptyStateType.About"></app-empty-state>
   }
