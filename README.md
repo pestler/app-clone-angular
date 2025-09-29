@@ -1,6 +1,6 @@
 # RS App Clone - Angular Frontend
 
-Фронтенд-часть приложения "RS App Clone", разработанная на Angular, с использованием современных практик и инструментов.
+Frontend part of the "RS App Clone" application, developed with Angular, using modern practices and tools.
 
 ## 🌐 Live Demo
 
