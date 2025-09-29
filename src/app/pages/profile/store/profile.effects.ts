@@ -22,8 +22,7 @@ export class ProfileEffects {
           map((data) => {
             if (!data) {
               const message = 'Profile not found';
-              this.notification.showError(message);
-              throw new Error(message);
+              return ProfileActions.loadProfileFailure({ error: message });
             }
 
             const profileData: ProfileState['profile'] = {
@@ -48,7 +47,6 @@ export class ProfileEffects {
               about: data?.about ?? null,
               languages: data?.languages ?? null,
             };
-
             return ProfileActions.loadProfileSuccess({ data: profileData });
           }),
           catchError((error) => {
