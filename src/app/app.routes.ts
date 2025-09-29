@@ -81,9 +81,9 @@ export const routes: Routes = [
       },
       {
         path: 'notifications',
-        loadComponent: () => 
+        loadComponent: () =>
           import('./pages/notifications/notifications.component').then(
-            (m) => m.NotificationsComponent
+            (m) => m.NotificationsComponent,
           ),
         data: { title: 'Notifications' },
       },

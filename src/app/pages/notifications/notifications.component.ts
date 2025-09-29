@@ -5,7 +5,7 @@ import { NotificationModel, NOTIFICATIONS } from './notifications.data';
   selector: 'app-notifications',
   imports: [],
   templateUrl: './notifications.component.html',
-  styleUrl: './notifications.component.scss'
+  styleUrl: './notifications.component.scss',
 })
 export class NotificationsComponent {
   notifications: NotificationModel[] = NOTIFICATIONS;

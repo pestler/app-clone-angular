@@ -1,10 +1,12 @@
 <div class="container">
-    <div class="note-wrapper">
-        <p class="note">Note: To enable Telegram notifications please open the
-            <a href="https://t.me/rsschool_bot?start=connect" target="_blank">@rsschool_bot</a> and click the <strong>Start</strong> button to set it up
-        </p>
-        <button class="save-btn" (click)="save()">Save</button>
-    </div>
+  <div class="note-wrapper">
+    <p class="note">
+      Note: To enable Telegram notifications please open the
+      <a href="https://t.me/rsschool_bot?start=connect" target="_blank">&#64;rsschool_bot</a> and
+      click the <strong>Start</strong> button to set it up
+    </p>
+    <button class="save-btn" (click)="save()">Save</button>
+  </div>
   <table>
     <thead>
       <tr>
@@ -14,13 +16,13 @@
       </tr>
     </thead>
     <tbody>
-        @for(n of notifications; track $index) {
-            <tr>
-                <td>{{ n.label }}</td>
-                <td><input class="checkbox"type="checkbox" [checked]="n.email" /></td>
-                <td><input class="checkbox telegram" type="checkbox" [checked]="n.telegram" /></td>
-            </tr>
-        }
+      @for (n of notifications; track $index) {
+        <tr>
+          <td>{{ n.label }}</td>
+          <td><input class="checkbox" type="checkbox" [checked]="n.email" /></td>
+          <td><input class="checkbox telegram" type="checkbox" [checked]="n.telegram" /></td>
+        </tr>
+      }
     </tbody>
   </table>
 </div>

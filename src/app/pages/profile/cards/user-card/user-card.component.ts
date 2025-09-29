@@ -2,7 +2,11 @@ import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
+import { Store } from '@ngrx/store';
 import { studentMockInfo } from '../../../../core/mocks/student.mock';
+import { UserProfileCard } from '../../models/profile.model';
+import { ProfileActions } from '../../store/profile.actions';
+import { selectUserView } from '../../store/profile.selectors';
 import { UserCardDialogComponent } from './user-card-dialog/user-card-dialog.component';
 
 @Component({
@@ -12,24 +16,37 @@ import { UserCardDialogComponent } from './user-card-dialog/user-card-dialog.com
   styleUrl: './user-card.component.scss',
 })
 export class UserCardComponent {
-  user = studentMockInfo;
+  readonly userAvatar = studentMockInfo.avatarUrl;
+  readonly userGithubUrl = studentMockInfo.githubUrl;
   readonly dialog = inject(MatDialog);
+  private readonly store = inject(Store);
+  userSig = this.store.selectSignal(selectUserView);
+
+  Boolean = Boolean;
 
   openDialog() {
+    const current = this.userSig() ?? {};
+
     const dialogRef = this.dialog.open(UserCardDialogComponent, {
       width: '500px',
       data: {
-        name: this.user.name,
-        location: this.user.location,
-      },
+        displayName: current.displayName ?? '',
+        englishLevel: current.englishLevel ?? '',
+        countryName: current.countryName ?? '',
+        cityName: current.cityName ?? '',
+      } satisfies UserProfileCard,
     });
-    dialogRef.afterClosed().subscribe((result) => {
+
+    dialogRef.afterClosed().subscribe((result: UserProfileCard | null) => {
       if (result) {
-        this.user = {
-          ...this.user,
-          name: result.nameCtrl,
-          location: result.locationCtrl,
-        };
+        this.store.dispatch(
+          ProfileActions.updateUserDraft({
+            patch: {
+              ...result,
+              githubId: this.userSig()?.githubId ?? '',
+            },
+          }),
+        );
       }
     });
   }

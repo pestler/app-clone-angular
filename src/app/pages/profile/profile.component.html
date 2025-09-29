@@ -1,15 +1,24 @@
-<div class="page-wrapper">
-  <div class="grid-item">
-    <app-user-card></app-user-card>
-    <app-contacts-card></app-contacts-card>
+@if (loading$ | async) {
+  <div class="loading">Loading…</div>
+} @else {
+  <div class="page-wrapper">
+    <div class="grid-item">
+      <app-user-card></app-user-card>
+      <app-contacts-card></app-contacts-card>
+    </div>
+    <div class="grid-item">
+      <app-about-card></app-about-card>
+    </div>
+    <div class="grid-item">
+      <app-languages-card></app-languages-card>
+    </div>
+    <div class="support grid-item">
+      <img src="https://cdn.rs.school/sloths/stickers/git-remote/image.svg" alt="You're a hero" />
+    </div>
   </div>
-  <div class="grid-item">
-    <app-about-card></app-about-card>
+  <div class="button-wrapper">
+    <button mat-button (click)="saveProfile()" class="btn active" [disabled]="!dirtySig()">
+      Save profile
+    </button>
   </div>
-  <div class="grid-item">
-    <app-languages-card></app-languages-card>
-  </div>
-  <div class="support grid-item">
-    <img src="https://cdn.rs.school/sloths/stickers/git-remote/image.svg" alt="You're a hero" />
-  </div>
-</div>
+}

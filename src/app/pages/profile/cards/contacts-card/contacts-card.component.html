@@ -6,7 +6,7 @@
 >
   @if (hasContacts()) {
     <div class="contacts-wrapper">
-      @for (entry of contacts | keyvalue; track entry.key) {
+      @for (entry of contactsSig() | keyvalue; track entry.key) {
         @if (entry.value && entry.value.trim() !== '') {
           <div class="contact-item">
             <p class="key">{{ entry.key | titlecase }}:</p>

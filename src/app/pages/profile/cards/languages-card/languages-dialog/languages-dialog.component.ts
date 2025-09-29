@@ -26,7 +26,7 @@ export class LanguagesDialogComponent {
   private dialogRef = inject(MatDialogRef<LanguagesDialogComponent>);
   private data = inject<{ languages: string[] }>(MAT_DIALOG_DATA);
 
-  languages = [...this.data.languages];
+  languages = this.data.languages ? [...this.data.languages] : [];
   allLanguages = LANGUAGES_ISO;
 
   remove(lang: string) {

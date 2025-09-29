@@ -6,6 +6,7 @@ import { MAT_DIALOG_DATA, MatDialogActions, MatDialogRef } from '@angular/materi
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DialogButtonComponent } from '../../../../../shared/components/dialog-button/dialog-button.component';
+import { UserProfileCard } from '../../../models/profile.model';
 
 @Component({
   selector: 'app-user-card-dialog',
@@ -24,14 +25,17 @@ export class UserCardDialogComponent {
   private dialogRef = inject(MatDialogRef<UserCardDialogComponent>);
   private data = inject(MAT_DIALOG_DATA);
 
-  initialData = {
-    nameCtrl: this.data?.name ?? '',
-    locationCtrl: this.data?.location ?? '',
+  initialData: UserProfileCard = {
+    displayName: this.data?.displayName ?? '',
+    englishLevel: this.data?.englishLevel ?? '',
+    countryName: this.data?.countryName ?? '',
+    cityName: this.data?.cityName ?? '',
   };
 
   form = new FormGroup({
-    nameCtrl: new FormControl(this.data?.name, [Validators.required]),
-    locationCtrl: new FormControl(this.data?.location),
+    displayName: new FormControl(this.data?.displayName, [Validators.required]),
+    cityName: new FormControl(this.data?.cityName ?? '', []),
+    countryName: new FormControl(this.data?.countryName ?? '', []),
   });
 
   formValue = toSignal(this.form.valueChanges, { initialValue: this.form.value });
@@ -39,7 +43,13 @@ export class UserCardDialogComponent {
 
   save = () => {
     if (this.changed() && this.form.valid) {
-      this.dialogRef.close(this.form.value);
+      const result: UserProfileCard = {
+        displayName: this.form.value.displayName ?? '',
+        englishLevel: this.data?.englishLevel ?? '',
+        cityName: this.form.value.cityName ?? '',
+        countryName: this.form.value.countryName ?? '',
+      };
+      this.dialogRef.close(result);
     }
   };
 
