@@ -49,9 +49,10 @@
     }
   }
 
-  .disabled {
+  .btn:disabled {
     pointer-events: none;
     background-color: var(--button-disabled);
+    color: var(--text-black) !important;
     opacity: 0.5;
   }
 }

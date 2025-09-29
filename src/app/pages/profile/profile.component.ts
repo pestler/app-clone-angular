@@ -8,7 +8,7 @@ import { ContactsCardComponent } from './cards/contacts-card/contacts-card.compo
 import { LanguagesCardComponent } from './cards/languages-card/languages-card.component';
 import { UserCardComponent } from './cards/user-card/user-card.component';
 import { ProfileActions } from './store/profile.actions';
-import { selectLoading } from './store/profile.selectors';
+import { selectIsDirty, selectLoading } from './store/profile.selectors';
 @Component({
   selector: 'app-profile',
   imports: [
@@ -27,6 +27,7 @@ export class ProfileComponent implements OnInit {
   private readonly githubUsernameKey = inject(GITHUB_USERNAME_KEY);
 
   loading$ = this.store.select(selectLoading);
+  readonly dirtySig = this.store.selectSignal(selectIsDirty);
 
   ngOnInit() {
     const githubId = localStorage.getItem(this.githubUsernameKey);

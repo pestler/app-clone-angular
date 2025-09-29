@@ -17,6 +17,8 @@
     </div>
   </div>
   <div class="button-wrapper">
-    <button mat-button (click)="saveProfile()" class="btn active">Save profile</button>
+    <button mat-button (click)="saveProfile()" class="btn active" [disabled]="!dirtySig()">
+      Save profile
+    </button>
   </div>
 }
