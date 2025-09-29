@@ -6,6 +6,7 @@ import { UserProfile } from '../../../core/models/user.model';
 import { NotificationService } from '../../../core/services/notification.service';
 import { User } from '../../../core/services/user';
 import { GITHUB_USERNAME_KEY } from '../../../token';
+import { UserProfileContact } from '../models/profile.model';
 import { ProfileActions } from './profile.actions';
 import { selectDirty, selectDrafts, selectProfile } from './profile.selectors';
 import { ProfileState } from './profile.state.models';
@@ -89,19 +90,24 @@ export class ProfileEffects {
           };
         }
 
-        if (dirty.contacts) payload.contacts = { ...profile.contacts, ...drafts.contacts };
+        if (dirty.contacts) {
+          payload.contacts = {
+            ...(profile.contacts || {}),
+            ...(drafts.contacts || {}),
+          } as UserProfileContact;
+        }
         if (dirty.about) payload.about = drafts.about ?? profile.about;
         if (dirty.languages) payload.languages = drafts.languages ?? profile.languages;
 
         if (!Object.keys(payload).length)
-          return of(ProfileActions.saveProfileSuccess({ saved: {} }));
+          return of(ProfileActions.saveProfileSuccess({ saved: profile }));
 
         const githubId = localStorage.getItem(this.githubUsernameKey) || '';
         return defer(() => this.api.saveUserProfile(githubId, payload)).pipe(
-          map(() => {
+          map((updatedUserProfile) => {
             const successMessage = 'Your data has been successfully saved';
             this.notification.showSuccess(successMessage);
-            return ProfileActions.saveProfileSuccess({ saved: profile });
+            return ProfileActions.saveProfileSuccess({ saved: updatedUserProfile });
           }),
           catchError((error) => {
             const message = error?.message ?? 'Load failed';

@@ -4,25 +4,21 @@ import { initialProfileState } from './profile.state.models';
 
 const reducer = createReducer(
   initialProfileState,
-  // USER section
   on(ProfileActions.updateUserDraft, (state, { patch }) => ({
     ...state,
     drafts: { ...state.drafts, user: { ...(state.drafts.user ?? {}), ...patch } },
     dirty: { ...state.dirty, user: true },
   })),
-  // CONTACTS section
   on(ProfileActions.updateContactsDraft, (state, { patch }) => ({
     ...state,
     drafts: { ...state.drafts, contacts: { ...(state.drafts.contacts ?? {}), ...patch } },
     dirty: { ...state.dirty, contacts: true },
   })),
-  // ABOUT section
   on(ProfileActions.updateAboutDraft, (state, { about }) => ({
     ...state,
     drafts: { ...state.drafts, about },
     dirty: { ...state.dirty, about: true },
   })),
-  // LANGUAGES section
   on(ProfileActions.updateLanguagesDraft, (state, { languages }) => ({
     ...state,
     drafts: { ...state.drafts, languages },
@@ -38,12 +34,25 @@ const reducer = createReducer(
   on(ProfileActions.saveProfileSuccess, (state, { saved }) => ({
     ...state,
     profile: {
-      user: saved.user ?? state.profile.user,
-      contacts: saved.contacts ?? state.profile.contacts,
-      about: saved.about ?? state.profile.about,
-      languages: saved.languages ?? state.profile.languages,
+      user: {
+        githubId: saved.user?.githubId ?? '',
+        displayName: saved.user?.displayName ?? '',
+        englishLevel: saved.user?.englishLevel ?? '',
+        countryName: saved.user?.countryName ?? '',
+        cityName: saved.user?.cityName ?? '',
+      },
+      contacts: {
+        phone: saved.contacts?.phone ?? '',
+        email: saved.contacts?.email ?? '',
+        epamEmail: saved.contacts?.epamEmail,
+        telegram: saved.contacts?.telegram ?? '',
+        whatsapp: saved.contacts?.whatsapp ?? '',
+        notes: saved.contacts?.notes ?? '',
+      },
+      about: saved.about ?? null,
+      languages: saved.languages ?? null,
     },
-    drafts: {},
+    drafts: initialProfileState.drafts,
     dirty: { user: false, contacts: false, about: false, languages: false },
     loading: false,
     error: null,
