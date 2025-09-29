@@ -34,6 +34,7 @@ export class ProfileEffects {
                 ? {
                     githubId: data.githubId,
                     displayName: data.displayName,
+                    englishLevel: data.generalInfo.englishLevel,
                     countryName: data.generalInfo.location.countryName,
                     cityName: data.generalInfo.location.cityName,
                   }
@@ -78,8 +79,14 @@ export class ProfileEffects {
         if (dirty.user) {
           const resultUser = { ...profile.user, ...drafts.user };
           payload.displayName = resultUser.displayName;
-          // payload.generalInfo.location.countryName = resultUser.countryName;
-          // payload.generalInfo.location.cityName = resultUser.cityName;
+
+          payload.generalInfo = {
+            englishLevel: profile.user?.englishLevel || '',
+            location: {
+              countryName: resultUser.countryName,
+              cityName: resultUser.cityName,
+            },
+          };
         }
 
         if (dirty.contacts) payload.contacts = { ...profile.contacts, ...drafts.contacts };

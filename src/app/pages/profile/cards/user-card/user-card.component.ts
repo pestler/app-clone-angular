@@ -31,6 +31,7 @@ export class UserCardComponent {
       width: '500px',
       data: {
         displayName: current.displayName ?? '',
+        englishLevel: current.englishLevel ?? '',
         countryName: current.countryName ?? '',
         cityName: current.cityName ?? '',
       } satisfies UserProfileCard,

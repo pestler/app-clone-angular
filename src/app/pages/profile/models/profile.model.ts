@@ -6,6 +6,7 @@ export type Contact = Partial<ContactModal>;
 export type UserProfileContact = Partial<ContactModal>;
 
 export type UserProfileCard = Pick<UserProfile, 'displayName'> &
-  UserProfile['generalInfo']['location'];
+  UserProfile['generalInfo']['location'] &
+  Pick<UserProfile['generalInfo'], 'englishLevel'>;
 
 export type UserProfileCardWithGithub = UserProfileCard & { githubId?: string };

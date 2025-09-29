@@ -27,6 +27,7 @@ export class UserCardDialogComponent {
 
   initialData: UserProfileCard = {
     displayName: this.data?.displayName ?? '',
+    englishLevel: this.data?.englishLevel ?? '',
     countryName: this.data?.countryName ?? '',
     cityName: this.data?.cityName ?? '',
   };
@@ -44,6 +45,7 @@ export class UserCardDialogComponent {
     if (this.changed() && this.form.valid) {
       const result: UserProfileCard = {
         displayName: this.form.value.displayName ?? '',
+        englishLevel: this.data?.englishLevel ?? '',
         cityName: this.form.value.cityName ?? '',
         countryName: this.form.value.countryName ?? '',
       };
