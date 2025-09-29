@@ -6,6 +6,7 @@ import { ProfileComponent } from './profile.component';
 import {
   selectAboutView,
   selectContactsView,
+  selectDirty,
   selectLanguagesView,
   selectLoading,
   selectUserView,
@@ -27,6 +28,12 @@ describe('ProfileComponent', () => {
     store.overrideSelector(selectUserView, {});
     store.overrideSelector(selectAboutView, '');
     store.overrideSelector(selectLanguagesView, []);
+    store.overrideSelector(selectDirty, {
+      user: false,
+      contacts: false,
+      about: false,
+      languages: false,
+    });
     store.refreshState();
 
     fixture = TestBed.createComponent(ProfileComponent);
