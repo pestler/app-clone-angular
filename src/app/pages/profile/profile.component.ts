@@ -1,5 +1,6 @@
 import { AsyncPipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
 import { Store } from '@ngrx/store';
 import { GITHUB_USERNAME_KEY } from '../../token';
 import { AboutCardComponent } from './cards/about-card/about-card.component';
@@ -16,6 +17,7 @@ import { selectLoading } from './store/profile.selectors';
     UserCardComponent,
     ContactsCardComponent,
     AsyncPipe,
+    MatButtonModule,
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss',
@@ -31,5 +33,9 @@ export class ProfileComponent implements OnInit {
     if (githubId) {
       this.store.dispatch(ProfileActions.loadProfile({ githubId }));
     }
+  }
+
+  saveProfile(): void {
+    this.store.dispatch(ProfileActions.saveProfile());
   }
 }

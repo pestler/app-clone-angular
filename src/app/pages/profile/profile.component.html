@@ -1,7 +1,7 @@
-<div class="page-wrapper">
-  @if (loading$ | async) {
-    <div class="loading">Loading…</div>
-  } @else {
+@if (loading$ | async) {
+  <div class="loading">Loading…</div>
+} @else {
+  <div class="page-wrapper">
     <div class="grid-item">
       <app-user-card></app-user-card>
       <app-contacts-card></app-contacts-card>
@@ -15,5 +15,8 @@
     <div class="support grid-item">
       <img src="https://cdn.rs.school/sloths/stickers/git-remote/image.svg" alt="You're a hero" />
     </div>
-  }
-</div>
+  </div>
+  <div class="button-wrapper">
+    <button mat-button (click)="saveProfile()" class="btn active">Save profile</button>
+  </div>
+}
