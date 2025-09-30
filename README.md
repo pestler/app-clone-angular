@@ -47,38 +47,23 @@ pnpm run build
 ## ⚙️ Environment Variables
 
 This project uses environment files to store configuration for different environments.
-The main configuration files are:
+To run the project, you need to create `src/environments/environment.ts` and `src/environments/environment.prod.ts` files.
+You can use the provided template files to create them:
 
-- `src/environments/environment.ts` (for development)
-- `src/environments/environment.prod.ts` (for production)
+- `src/environments/environment.ts.template`
+- `src/environments/environment.prod.ts.template`
 
-These files contain the following configuration:
+Copy these files and rename them to `environment.ts` and `environment.prod.ts` respectively.
+Then, fill in the placeholder values (e.g., `YOUR_API_KEY`) with your actual Firebase project configuration.
 
-### Firebase Configuration
+### CI/CD
 
-The `firebaseConfig` object contains the configuration for the Firebase project.
+For CI/CD pipelines, you can create the environment files during the build process using environment variables or secrets.
+For example, you can have a script that creates the `environment.ts` file:
 
-```typescript
-export const environment = {
-  production: false,
-  firebaseConfig: {
-    apiKey: 'YOUR_API_KEY',
-    authDomain: 'YOUR_AUTH_DOMAIN',
-    projectId: 'YOUR_PROJECT_ID',
-    storageBucket: 'YOUR_STORAGE_BUCKET',
-    messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
-    appId: 'YOUR_APP_ID',
-  },
-  apiUrl: 'http://localhost:3000/api',
-};
+```bash
+echo "export const environment = { production: false, firebaseConfig: { apiKey: '${FIREBASE_API_KEY}', authDomain: '${FIREBASE_AUTH_DOMAIN}', projectId: '${FIREBASE_PROJECT_ID}', storageBucket: '${FIREBASE_STORAGE_BUCKET}', messagingSenderId: '${FIREBASE_MESSAGING_SENDER_ID}', appId: '${FIREBASE_APP_ID}' }, apiUrl: 'http://localhost:3000/api' };" > src/environments/environment.ts
 ```
-
-### API URL
-
-The `apiUrl` variable contains the URL of the backend API.
-
-- In development, it is `http://localhost:3000/api`.
-- In production, it is `https://rs-app-clone-backend.onrender.com/api`.
 
 ## 🏗️ Architecture
 

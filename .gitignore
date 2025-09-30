@@ -52,7 +52,8 @@ task.txt
 /scripts
 
 # Environment specific files
-/src/environments
+/src/environments/environment.ts
+/src/environments/environment.prod.ts
 
 # Firebase
 .firebase
