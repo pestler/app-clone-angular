@@ -44,6 +44,12 @@ Thumbs.db
 rsapp
 /rsapp
 
+# Scripts
+/scripts
+
+# Environment specific files
+/src/environments
+
 # Firebase
 .firebase
 *-debug.log
