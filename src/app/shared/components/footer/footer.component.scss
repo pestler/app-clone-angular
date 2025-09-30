@@ -101,6 +101,43 @@ ul {
   }
 }
 
+.authors {
+  @include flex(column);
+
+  gap: 1rem;
+  flex: 2;
+  font-size: 1rem;
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  @media (width <= 992px) {
+    flex: 1;
+  }
+}
+
+.author-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    color: var(--text-blue-hover);
+  }
+}
+
+.author-icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: currentcolor;
+  mask: var(--icon-url) no-repeat center / contain;
+}
+
 .socials {
   @include flex(row);
 
