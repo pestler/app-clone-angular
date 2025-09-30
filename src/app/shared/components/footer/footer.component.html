@@ -38,10 +38,14 @@
     <div class="authors">
       <h3>Created by</h3>
       @for (author of authors; track author) {
-        <a [href]="author.githubUrl" target="_blank" class="author-link">
-          <span class="author-icon" [style.--icon-url]="'url(' + author.iconPath + ')'"> </span>
-          {{ author.name }} - {{ author.role }}
-        </a>
+        <div class="author-container">
+          <img [src]="author.avatarUrl" alt="{{ author.name }}" class="author-avatar" />
+          <div class="author-info">
+            <a [href]="author.githubUrl" target="_blank" class="author-link">
+              {{ author.name }} - {{ author.role }}
+            </a>
+          </div>
+        </div>
       }
     </div>
     <div class="socials">
