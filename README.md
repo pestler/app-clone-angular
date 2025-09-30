@@ -44,6 +44,42 @@ pnpm run testpnpm run test:e2e
 pnpm run build
 ```
 
+## ⚙️ Environment Variables
+
+This project uses environment files to store configuration for different environments.
+The main configuration files are:
+
+- `src/environments/environment.ts` (for development)
+- `src/environments/environment.prod.ts` (for production)
+
+These files contain the following configuration:
+
+### Firebase Configuration
+
+The `firebaseConfig` object contains the configuration for the Firebase project.
+
+```typescript
+export const environment = {
+  production: false,
+  firebaseConfig: {
+    apiKey: 'YOUR_API_KEY',
+    authDomain: 'YOUR_AUTH_DOMAIN',
+    projectId: 'YOUR_PROJECT_ID',
+    storageBucket: 'YOUR_STORAGE_BUCKET',
+    messagingSenderId: 'YOUR_MESSAGING_SENDER_ID',
+    appId: 'YOUR_APP_ID',
+  },
+  apiUrl: 'http://localhost:3000/api',
+};
+```
+
+### API URL
+
+The `apiUrl` variable contains the URL of the backend API.
+
+- In development, it is `http://localhost:3000/api`.
+- In production, it is `https://rs-app-clone-backend.onrender.com/api`.
+
 ## 🏗️ Architecture
 
 The application follows a modular architecture with a clear separation of concerns:
