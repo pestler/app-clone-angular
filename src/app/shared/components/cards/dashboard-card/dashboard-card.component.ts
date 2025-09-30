@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/material/card';
 
 @Component({
@@ -10,5 +10,5 @@ import { MatCard, MatCardContent, MatCardHeader, MatCardTitle } from '@angular/m
   styleUrls: ['./dashboard-card.component.scss'],
 })
 export class DashboardCardComponent {
-  @Input() title = '';
+  title = input('');
 }

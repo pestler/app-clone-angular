@@ -1,7 +1,7 @@
 <mat-card class="main-stats-card">
   <mat-card-content>
     <div class="grid-item">
-      <img class="im-fine-img" src="/assets/svg/im-fine.svg" alt="I'm fine meme" />
+      <img loading="lazy" class="im-fine-img" src="/assets/svg/im-fine.svg" alt="I'm fine meme" />
     </div>
     <mat-divider></mat-divider>
     <div class="grid-item stats-grid">
@@ -11,10 +11,10 @@
           Position
         </span>
         <span class="main-text">
-          @if (position >= DEFAULT_POSITION) {
+          @if (position() >= DEFAULT_POSITION) {
             New
           } @else {
-            {{ position }} / {{ totalStudentsCount }}
+            {{ position() }} / {{ totalStudentsCount() }}
           }
         </span>
       </div>
@@ -23,7 +23,7 @@
           <mat-icon>local_fire_department</mat-icon>
           Total Score
         </span>
-        <span class="main-text"> {{ totalScore }} / {{ maxCourseScore }} </span>
+        <span class="main-text"> {{ totalScore() }} / {{ maxCourseScore() }} </span>
       </div>
     </div>
   </mat-card-content>
