@@ -2,7 +2,7 @@
   <div class="avatar-wrapper">
     <img [src]="userAvatar" alt="avatar" class="avatar" />
   </div>
-  <button mat-icon-button (click)="openDialog()" class="edit-btn">
+  <button mat-icon-button (click)="openDialog()" class="edit-btn" aria-label="Edit profile">
     <mat-icon class="edit-icon">edit</mat-icon>
   </button>
   <p class="name">{{ userSig().displayName }}</p>
