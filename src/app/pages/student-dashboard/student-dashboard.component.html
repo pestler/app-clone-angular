@@ -1,7 +1,7 @@
 @if (data() === undefined) {
   <h1>Waiting for data...</h1>
 } @else if (data(); as data) {
-  <h2 class="student-curs">Student dashboard: {{ data.course.alias }}</h2>
+  <h2 class="student-curs">Dashboard: {{ data.course.alias }}</h2>
 
   <div class="masonry-grid">
     <app-dashboard-card title="Your stats" class="card-1">

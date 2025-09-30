@@ -60,16 +60,16 @@ export const routes: Routes = [
       {
         path: AR.MENTOR_DASHBOARD,
         loadComponent: () =>
-          import('./pages/mentor-dashboard/mentor-dashboard.component').then(
-            (m) => m.MentorDashboardComponent,
+          import('./pages/student-dashboard/student-dashboard.component').then(
+            (m) => m.StudentDashboardComponent,
           ),
         data: { title: 'Mentor Dashboard' },
       },
       {
         path: AR.ADMIN_DASHBOARD,
         loadComponent: () =>
-          import('./pages/admin-dashboard/admin-dashboard.component').then(
-            (m) => m.AdminDashboardComponent,
+          import('./pages/student-dashboard/student-dashboard.component').then(
+            (m) => m.StudentDashboardComponent,
           ),
         data: { title: 'Admin Dashboard' },
       },
