@@ -40,7 +40,11 @@
               @if (studentSolution(); as solution) {
                 <section class="submission-link">
                   <strong>Student's Submission:</strong>
-                  <a [href]="solution.url" target="_blank" title="{{ solution.url }}">
+                  <a
+                    [href]="solution.url"
+                    target="_blank"
+                    aria-label="View student's submission at {{ solution.url }}"
+                  >
                     <mat-icon>link</mat-icon>
                     <span>{{ solution.url }}</span>
                   </a>
