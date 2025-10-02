@@ -1,6 +1,7 @@
 import js from '@eslint/js';
 import angular from 'angular-eslint';
 import prettierConfig from 'eslint-config-prettier';
+import pluginPlaywright from 'eslint-plugin-playwright';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -24,7 +25,7 @@ export default [
   })),
 
   {
-    files: ['**/*.ts'],
+    files: ['src/**/*.ts'], // Apply Angular-specific rules only to src files
     languageOptions: {
       parserOptions: {
         project: './tsconfig.eslint.json',
@@ -46,6 +47,17 @@ export default [
           caughtErrorsIgnorePattern: '^_',
         },
       ],
+    },
+  },
+
+  // Playwright specific configuration
+  {
+    files: ['e2e/**/*.ts'],
+    plugins: {
+      playwright: pluginPlaywright,
+    },
+    rules: {
+      ...pluginPlaywright.configs.recommended.rules,
     },
   },
 
