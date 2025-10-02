@@ -56,6 +56,7 @@ task.txt
 # Environment specific files
 /src/environments/environment.ts
 /src/environments/environment.prod.ts
+/src/environments/environment.firebase.ts
 
 # Firebase
 .firebase
