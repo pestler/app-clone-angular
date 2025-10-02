@@ -35,7 +35,8 @@ pnpm run start
 3. Run tests
 
 ```bash
-pnpm run testpnpm run test:e2e
+pnpm run test
+pnpm run test:e2e
 ```
 
 4. Build for production
@@ -47,14 +48,46 @@ pnpm run build
 ## ⚙️ Environment Variables
 
 This project uses environment files to store configuration for different environments.
-To run the project, you need to create `src/environments/environment.ts` and `src/environments/environment.prod.ts` files.
-You can use the provided template files to create them:
+
+### 1. Create Environment Files
+
+To run the project, you need to create `src/environments/environment.ts` and `src/environments/environment.prod.ts` files from their templates.
 
 - `src/environments/environment.ts.template`
 - `src/environments/environment.prod.ts.template`
 
-Copy these files and rename them to `environment.ts` and `environment.prod.ts` respectively.
-Then, fill in the placeholder values (e.g., `YOUR_API_KEY`) with your actual Firebase project configuration.
+In your terminal, run the following commands to copy the files:
+
+```bash
+cp src/environments/environment.ts.template src/environments/environment.ts
+cp src/environments/environment.prod.ts.template src/environments/environment.prod.ts
+```
+
+### 2. Populate Configuration Values
+
+After creating the files, you must fill in the placeholder values (e.g., `YOUR_API_KEY`) with a valid Firebase project configuration.
+
+#### Where to get the Firebase keys?
+
+You have two options:
+
+**Option A: Use Your Own Firebase Project (Recommended)**
+
+This is the best approach for isolated development, allowing you to experiment safely. You can use the free "Spark" plan.
+
+1.  Go to the [Firebase Console](https://console.firebase.google.com/) and create a new project.
+2.  In your project, go to **Project Settings** (click the ⚙️ gear icon in the sidebar).
+3.  In the **General** tab, scroll down to **Your apps** and click the **Web** icon (`</>`) to register a new web app.
+4.  After registration, Firebase will provide a `firebaseConfig` object containing your keys.
+5.  Copy the values from this object into your `environment.ts` and `environment.prod.ts` files.
+
+**Option B: Use the Shared Development Environment**
+
+If you need to work with the project's shared database for team collaboration, you can get the keys from the project owner.
+
+- **Contact the project owner via Telegram at https://t.me/pestler to request the keys.**
+
+**Important:** Never commit your `environment.ts` or `environment.prod.ts` files to Git. They are already listed in `.gitignore` to prevent accidental exposure of secret keys.
 
 ### CI/CD
 

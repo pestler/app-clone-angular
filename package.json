@@ -19,14 +19,15 @@
     "lint:styles": "stylelint '**/*.scss' --fix"
   },
   "lint-staged": {
-    "*.{ts,js,json,html,scss,css,md}": [
-      "prettier --write"
+    "*.{ts,js,json,html,md}": [
+      "npx prettier --write"
     ],
     "*.{ts,html}": [
-      "eslint --fix"
+      "npx eslint --fix"
     ],
-    "*.scss": [
-      "stylelint --fix"
+    "*.{scss,css}": [
+      "npx stylelint --fix",
+      "npx prettier --write"
     ]
   },
   "dependencies": {
