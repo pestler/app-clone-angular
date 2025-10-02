@@ -1,16 +1,29 @@
-import { Component } from '@angular/core';
-import { NotificationModel, NOTIFICATIONS } from './notifications.data';
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { NotificationsDataService } from '../../core/services/notifications-data.service';
+import { NotificationModel } from './notifications.data';
 
 @Component({
   selector: 'app-notifications',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './notifications.component.html',
   styleUrl: './notifications.component.scss',
 })
-export class NotificationsComponent {
-  notifications: NotificationModel[] = NOTIFICATIONS;
+export class NotificationsComponent implements OnInit, OnDestroy {
+  private readonly notificationsDataService = inject(NotificationsDataService);
+  notifications$!: Observable<NotificationModel[]>;
+
+  ngOnInit(): void {
+    this.notifications$ = this.notificationsDataService.notifications$;
+  }
+
+  ngOnDestroy(): void {
+    this.notificationsDataService.unsubscribe();
+  }
 
   save() {
-    alert('Something went wrong.\nTry again later!');
+    alert('This functionality is not implemented yet.');
   }
 }
