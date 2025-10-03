@@ -71,6 +71,12 @@
                             formControlName="score"
                             min="0"
                             [max]="criterion.value.max || 100"
+                            (input)="
+                              criteriaFormArray
+                                .at($index)
+                                .get('score')
+                                ?.setValue($event.target.value, { emitEvent: true })
+                            "
                           />
                         </mat-form-field>
                         <span class="score-value">/ {{ criterion.value.max || 100 }}</span>
