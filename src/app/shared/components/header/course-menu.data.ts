@@ -47,9 +47,25 @@ const studentCourseLinks: LinkData[] = [
   },
 ];
 
-export function getCourseLinks(activeCourse: Course | null): LinkData[] {
+const adminLinks: LinkData[] = [
+  {
+    name: 'Course List',
+    icon: 'list_alt',
+    color: 'var(--icon-blue)',
+    getUrl: (course: Course) => ({
+      path: 'admin/courses',
+      query: { course: course.alias },
+    }),
+  },
+];
+
+export function getCourseLinks(activeCourse: Course | null, isAdmin: boolean): LinkData[] {
   if (!activeCourse) {
     return [];
   }
-  return studentCourseLinks;
+  let links = [...studentCourseLinks];
+  if (isAdmin) {
+    links = [...links, ...adminLinks];
+  }
+  return links;
 }

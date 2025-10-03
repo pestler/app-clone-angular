@@ -9,7 +9,7 @@
         @if (selectedCourse(); as course) {
           <div class="option-content trigger-content">
             <img class="svg" [src]="course.logo" [alt]="course.name" />
-            <span>{{ course.name }}</span>
+            <span>{{ course.alias }}</span>
           </div>
         }
       </mat-select-trigger>
@@ -17,8 +17,8 @@
       @for (course of courses(); track course.id) {
         <mat-option [value]="course.alias" [class.course-empty]="course.isEmpty">
           <div class="option-content">
-            <img class="svg" [src]="course.logo" [alt]="course.name" />
-            <span>{{ course.name }}</span>
+            <img class="svg" [src]="course.logo" [alt]="course.alias" />
+            <span>{{ course.alias }}</span>
           </div>
         </mat-option>
       }

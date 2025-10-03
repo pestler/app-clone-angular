@@ -101,6 +101,33 @@ export const routes: Routes = [
         data: { title: 'Cross-Check Review' },
       },
       {
+        path: 'admin/courses',
+        loadComponent: () =>
+          import('./pages/admin/course-list/course-list.component').then(
+            (m) => m.CourseListComponent,
+          ),
+        data: { title: 'Course List' },
+        canActivate: [authGuard],
+      },
+      {
+        path: 'admin/courses/add',
+        loadComponent: () =>
+          import('./pages/admin/course-form/course-form.component').then(
+            (m) => m.CourseFormComponent,
+          ),
+        data: { title: 'Add New Course' },
+        canActivate: [authGuard],
+      },
+      {
+        path: 'admin/courses/edit/:id',
+        loadComponent: () =>
+          import('./pages/admin/course-form/course-form.component').then(
+            (m) => m.CourseFormComponent,
+          ),
+        data: { title: 'Edit Course' },
+        canActivate: [authGuard],
+      },
+      {
         path: '**',
         loadComponent: () =>
           import('./pages/not-found/not-found.component').then((m) => m.NotFoundComponent),

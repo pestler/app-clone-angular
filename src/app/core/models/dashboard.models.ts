@@ -173,7 +173,7 @@ export interface AvailableReview {
 export type AvailableReviewCounts = Pick<AvailableReview, 'checksCount' | 'completedChecksCount'>;
 
 export interface Course {
-  id: number;
+  id: string;
   name: string;
   startDate: string;
   logo: string;
@@ -181,6 +181,26 @@ export interface Course {
   usePrivateRepositories: boolean;
   maxCourseScore?: number;
   completed: boolean;
+  certificateDisciplines?: string | null;
+  certificateIssuer?: string;
+  certificateThreshold?: number;
+  createdDate?: string;
+  description?: string | null;
+  descriptionUrl?: string;
+  discipline?: { id: number; name: string };
+  discordServerId?: number;
+  endDate?: string;
+  fullName?: string;
+  inviteOnly?: boolean;
+  locationName?: string | null;
+  minStudentsPerMentor?: number;
+  personalMentoring?: boolean;
+  personalMentoringEndDate?: string;
+  personalMentoringStartDate?: string;
+  planned?: boolean;
+  registrationEndDate?: string;
+  updatedDate?: string;
+  wearecommunityUrl?: string;
 }
 
 export const courseConverter = createConverter<Course>();

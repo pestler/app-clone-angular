@@ -11,7 +11,8 @@ import {
   setDoc,
   where,
 } from '@angular/fire/firestore';
-import { Observable, shareReplay } from 'rxjs';
+import { from, Observable, shareReplay } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Course, courseConverter } from '../models/dashboard.models';
 import {
   CrossCheckAssignment,
@@ -43,6 +44,23 @@ export class CourseService {
     }
 
     return this.courses$;
+  }
+
+  createCourse(course: Course): Observable<Course> {
+    const courseDocRef = doc(this.firestore, `courses/${course.alias}`);
+    const newCourseWithId: Course = { ...course, id: course.alias };
+
+    return from(setDoc(courseDocRef, newCourseWithId)).pipe(map(() => newCourseWithId));
+  }
+
+  getCourseByAlias(alias: string): Observable<Course | undefined> {
+    const courseDocRef = doc(this.firestore, `courses/${alias}`).withConverter(courseConverter);
+    return docData(courseDocRef) as Observable<Course | undefined>;
+  }
+
+  updateCourse(alias: string, course: Course): Observable<Course> {
+    const courseDocRef = doc(this.firestore, `courses/${alias}`);
+    return from(setDoc(courseDocRef, course)).pipe(map(() => course));
   }
 
   getCourseCrossCheckTasks(courseId: string): Observable<Task[]> {
