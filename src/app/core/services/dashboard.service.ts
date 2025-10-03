@@ -3,9 +3,9 @@ import { forkJoin, from, map, Observable, take } from 'rxjs';
 import {
   Course,
   CourseStatistics,
-  courseStatisticsConverter,
   DashboardData,
   ScoreData,
+  scoreDataConverter,
   StudentSummary,
   Task,
   taskConverter,
@@ -35,11 +35,10 @@ export class DashboardService {
       this.firestoreService.getCollection<Task>(`courses/${courseAlias}/tasks`, taskConverter),
     );
 
-    const courseStats$ = from(
-      this.firestoreService.getDoc(
-        'courseStatistics',
-        'ZlY12vO9qy29M4a9v03l',
-        courseStatisticsConverter,
+    const students$ = from(
+      this.firestoreService.getCollection<ScoreData>(
+        `courses/${courseAlias}/students`,
+        scoreDataConverter,
       ),
     );
 
@@ -51,18 +50,12 @@ export class DashboardService {
     return forkJoin({
       allTasks: tasks$,
       taskResults: taskResults$,
-      courseStats: courseStats$,
+      students: students$,
       course: course$,
     }).pipe(
-      map(({ allTasks, taskResults, courseStats, course }) => {
+      map(({ allTasks, taskResults, students, course }) => {
         const safeAllTasks = (allTasks ?? []).filter((task) => task.type === 'courseTask');
         const studentTaskIds = new Set((taskResults ?? []).map((tr) => tr.id));
-
-        const safeCourseStats: CourseStatistics =
-          courseStats ??
-          ({
-            studentsStats: { activeStudentsCount: 0 },
-          } as CourseStatistics);
 
         const safeCourse: Course = course ?? ({} as Course);
 
@@ -113,9 +106,29 @@ export class DashboardService {
           }
         });
 
+        const activeStudentsCount = students.filter((s) => s.active).length;
+        const courseStats: CourseStatistics = {
+          studentsStats: {
+            activeStudentsCount: activeStudentsCount,
+            totalStudents: students.length,
+            studentsWithMentorCount: students.filter((s) => s.mentor).length,
+            certifiedStudentsCount: 0,
+            eligibleForCertificationCount: 0,
+          },
+          studentsCountries: { countries: [] },
+          mentorsCountries: { countries: [] },
+          mentorsStats: {
+            mentorsTotalCount: 0,
+            mentorsActiveCount: 0,
+            epamMentorsCount: 0,
+          },
+          courseTasks: [],
+          studentsCertificatesCountries: { countries: [] },
+        };
+
         const dashboardData: DashboardData = {
           studentSummary,
-          courseStats: safeCourseStats,
+          courseStats: courseStats,
           maxCourseScore: safeCourse.maxCourseScore ?? 600,
           tasksByStatus,
           nextEvents: [],
