@@ -1,0 +1,98 @@
+<div class="page-layout">
+  <h1>Cross-Check Submit</h1>
+
+  @if (loading()) {
+    <p>Loading...</p>
+  } @else {
+    <div class="row">
+      <div class="col">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          @if (courseTasks(); as tasks) {
+            @if (tasks.length > 0) {
+              <app-course-task-select
+                [tasks]="tasks"
+                [selectedTaskId]="selectedTaskId()"
+                (taskSelected)="handleTaskChange($event)"
+              ></app-course-task-select>
+            } @else {
+              <p>No tasks available for submission.</p>
+            }
+          }
+
+          @if (selectedTask(); as task) {
+            <app-submitted-status
+              [solution]="submittedSolution()"
+              [deadlinePassed]="!submitAllowed()"
+            ></app-submitted-status>
+
+            @if (submitAllowed()) {
+              <mat-form-field>
+                <mat-label>Solution URL</mat-label>
+                <input
+                  matInput
+                  id="solution-url"
+                  type="text"
+                  placeholder="link in the form of https://www.google.com"
+                  formControlName="url"
+                />
+                @if (form.get('url')?.hasError('required')) {
+                  <mat-error>Solution URL is required</mat-error>
+                }
+                @if (form.get('url')?.hasError('invalidUrl')) {
+                  <mat-error
+                    >Please provide a valid link (must start with `http://` or
+                    `https://`)</mat-error
+                  >
+                }
+              </mat-form-field>
+
+              @if (task.submitText) {
+                <div>
+                  <p>{{ task.submitText }}</p>
+                </div>
+              }
+            }
+
+            @if (submitAllowed() && newCrossCheck()) {
+              <div>
+                <p>CriteriaForm component placeholder</p>
+              </div>
+            }
+
+            @if (submitAllowed() && newCrossCheck()) {
+              <div>
+                <p>ScoreInput component placeholder</p>
+              </div>
+            }
+
+            @if (submitAllowed()) {
+              <div class="buttons-container" style="margin-top: 16px">
+                <button mat-raised-button color="primary" type="submit">Submit</button>
+                @if (submittedSolution()) {
+                  <button mat-stroked-button color="warn" (click)="cancelSubmission()">
+                    Cancel Submit
+                  </button>
+                }
+              </div>
+            }
+          }
+        </form>
+      </div>
+    </div>
+
+    @if (
+      submittedSolution() && !hasReviews() && (isCrossCheckCompleted() || isCrossCheckOngoing())
+    ) {
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>No one has checked your work yet.</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Check if you are eligible to appeal here.</p>
+        </mat-card-content>
+      </mat-card>
+    }
+
+    @if (hasReviews()) {}
+  }
+</div>

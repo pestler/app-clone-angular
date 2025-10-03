@@ -1,0 +1,9 @@
+<main class="layout">
+  <app-header></app-header>
+  <section class="content">
+    <router-outlet />
+  </section>
+  @if (isFooterVisible()) {
+    <app-footer></app-footer>
+  }
+</main>

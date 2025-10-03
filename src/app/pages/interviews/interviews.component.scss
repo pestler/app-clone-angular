@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  justify-content: flex-start;
+
+  & * {
+    flex: 0 0 50%;
+
+    @media (width <= 992px) {
+      flex: 0 0 100%;
+    }
+  }
+}

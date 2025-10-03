@@ -1,0 +1,30 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 8px;
+  width: 500px;
+
+  @media (width <= 576px) {
+    width: 400px;
+  }
+
+  @media (width <= 435px) {
+    width: 300px;
+  }
+}
+
+.title {
+  font-size: 14px;
+}
+
+.label {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.btn-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 8px;
+}

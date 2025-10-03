@@ -1,0 +1,87 @@
+.card-1 {
+  grid-area: stats;
+}
+
+.card-2 {
+  grid-area: tasks;
+}
+
+.card-3 {
+  grid-area: available;
+}
+
+.card-4 {
+  grid-area: review;
+}
+
+.card-5 {
+  grid-area: mentor;
+}
+
+.card-6 {
+  grid-area: repo;
+}
+
+.masonry-grid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    'stats   tasks     available'
+    'stats   mentor    repo'
+    'review  mentor    repo';
+
+  .card-1 {
+    grid-row: span 2;
+  }
+}
+
+@media (width <= 1180px) {
+  .masonry-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      'stats     tasks'
+      'available review'
+      'mentor    repo';
+
+    .card-1 {
+      grid-row: auto;
+    }
+  }
+}
+
+@media (width <= 800px) {
+  .masonry-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'stats'
+      'tasks'
+      'available'
+      'review'
+      'mentor'
+      'repo';
+  }
+}
+
+.student-curs {
+  text-align: center;
+}
+
+.card-extra {
+  color: #4466b3;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.card-extra:focus-visible {
+  outline: 2px solid var(--text-blue);
+  outline-offset: 2px;
+}
+
+.no-data-message {
+  text-align: center;
+  font-size: 1.2em;
+  color: #888;
+  margin-top: 20px;
+}

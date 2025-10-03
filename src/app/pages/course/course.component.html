@@ -1,0 +1,21 @@
+<app-course-select></app-course-select>
+<div class="content">
+  <app-side-nav></app-side-nav>
+
+  <div class="right-side">
+    @if (studentData() === undefined) {
+      <p>Loading...</p>
+    } @else if (studentData(); as student) {
+      <app-student-stats-card
+        [studentData]="student"
+        [completedTasksCount]="completedTasksCount()"
+        [totalTasksCount]="totalTasksCount()"
+        [isActive]="isActiveInCourse()"
+      >
+      </app-student-stats-card>
+      <app-mentor-card [mentor]="student.mentor"></app-mentor-card>
+    } @else {
+      <p class="no-data-message">No data for this course.</p>
+    }
+  </div>
+</div>

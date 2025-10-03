@@ -1,0 +1,17 @@
+.content {
+  display: flex;
+}
+
+.items-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 8px;
+}
+
+.item {
+  font-size: 14px;
+  padding: 4px 14px;
+  font-weight: 300;
+  border: 1px solid var(--border-block-end);
+  border-radius: 4px;
+}

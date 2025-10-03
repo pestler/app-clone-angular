@@ -1,0 +1,43 @@
+@mixin flex($direction) {
+  display: flex;
+  flex-flow: $direction wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header {
+  @include flex(row);
+
+  padding: 0.5rem;
+}
+
+.left-section,
+.right-section {
+  @include flex(row);
+
+  gap: 0.5rem;
+}
+
+.center-section {
+  @media (width<= 540px) {
+    width: 100%;
+    order: 3;
+    text-align: center;
+  }
+}
+
+.img {
+  height: 32px;
+}
+
+.svg {
+  width: 160px;
+}
+
+.cur-title {
+  font-size: 16px;
+
+  span {
+    font-weight: 500;
+  }
+}

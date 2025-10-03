@@ -1,0 +1,27 @@
+@if (interviewInfo.status === 'No Interview') {
+  <app-no-interview-card></app-no-interview-card>
+} @else {
+  <app-interview-card-base
+    [title]="interviewInfo.title"
+    [period]="interviewInfo.period"
+    [status]="interviewInfo.status"
+    [result]="interviewInfo.result"
+    [notCompletedMessage]="'You’re all set! Prepare for your upcoming interview.'"
+    [completedMessage]="'You have your interview result. Congratulations!'"
+    [notCompletedImage]="'https://cdn.rs.school/sloths/cleaned/its-a-good-job.svg'"
+    [completedImage]="'https://cdn.rs.school/sloths/stickers/congratulations/image.svg'"
+  >
+    <div person-slot class="interview-info-item">
+      <p class="label">Interviewer :</p>
+      <div>
+        <a class="link" [href]="interviewInfo.interviewer.url" target="_blank">
+          <div class="img-wrapper">
+            <img class="img" [src]="interviewInfo.interviewer.src" alt="Photo of mentor" />
+          </div>
+          <span>{{ interviewInfo.interviewer.github }}</span>
+          <img class="github-icon" src="../../../../assets/icons/github.svg" alt="Github logo" />
+        </a>
+      </div>
+    </div>
+  </app-interview-card-base>
+}

@@ -1,0 +1,83 @@
+@use '@angular/material' as mat;
+
+html {
+  height: 100%;
+
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+body {
+  height: 100%;
+  color-scheme: light;
+  background-color: none;
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.mat-mdc-snack-bar-container.toast-success .mat-mdc-snackbar-surface {
+  background-color: var(--background-color-dark-green);
+}
+
+.mat-mdc-snack-bar-container.toast-error .mat-mdc-snackbar-surface {
+  background-color: var(--background-color-dark-red);
+}
+
+:root {
+  --text-blue: #4466b3;
+  --text-black: rgb(0 0 0 / 88%);
+  --text-blue-hover: #006bff;
+  --text-gray: rgb(0 0 0 / 45%);
+  --text-green: rgb(135 208 104);
+  --text-status-green: #389e0d;
+  --text-orange: #d46b08;
+  --background-color: #f5f5f5;
+  --background-color-blue: #e6f4ff;
+  --background-color-orange: #fff7e6;
+  --background-color-dark-green: #204f17;
+  --background-color-dark-red: #570c0c;
+  --border-block-end: rgb(5 5 5 / 10%);
+  --background-light-green: #f6ffed;
+  --border-blue: #91caff;
+  --border-orange: #ffd591;
+  --border-green: #b7eb8f;
+  --border-menu: #bbb;
+  --icon-blue: #4466b3;
+  --icon-orange: rgb(255 165 0);
+  --icon-pink: rgb(235 47 150);
+  --icon-red: rgb(245 97 97);
+  --icon-violet: rgb(127 0 255);
+  --icon-black: rgb(0 0 0 / 88%);
+  --icon-gray: rgb(0 0 0 / 45%);
+  --empty-color: rgb(0 0 0 / 25%);
+  --white: #fff;
+  --button-gray: #d9d9d9;
+  --button-disabled: rgb(0 0 0 / 4%);
+  --button-blue: #1677ff;
+  --button-hover-blue: #4096ff;
+  --button-icon-pink: rgb(235 47 150);
+}
+
+.mat-mdc-form-field-infix {
+  padding: 8px 0 0;
+}

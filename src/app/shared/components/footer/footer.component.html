@@ -1,0 +1,61 @@
+<footer>
+  <div class="upper-section">
+    <div class="footer-column-wrapper">
+      @for (section of sections; track section) {
+        <div class="footer-column">
+          <h3>{{ section.title }}</h3>
+          <ul>
+            @for (link of section.links; track link) {
+              <li>
+                <a class="link" [href]="link.url" target="_blank">
+                  <span class="icon">{{ link.icon }}</span>
+                  {{ link.label }}
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    </div>
+    <div class="footer-support">
+      <div>
+        <h3>Thank you for your support!</h3>
+        <p class="subtitle">Top 10 donators:</p>
+        <app-donators></app-donators>
+      </div>
+      <a
+        mat-stroked-button
+        class="donate-button"
+        href="https://opencollective.com/rsschool#section-contribute"
+        target="_blank"
+      >
+        <mat-icon class="icon">favorite_border</mat-icon>
+        Make a donation
+      </a>
+    </div>
+  </div>
+  <div class="lower-section">
+    <div class="authors">
+      <h3>Created by</h3>
+      @for (author of authors; track author) {
+        <div class="author-container">
+          <img [src]="author.avatarUrl" alt="{{ author.name }}" class="author-avatar" />
+          <div class="author-info">
+            <a [href]="author.githubUrl" target="_blank" class="author-link">
+              {{ author.name }} - {{ author.role }}
+            </a>
+          </div>
+        </div>
+      }
+    </div>
+    <div class="socials">
+      @for (social of socials; track social) {
+        <a [href]="social.url" target="_blank" class="social-link">
+          <span class="social-icon" [style.--icon-url]="'url(' + social.iconPath + ')'"> </span>
+          {{ social.label }}
+        </a>
+      }
+    </div>
+    <p class="copyright">&copy; The Rolling Scopes {{ today | date: 'yyyy' }}</p>
+  </div>
+</footer>

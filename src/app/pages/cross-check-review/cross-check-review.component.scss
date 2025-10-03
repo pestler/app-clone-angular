@@ -1,0 +1,144 @@
+.review-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.form-title {
+  margin-bottom: 24px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.submission-link {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  padding: 16px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  a {
+    color: #3f51b5;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 400px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.criterion-list {
+  margin-top: 24px;
+  border-top: 1px solid #eee;
+  padding-top: 24px;
+}
+
+.criteria-header {
+  margin-bottom: 16px;
+
+  h2 {
+    margin: 0;
+  }
+}
+
+.total-score-container {
+  text-align: right;
+  font-size: 1.4em;
+  font-weight: 500;
+  margin-bottom: 24px;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.criterion-item {
+  border-bottom: 1px solid #eee;
+}
+
+.criterion-title {
+  font-weight: 500;
+  font-size: 1.1em;
+  margin: 0 0 8px;
+}
+
+.criterion-description {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.score-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.score-input {
+  width: 80px;
+}
+
+.score-value {
+  font-weight: 500;
+}
+
+.comment-actions {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+
+  .markdown-link {
+    text-decoration: none;
+  }
+}
+
+.preview-container {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+  min-height: 120px;
+}
+
+.anonymity-checkbox {
+  display: block;
+  margin-bottom: 24px;
+}
+
+@media (width <= 700px) {
+  .review-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (width <= 480px) {
+  .page-layout {
+    padding: 12px;
+  }
+
+  .submission-link a {
+    max-width: none;
+    word-break: break-all;
+    white-space: normal;
+  }
+}

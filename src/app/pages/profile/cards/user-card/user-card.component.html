@@ -1,0 +1,20 @@
+<div class="card-wrapper">
+  <div class="avatar-wrapper">
+    <img [src]="userAvatar" alt="avatar" class="avatar" />
+  </div>
+  <button mat-icon-button (click)="openDialog()" class="edit-btn" aria-label="Edit profile">
+    <mat-icon class="edit-icon">edit</mat-icon>
+  </button>
+  <p class="name">{{ userSig().displayName }}</p>
+  <div class="github-info">
+    <img class="github-icon" src="../../../../assets/icons/github.svg" alt="Github logo" />
+    <a [href]="userGithubUrl" target="_blank" class="link">{{ userSig().githubId }}</a>
+  </div>
+
+  <div class="location">
+    <mat-icon class="icon">location_on</mat-icon>
+    <span>
+      {{ [userSig().cityName, userSig().countryName].filter(Boolean).join(', ') }}
+    </span>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<h2 mat-dialog-title class="title">Profile information</h2>
+
+<form class="form" #contactForm="ngForm">
+  <div class="form-field">
+    <label for="emailEpam">EPAM E-mail:</label>
+    <input
+      id="emailEpam"
+      type="email"
+      [(ngModel)]="data.epamEmail"
+      name="emailEpam"
+      email
+      #epamEmail="ngModel"
+    />
+    @if (epamEmail.invalid && epamEmail.touched) {
+      <p class="error">Valid EPAM email is required</p>
+    }
+  </div>
+
+  <div class="form-field">
+    <label for="email">E-mail:</label>
+    <input
+      id="email"
+      type="email"
+      [(ngModel)]="data.email"
+      name="email"
+      email
+      #emailCtrl="ngModel"
+    />
+    @if (emailCtrl.invalid && emailCtrl.touched) {
+      <p class="error">Valid email is required</p>
+    }
+  </div>
+
+  <div class="form-field">
+    <label for="telegram">Telegram:</label>
+    <input id="telegram" type="text" [(ngModel)]="data.telegram" name="telegram" />
+  </div>
+
+  <div class="form-field">
+    <label for="phone">Phone:</label>
+    <input
+      id="phone"
+      type="tel"
+      [(ngModel)]="data.phone"
+      name="phone"
+      pattern="^\+?[0-9]{7,15}$"
+      #phoneCtrl="ngModel"
+    />
+    @if (phoneCtrl.invalid && phoneCtrl.touched) {
+      <p class="error">Enter a valid phone number</p>
+    }
+  </div>
+
+  <div class="form-field">
+    <label for="whatsapp">WhatsApp:</label>
+    <input id="whatsapp" type="text" [(ngModel)]="data.whatsapp" name="whatsapp" />
+  </div>
+
+  <div class="form-field">
+    <label for="notes">Notes:</label>
+    <textarea id="notes" [(ngModel)]="data.notes" name="notes"></textarea>
+  </div>
+</form>
+
+<mat-dialog-actions align="end" class="btn-wrapper">
+  <app-dialog-button variant="cancel" label="Cancel" [action]="cancel"></app-dialog-button>
+  <app-dialog-button
+    [variant]="isChanged && contactForm.valid ? 'save' : 'save-disabled'"
+    label="Save"
+    [action]="save"
+  ></app-dialog-button>
+</mat-dialog-actions>

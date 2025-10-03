@@ -1,0 +1,34 @@
+.course-select-panel {
+  margin-top: 10px;
+  border-radius: 10px;
+
+  .mat-mdc-option {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
+
+.form-field {
+  width: 300px;
+  font-size: 14px;
+}
+
+.option-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.trigger-content {
+  width: 100%;
+  justify-content: center;
+}
+
+.svg {
+  width: 32px;
+  height: 32px;
+}
+
+.course-empty {
+  opacity: 0.5;
+}

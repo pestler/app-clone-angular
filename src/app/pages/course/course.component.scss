@@ -1,0 +1,50 @@
+@mixin flex($direction) {
+  display: flex;
+  flex-direction: $direction;
+  gap: 24px;
+}
+
+:host {
+  @include flex(column);
+
+  gap: 16px;
+  height: 100%;
+  padding: 0 0 16px;
+}
+
+.content {
+  @include flex(row);
+
+  justify-content: space-between;
+
+  & > :first-child {
+    flex: 1 1 0;
+  }
+
+  & > :last-child {
+    flex: 2 1 0;
+  }
+
+  @media (width <= 576px) {
+    @include flex(column);
+  }
+}
+
+.right-side {
+  @include flex(row);
+
+  & > * {
+    flex-grow: 1;
+  }
+
+  @media (width <= 992px) {
+    @include flex(column);
+  }
+}
+
+.no-data-message {
+  text-align: center;
+  font-size: 1.2em;
+  color: #888;
+  margin-top: 20px;
+}
