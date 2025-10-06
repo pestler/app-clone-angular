@@ -16,22 +16,22 @@ export interface UserProfile {
     mentor: boolean;
     admin: boolean;
   };
-  about: string | null;
-  languages: string[] | null;
+  about: string;
+  languages: string[];
   generalInfo: {
     englishLevel: string;
     location: {
-      countryName?: string;
-      cityName?: string;
+      countryName: string;
+      cityName: string;
     };
   };
   contacts: {
-    phone?: string;
-    email?: string;
+    phone: string;
+    email: string;
     epamEmail?: string;
-    telegram?: string;
-    whatsapp?: string;
-    notes?: string;
+    telegram: string;
+    whatsapp: string;
+    notes: string;
   };
   discord: {
     username: string;

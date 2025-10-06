@@ -14,11 +14,9 @@ export class User {
     return docData(userDocRef);
   }
 
-  async saveUserProfile(githubId: string, data: Partial<UserProfile>): Promise<UserProfile> {
+  async saveUserProfile(githubId: string, data: Partial<UserProfile>): Promise<void> {
     const userDocRef = doc(this.firestore, `users/${githubId}`);
-    await setDoc(userDocRef, data, { merge: true });
-    const updatedSnapshot = await getDoc(userDocRef);
-    return updatedSnapshot.data() as UserProfile;
+    return setDoc(userDocRef, data, { merge: true });
   }
 
   async doesUserProfileExist(githubId: string): Promise<boolean> {

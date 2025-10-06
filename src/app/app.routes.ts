@@ -49,48 +49,21 @@ export const routes: Routes = [
           import('./pages/student-dashboard/student-dashboard.component').then(
             (m) => m.StudentDashboardComponent,
           ),
-        data: { title: 'Student Dashboard' },
       },
       {
         path: `${AR.COURSE}/${AR.STUDENT}/${AR.INTERVIEWS}`,
         loadComponent: () =>
           import('./pages/interviews/interviews.component').then((m) => m.InterviewsComponent),
-        data: { title: 'Interview' },
-      },
-      {
-        path: AR.MENTOR_DASHBOARD,
-        loadComponent: () =>
-          import('./pages/student-dashboard/student-dashboard.component').then(
-            (m) => m.StudentDashboardComponent,
-          ),
-        data: { title: 'Mentor Dashboard' },
-      },
-      {
-        path: AR.ADMIN_DASHBOARD,
-        loadComponent: () =>
-          import('./pages/student-dashboard/student-dashboard.component').then(
-            (m) => m.StudentDashboardComponent,
-          ),
-        data: { title: 'Admin Dashboard' },
       },
       {
         path: 'profile',
         loadComponent: () =>
           import('./pages/profile/profile.component').then((m) => m.ProfileComponent),
-        data: { title: 'Profile' },
       },
-      {
-        path: 'notifications',
-        loadComponent: () =>
-          import('./pages/notifications/notifications.component').then(
-            (m) => m.NotificationsComponent,
-          ),
-        data: { title: 'Notifications' },
-      },
+
       {
         path: `${AR.COURSE}/${AR.STUDENT}/${AR.CCSUBMIT}`,
         component: CrossCheckSubmitComponent,
-        data: { title: 'Cross-Check Submit' },
       },
       {
         path: `${AR.COURSE}/${AR.STUDENT}/${AR.CCREVIEW}`,
@@ -98,34 +71,10 @@ export const routes: Routes = [
           import('./pages/cross-check-review/cross-check-review.component').then(
             (m) => m.CrossCheckReviewComponent,
           ),
-        data: { title: 'Cross-Check Review' },
       },
       {
-        path: 'admin/courses',
-        loadComponent: () =>
-          import('./pages/admin/course-list/course-list.component').then(
-            (m) => m.CourseListComponent,
-          ),
-        data: { title: 'Course List' },
-        canActivate: [authGuard],
-      },
-      {
-        path: 'admin/courses/add',
-        loadComponent: () =>
-          import('./pages/admin/course-form/course-form.component').then(
-            (m) => m.CourseFormComponent,
-          ),
-        data: { title: 'Add New Course' },
-        canActivate: [authGuard],
-      },
-      {
-        path: 'admin/courses/edit/:id',
-        loadComponent: () =>
-          import('./pages/admin/course-form/course-form.component').then(
-            (m) => m.CourseFormComponent,
-          ),
-        data: { title: 'Edit Course' },
-        canActivate: [authGuard],
+        path: `${AR.COURSE}/${AR.SCORE}`,
+        loadComponent: () => import('./pages/score/score.component').then((m) => m.ScoreComponent),
       },
       {
         path: '**',
