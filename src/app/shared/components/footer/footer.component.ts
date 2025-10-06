@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { DonatorsComponent } from './donators/donators.component';
+import { FOOTER_AUTHORS } from './footer-authors';
 import { FOOTER_SECTIONS, FooterSection, SOCIAL_LINKS } from './footer-links';
 
 @Component({
@@ -14,5 +15,6 @@ import { FOOTER_SECTIONS, FooterSection, SOCIAL_LINKS } from './footer-links';
 export class FooterComponent {
   sections: FooterSection[] = FOOTER_SECTIONS;
   socials = SOCIAL_LINKS;
+  authors = FOOTER_AUTHORS;
   today = new Date();
 }

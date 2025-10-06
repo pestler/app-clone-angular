@@ -5,7 +5,7 @@
       <p class="title">{{ title }}</p>
     </mat-card-title>
     @if (isEdit) {
-      <button mat-icon-button (click)="onEditClick()">
+      <button mat-icon-button (click)="onEditClick()" [attr.aria-label]="'Edit ' + title">
         <mat-icon class="title-edit-icon">edit</mat-icon>
       </button>
     }

@@ -40,7 +40,11 @@
               @if (studentSolution(); as solution) {
                 <section class="submission-link">
                   <strong>Student's Submission:</strong>
-                  <a [href]="solution.url" target="_blank" title="{{ solution.url }}">
+                  <a
+                    [href]="solution.url"
+                    target="_blank"
+                    aria-label="View student's submission at {{ solution.url }}"
+                  >
                     <mat-icon>link</mat-icon>
                     <span>{{ solution.url }}</span>
                   </a>
@@ -67,6 +71,12 @@
                             formControlName="score"
                             min="0"
                             [max]="criterion.value.max || 100"
+                            (input)="
+                              criteriaFormArray
+                                .at($index)
+                                .get('score')
+                                ?.setValue($event.target.value, { emitEvent: true })
+                            "
                           />
                         </mat-form-field>
                         <span class="score-value">/ {{ criterion.value.max || 100 }}</span>
@@ -120,8 +130,6 @@
               >
                 Submit Review
               </button>
-
-              <pre>DEBUG: {{ formValue() | json }}</pre>
             </fieldset>
           </mat-card-content>
         </mat-card>

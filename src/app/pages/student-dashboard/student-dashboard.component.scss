@@ -70,9 +70,13 @@
 .card-extra {
   color: #4466b3;
   text-decoration: none;
-  outline: none;
   cursor: pointer;
   transition: color 0.3s;
+}
+
+.card-extra:focus-visible {
+  outline: 2px solid var(--text-blue);
+  outline-offset: 2px;
 }
 
 .no-data-message {

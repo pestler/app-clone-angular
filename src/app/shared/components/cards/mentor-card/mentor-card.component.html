@@ -1,31 +1,37 @@
-@if (mentor) {
+@if (mentor()) {
   <div class="mentor-card card">
     <div class="title">Your mentor</div>
     <div class="info-wrapper mentor-info-wrapper">
       <div>
-        <p class="name">{{ mentor.name }}</p>
-        <a class="link" [href]="'https://github.com/' + mentor.githubId" target="_blank">
+        <p class="name">{{ mentor()?.name }}</p>
+        <a class="link" [href]="'https://github.com/' + mentor()?.githubId" target="_blank">
           <div class="img-wrapper">
             <img
+              loading="lazy"
               class="img"
-              [src]="'https://github.com/' + mentor.githubId + '.png'"
+              [src]="'https://github.com/' + mentor()?.githubId + '.png'"
               alt="Photo of mentor"
             />
           </div>
-          <span>{{ mentor.githubId }}</span>
-          <img class="github-icon" src="../../../../assets/icons/github.svg" alt="Github logo" />
+          <span>{{ mentor()?.githubId }}</span>
+          <img
+            loading="lazy"
+            class="github-icon"
+            src="../../../../assets/icons/github.svg"
+            alt="Github logo"
+          />
         </a>
       </div>
-      @if (mentor.email) {
+      @if (mentor()?.email) {
         <div class="card-item">
           <span class="label">E-mail:</span>
-          <span class="text">{{ mentor.email }}</span>
+          <span class="text">{{ mentor()?.email }}</span>
         </div>
       }
-      @if (mentor.telegram) {
+      @if (mentor()?.telegram) {
         <div class="card-item">
           <span class="label">Telegram:</span>
-          <span class="text">{{ mentor.telegram }}</span>
+          <span class="text">{{ mentor()?.telegram }}</span>
         </div>
       }
     </div>

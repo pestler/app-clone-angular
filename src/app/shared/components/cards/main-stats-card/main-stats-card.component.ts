@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,11 +12,11 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./main-stats-card.component.scss'],
 })
 export class MainStatsCardComponent {
-  @Input() isActive = false;
-  @Input() totalScore = 0;
-  @Input() position = 0;
-  @Input() maxCourseScore = 0;
-  @Input() totalStudentsCount = 0;
+  isActive = input(false);
+  totalScore = input(0);
+  position = input(0);
+  maxCourseScore = input(0);
+  totalStudentsCount = input(0);
 
   readonly DEFAULT_POSITION = 999999;
 }

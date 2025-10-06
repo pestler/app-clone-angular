@@ -9,9 +9,5 @@
 
 <mat-dialog-actions align="end" class="btn-wrapper">
   <app-dialog-button variant="cancel" label="Cancel" [action]="cancel"></app-dialog-button>
-  <app-dialog-button
-    [variant]="about.trim().length ? 'save' : 'save-disabled'"
-    label="Save"
-    [action]="save"
-  ></app-dialog-button>
+  <app-dialog-button label="Save" [action]="save"></app-dialog-button>
 </mat-dialog-actions>
