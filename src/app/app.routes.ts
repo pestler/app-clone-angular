@@ -56,20 +56,6 @@ export const routes: Routes = [
           import('./pages/interviews/interviews.component').then((m) => m.InterviewsComponent),
       },
       {
-        path: AR.MENTOR_DASHBOARD,
-        loadComponent: () =>
-          import('./pages/mentor-dashboard/mentor-dashboard.component').then(
-            (m) => m.MentorDashboardComponent,
-          ),
-      },
-      {
-        path: AR.ADMIN_DASHBOARD,
-        loadComponent: () =>
-          import('./pages/admin-dashboard/admin-dashboard.component').then(
-            (m) => m.AdminDashboardComponent,
-          ),
-      },
-      {
         path: 'profile',
         loadComponent: () =>
           import('./pages/profile/profile.component').then((m) => m.ProfileComponent),
