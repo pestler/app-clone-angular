@@ -24,4 +24,5 @@ export const APP_ROUTES = {
   EXPELSTUDENT: 'expel-student',
   CCSUBMIT: 'cross-check-submit',
   CCREVIEW: 'cross-check-review',
+  CCREVIEW1: 'cross-check-review1',
 } as const;
