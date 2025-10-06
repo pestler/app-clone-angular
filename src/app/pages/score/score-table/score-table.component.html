@@ -5,30 +5,42 @@
     } @else {
       <div class="table-wrapper">
         <table mat-table [dataSource]="students" matSort (matSortChange)="handleSortChange($event)">
-          <!-- Dynamic Columns -->
           @for (column of displayedColumns; track column) {
-            <ng-container matColumnDef="{{ column }}">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ column }}</th>
+            <ng-container
+              matColumnDef="{{ column }}"
+              [sticky]="column === 'rank' || column === 'githubId'"
+            >
+              <th
+                mat-header-cell
+                *matHeaderCellDef
+                mat-sort-header
+                [disabled]="!isSortable(column)"
+                [ngClass]="{ 'task-header': isTaskColumn(column) }"
+              >
+                {{ getColumnHeader(column) }}
+              </th>
               <td mat-cell *matCellDef="let element">
                 @if (column === 'githubId') {
-                  <a [href]="'https://github.com/' + element.githubId" target="_blank">{{
-                    element.githubId
-                  }}</a>
-                } @else if (column === 'displayName') {
-                  {{ element.displayName }}
-                } @else if (column === 'totalScore') {
-                  {{ element.totalScore }}
+                  <a
+                    class="github-link"
+                    [href]="'https://github.com/' + element.githubId"
+                    target="_blank"
+                    >{{ element.githubId }}</a
+                  >
+                } @else if (column === 'name') {
+                  {{ element.name }}
+                } @else if (column === 'score') {
+                  {{ element.score }}
                 } @else if (column === 'rank') {
                   {{ element.rank }}
                 } @else {
-                  <!-- Handle task-specific columns -->
                   {{ element[column] }}
                 }
               </td>
             </ng-container>
           }
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
         </table>
       </div>

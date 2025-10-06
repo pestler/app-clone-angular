@@ -34,7 +34,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { CourseService } from '../../../core/services/course';
 
 function getColumns(tasks: Task[]): string[] {
-  const basicColumns = ['githubId', 'displayName', 'totalScore', 'rank'];
+  const basicColumns = ['rank', 'githubId', 'name', 'score'];
   const taskColumns = tasks.map((task) => `task-${task.id}`);
   return [...basicColumns, ...taskColumns];
 }
@@ -73,6 +73,8 @@ export class ScoreTableComponent implements OnInit, OnChanges {
   currentPage = 0;
   sortField = 'rank';
   sortDirection: 'asc' | 'desc' | '' = 'asc';
+  taskHeaderMap = new Map<string, string>();
+  sortableColumns: string[] = ['rank', 'githubId', 'name', 'score'];
 
   private githubId$ = this.authService.githubUsername$;
   private currentStudentScore: Signal<ScoreStudentDto | undefined> = toSignal(
@@ -92,6 +94,12 @@ export class ScoreTableComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
+    if (changes['activeOnly']) {
+      console.log(
+        'ScoreTableComponent: ngOnChanges detected activeOnly change:',
+        changes['activeOnly'].currentValue,
+      );
+    }
     if (changes['activeOnly'] || changes['course']) {
       this.loadData();
     }
@@ -109,6 +117,7 @@ export class ScoreTableComponent implements OnInit, OnChanges {
     const filters: ScoreTableFilters = {
       activeOnly: this.activeOnly,
     };
+    console.log('ScoreTableComponent: loading data with filters:', filters);
     const order: ScoreOrder = {
       field: this.sortField,
       order: this.sortDirection === 'asc' ? 'ascend' : 'descend',
@@ -125,12 +134,33 @@ export class ScoreTableComponent implements OnInit, OnChanges {
         this.totalStudents = scoreData.pagination.total || 0;
         this.courseTasks.set(tasks);
         this.displayedColumns = getColumns(tasks);
+
+        this.taskHeaderMap.clear();
+        tasks.forEach((task) => {
+          this.taskHeaderMap.set(`task-${task.id}`, task.name);
+        });
+
         console.log('ScoreTable: Final dataSource:', this.dataSource.getValue());
       },
       error: (err) => {
         console.error('ScoreTable: Error loading score data:', err);
       },
     });
+  }
+
+  getColumnHeader(column: string): string {
+    if (this.taskHeaderMap.has(column)) {
+      return this.taskHeaderMap.get(column)!;
+    }
+    return column;
+  }
+
+  isTaskColumn(column: string): boolean {
+    return column.startsWith('task-');
+  }
+
+  isSortable(column: string): boolean {
+    return this.sortableColumns.includes(column);
   }
 
   handlePageEvent(event: PageEvent): void {

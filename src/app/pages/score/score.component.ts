@@ -52,6 +52,7 @@ export class ScoreComponent {
 
   handleActiveOnlyChange(): void {
     this.activeOnly.set(!this.activeOnly());
+    console.log('ScoreComponent: activeOnly toggled to', this.activeOnly());
   }
 
   handleExportCsv(): void {

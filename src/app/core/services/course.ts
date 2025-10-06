@@ -8,6 +8,7 @@ import {
   docData,
   DocumentData,
   Firestore,
+  getDoc,
   getDocs,
   query,
   setDoc,
@@ -158,20 +159,14 @@ export class CourseService {
     courseId: string,
     pagination: IPaginationInfo,
     filters: ScoreTableFilters,
-    _order: ScoreOrder,
+    order: ScoreOrder,
   ): Observable<{ content: ScoreStudentDto[]; pagination: IPaginationInfo }> {
-    console.log('getCourseScore: Querying students for courseId:', courseId);
     const studentsCollection = collection(this.firestore, `courses/${courseId}/students`);
-    let q = query(studentsCollection);
-
-    if (filters.activeOnly) {
-      q = query(q, where('active', '==', true));
-    }
+    const q = query(studentsCollection);
 
     return from(getDocs(q)).pipe(
       switchMap((snapshot) => {
         const rawStudents: DocumentData[] = snapshot.docs.map((doc) => doc.data());
-        console.log('getCourseScore: Raw students data:', rawStudents);
 
         if (rawStudents.length === 0) {
           return of({
@@ -186,26 +181,36 @@ export class CourseService {
         }
 
         const studentObservables = rawStudents.map((student) => {
+          const studentId = student['githubId'];
           const taskResultsCollection = collection(
             this.firestore,
-            `courses/${courseId}/students/${student['githubId']}/taskResults`,
+            `courses/${courseId}/students/${studentId}/taskResults`,
           );
-          return from(getDocs(taskResultsCollection)).pipe(
-            map((taskSnapshot) => {
+          const userDocRef = doc(this.firestore, `users/${studentId}`);
+
+          const taskResults$ = from(getDocs(taskResultsCollection));
+          const user$ = from(getDoc(userDocRef));
+
+          return forkJoin({ tasks: taskResults$, user: user$ }).pipe(
+            map(({ tasks, user }) => {
+              const userData = user.data();
+              const isActive = userData ? userData['active'] === true : false;
+
               const taskScores: Record<string, number> = {};
-              taskSnapshot.docs.forEach((taskDoc) => {
+              tasks.docs.forEach((taskDoc) => {
                 const taskId = taskDoc.id;
                 const score = taskDoc.data()['score'];
                 if (score !== undefined) {
                   taskScores[`task-${taskId}`] = score;
                 }
               });
+
               return {
-                githubId: student['githubId'],
-                name: student['displayName'] || student['githubId'],
+                githubId: studentId,
+                name: student['displayName'] || studentId,
                 score: student['totalScore'] || 0,
                 rank: student['rank'] || 0,
-                isActive: student['active'] || false,
+                isActive: isActive,
                 ...taskScores,
               } as ScoreStudentDto;
             }),
@@ -214,10 +219,30 @@ export class CourseService {
 
         return forkJoin(studentObservables).pipe(
           map((processedStudents) => {
-            const total = processedStudents.length;
+            const filteredStudents = filters.activeOnly
+              ? processedStudents.filter((s) => s.isActive)
+              : processedStudents;
+
+            if (order.field && order.order) {
+              filteredStudents.sort((a, b) => {
+                const isAsc = order.order === 'ascend';
+                const valA = a[order.field];
+                const valB = b[order.field];
+
+                if (typeof valA === 'number' && typeof valB === 'number') {
+                  return (valA - valB) * (isAsc ? 1 : -1);
+                }
+                if (typeof valA === 'string' && typeof valB === 'string') {
+                  return valA.localeCompare(valB) * (isAsc ? 1 : -1);
+                }
+                return 0;
+              });
+            }
+
+            const total = filteredStudents.length;
             const startIndex = (pagination.current - 1) * pagination.pageSize;
             const endIndex = startIndex + pagination.pageSize;
-            const paginatedContent = processedStudents.slice(startIndex, endIndex);
+            const paginatedContent = filteredStudents.slice(startIndex, endIndex);
 
             return {
               content: paginatedContent,
@@ -239,15 +264,26 @@ export class CourseService {
     githubId: string,
   ): Observable<ScoreStudentDto | undefined> {
     const studentDocRef = doc(this.firestore, `courses/${courseId}/students/${githubId}`);
-    return docData(studentDocRef).pipe(
-      map((data: DocumentData | undefined) => {
-        if (!data) return undefined;
+    const userDocRef = doc(this.firestore, `users/${githubId}`);
+
+    return forkJoin({
+      student: from(getDoc(studentDocRef)),
+      user: from(getDoc(userDocRef)),
+    }).pipe(
+      map(({ student, user }) => {
+        const studentData = student.data();
+        const userData = user.data();
+
+        if (!studentData) return undefined;
+
+        const isActive = userData ? userData['active'] === true : false;
+
         return {
-          githubId: data['githubId'],
-          name: data['displayName'] || data['githubId'],
-          score: data['totalScore'] || 0,
-          rank: data['rank'] || 0,
-          isActive: data['active'] || false,
+          githubId: studentData['githubId'],
+          name: studentData['displayName'] || studentData['githubId'],
+          score: studentData['totalScore'] || 0,
+          rank: studentData['rank'] || 0,
+          isActive: isActive,
         };
       }),
     );
