@@ -41,7 +41,8 @@ export class CourseSelectComponent {
         const courseChecks$ = courses.map((course) =>
           this.authService.getScoreData(course.alias).pipe(
             map((scoreData) => {
-              const logoName = logoNameMap[course.logo] || course.logo;
+              const defaultLogo = 'default-course';
+              const logoName = course.logo ? logoNameMap[course.logo] || course.logo : defaultLogo;
               return {
                 ...course,
                 logo: `assets/svg/${logoName}.svg`,

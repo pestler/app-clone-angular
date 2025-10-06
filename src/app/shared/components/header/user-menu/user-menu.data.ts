@@ -10,7 +10,6 @@ export interface MenuItem {
 export const menuItems: MenuItem[] = [
   { icon: 'visibility', label: 'Profile', route: '/profile' },
   { icon: 'notifications', label: 'Notifications', route: '/notifications' },
-  { icon: 'description', label: 'My CV', route: '/cv' },
   {
     icon: 'help_outline',
     label: 'Help',

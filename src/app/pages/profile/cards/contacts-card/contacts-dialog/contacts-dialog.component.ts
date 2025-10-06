@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { DialogButtonComponent } from '../../../../../shared/components/dialog-button/dialog-button.component';
-import { Contact } from '../../../models/contacts.model';
+import { Contact } from '../../../models/profile.model';
 
 @Component({
   selector: 'app-contacts-dialog',

@@ -13,52 +13,59 @@ const studentCourseLinks: LinkData[] = [
     name: 'Dashboard',
     icon: 'dashboard',
     color: 'var(--icon-black)',
-    getUrl: (course: Course | undefined) => ({
+    getUrl: (course: Course) => ({
       path: `${AR.COURSE}/${AR.STUDENT}/${AR.DASHBOARD}`,
-      query: course ? { course: course.alias } : undefined,
-    }),
-  },
-  {
-    name: 'Score',
-    icon: 'grade',
-    color: 'var(--icon-black)',
-    getUrl: (course: Course | undefined) => ({
-      path: `${AR.COURSE}/${AR.SCORE}`,
-      query: course ? { course: course.alias } : undefined,
+      query: { course: course.alias },
     }),
   },
   {
     name: 'Cross-Check: Submit',
     icon: 'code',
     color: 'var(--icon-black)',
-    getUrl: (course: Course | undefined) => ({
+    getUrl: (course: Course) => ({
       path: `${AR.COURSE}/${AR.STUDENT}/${AR.CCSUBMIT}`,
-      query: course ? { course: course.alias } : undefined,
+      query: { course: course.alias },
     }),
   },
   {
     name: 'Cross-Check: Review',
     icon: 'check_circle',
     color: 'var(--icon-red)',
-    getUrl: (course: Course | undefined) => ({
+    getUrl: (course: Course) => ({
       path: `${AR.COURSE}/${AR.STUDENT}/${AR.CCREVIEW}`,
-      query: course ? { course: course.alias } : undefined,
+      query: { course: course.alias },
     }),
   },
   {
     name: 'Interviews',
     icon: 'mic',
     color: 'var(--icon-black)',
-    getUrl: (course: Course | undefined) => ({
+    getUrl: (course: Course) => ({
       path: `${AR.COURSE}/${AR.STUDENT}/${AR.INTERVIEWS}`,
-      query: course ? { course: course.alias } : undefined,
+      query: { course: course.alias },
     }),
   },
 ];
 
-export function getCourseLinks(activeCourse: Course | null): LinkData[] {
+const adminLinks: LinkData[] = [
+  {
+    name: 'Course List',
+    icon: 'list_alt',
+    color: 'var(--icon-blue)',
+    getUrl: (course: Course) => ({
+      path: 'admin/courses',
+      query: { course: course.alias },
+    }),
+  },
+];
+
+export function getCourseLinks(activeCourse: Course | null, isAdmin: boolean): LinkData[] {
   if (!activeCourse) {
     return [];
   }
-  return studentCourseLinks;
+  let links = [...studentCourseLinks];
+  if (isAdmin) {
+    links = [...links, ...adminLinks];
+  }
+  return links;
 }
