@@ -54,10 +54,9 @@ export class MainNavComponent {
       map((data) => {
         const course = data['course'];
         const userProfile = data['userProfile'];
-        const isAdmin = userProfile?.roles?.admin ?? false;
 
         if (!course || !userProfile) return [];
-        return getCourseLinks(course as Course, isAdmin);
+        return getCourseLinks(course as Course);
       }),
     ),
     { initialValue: [] },

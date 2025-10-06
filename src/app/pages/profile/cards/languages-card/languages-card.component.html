@@ -1,8 +1,8 @@
 <app-base-card [isEdit]="true" title="My Languages" icon="translate" (editClick)="openDialog()">
-  @if (languagesSig()?.length) {
+  @if (lanquages.length) {
     <div class="items-wrapper">
-      @for (language of languagesSig(); track language) {
-        <div class="item">{{ language | languageName }}</div>
+      @for (lanquage of lanquages; track lanquage) {
+        <div class="item">{{ lanquage | languageName }}</div>
       }
     </div>
   } @else {

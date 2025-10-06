@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, effect, ElementRef, inject, OnDestroy, OnInit, viewChild } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { User as FirebaseUser } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { debounceTime, filter, Observable, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
+import { filter, Observable, switchMap, take, tap } from 'rxjs';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
@@ -37,7 +37,7 @@ import { MatInputModule } from '@angular/material/input';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class RegisterComponent implements OnInit {
   private readonly fb: FormBuilder = inject(FormBuilder);
   private readonly notificationService: NotificationService = inject(NotificationService);
   private readonly authService: AuthService = inject(AuthService);
@@ -45,11 +45,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
   private readonly router: Router = inject(Router);
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
   private readonly courseService: CourseService = inject(CourseService);
-
-  private readonly destroy$ = new Subject<void>();
-  private readonly storageKey = 'registrationFormDraft';
-
-  firstNameInput = viewChild<ElementRef<HTMLInputElement>>('firstNameInput');
 
   form!: FormGroup;
   formType: 'student' | 'mentor' = 'student';
@@ -81,31 +76,15 @@ export class RegisterComponent implements OnInit, OnDestroy {
   courses$: Observable<Course[]> | undefined;
   private currentUserGithubId: string | null = null;
 
-  constructor() {
-    effect(() => {
-      const input = this.firstNameInput();
-      if (input) {
-        input.nativeElement.focus();
-      }
-    });
-  }
-
   ngOnInit(): void {
     this.formType = this.route.snapshot.data['formType'] || 'student';
     this.isStudentForm = this.formType === 'student';
     this.authService.isNavigatingToRegister = false;
     this.initForm();
     this.prefillForm();
-    this.restoreDraft();
-    this.autoSaveDraft();
     this.courses$ = this.courseService
       .getCourses()
       .pipe(tap((courses: Course[]) => console.log('DEBUG: Loaded courses:', courses)));
-  }
-
-  ngOnDestroy(): void {
-    this.destroy$.next();
-    this.destroy$.complete();
   }
 
   private initForm(): void {
@@ -149,7 +128,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
           this.form.patchValue({ githubId: githubId });
         }),
         switchMap((githubId: string) => this.userService.getUserProfile(githubId)),
-        takeUntil(this.destroy$),
       )
       .subscribe((profile: UserProfile | undefined) => {
         if (profile) {
@@ -175,7 +153,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
       .pipe(
         take(1),
         filter((user): user is FirebaseUser => !!user),
-        takeUntil(this.destroy$),
       )
       .subscribe((user: FirebaseUser) => {
         const [firstName, ...lastNameParts] = user.displayName?.split(' ') || ['', ''];
@@ -185,19 +162,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
           lastName: this.form.value.lastName || lastNameParts.join(' '),
         });
       });
-  }
-
-  private autoSaveDraft(): void {
-    this.form.valueChanges.pipe(debounceTime(500), takeUntil(this.destroy$)).subscribe((value) => {
-      localStorage.setItem(this.storageKey, JSON.stringify(value));
-    });
-  }
-
-  private restoreDraft(): void {
-    const draft = localStorage.getItem(this.storageKey);
-    if (draft) {
-      this.form.patchValue(JSON.parse(draft));
-    }
   }
 
   onSubmit(): void {
@@ -245,7 +209,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
       .saveUserProfile(this.currentUserGithubId, profileData)
       .then(() => {
         this.notificationService.showSuccess('Your profile has been saved successfully!');
-        localStorage.removeItem(this.storageKey);
         this.router.navigate(['/']);
       })
       .catch((error: unknown) => {

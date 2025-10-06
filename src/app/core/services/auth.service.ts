@@ -11,11 +11,12 @@ import {
 import { Router } from '@angular/router';
 import { BehaviorSubject, firstValueFrom, from, map, Observable, of, switchMap } from 'rxjs';
 import { APP_ROUTES } from '../../constants/app-routes.const';
-import { GITHUB_USERNAME_KEY } from '../../token';
 import { ScoreData, scoreDataConverter } from '../models/dashboard.models';
 import { FirestoreService } from './firestore.service';
 import { NotificationService } from './notification.service';
 import { User as UserService } from './user';
+
+const GITHUB_USERNAME_KEY = 'githubUsername';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,6 @@ import { User as UserService } from './user';
 export class AuthService {
   private readonly auth: Auth = inject(Auth);
   private readonly router: Router = inject(Router);
-  private readonly githubUsernameKey = inject(GITHUB_USERNAME_KEY);
   private readonly firestoreService: FirestoreService = inject(FirestoreService);
   private readonly userService: UserService = inject(UserService);
   private readonly notification: NotificationService = inject(NotificationService);
@@ -31,9 +31,15 @@ export class AuthService {
   readonly user$: Observable<User | null> = authState(this.auth);
 
   readonly githubUsername$ = new BehaviorSubject<string | null>(
-    localStorage.getItem(this.githubUsernameKey),
+    localStorage.getItem(GITHUB_USERNAME_KEY),
   );
   isNavigatingToRegister = false;
+
+  constructor() {
+    this.githubUsername$.subscribe((val) =>
+      console.log('AuthService githubUsername$ changed:', val),
+    );
+  }
 
   getScoreData(courseAlias: string): Observable<ScoreData | null> {
     return this.githubUsername$.pipe(
@@ -59,8 +65,9 @@ export class AuthService {
       const githubUsername = additionalInfo?.username;
 
       if (githubUsername) {
-        localStorage.setItem(this.githubUsernameKey, githubUsername);
+        localStorage.setItem(GITHUB_USERNAME_KEY, githubUsername);
         this.githubUsername$.next(githubUsername);
+        console.log('AuthService: githubUsername set to', githubUsername);
 
         const profileExists = await this.userService.doesUserProfileExist(githubUsername);
         if (profileExists) {
@@ -90,8 +97,9 @@ export class AuthService {
   async signOut(): Promise<void> {
     try {
       await signOut(this.auth);
-      localStorage.removeItem(this.githubUsernameKey);
+      localStorage.removeItem(GITHUB_USERNAME_KEY);
       this.githubUsername$.next(null);
+      console.log('AuthService: githubUsername set to null');
       this.router.navigate([APP_ROUTES.LOGIN]);
     } catch (error) {
       const errorMessage = 'Sign out error';
