@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Mentor } from '../../../../core/models/dashboard.models';
 
 @Component({
@@ -8,5 +8,5 @@ import { Mentor } from '../../../../core/models/dashboard.models';
   styleUrl: './mentor-card.component.scss',
 })
 export class MentorCardComponent {
-  mentor = input<Mentor | undefined>();
+  @Input() mentor?: Mentor;
 }
