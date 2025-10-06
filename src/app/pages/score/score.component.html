@@ -1,0 +1,22 @@
+<div class="score-page-layout">
+  <h1>Score Page</h1>
+
+  @if (!course()) {
+    <p>No course selected or found.</p>
+  } @else {
+    <div class="controls">
+      <mat-slide-toggle [checked]="activeOnly()" (change)="handleActiveOnlyChange()">
+        Active Students Only
+      </mat-slide-toggle>
+      <button mat-raised-button [disabled]="!csvEnabled" (click)="handleExportCsv()">
+        Export CSV
+      </button>
+    </div>
+
+    <app-score-table
+      [course]="course()"
+      [activeOnly]="activeOnly()"
+      [isLoading]="loading()"
+    ></app-score-table>
+  }
+</div>

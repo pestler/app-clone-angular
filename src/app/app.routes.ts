@@ -128,6 +128,10 @@ export const routes: Routes = [
         canActivate: [authGuard],
       },
       {
+        path: `${AR.COURSE}/${AR.SCORE}`,
+        loadComponent: () => import('./pages/score/score.component').then((m) => m.ScoreComponent),
+      },
+      {
         path: '**',
         loadComponent: () =>
           import('./pages/not-found/not-found.component').then((m) => m.NotFoundComponent),
