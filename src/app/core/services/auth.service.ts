@@ -31,7 +31,7 @@ export class AuthService {
   readonly user$: Observable<User | null> = authState(this.auth);
 
   readonly githubUsername$ = new BehaviorSubject<string | null>(
-    localStorage.getItem(this.githubUsernameKey),
+    localStorage.getItem(this.githubUsernameKey)?.toLowerCase() ?? null,
   );
   isNavigatingToRegister = false;
 
@@ -59,10 +59,11 @@ export class AuthService {
       const githubUsername = additionalInfo?.username;
 
       if (githubUsername) {
-        localStorage.setItem(this.githubUsernameKey, githubUsername);
-        this.githubUsername$.next(githubUsername);
+        const lowerCaseGithubId = githubUsername.toLowerCase();
+        localStorage.setItem(this.githubUsernameKey, lowerCaseGithubId);
+        this.githubUsername$.next(lowerCaseGithubId);
 
-        const profileExists = await this.userService.doesUserProfileExist(githubUsername);
+        const profileExists = await this.userService.doesUserProfileExist(lowerCaseGithubId);
         if (profileExists) {
           const userProfile = await firstValueFrom(this.userService.getUserProfile(githubUsername));
           if (

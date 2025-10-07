@@ -1,0 +1,38 @@
+.score-page-layout {
+  padding: 24px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.label-toggle-group {
+  display: flex;
+  gap: 4px;
+  border: 1px solid #dadce0;
+  border-radius: 8px;
+  padding: 4px;
+  width: fit-content;
+}
+
+.toggle-option {
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+  font-weight: 400;
+  color: #3c4043;
+
+  &.active {
+    background-color: #e8f0fe;
+    color: #1967d2;
+    font-weight: 500;
+  }
+
+  &:hover:not(.active) {
+    background-color: #f1f3f4;
+  }
+}
