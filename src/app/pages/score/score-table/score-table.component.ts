@@ -12,6 +12,7 @@ import {
 import { toSignal } from '@angular/core/rxjs-interop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -32,9 +33,10 @@ import {
 import { Task } from '../../../core/models/task.model';
 import { AuthService } from '../../../core/services/auth.service';
 import { CourseService } from '../../../core/services/course';
+import { ScoreSearchDialogComponent } from '../score-search-dialog/score-search-dialog.component';
 
 function getColumns(tasks: Task[]): string[] {
-  const basicColumns = ['rank', 'githubId', 'name', 'score'];
+  const basicColumns = ['rank', 'githubId', 'name', 'city', 'score'];
   const taskColumns = tasks.map((task) => `task-${task.id}`);
   return [...basicColumns, ...taskColumns];
 }
@@ -44,6 +46,7 @@ function getColumns(tasks: Task[]): string[] {
   standalone: true,
   imports: [
     CommonModule,
+    MatDialogModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
@@ -65,16 +68,18 @@ export class ScoreTableComponent implements OnInit, OnChanges {
 
   private readonly courseService = inject(CourseService);
   private readonly authService = inject(AuthService);
+  private readonly dialog = inject(MatDialog);
 
   displayedColumns: string[] = [];
-  dataSource = new BehaviorSubject<ScoreStudentDto[]>([]);
+  public dataSource = new BehaviorSubject<ScoreStudentDto[]>([]);
   totalStudents = 0;
   pageSize = 100;
   currentPage = 0;
   sortField = 'rank';
   sortDirection: 'asc' | 'desc' | '' = 'asc';
   taskHeaderMap = new Map<string, string>();
-  sortableColumns: string[] = ['rank', 'githubId', 'name', 'score'];
+  sortableColumns: string[] = ['rank', 'githubId', 'name', 'city', 'score'];
+  activeFilters: ScoreTableFilters = {};
 
   private githubId$ = this.authService.githubUsername$;
   private currentStudentScore: Signal<ScoreStudentDto | undefined> = toSignal(
@@ -94,21 +99,44 @@ export class ScoreTableComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['activeOnly']) {
-      console.log(
-        'ScoreTableComponent: ngOnChanges detected activeOnly change:',
-        changes['activeOnly'].currentValue,
-      );
-    }
     if (changes['activeOnly'] || changes['course']) {
       this.loadData();
     }
   }
 
+  openSearchDialog(event: MouseEvent, field: 'githubId' | 'name' | 'city'): void {
+    const trigger = event.currentTarget as HTMLElement;
+    const rect = trigger.getBoundingClientRect();
+
+    const dialogRef = this.dialog.open(ScoreSearchDialogComponent, {
+      width: '280px',
+      position: {
+        top: `${rect.bottom + 4}px`,
+        left: `${rect.left - 120}px`,
+      },
+      hasBackdrop: true,
+      backdropClass: 'mat-dialog-transparent-backdrop',
+      panelClass: 'search-dialog-panel',
+      data: {
+        field: field,
+        value: this.activeFilters[field] || '',
+      },
+    });
+
+    dialogRef.afterClosed().subscribe((result: { field: string; value: string } | undefined) => {
+      if (result) {
+        this.activeFilters = {
+          ...this.activeFilters,
+          [result.field]: result.value,
+        };
+        this.currentPage = 0;
+        this.loadData();
+      }
+    });
+  }
+
   loadData(): void {
     if (!this.course) return;
-
-    console.log('ScoreTable: Loading data...');
 
     const pagination: IPaginationInfo = {
       current: this.currentPage + 1,
@@ -116,8 +144,8 @@ export class ScoreTableComponent implements OnInit, OnChanges {
     };
     const filters: ScoreTableFilters = {
       activeOnly: this.activeOnly,
+      ...this.activeFilters,
     };
-    console.log('ScoreTableComponent: loading data with filters:', filters);
     const order: ScoreOrder = {
       field: this.sortField,
       order: this.sortDirection === 'asc' ? 'ascend' : 'descend',
@@ -128,19 +156,14 @@ export class ScoreTableComponent implements OnInit, OnChanges {
       this.courseService.getCourseTasks(this.course.alias),
     ]).subscribe({
       next: ([scoreData, tasks]) => {
-        console.log('ScoreTable: Received scoreData:', scoreData);
-        console.log('ScoreTable: Received tasks:', tasks);
         this.dataSource.next(scoreData.content);
         this.totalStudents = scoreData.pagination.total || 0;
         this.courseTasks.set(tasks);
         this.displayedColumns = getColumns(tasks);
-
         this.taskHeaderMap.clear();
         tasks.forEach((task) => {
           this.taskHeaderMap.set(`task-${task.id}`, task.name);
         });
-
-        console.log('ScoreTable: Final dataSource:', this.dataSource.getValue());
       },
       error: (err) => {
         console.error('ScoreTable: Error loading score data:', err);
@@ -152,7 +175,14 @@ export class ScoreTableComponent implements OnInit, OnChanges {
     if (this.taskHeaderMap.has(column)) {
       return this.taskHeaderMap.get(column)!;
     }
-    return column;
+    const headerMap: Record<string, string> = {
+      rank: '#',
+      githubId: 'Github',
+      name: 'Name',
+      city: 'City',
+      score: 'Total',
+    };
+    return headerMap[column] || column;
   }
 
   isTaskColumn(column: string): boolean {
@@ -161,6 +191,10 @@ export class ScoreTableComponent implements OnInit, OnChanges {
 
   isSortable(column: string): boolean {
     return this.sortableColumns.includes(column);
+  }
+
+  isFilterActive(field: string): boolean {
+    return !!this.activeFilters[field as keyof ScoreTableFilters];
   }
 
   handlePageEvent(event: PageEvent): void {

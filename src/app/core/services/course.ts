@@ -208,6 +208,7 @@ export class CourseService {
               return {
                 githubId: studentId,
                 name: student['displayName'] || studentId,
+                city: userData?.['generalInfo']?.location?.cityName || '',
                 score: student['totalScore'] || 0,
                 rank: student['rank'] || 0,
                 isActive: isActive,
@@ -219,9 +220,25 @@ export class CourseService {
 
         return forkJoin(studentObservables).pipe(
           map((processedStudents) => {
-            const filteredStudents = filters.activeOnly
+            let filteredStudents = filters.activeOnly
               ? processedStudents.filter((s) => s.isActive)
               : processedStudents;
+
+            if (filters.githubId) {
+              filteredStudents = filteredStudents.filter((s) =>
+                s.githubId.toLowerCase().includes(filters.githubId!.toLowerCase()),
+              );
+            }
+            if (filters.name) {
+              filteredStudents = filteredStudents.filter((s) =>
+                s.name.toLowerCase().includes(filters.name!.toLowerCase()),
+              );
+            }
+            if (filters.city) {
+              filteredStudents = filteredStudents.filter((s) =>
+                s.city?.toLowerCase().includes(filters.city!.toLowerCase()),
+              );
+            }
 
             if (order.field && order.order) {
               filteredStudents.sort((a, b) => {
@@ -308,6 +325,18 @@ export class CourseService {
       `courses/${courseId}/tasks/${taskId}/cross-check`,
       customId,
     );
-    return setDoc(reviewDocRef, review);
+    const saveReviewPromise = setDoc(reviewDocRef, review);
+
+    const taskResultDocRef = doc(
+      this.firestore,
+      `courses/${courseId}/students/${review.studentId}/taskResults/${taskId}`,
+    );
+    const saveScorePromise = setDoc(
+      taskResultDocRef,
+      { score: review.totalScore },
+      { merge: true },
+    );
+
+    return Promise.all([saveReviewPromise, saveScorePromise]).then(() => undefined);
   }
 }

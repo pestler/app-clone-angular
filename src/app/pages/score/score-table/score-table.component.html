@@ -17,9 +17,36 @@
                 [disabled]="!isSortable(column)"
                 [ngClass]="{ 'task-header': isTaskColumn(column) }"
               >
-                {{ getColumnHeader(column) }}
+                <div class="header-with-icon">
+                  <span>{{ getColumnHeader(column) }}</span>
+                  @if (column === 'githubId') {
+                    <mat-icon
+                      (click)="openSearchDialog($event, 'githubId'); $event.stopPropagation()"
+                      [class.filter-active]="isFilterActive('githubId')"
+                      >search</mat-icon
+                    >
+                  }
+                  @if (column === 'name') {
+                    <mat-icon
+                      (click)="openSearchDialog($event, 'name'); $event.stopPropagation()"
+                      [class.filter-active]="isFilterActive('name')"
+                      >search</mat-icon
+                    >
+                  }
+                  @if (column === 'city') {
+                    <mat-icon
+                      (click)="openSearchDialog($event, 'city'); $event.stopPropagation()"
+                      [class.filter-active]="isFilterActive('city')"
+                      >search</mat-icon
+                    >
+                  }
+                </div>
               </th>
-              <td mat-cell *matCellDef="let element">
+              <td
+                mat-cell
+                *matCellDef="let element"
+                [class.blue-text]="column === 'githubId' || column === 'name'"
+              >
                 @if (column === 'githubId') {
                   <a
                     class="github-link"
@@ -29,6 +56,8 @@
                   >
                 } @else if (column === 'name') {
                   {{ element.name }}
+                } @else if (column === 'city') {
+                  {{ element.city }}
                 } @else if (column === 'score') {
                   {{ element.score }}
                 } @else if (column === 'rank') {

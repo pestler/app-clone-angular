@@ -31,3 +31,39 @@ table {
   font-size: small;
   color: #4466b3;
 }
+
+.filters-container {
+  display: flex;
+  gap: 16px;
+  padding: 8px 0 24px;
+  flex-wrap: wrap;
+
+  .mat-mdc-form-field {
+    flex: 1 1 200px;
+    min-width: 200px;
+  }
+}
+
+.header-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  mat-icon {
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+    opacity: 0.6;
+    cursor: pointer;
+
+    &.filter-active {
+      color: #1a73e8;
+      opacity: 1;
+    }
+  }
+}
+
+.mat-mdc-cell.blue-text {
+  color: #1a73e8;
+  font-weight: 300;
+}

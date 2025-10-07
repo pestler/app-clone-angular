@@ -1,10 +1,11 @@
 export interface ScoreStudentDto {
   githubId: string;
   name: string;
+  city?: string;
   score: number;
   rank: number;
   isActive: boolean;
-  [key: string]: string | number | boolean;
+  [key: string]: string | number | boolean | undefined;
 }
 
 export interface CourseTaskDto {
@@ -31,4 +32,5 @@ export interface ScoreTableFilters {
   mentorGithubId?: string;
   githubId?: string;
   name?: string;
+  city?: string;
 }
