@@ -51,7 +51,7 @@ export class AuthService {
     );
   }
 
-  async signInWithGitHub(): Promise<string> {
+  async signInWithGitHub(registrationType?: 'student' | 'mentor'): Promise<string> {
     const provider = new GithubAuthProvider();
     try {
       const credential = await signInWithPopup(this.auth, provider);
@@ -75,8 +75,39 @@ export class AuthService {
           return '/';
         } else {
           this.isNavigatingToRegister = true;
+          if (registrationType === 'mentor') {
+            return APP_ROUTES.REGISTER_MENTOR;
+          }
           return APP_ROUTES.REGISTER_STUDENT;
         }
+      }
+      return '/';
+    } catch (error) {
+      const errorMessage = 'Authentication error';
+      console.error(`${errorMessage}: `, error);
+
+      this.notification.showError(errorMessage);
+      return '/';
+    }
+  }
+
+  async registerWithGitHub(registrationType: 'student' | 'mentor'): Promise<string> {
+    const provider = new GithubAuthProvider();
+    try {
+      const credential = await signInWithPopup(this.auth, provider);
+      const additionalInfo = getAdditionalUserInfo(credential);
+      const githubUsername = additionalInfo?.username;
+
+      if (githubUsername) {
+        const lowerCaseGithubId = githubUsername.toLowerCase();
+        localStorage.setItem(this.githubUsernameKey, lowerCaseGithubId);
+        this.githubUsername$.next(lowerCaseGithubId);
+
+        this.isNavigatingToRegister = true;
+        if (registrationType === 'mentor') {
+          return APP_ROUTES.REGISTER_MENTOR;
+        }
+        return APP_ROUTES.REGISTER_STUDENT;
       }
       return '/';
     } catch (error) {
