@@ -56,16 +56,6 @@
           </mat-form-field>
         </p>
 
-        <p>
-          <mat-form-field appearance="outline">
-            <mat-label>EPAM E-mail</mat-label>
-            <input matInput formControlName="epamEmail" placeholder="first_last@epam.com" />
-            @if (form.get('epamEmail')?.hasError('email')) {
-              <mat-error>Please enter a valid email address.</mat-error>
-            }
-          </mat-form-field>
-        </p>
-
         <hr />
         <h3 class="mat-subheading-2">Contact Information</h3>
 

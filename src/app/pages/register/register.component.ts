@@ -114,7 +114,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
       lastName: ['', [Validators.required]],
       location: ['', [Validators.required]],
       primaryEmail: ['', [Validators.required, Validators.email]],
-      epamEmail: ['', [Validators.email]],
       githubId: [''],
       telegram: [''],
       phone: [''],
@@ -157,7 +156,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
             lastName: lastNameParts.join(' ') || '',
             location: profile.generalInfo?.location?.cityName || '',
             primaryEmail: profile.contacts?.email || '',
-            epamEmail: profile.contacts?.epamEmail || '',
             telegram: profile.contacts?.telegram || '',
             phone: profile.contacts?.phone || '',
             notes: profile.contacts?.notes || '',
@@ -197,7 +195,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.form.invalid) {
       this.notificationService.showError('Please fill in all required fields correctly.');
       return;
@@ -226,7 +224,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
       contacts: {
         phone: formVal.phone,
         email: formVal.primaryEmail,
-        epamEmail: formVal.epamEmail,
         telegram: formVal.telegram,
         notes: formVal.notes,
       },
@@ -237,16 +234,31 @@ export class RegisterComponent implements OnInit, OnDestroy {
       },
     };
 
-    this.userService
-      .saveUserProfile(this.currentUserGithubId, profileData)
-      .then(() => {
-        this.notificationService.showSuccess('Your profile has been saved successfully!');
-        localStorage.removeItem(this.storageKey);
-        this.router.navigate(['/']);
-      })
-      .catch((error: unknown) => {
-        console.error('Error saving profile:', error);
-        this.notificationService.showError('There was an error saving your profile.');
-      });
+    try {
+      await this.userService.saveUserProfile(this.currentUserGithubId, profileData);
+
+      const enrollmentPromises: Promise<void>[] = [];
+
+      for (const courseAlias of formVal.courses) {
+        if (this.formType === 'student') {
+          enrollmentPromises.push(
+            this.userService.enrollInCourse(this.currentUserGithubId, courseAlias),
+          );
+        } else if (this.formType === 'mentor') {
+          enrollmentPromises.push(
+            this.userService.enrollAsMentor(this.currentUserGithubId, courseAlias),
+          );
+        }
+      }
+
+      await Promise.all(enrollmentPromises);
+
+      this.notificationService.showSuccess('Your profile has been saved successfully!');
+      localStorage.removeItem(this.storageKey);
+      this.router.navigate(['/']);
+    } catch (error: unknown) {
+      console.error('Error saving profile or enrolling:', error);
+      this.notificationService.showError('There was an error saving your profile or enrolling.');
+    }
   }
 }
