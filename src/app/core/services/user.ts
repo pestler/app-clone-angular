@@ -11,7 +11,11 @@ import {
   where,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { UserProfile, userProfileConverter } from '../models/user.model';
+import {
+  MentorCourseEnrollmentData,
+  UserProfile,
+  userProfileConverter,
+} from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -54,5 +58,33 @@ export class User {
     const q = query(usersCollection, where('active', '==', true));
     const snapshot = await getCountFromServer(q);
     return snapshot.data().count;
+  }
+
+  async addStudentToCourse(courseAlias: string, githubId: string): Promise<void> {
+    const studentDocRef = doc(
+      this.firestore,
+      `courses/${courseAlias}/students/${githubId.toLowerCase()}`,
+    );
+    await setDoc(
+      studentDocRef,
+      { githubId: githubId.toLowerCase(), active: true },
+      { merge: true },
+    );
+  }
+
+  async addMentorToCourse(
+    courseAlias: string,
+    githubId: string,
+    mentorData: MentorCourseEnrollmentData,
+  ): Promise<void> {
+    const mentorDocRef = doc(
+      this.firestore,
+      `courses/${courseAlias}/mentors/${githubId.toLowerCase()}`,
+    );
+    await setDoc(
+      mentorDocRef,
+      { ...mentorData, githubId: githubId.toLowerCase(), active: true },
+      { merge: true },
+    );
   }
 }
