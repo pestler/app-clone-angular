@@ -11,7 +11,7 @@
           (keydown.enter)="setActive(false)"
           tabindex="0"
         >
-          All students {{ totalUserCount() ?? '...' }}
+          All students {{ totalCourseStudents() ?? '...' }}
         </span>
         <span
           class="toggle-option"
@@ -20,7 +20,7 @@
           (keydown.enter)="setActive(true)"
           tabindex="0"
         >
-          Active students {{ activeUserCount() ?? '...' }}
+          Active students {{ activeCourseStudents() ?? '...' }}
         </span>
       </div>
       <button mat-raised-button [disabled]="!csvEnabled()" (click)="handleExportCsv()">

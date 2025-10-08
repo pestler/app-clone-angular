@@ -11,6 +11,7 @@ import {
   where,
 } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { Mentor, ScoreData } from '../models/dashboard.models';
 import { UserProfile, userProfileConverter } from '../models/user.model';
 
 @Injectable({
@@ -34,6 +35,94 @@ export class User {
     await setDoc(userDocRef, profileData, { merge: true });
     const updatedSnapshot = await getDoc(userDocRef);
     return updatedSnapshot.data() as UserProfile;
+  }
+
+  async enrollInCourse(githubId: string, courseAlias: string): Promise<void> {
+    const lowerCaseGithubId = githubId.toLowerCase();
+    const userDocRef = doc(this.firestore, `users/${lowerCaseGithubId}`).withConverter(
+      userProfileConverter,
+    );
+    const userSnapshot = await getDoc(userDocRef);
+
+    if (!userSnapshot.exists()) {
+      throw new Error('User profile does not exist');
+    }
+
+    const existingProfile = userSnapshot.data();
+
+    const updatedRoles = {
+      ...existingProfile.roles,
+      student: true,
+    };
+    const updatedCourses = [...(existingProfile.courses || []), courseAlias];
+    const uniqueCourses = [...new Set(updatedCourses)];
+    const profileUpdate: Partial<UserProfile> = {
+      roles: updatedRoles,
+      courses: uniqueCourses,
+    };
+    await this.saveUserProfile(lowerCaseGithubId, profileUpdate);
+
+    const studentDocPath = `courses/${courseAlias}/students/${lowerCaseGithubId}`;
+    const studentDocRef = doc(this.firestore, studentDocPath);
+
+    const newStudentData: Omit<ScoreData, 'id'> = {
+      name: existingProfile.displayName,
+      githubId: lowerCaseGithubId,
+      active: true,
+      cityName: existingProfile.generalInfo?.location?.cityName || '',
+      countryName: existingProfile.generalInfo?.location?.countryName || '',
+      rank: 0,
+      totalScore: 0,
+      totalScoreChangeDate: new Date().toISOString(),
+      crossCheckScore: 0,
+      repositoryLastActivityDate: null,
+    };
+
+    await setDoc(studentDocRef, newStudentData);
+  }
+
+  async enrollAsMentor(githubId: string, courseAlias: string): Promise<void> {
+    const lowerCaseGithubId = githubId.toLowerCase();
+    const userDocRef = doc(this.firestore, `users/${lowerCaseGithubId}`).withConverter(
+      userProfileConverter,
+    );
+    const userSnapshot = await getDoc(userDocRef);
+
+    if (!userSnapshot.exists()) {
+      throw new Error('User profile does not exist');
+    }
+
+    const existingProfile = userSnapshot.data();
+
+    const updatedRoles = {
+      ...existingProfile.roles,
+      mentor: true,
+    };
+    const updatedCourses = [...(existingProfile.courses || []), courseAlias];
+    const uniqueCourses = [...new Set(updatedCourses)];
+    const profileUpdate: Partial<UserProfile> = {
+      roles: updatedRoles,
+      courses: uniqueCourses,
+    };
+    await this.saveUserProfile(lowerCaseGithubId, profileUpdate);
+
+    const mentorDocPath = `courses/${courseAlias}/mentors/${lowerCaseGithubId}`;
+    const mentorDocRef = doc(this.firestore, mentorDocPath);
+
+    const newMentorData: Mentor = {
+      id: existingProfile.id ?? 0,
+      name: existingProfile.displayName,
+      githubId: lowerCaseGithubId,
+      isActive: existingProfile.active,
+      cityName: existingProfile.generalInfo?.location?.cityName,
+      countryName: existingProfile.generalInfo?.location?.countryName,
+      contactsEmail: existingProfile.contacts?.email,
+      contactsTelegram: existingProfile.contacts?.telegram,
+      contactsNotes: existingProfile.contacts?.notes,
+      contactsPhone: existingProfile.contacts?.phone,
+    };
+
+    await setDoc(mentorDocRef, newMentorData);
   }
 
   async doesUserProfileExist(githubId: string): Promise<boolean> {

@@ -31,7 +31,7 @@
 }
 
 .right-side {
-  @include flex(row);
+  @include flex(column);
 
   & > * {
     flex-grow: 1;
@@ -47,4 +47,25 @@
   font-size: 1.2em;
   color: #888;
   margin-top: 20px;
+
+  .enroll-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 16px;
+  }
+}
+
+.mentor-enroll {
+  background-color: #f0f4f8;
+  border: 1px solid #d6e0ea;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+  text-align: center;
+
+  p {
+    margin: 0 0 12px;
+    color: #334e68;
+  }
 }

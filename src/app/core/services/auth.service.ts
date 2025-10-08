@@ -9,7 +9,7 @@ import {
   User,
 } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { BehaviorSubject, firstValueFrom, from, map, Observable, of, switchMap } from 'rxjs';
+import { BehaviorSubject, from, map, Observable, of, switchMap } from 'rxjs';
 import { APP_ROUTES } from '../../constants/app-routes.const';
 import { GITHUB_USERNAME_KEY } from '../../token';
 import { ScoreData, scoreDataConverter } from '../models/dashboard.models';
@@ -65,13 +65,6 @@ export class AuthService {
 
         const profileExists = await this.userService.doesUserProfileExist(lowerCaseGithubId);
         if (profileExists) {
-          const userProfile = await firstValueFrom(this.userService.getUserProfile(githubUsername));
-          if (
-            userProfile?.roles &&
-            Object.values(userProfile.roles).filter((role) => role).length > 1
-          ) {
-            return APP_ROUTES.SELECT_ROLE;
-          }
           return '/';
         } else {
           this.isNavigatingToRegister = true;

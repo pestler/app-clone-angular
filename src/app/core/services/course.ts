@@ -1,5 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import {
+  arrayUnion,
   collection,
   collectionData,
   collectionGroup,
@@ -12,10 +13,11 @@ import {
   getDocs,
   query,
   setDoc,
+  updateDoc,
   where,
 } from '@angular/fire/firestore';
-import { forkJoin, from, map, Observable, of, shareReplay, switchMap } from 'rxjs';
-import { Course, courseConverter } from '../models/dashboard.models';
+import { forkJoin, from, map, Observable, of, switchMap } from 'rxjs';
+import { Course, courseConverter, Mentor, ScoreData } from '../models/dashboard.models';
 import {
   IPaginationInfo,
   ScoreOrder,
@@ -38,20 +40,11 @@ import { Task } from '../models/task.model';
 export class CourseService {
   private readonly firestore: Firestore = inject(Firestore);
 
-  private courses$: Observable<Course[]> | null = null;
-
   getCourses(): Observable<Course[]> {
-    if (!this.courses$) {
-      const coursesCollection = collection(this.firestore, 'courses').withConverter(
-        courseConverter,
-      );
-
-      this.courses$ = (collectionData(coursesCollection) as Observable<Course[]>).pipe(
-        shareReplay(1),
-      );
-    }
-
-    return this.courses$;
+    const coursesCollection = collection(this.firestore, 'courses').withConverter(courseConverter);
+    return from(getDocs(coursesCollection)).pipe(
+      map((snapshot) => snapshot.docs.map((doc) => doc.data())),
+    );
   }
 
   createCourse(course: Course): Observable<Course> {
@@ -69,6 +62,80 @@ export class CourseService {
   updateCourse(alias: string, course: Course): Observable<Course> {
     const courseDocRef = doc(this.firestore, `courses/${alias}`);
     return from(setDoc(courseDocRef, course)).pipe(map(() => course));
+  }
+
+  isUserMentorForCourse(courseAlias: string, githubId: string): Observable<boolean> {
+    const mentorDocRef = doc(this.firestore, `courses/${courseAlias}/mentors/${githubId}`);
+    return from(getDoc(mentorDocRef)).pipe(map((snapshot) => snapshot.exists()));
+  }
+
+  getUnassignedStudents(courseAlias: string): Observable<ScoreData[]> {
+    const studentsCollection = collection(this.firestore, `courses/${courseAlias}/students`);
+    return (collectionData(studentsCollection) as Observable<ScoreData[]>).pipe(
+      map((students) => students.filter((student) => !student.mentor)),
+    );
+  }
+
+  getMentorStudents(courseAlias: string, mentorId: string): Observable<ScoreData[]> {
+    const studentsCollection = collection(this.firestore, `courses/${courseAlias}/students`);
+    const q = query(studentsCollection, where('mentor.githubId', '==', mentorId));
+    return collectionData(q) as Observable<ScoreData[]>;
+  }
+
+  async assignMentorToStudent(
+    courseAlias: string,
+    mentorId: string,
+    studentId: string,
+  ): Promise<void> {
+    const mentorDocRef = doc(this.firestore, `courses/${courseAlias}/mentors/${mentorId}`);
+    const mentorSnapshot = await getDoc(mentorDocRef);
+
+    if (!mentorSnapshot.exists()) {
+      throw new Error(`Mentor with id ${mentorId} not found in course ${courseAlias}`);
+    }
+    const mentorData = mentorSnapshot.data() as Mentor;
+
+    const studentDocRef = doc(this.firestore, `courses/${courseAlias}/students/${studentId}`);
+
+    const studentUpdatePromise = updateDoc(studentDocRef, { mentor: mentorData });
+    const mentorUpdatePromise = updateDoc(mentorDocRef, {
+      students: arrayUnion(studentId),
+    });
+
+    await Promise.all([studentUpdatePromise, mentorUpdatePromise]);
+  }
+
+  getCourseStudentCounts(courseId: string): Observable<{ total: number; active: number }> {
+    const studentsCollection = collection(this.firestore, `courses/${courseId}/students`);
+    return from(getDocs(studentsCollection)).pipe(
+      switchMap((snapshot) => {
+        const students = snapshot.docs;
+        if (students.length === 0) {
+          return of({ total: 0, active: 0 });
+        }
+
+        const userChecks$ = students.map((studentDoc) => {
+          const studentData = studentDoc.data();
+          const githubId = studentData['githubId'];
+          const userDocRef = doc(this.firestore, `users/${githubId}`);
+          return from(getDoc(userDocRef)).pipe(
+            map((userDoc) => {
+              return userDoc.exists() && userDoc.data()['active'] === true;
+            }),
+          );
+        });
+
+        return forkJoin(userChecks$).pipe(
+          map((activeStatuses) => {
+            const activeCount = activeStatuses.filter((isActive) => isActive).length;
+            return {
+              total: students.length,
+              active: activeCount,
+            };
+          }),
+        );
+      }),
+    );
   }
 
   getCourseCrossCheckTasks(courseId: string): Observable<Task[]> {
