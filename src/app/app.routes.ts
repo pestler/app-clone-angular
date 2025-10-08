@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { APP_ROUTES as AR } from './constants/app-routes.const';
 import { authGuard } from './core/guards/auth-guard';
+import { githubAuthGuard } from './core/guards/github-auth-guard';
 import { publicGuard } from './core/guards/public-guard';
 import { Layout } from './layout/layout.component';
 import { CrossCheckSubmitComponent } from './pages/cross-check-submit/cross-check-submit.component';
@@ -15,14 +16,14 @@ export const routes: Routes = [
     path: AR.REGISTER_STUDENT,
     loadComponent: () =>
       import('./pages/register/register.component').then((m) => m.RegisterComponent),
-    canActivate: [publicGuard],
+    canActivate: [githubAuthGuard],
     data: { formType: 'student' },
   },
   {
     path: AR.REGISTER_MENTOR,
     loadComponent: () =>
       import('./pages/register/register.component').then((m) => m.RegisterComponent),
-    canActivate: [publicGuard],
+    canActivate: [githubAuthGuard],
     data: { formType: 'mentor' },
   },
 

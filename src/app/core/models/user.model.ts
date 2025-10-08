@@ -32,12 +32,25 @@ export interface UserProfile {
     telegram?: string;
     whatsapp?: string;
     notes?: string;
-  };
-  discord: {
-    username: string;
-    id: string;
+    discord?: string;
   };
   publicFeedback: string[];
+}
+
+export interface MentorCourseEnrollmentData {
+  firstName: string;
+  lastName: string;
+  location: string;
+  primaryEmail: string;
+  telegram?: string;
+  discord?: string;
+  phone?: string;
+  notes?: string;
+  aboutYourself?: string;
+  languages?: string[];
+  disciplines: string[];
+  studentsCount: number;
+  studentsLocation: string;
 }
 
 export const userProfileConverter: FirestoreDataConverter<UserProfile> = {
@@ -56,8 +69,10 @@ export const userProfileConverter: FirestoreDataConverter<UserProfile> = {
       about: data['about'],
       languages: data['languages'],
       generalInfo: data['generalInfo'],
-      contacts: data['contacts'],
-      discord: data['discord'],
+      contacts: {
+        ...data['contacts'],
+        discord: data['contacts']?.['discord'],
+      },
       publicFeedback: data['publicFeedback'],
     } as UserProfile;
   },

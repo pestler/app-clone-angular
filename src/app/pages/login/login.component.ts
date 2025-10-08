@@ -22,6 +22,11 @@ export class LoginComponent {
 
   async login(): Promise<void> {
     const redirectUrl = await this.authService.signInWithGitHub();
-    this.router.navigate([redirectUrl]);
+    this.router.navigate([redirectUrl], { replaceUrl: true });
+  }
+
+  async navigateToRegister(registrationType: 'student' | 'mentor'): Promise<void> {
+    const redirectUrl = await this.authService.registerWithGitHub(registrationType);
+    this.router.navigate([redirectUrl], { replaceUrl: true });
   }
 }
