@@ -78,6 +78,7 @@ export interface ScoreData {
   countryName: string;
   rank: number;
   totalScore: number;
+  hasInterview?: boolean;
   mentor?: Mentor;
   totalScoreChangeDate: string;
   crossCheckScore: number;

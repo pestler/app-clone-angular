@@ -10,7 +10,7 @@ import {
   setDoc,
   where,
 } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { firstValueFrom, Observable, take } from 'rxjs';
 import { Mentor, ScoreData } from '../models/dashboard.models';
 import { UserProfile, userProfileConverter } from '../models/user.model';
 
@@ -136,6 +136,27 @@ export class User {
     const usersCollection = collection(this.firestore, 'users');
     const snapshot = await getCountFromServer(usersCollection);
     return snapshot.data().count;
+  }
+
+  async getUserRoleForCourse(
+    githubId: string,
+    _courseAlias: string,
+  ): Promise<'student' | 'mentor' | 'none'> {
+    const profile = await firstValueFrom(this.getUserProfile(githubId).pipe(take(1)));
+
+    if (!profile) {
+      return 'none';
+    }
+
+    if (profile.roles.mentor) {
+      return 'mentor';
+    }
+
+    if (profile.roles.student) {
+      return 'student';
+    }
+
+    return 'none';
   }
 
   async getActiveUserCount(): Promise<number> {

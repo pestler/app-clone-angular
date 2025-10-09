@@ -1,5 +1,5 @@
 <div class="donators-wrapper">
-  @for (donator of donators; track donator.id) {
+  @for (donator of donators$ | async; track donator.id) {
     <a [href]="donator.profileUrl" target="_blank" class="donator">
       <ng-container
         *ngTemplateOutlet="
