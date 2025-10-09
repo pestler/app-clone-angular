@@ -1,5 +1,7 @@
 @if (role === 'mentor') {
   <app-interview-mentor-card></app-interview-mentor-card>
-} @else {
+} @else if (role === 'student') {
   <app-interview-student-card></app-interview-student-card>
+} @else {
+  <p>Just a moment... setting things up for you.</p>
 }

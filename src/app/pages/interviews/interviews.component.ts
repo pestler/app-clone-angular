@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
+import { UserRole } from '../../core/services/user-role';
 import { InterviewMentorCardComponent } from '../../shared/components/cards/interview-card/interview-mentor-card/interview-mentor-card.component';
 import { InterviewStudentCardComponent } from '../../shared/components/cards/interview-card/interview-student-card/interview-student-card.component';
 
@@ -8,6 +9,11 @@ import { InterviewStudentCardComponent } from '../../shared/components/cards/int
   templateUrl: './interviews.component.html',
   styleUrl: './interviews.component.scss',
 })
-export class InterviewsComponent {
-  role = 'mentor';
+export class InterviewsComponent implements OnInit {
+  private userRole = inject(UserRole);
+  role: string | null = null;
+
+  ngOnInit(): void {
+    this.role = this.userRole.getActiveRole();
+  }
 }
