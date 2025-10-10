@@ -52,6 +52,7 @@ task.txt
 
 # Scripts
 /scripts
+/scripts2
 
 # Environment specific files
 /src/environments/environment.ts
