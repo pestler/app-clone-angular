@@ -1,0 +1,20 @@
+<h3>My Students</h3>
+@if (myStudents().length > 0) {
+  <div class="student-list-container">
+    @for (student of myStudents(); track student.githubId) {
+      <mat-card class="student-card">
+        <mat-card-header>
+          <mat-card-title>{{ student.displayName }}</mat-card-title>
+          <mat-card-subtitle>{{ student.githubId }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <div class="student-info">
+            <span>{{ student.cityName || student.name }}</span>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    }
+  </div>
+} @else {
+  <p>You have not assigned any students yet.</p>
+}

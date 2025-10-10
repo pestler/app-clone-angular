@@ -26,14 +26,7 @@ export const routes: Routes = [
     canActivate: [githubAuthGuard],
     data: { formType: 'mentor' },
   },
-  {
-    path: AR.SELECT_ROLE,
-    loadComponent: () =>
-      import('./pages/role-selection/role-selection.component').then(
-        (m) => m.RoleSelectionComponent,
-      ),
-    canActivate: [authGuard],
-  },
+
   {
     path: '',
     component: Layout,
@@ -61,8 +54,8 @@ export const routes: Routes = [
       {
         path: AR.MENTOR_DASHBOARD,
         loadComponent: () =>
-          import('./pages/student-dashboard/student-dashboard.component').then(
-            (m) => m.StudentDashboardComponent,
+          import('./pages/mentor-dashboard/mentor-dashboard.component').then(
+            (m) => m.MentorDashboardComponent,
           ),
         data: { title: 'Mentor Dashboard' },
       },

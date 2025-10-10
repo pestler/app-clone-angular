@@ -1,0 +1,15 @@
+@if (courseAlias()) {
+  <div class="dashboard-layout">
+    <div class="my-students-container">
+      <app-my-students [courseAlias]="courseAlias()!"></app-my-students>
+    </div>
+    <div class="assign-student-container">
+      <app-assign-student
+        [courseAlias]="courseAlias()!"
+        (studentsAssigned)="onStudentsAssigned()"
+      ></app-assign-student>
+    </div>
+  </div>
+} @else {
+  <p class="select-course-message">Please select a course to see the mentor dashboard.</p>
+}

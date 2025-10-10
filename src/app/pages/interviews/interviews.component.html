@@ -1,5 +1,21 @@
-@if (role === 'mentor') {
-  <app-interview-mentor-card></app-interview-mentor-card>
-} @else {
-  <app-interview-student-card></app-interview-student-card>
-}
+<div class="interviews-container">
+  @if (role === 'mentor') {
+    <app-assign-interview
+      [courseAlias]="currentCourseAlias()!"
+      [mentorId]="currentMentorId()!"
+      (interviewAssigned)="refreshInterviews()"
+    ></app-assign-interview>
+  }
+
+  @if (interviews().length > 0) {
+    @for (interview of interviews(); track interview.title) {
+      @if (role === 'mentor') {
+        <app-interview-mentor-card [interviewInfo]="interview"></app-interview-mentor-card>
+      } @else {
+        <app-interview-student-card [interviewInfo]="interview"></app-interview-student-card>
+      }
+    }
+  } @else {
+    <p>No interviews found.</p>
+  }
+</div>

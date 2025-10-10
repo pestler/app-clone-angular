@@ -14,13 +14,29 @@ describe('InterviewCardBaseComponent', () => {
     fixture = TestBed.createComponent(InterviewCardBaseComponent);
     component = fixture.componentInstance;
 
-    component.title = 'Angular interview';
-    component.period = {
-      start: '2025-09-08',
-      end: '2025-09-29',
+    component.interviewInfo = {
+      title: 'Angular interview',
+      period: {
+        start: '2025-09-08',
+        end: '2025-09-29',
+      },
+      status: 'Not Completed',
+      result: null,
+      interviewer: {
+        name: 'Mentor Name',
+        github: 'mentor-github',
+        url: '',
+        email: '',
+        telegram: '',
+        src: '',
+      },
     };
-    component.status = 'Not Completed';
-    component.result = null;
+
+    component.title = component.interviewInfo.title;
+    component.period = component.interviewInfo.period;
+    component.status = component.interviewInfo.status;
+    component.result = component.interviewInfo.result;
+
     component.notCompletedMessage = "You're all set! Prepare for your upcoming interview.";
     component.completedMessage = 'Interview completed — time to relax!';
     component.notCompletedImage =

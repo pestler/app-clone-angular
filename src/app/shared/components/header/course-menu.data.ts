@@ -56,6 +56,27 @@ const studentCourseLinks: LinkData[] = [
   },
 ];
 
+const mentorCourseLinks: LinkData[] = [
+  {
+    name: 'Mentor Dashboard',
+    icon: 'supervisor_account',
+    color: 'var(--icon-black)',
+    getUrl: (course: Course | undefined) => ({
+      path: AR.MENTOR_DASHBOARD,
+      query: course ? { course: course.alias } : undefined,
+    }),
+  },
+  {
+    name: 'Score',
+    icon: 'grade',
+    color: 'var(--icon-black)',
+    getUrl: (course: Course | undefined) => ({
+      path: `${AR.COURSE}/${AR.SCORE}`,
+      query: course ? { course: course.alias } : undefined,
+    }),
+  },
+];
+
 const adminLinks: LinkData[] = [
   {
     name: 'Course List',
@@ -68,13 +89,31 @@ const adminLinks: LinkData[] = [
   },
 ];
 
-export function getCourseLinks(activeCourse: Course | null, isAdmin: boolean): LinkData[] {
+export function getCourseLinks(
+  activeCourse: Course | null,
+  isAdmin: boolean,
+  isStudent: boolean,
+  isMentor: boolean,
+): LinkData[] {
   if (!activeCourse) {
     return [];
   }
-  let links = [...studentCourseLinks];
-  if (isAdmin) {
-    links = [...links, ...adminLinks];
+
+  const links: LinkData[] = [];
+  if (isStudent) {
+    links.push(...studentCourseLinks);
   }
+
+  if (isMentor) {
+    const mentorLinksToAdd = mentorCourseLinks.filter(
+      (ml) => !links.some((l) => l.name === ml.name),
+    );
+    links.push(...mentorLinksToAdd);
+  }
+
+  if (isAdmin) {
+    links.push(...adminLinks);
+  }
+
   return links;
 }
