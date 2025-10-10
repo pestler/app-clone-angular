@@ -1,0 +1,33 @@
+<app-course-select></app-course-select>
+<div class="content">
+  <app-side-nav></app-side-nav>
+
+  <div class="right-side">
+    @if (!isMentorForCourse()) {
+      <div class="mentor-enroll">
+        <p>Want to help others? You can become a mentor for this course.</p>
+        <button mat-raised-button (click)="enrollAsMentor()">Become a Mentor</button>
+      </div>
+    }
+
+    @if (studentData() === undefined) {
+      <p>Loading...</p>
+    } @else if (studentData(); as student) {
+      <app-student-stats-card
+        [studentData]="student"
+        [completedTasksCount]="completedTasksCount()"
+        [totalTasksCount]="totalTasksCount()"
+        [isActive]="isActiveInCourse()"
+      >
+      </app-student-stats-card>
+      <app-mentor-card [mentor]="student.mentor"></app-mentor-card>
+    } @else {
+      <div class="no-data-message">
+        <p>You are not yet enrolled in this course as a student.</p>
+        <div class="enroll-buttons">
+          <button mat-raised-button color="primary" (click)="enroll()">Enroll as a Student</button>
+        </div>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<h2 mat-dialog-title class="title">Profile information</h2>
+
+<mat-dialog-content class="content">
+  <p class="label">About myself:</p>
+  <mat-form-field appearance="outline" class="full-width">
+    <textarea matInput [(ngModel)]="about" rows="5"></textarea>
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="btn-wrapper">
+  <app-dialog-button variant="cancel" label="Cancel" [action]="cancel"></app-dialog-button>
+  <app-dialog-button label="Save" [action]="save"></app-dialog-button>
+</mat-dialog-actions>

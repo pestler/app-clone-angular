@@ -1,0 +1,53 @@
+@use './../../styles/profile-card.shared.scss' as *;
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.form {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--button-gray) !important;
+  padding-bottom: 30px;
+  border-radius: 4px;
+  position: relative;
+
+  label {
+    font-size: 18px;
+    font-weight: 500;
+    padding-bottom: 6px;
+  }
+
+  input {
+    border-radius: 4px;
+    border: 1px solid var(--button-gray);
+    font-size: 16px;
+    padding: 10px 6px;
+  }
+}
+
+textarea {
+  border: 1px solid var(--button-gray);
+  font-size: 16px;
+  padding: 10px 6px;
+}
+
+.error {
+  color: var(--icon-red);
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+}
+
+input.ng-invalid.ng-touched,
+textarea.ng-invalid.ng-touched {
+  border: 1px solid var(--icon-red);
+}

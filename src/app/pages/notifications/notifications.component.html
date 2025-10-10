@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="note-wrapper">
+    <p class="note">
+      Note: To enable Telegram notifications please open the
+      <a href="https://t.me/rsschool_bot?start=connect" target="_blank">&#64;rsschool_bot</a> and
+      click the <strong>Start</strong> button to set it up
+    </p>
+    <button class="save-btn" (click)="save()">Save</button>
+  </div>
+  <div class="notifications-container">
+    <h1>Notifications</h1>
+    <div class="notifications-list">
+      @if (notifications$ | async; as notifications) {
+        @if (notifications.length > 0) {
+          @for (notification of notifications; track notification.message) {
+            <div class="notification-item">
+              <!-- Your notification item content here -->
+              <p>{{ notification.message }}</p>
+              <span class="date">{{ notification.date | date: 'short' }}</span>
+            </div>
+          } @empty {
+            <p>No notifications yet.</p>
+          }
+        }
+      } @else {
+        <p>Loading notifications...</p>
+      }
+    </div>
+  </div>
+</div>

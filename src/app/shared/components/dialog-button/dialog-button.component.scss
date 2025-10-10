@@ -1,0 +1,31 @@
+.btn {
+  border: 1px solid var(--button-gray);
+  padding: 4px 15px;
+  border-radius: 6px;
+  font-size: 16px;
+  color: var(--text-black);
+  font-weight: 400;
+  transition: all 0.3s ease;
+}
+
+.basic:hover {
+  border: 1px solid var(--button-hover-blue);
+  color: var(--button-hover-blue);
+}
+
+.active {
+  color: var(--white) !important;
+  border: 1px solid var(--button-blue);
+  background-color: var(--button-blue);
+
+  &:hover {
+    color: var(--white);
+    background-color: var(--button-hover-blue);
+  }
+}
+
+.disabled {
+  pointer-events: none;
+  background-color: var(--button-disabled);
+  opacity: 0.5;
+}

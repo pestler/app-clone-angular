@@ -1,0 +1,62 @@
+@use '../styles/card.shared.scss' as *;
+
+mat-card-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 16px;
+  padding: 16px;
+}
+
+.chart-wrapper {
+  flex-shrink: 0;
+}
+
+.chart-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 250px;
+  height: 250px;
+}
+
+.chart-center-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+
+  .total-count {
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+}
+
+.legend-wrapper {
+  flex-grow: 1;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+}
+
+.legend-marker {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.legend-label {
+  font-size: 12px;
+}

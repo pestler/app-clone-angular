@@ -1,0 +1,32 @@
+/* stylelint-disable-next-line selector-pseudo-element-no-unknown */
+::ng-deep .mat-mdc-menu-panel.menu {
+  min-width: 150px;
+  padding: 2px 10px;
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 10px 30px -10px var(--border-menu);
+}
+
+.button {
+  padding: 6px 24px;
+  border-radius: 6px;
+}
+
+.button:last-child {
+  border-top: 1px solid var(--border-block-end);
+}
+
+.button:hover {
+  background-color: var(--background-color);
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+}
+
+.label {
+  font-size: 15px;
+  font-weight: 400;
+}

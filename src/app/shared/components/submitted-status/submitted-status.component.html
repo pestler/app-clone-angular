@@ -1,0 +1,27 @@
+@if (solution) {
+  <mat-card class="submitted-status success">
+    <mat-card-content>
+      <div class="submit-text">
+        <span>Submitted:</span>
+        <a [href]="solution.url" target="_blank" class="target" title="{{ solution.url }}">
+          <mat-icon>link</mat-icon>
+          <span>{{ solution.url }}</span>
+        </a>
+      </div>
+    </mat-card-content>
+  </mat-card>
+} @else {
+  @if (deadlinePassed) {
+    <mat-card class="submitted-status error">
+      <mat-card-content>
+        <p>Submission deadline has passed</p>
+      </mat-card-content>
+    </mat-card>
+  } @else {
+    <mat-card class="submitted-status info">
+      <mat-card-content>
+        <p>You have not submitted a solution for this task yet</p>
+      </mat-card-content>
+    </mat-card>
+  }
+}

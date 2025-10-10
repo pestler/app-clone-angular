@@ -1,0 +1,71 @@
+@mixin flex($direction) {
+  display: flex;
+  flex-direction: $direction;
+  gap: 24px;
+}
+
+:host {
+  @include flex(column);
+
+  gap: 16px;
+  height: 100%;
+  padding: 0 0 16px;
+}
+
+.content {
+  @include flex(row);
+
+  justify-content: space-between;
+
+  & > :first-child {
+    flex: 1 1 0;
+  }
+
+  & > :last-child {
+    flex: 2 1 0;
+  }
+
+  @media (width <= 576px) {
+    @include flex(column);
+  }
+}
+
+.right-side {
+  @include flex(column);
+
+  & > * {
+    flex-grow: 1;
+  }
+
+  @media (width <= 992px) {
+    @include flex(column);
+  }
+}
+
+.no-data-message {
+  text-align: center;
+  font-size: 1.2em;
+  color: #888;
+  margin-top: 20px;
+
+  .enroll-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 16px;
+  }
+}
+
+.mentor-enroll {
+  background-color: #f0f4f8;
+  border: 1px solid #d6e0ea;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 24px;
+  text-align: center;
+
+  p {
+    margin: 0 0 12px;
+    color: #334e68;
+  }
+}

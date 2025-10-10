@@ -1,0 +1,21 @@
+<app-base-card
+  [isEdit]="true"
+  title="Contacts"
+  icon="perm_contact_calendar"
+  (editClick)="openDialog()"
+>
+  @if (hasContacts()) {
+    <div class="contacts-wrapper">
+      @for (entry of contactsSig() | keyvalue; track entry.key) {
+        @if (entry.value && entry.value.trim() !== '') {
+          <div class="contact-item">
+            <p class="key">{{ entry.key | titlecase }}:</p>
+            <p class="value">{{ entry.value }}</p>
+          </div>
+        }
+      }
+    </div>
+  } @else {
+    <app-empty-state [type]="EmptyStateType.Contacts"></app-empty-state>
+  }
+</app-base-card>

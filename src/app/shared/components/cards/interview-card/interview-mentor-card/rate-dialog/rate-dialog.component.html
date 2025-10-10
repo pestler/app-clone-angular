@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Set Interview Rating</h2>
+<mat-dialog-content>
+  <p class="label">Rating</p>
+  <mat-form-field appearance="outline" class="w-full">
+    <input
+      matInput
+      class="input"
+      type="text"
+      [(ngModel)]="rating"
+      min="1"
+      max="10"
+      placeholder="Enter a score from 0 to 10"
+    />
+  </mat-form-field>
+  @if (isInvalidRating) {
+    <p class="error">Should be a number between 0 and 10</p>
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions align="end" class="btn-wrapper">
+  <app-dialog-button variant="cancel" label="Cancel" [action]="cancel"></app-dialog-button>
+  <app-dialog-button
+    [variant]="isInvalidRating ? 'save-disabled' : 'save'"
+    label="Save"
+    [action]="save"
+  ></app-dialog-button>
+</mat-dialog-actions>

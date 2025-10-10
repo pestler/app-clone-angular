@@ -1,0 +1,16 @@
+.student-list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.student-card {
+  box-shadow: 0 2px 4px rgb(0 0 0 / 10%);
+}
+
+.student-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: rgb(0 0 0 / 60%);
+}

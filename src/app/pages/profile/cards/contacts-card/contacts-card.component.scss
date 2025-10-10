@@ -1,0 +1,26 @@
+@mixin flex($direction, $gap) {
+  display: flex;
+  flex-direction: $direction;
+  gap: $gap;
+}
+
+.contacts-wrapper {
+  @include flex(column, 16px);
+}
+
+.contact-item {
+  @include flex(column, 4px);
+}
+
+.contact-item * {
+  margin: 0;
+}
+
+.key {
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.value {
+  font-size: 15px;
+}

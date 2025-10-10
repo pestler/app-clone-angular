@@ -1,0 +1,23 @@
+@use '../../styles/card.shared.scss' as *;
+@use '../interview-student-card/interview-student-card.component.scss' as *;
+
+.button-wrapper {
+  display: flex;
+}
+
+.button-rating {
+  padding: 12px 20px;
+  width: fit-content;
+  margin: 24px auto 0;
+  background-color: var(--button-blue);
+  color: var(--white);
+  font-weight: 400;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+
+  &:hover {
+    background-color: var(--button-hover-blue);
+    cursor: pointer;
+  }
+}

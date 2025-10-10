@@ -1,0 +1,21 @@
+<nav class="course-nav" [ngClass]="{ shadow: !isDashboardPage() }">
+  @if (currentCourse(); as course) {
+    <ul class="list">
+      @for (link of courseLinks(); track link.name) {
+        <li class="list-item" routerLinkActive="active">
+          <a
+            mat-button
+            [routerLink]="[link.getUrl(course).path]"
+            [queryParams]="link.getUrl(course).query"
+            class="link"
+          >
+            @if (link.icon) {
+              <mat-icon [ngStyle]="{ color: link.color }" class="icon">{{ link.icon }}</mat-icon>
+            }
+            <span>{{ link.name }}</span>
+          </a>
+        </li>
+      }
+    </ul>
+  }
+</nav>

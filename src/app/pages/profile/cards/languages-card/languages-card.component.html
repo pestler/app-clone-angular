@@ -1,0 +1,11 @@
+<app-base-card [isEdit]="true" title="My Languages" icon="translate" (editClick)="openDialog()">
+  @if (languagesSig()?.length) {
+    <div class="items-wrapper">
+      @for (language of languagesSig(); track language) {
+        <div class="item">{{ language | languageName }}</div>
+      }
+    </div>
+  } @else {
+    <app-empty-state [type]="EmptyStateType.Languages"></app-empty-state>
+  }
+</app-base-card>

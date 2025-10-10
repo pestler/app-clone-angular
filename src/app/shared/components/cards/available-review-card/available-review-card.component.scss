@@ -1,0 +1,23 @@
+@use '../styles/card.shared.scss' as *;
+
+.review-item {
+  padding: 8px 0;
+}
+
+.review-link {
+  display: block;
+  margin-bottom: 8px;
+  padding: 0 !important;
+  text-align: left;
+}
+
+.progress-label {
+  text-align: right;
+  font-size: 12px;
+  margin-top: 4px;
+  margin-bottom: 16px;
+}
+
+mat-divider {
+  margin: 8px 0;
+}

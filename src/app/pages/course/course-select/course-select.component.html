@@ -1,0 +1,27 @@
+@if (courses().length) {
+  <mat-form-field class="form-field">
+    <mat-select
+      [value]="selectedCourseAlias()"
+      (selectionChange)="onCourseChange($event)"
+      panelClass="course-select-panel"
+    >
+      <mat-select-trigger>
+        @if (selectedCourse(); as course) {
+          <div class="option-content trigger-content">
+            <img class="svg" [src]="course.logo" [alt]="course.name" />
+            <span>{{ course.alias }}</span>
+          </div>
+        }
+      </mat-select-trigger>
+
+      @for (course of courses(); track course.id) {
+        <mat-option [value]="course.alias" [class.course-empty]="course.isEmpty">
+          <div class="option-content">
+            <img class="svg" [src]="course.logo" [alt]="course.alias" />
+            <span>{{ course.alias }}</span>
+          </div>
+        </mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+}

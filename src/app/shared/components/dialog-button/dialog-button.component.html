@@ -1,0 +1,11 @@
+@if (variant === 'cancel') {
+  <button mat-button (click)="action?.()" class="btn basic">{{ label }}</button>
+} @else if (variant === 'save') {
+  <button type="button" mat-button (click)="action?.()" class="btn active">
+    {{ label }}
+  </button>
+} @else if (variant === 'save-disabled') {
+  <button type="button" mat-button class="btn disabled" disabled>
+    {{ label }}
+  </button>
+}

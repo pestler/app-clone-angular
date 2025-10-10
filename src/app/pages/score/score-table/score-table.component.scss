@@ -1,0 +1,75 @@
+.score-table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.table-wrapper {
+  overflow: scroll auto;
+  max-height: 600px;
+  margin-bottom: 16px;
+}
+
+table {
+  width: 100%;
+  min-width: 800px;
+}
+
+.mat-mdc-table .mat-mdc-header-cell {
+  font-weight: bold;
+}
+
+.mat-mdc-row.rs-table-row-disabled {
+  opacity: 0.5;
+}
+
+.github-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.task-header {
+  font-size: small;
+  color: #4466b3;
+}
+
+.filters-container {
+  display: flex;
+  gap: 16px;
+  padding: 8px 0 24px;
+  flex-wrap: wrap;
+
+  .mat-mdc-form-field {
+    flex: 1 1 200px;
+    min-width: 200px;
+  }
+}
+
+.header-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  mat-icon {
+    font-size: 18px;
+    height: 18px;
+    width: 18px;
+    opacity: 0.6;
+    cursor: pointer;
+
+    &.filter-active {
+      color: #1a73e8;
+      opacity: 1;
+    }
+  }
+}
+
+.mat-mdc-cell.blue-text {
+  color: #1a73e8;
+  font-weight: 300;
+}
+
+.new-student {
+  color: #28a745;
+  font-weight: bold;
+  text-transform: uppercase;
+}

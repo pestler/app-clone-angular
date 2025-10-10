@@ -1,0 +1,248 @@
+<mat-card>
+  <mat-card-content>
+    <h1 class="form-title">Add/Edit Course</h1>
+
+    <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+      <div class="form-grid">
+        <div class="form-section">
+          <h2>Basic Information</h2>
+          <mat-form-field appearance="outline">
+            <mat-label>Course Name</mat-label>
+            <input matInput formControlName="name" required />
+            @if (courseForm.get('name')?.hasError('required') && courseForm.get('name')?.touched) {
+              <mat-error>Course Name is required</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Alias</mat-label>
+            <input matInput formControlName="alias" required />
+            @if (
+              courseForm.get('alias')?.hasError('required') && courseForm.get('alias')?.touched
+            ) {
+              <mat-error>Alias is required</mat-error>
+            }
+            @if (courseForm.get('alias')?.hasError('pattern') && courseForm.get('alias')?.touched) {
+              <mat-error>Alias must be lowercase, alphanumeric, and use hyphens</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Full Name</mat-label>
+            <input matInput formControlName="fullName" required />
+            @if (
+              courseForm.get('fullName')?.hasError('required') &&
+              courseForm.get('fullName')?.touched
+            ) {
+              <mat-error>Full Name is required</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Logo</mat-label>
+            <input matInput formControlName="logo" required />
+            @if (courseForm.get('logo')?.hasError('required') && courseForm.get('logo')?.touched) {
+              <mat-error>Logo is required</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Description URL</mat-label>
+            <input matInput formControlName="descriptionUrl" />
+            @if (
+              courseForm.get('descriptionUrl')?.hasError('pattern') &&
+              courseForm.get('descriptionUrl')?.touched
+            ) {
+              <mat-error>Invalid URL format</mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <div class="form-section">
+          <h2>Dates</h2>
+          <mat-form-field appearance="outline">
+            <mat-label>Start Date</mat-label>
+            <input matInput formControlName="startDate" type="date" required />
+            @if (
+              courseForm.get('startDate')?.hasError('required') &&
+              courseForm.get('startDate')?.touched
+            ) {
+              <mat-error>Start Date is required</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>End Date</mat-label>
+            <input matInput formControlName="endDate" type="date" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Registration End Date</mat-label>
+            <input matInput formControlName="registrationEndDate" type="date" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Personal Mentoring Start Date</mat-label>
+            <input matInput formControlName="personalMentoringStartDate" type="date" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Personal Mentoring End Date</mat-label>
+            <input matInput formControlName="personalMentoringEndDate" type="date" />
+          </mat-form-field>
+
+          <div class="read-only-field">
+            <span>{{ courseForm.get('createdDate')?.value | date: 'medium' }}</span>
+          </div>
+
+          <div class="read-only-field">
+            <span>{{ courseForm.get('updatedDate')?.value | date: 'medium' }}</span>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <h2>Settings and Scores</h2>
+          <mat-form-field appearance="outline">
+            <mat-label>Max Course Score</mat-label>
+            <input matInput formControlName="maxCourseScore" type="number" required min="0" />
+            @if (
+              courseForm.get('maxCourseScore')?.hasError('required') &&
+              courseForm.get('maxCourseScore')?.touched
+            ) {
+              <mat-error>Max Course Score is required</mat-error>
+            }
+            @if (
+              courseForm.get('maxCourseScore')?.hasError('min') &&
+              courseForm.get('maxCourseScore')?.touched
+            ) {
+              <mat-error>Max Course Score must be non-negative</mat-error>
+            }
+            @if (
+              courseForm.get('maxCourseScore')?.hasError('max') &&
+              courseForm.get('maxCourseScore')?.touched
+            ) {
+              <mat-error>Max Course Score cannot exceed 1000</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Certificate Threshold</mat-label>
+            <input matInput formControlName="certificateThreshold" type="number" min="0" />
+            @if (
+              courseForm.get('certificateThreshold')?.hasError('min') &&
+              courseForm.get('certificateThreshold')?.touched
+            ) {
+              <mat-error>Certificate Threshold must be non-negative</mat-error>
+            }
+            @if (
+              courseForm.get('certificateThreshold')?.hasError('max') &&
+              courseForm.get('certificateThreshold')?.touched
+            ) {
+              <mat-error>Certificate Threshold cannot exceed 100</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Certificate Issuer</mat-label>
+            <input matInput formControlName="certificateIssuer" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Certificate Disciplines</mat-label>
+            <input matInput formControlName="certificateDisciplines" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Discord Server ID</mat-label>
+            <input matInput formControlName="discordServerId" type="number" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Location Name</mat-label>
+            <input matInput formControlName="locationName" />
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Min Students Per Mentor</mat-label>
+            <input matInput formControlName="minStudentsPerMentor" type="number" min="0" />
+            @if (
+              courseForm.get('minStudentsPerMentor')?.hasError('min') &&
+              courseForm.get('minStudentsPerMentor')?.touched
+            ) {
+              <mat-error>Min Students Per Mentor must be non-negative</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>We Are Community URL</mat-label>
+            <input matInput formControlName="wearecommunityUrl" />
+            @if (
+              courseForm.get('wearecommunityUrl')?.hasError('pattern') &&
+              courseForm.get('wearecommunityUrl')?.touched
+            ) {
+              <mat-error>Invalid URL format</mat-error>
+            }
+          </mat-form-field>
+
+          <!-- Discipline fields -->
+          <div formGroupName="discipline">
+            <h3>Discipline</h3>
+            <mat-form-field appearance="outline">
+              <mat-label>Discipline ID</mat-label>
+              <input matInput formControlName="id" type="number" min="0" />
+              @if (
+                courseForm.get('discipline.id')?.hasError('required') &&
+                courseForm.get('discipline.id')?.touched
+              ) {
+                <mat-error>Discipline ID is required</mat-error>
+              }
+              @if (
+                courseForm.get('discipline.id')?.hasError('min') &&
+                courseForm.get('discipline.id')?.touched
+              ) {
+                <mat-error>Discipline ID must be non-negative</mat-error>
+              }
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Discipline Name</mat-label>
+              <input matInput formControlName="name" required />
+              @if (
+                courseForm.get('discipline.name')?.hasError('required') &&
+                courseForm.get('discipline.name')?.touched
+              ) {
+                <mat-error>Discipline Name is required</mat-error>
+              }
+            </mat-form-field>
+          </div>
+
+          <mat-checkbox formControlName="usePrivateRepositories">
+            Use Private Repositories
+          </mat-checkbox>
+
+          <mat-checkbox formControlName="completed"> Completed </mat-checkbox>
+
+          <mat-checkbox formControlName="inviteOnly"> Invite Only </mat-checkbox>
+
+          <mat-checkbox formControlName="personalMentoring"> Personal Mentoring </mat-checkbox>
+
+          <mat-checkbox formControlName="planned"> Planned </mat-checkbox>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button mat-raised-button color="primary" type="submit" [disabled]="courseForm.invalid">
+          Save Course
+        </button>
+        <button mat-stroked-button color="warn" type="button" (click)="onSkipValidationSubmit()">
+          Skip Validation and Save
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

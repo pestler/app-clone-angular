@@ -1,0 +1,11 @@
+<div mat-dialog-content>
+  <mat-form-field appearance="outline">
+    <mat-label>{{ title }}</mat-label>
+    <input matInput [formControl]="searchControl" (keydown.enter)="onApply()" />
+  </mat-form-field>
+</div>
+
+<div mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" (click)="onApply()">Search</button>
+  <button mat-button (click)="onReset()">Reset</button>
+</div>

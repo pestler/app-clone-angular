@@ -1,0 +1,32 @@
+<mat-card class="available-review-card">
+  <mat-card-header>
+    <mat-card-title>Available for review</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    @if (availableReviews.length > 0) {
+      @for (review of availableReviews; track review.id; let isLast = $last) {
+        <div class="review-item">
+          <a
+            mat-button
+            class="review-link"
+            [routerLink]="['./cross-check-review']"
+            [queryParams]="{ course: courseAlias, taskId: review.id }"
+            >{{ review.name }}</a
+          >
+          <mat-progress-bar
+            mode="determinate"
+            [value]="review | percentFromChecks"
+          ></mat-progress-bar>
+          <div class="progress-label">
+            {{ review.completedChecksCount }} / {{ review.checksCount }}
+          </div>
+          @if (!isLast) {
+            <mat-divider></mat-divider>
+          }
+        </div>
+      }
+    } @else {
+      <p>At the moment, there are no tasks available for review</p>
+    }
+  </mat-card-content>
+</mat-card>

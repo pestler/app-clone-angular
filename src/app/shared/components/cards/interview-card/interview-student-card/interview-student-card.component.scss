@@ -1,0 +1,135 @@
+@use '../../styles/card.shared.scss' as *;
+
+@mixin flex($direction) {
+  display: flex;
+  flex-flow: $direction wrap;
+  justify-content: space-between;
+}
+
+.interview-title {
+  @include flex(row);
+
+  padding: 12px 24px;
+}
+
+.title-link {
+  color: var(--text-blue);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--text-blue-hover);
+  }
+}
+
+.interview-period-wrapper {
+  @include flex(row);
+
+  align-items: center;
+  gap: 8px;
+}
+
+.icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+  color: var(--icon-gray);
+}
+
+.interview-period {
+  font-weight: 400;
+  color: var(--text-gray);
+  margin: 0;
+}
+
+.content {
+  @include flex(column);
+
+  padding: 0 24px 24px;
+}
+
+.interview-info-wrapper {
+  @include flex(row);
+
+  gap: 24px 16px;
+  padding: 12px 0;
+
+  & > * {
+    flex-grow: 1;
+  }
+}
+
+.interview-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.status {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  margin: 0;
+  width: max-content;
+
+  &.not-completed {
+    color: var(--text-orange);
+    background-color: var(--background-color-orange);
+    border-color: var(--border-orange);
+  }
+
+  &.completed {
+    color: var(--text-status-green);
+    background-color: var(--background-light-green);
+    border-color: var(--border-green);
+  }
+}
+
+.result {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.image-wrapper {
+  @include flex(column);
+
+  background-color: var(--background-color-blue);
+  border: 1px solid var(--border-blue);
+  padding: 24px;
+  border-radius: 8px;
+}
+
+.no-interview {
+  margin: 16px;
+}
+
+.not-complete-image-wrapper {
+  gap: 16px;
+}
+
+.not-complete-descirption {
+  @include flex(row);
+
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+
+  .mat-icon {
+    font-size: 32px;
+    width: 32px;
+    height: 32px;
+    color: var(--text-blue-hover);
+  }
+
+  p {
+    font-size: 18px;
+  }
+}
+
+.image {
+  max-width: 270px;
+  height: 160px;
+  margin: 0 auto;
+}

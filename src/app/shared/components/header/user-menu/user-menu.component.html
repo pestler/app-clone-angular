@@ -1,0 +1,36 @@
+<button mat-icon-button [matMenuTriggerFor]="userMenu" aria-label="User menu">
+  <mat-icon>account_circle</mat-icon>
+</button>
+<mat-menu #userMenu="matMenu" class="menu">
+  @for (item of matMenuItems; track item.label) {
+    @if (item.route) {
+      <button
+        mat-menu-item
+        [routerLink]="item.route"
+        [queryParams]="curQueryParams"
+        queryParamsHandling="merge"
+        class="button"
+      >
+        <mat-icon class="icon">{{ item.icon }}</mat-icon>
+        <span class="label">{{ item.label }}</span>
+      </button>
+    }
+    @if (item.url) {
+      <a
+        mat-menu-item
+        [href]="item.url"
+        [attr.target]="item.external ? '_blank' : null"
+        class="button"
+      >
+        <mat-icon class="icon">{{ item.icon }}</mat-icon>
+        <span class="label">{{ item.label }}</span>
+      </a>
+    }
+    @if (item.action) {
+      <button mat-menu-item (click)="handleAction(item.action)" class="button">
+        <mat-icon class="icon">{{ item.icon }}</mat-icon>
+        <span class="label">{{ item.label }}</span>
+      </button>
+    }
+  }
+</mat-menu>

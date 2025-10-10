@@ -1,0 +1,52 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { InterviewCardBaseComponent } from './interview-card-base.component';
+
+describe('InterviewCardBaseComponent', () => {
+  let component: InterviewCardBaseComponent;
+  let fixture: ComponentFixture<InterviewCardBaseComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [InterviewCardBaseComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(InterviewCardBaseComponent);
+    component = fixture.componentInstance;
+
+    component.interviewInfo = {
+      title: 'Angular interview',
+      period: {
+        start: '2025-09-08',
+        end: '2025-09-29',
+      },
+      status: 'Not Completed',
+      result: null,
+      interviewer: {
+        name: 'Mentor Name',
+        github: 'mentor-github',
+        url: '',
+        email: '',
+        telegram: '',
+        src: '',
+      },
+    };
+
+    component.title = component.interviewInfo.title;
+    component.period = component.interviewInfo.period;
+    component.status = component.interviewInfo.status;
+    component.result = component.interviewInfo.result;
+
+    component.notCompletedMessage = "You're all set! Prepare for your upcoming interview.";
+    component.completedMessage = 'Interview completed — time to relax!';
+    component.notCompletedImage =
+      'https://cdn.rs.school/sloths/stickers/interview-with-mentor/image.svg';
+    component.completedImage = 'https://cdn.rs.school/sloths/stickers/congratulations/image.svg';
+
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

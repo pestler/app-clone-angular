@@ -1,0 +1,17 @@
+@use '../styles/card.shared.scss' as *;
+
+.next-event-card {
+  padding: 16px;
+}
+
+mat-card-content {
+  padding: 0 !important;
+}
+
+table {
+  width: 100%;
+}
+
+.mat-mdc-header-cell {
+  font-weight: bold;
+}

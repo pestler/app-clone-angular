@@ -1,0 +1,37 @@
+<div class="score-page-layout">
+  @if (!course()) {
+    <p>No course selected or found.</p>
+  } @else {
+    <div class="controls">
+      <div class="label-toggle-group">
+        <span
+          class="toggle-option"
+          [class.active]="!activeOnly()"
+          (click)="setActive(false)"
+          (keydown.enter)="setActive(false)"
+          tabindex="0"
+        >
+          All students {{ totalCourseStudents() ?? '...' }}
+        </span>
+        <span
+          class="toggle-option"
+          [class.active]="activeOnly()"
+          (click)="setActive(true)"
+          (keydown.enter)="setActive(true)"
+          tabindex="0"
+        >
+          Active students {{ activeCourseStudents() ?? '...' }}
+        </span>
+      </div>
+      <button mat-raised-button [disabled]="!csvEnabled()" (click)="handleExportCsv()">
+        Export CSV
+      </button>
+    </div>
+
+    <app-score-table
+      [course]="course()"
+      [activeOnly]="activeOnly()"
+      [isLoading]="loading()"
+    ></app-score-table>
+  }
+</div>
