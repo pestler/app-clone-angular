@@ -32,6 +32,11 @@ describe('InterviewCardBaseComponent', () => {
       },
     };
 
+    component.title = component.interviewInfo.title;
+    component.period = component.interviewInfo.period;
+    component.status = component.interviewInfo.status;
+    component.result = component.interviewInfo.result;
+
     component.notCompletedMessage = "You're all set! Prepare for your upcoming interview.";
     component.completedMessage = 'Interview completed — time to relax!';
     component.notCompletedImage =

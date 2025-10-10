@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Firestore } from '@angular/fire/firestore';
-
+import { of } from 'rxjs';
+import { DonatorsService } from './donators/donators.service';
 import { FooterComponent } from './footer.component';
 
 describe('FooterComponent', () => {
@@ -8,9 +8,12 @@ describe('FooterComponent', () => {
   let fixture: ComponentFixture<FooterComponent>;
 
   beforeEach(async () => {
+    const donatorsServiceSpy = jasmine.createSpyObj('DonatorsService', ['getDonators']);
+    donatorsServiceSpy.getDonators.and.returnValue(of([]));
+
     await TestBed.configureTestingModule({
       imports: [FooterComponent],
-      providers: [{ provide: Firestore, useValue: {} }],
+      providers: [{ provide: DonatorsService, useValue: donatorsServiceSpy }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FooterComponent);

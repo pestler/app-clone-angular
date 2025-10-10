@@ -1,16 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Firestore } from '@angular/fire/firestore';
-
+import { of } from 'rxjs';
 import { DonatorsComponent } from './donators.component';
+import { DonatorsService } from './donators.service';
 
 describe('DonatorsComponent', () => {
   let component: DonatorsComponent;
   let fixture: ComponentFixture<DonatorsComponent>;
 
   beforeEach(async () => {
+    const donatorsServiceSpy = jasmine.createSpyObj('DonatorsService', ['getDonators']);
+    donatorsServiceSpy.getDonators.and.returnValue(of([]));
+
     await TestBed.configureTestingModule({
       imports: [DonatorsComponent],
-      providers: [{ provide: Firestore, useValue: {} }],
+      providers: [{ provide: DonatorsService, useValue: donatorsServiceSpy }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DonatorsComponent);
