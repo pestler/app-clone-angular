@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Firestore } from '@angular/fire/firestore';
 
 import { DonatorsComponent } from './donators.component';
 
@@ -9,6 +10,7 @@ describe('DonatorsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DonatorsComponent],
+      providers: [{ provide: Firestore, useValue: {} }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(DonatorsComponent);
