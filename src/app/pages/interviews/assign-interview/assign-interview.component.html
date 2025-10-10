@@ -1,0 +1,46 @@
+<h3>Assign Interview</h3>
+<form [formGroup]="interviewForm" (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="outline">
+    <mat-label>Select Student</mat-label>
+    <mat-select formControlName="student">
+      @for (student of studentsWithoutInterview(); track student.githubId) {
+        <mat-option [value]="student">{{ student.name }} ({{ student.githubId }})</mat-option>
+      }
+    </mat-select>
+    @if (interviewForm.get('student')?.hasError('required')) {
+      <mat-error>Student is required.</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Interview Title</mat-label>
+    <input matInput formControlName="title" placeholder="e.g., Angular Interview" />
+    @if (interviewForm.get('title')?.hasError('required')) {
+      <mat-error>Title is required.</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Start Date</mat-label>
+    <input matInput [matDatepicker]="startDatePicker" formControlName="startDate" />
+    <mat-datepicker-toggle matSuffix [for]="startDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #startDatePicker></mat-datepicker>
+    @if (interviewForm.get('startDate')?.hasError('required')) {
+      <mat-error>Start Date is required.</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>End Date</mat-label>
+    <input matInput [matDatepicker]="endDatePicker" formControlName="endDate" />
+    <mat-datepicker-toggle matSuffix [for]="endDatePicker"></mat-datepicker-toggle>
+    <mat-datepicker #endDatePicker></mat-datepicker>
+    @if (interviewForm.get('endDate')?.hasError('required')) {
+      <mat-error>End Date is required.</mat-error>
+    }
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="interviewForm.invalid">
+    Assign Interview
+  </button>
+</form>

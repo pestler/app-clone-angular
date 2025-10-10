@@ -70,8 +70,8 @@ export const userProfileConverter: FirestoreDataConverter<UserProfile> = {
       languages: data['languages'],
       generalInfo: data['generalInfo'],
       contacts: {
-        ...data['contacts'], // Spread existing contacts
-        discord: data['contacts']?.['discord'], // Access discord from contacts
+        ...data['contacts'],
+        discord: data['contacts']?.['discord'],
       },
       publicFeedback: data['publicFeedback'],
     } as UserProfile;

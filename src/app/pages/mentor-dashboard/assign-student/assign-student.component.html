@@ -1,0 +1,24 @@
+<h3>Available Students</h3>
+@if (unassignedStudents().length > 0) {
+  <div class="assign-controls">
+    <mat-form-field appearance="outline" class="student-select-field">
+      <mat-label>Unassigned Students</mat-label>
+      <mat-select [formControl]="studentsControl" multiple>
+        @for (student of unassignedStudents(); track student.githubId) {
+          <mat-option [value]="student">{{ student.name }} ({{ student.githubId }})</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="assignStudents()"
+      class="assign-button"
+      [disabled]="!studentsControl.value?.length"
+    >
+      Assign Selected Students
+    </button>
+  </div>
+} @else {
+  <p>No unassigned students available in this course.</p>
+}

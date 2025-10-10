@@ -71,12 +71,14 @@ export const taskResultConverter: FirestoreDataConverter<TaskResultDoc> = {
 export interface ScoreData {
   id: string;
   name: string;
+  displayName?: string;
   githubId: string;
   active: boolean;
   cityName: string;
   countryName: string;
   rank: number;
   totalScore: number;
+  hasInterview?: boolean;
   mentor?: Mentor;
   totalScoreChangeDate: string;
   crossCheckScore: number;

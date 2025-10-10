@@ -61,7 +61,11 @@
                 } @else if (column === 'score') {
                   {{ element.score }}
                 } @else if (column === 'rank') {
-                  {{ element.rank }}
+                  @if (element.score === 0) {
+                    <span class="new-student">new</span>
+                  } @else {
+                    {{ element.rank }}
+                  }
                 } @else {
                   {{ element[column] }}
                 }

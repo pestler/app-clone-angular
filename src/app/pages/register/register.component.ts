@@ -4,7 +4,6 @@ import { User as FirebaseUser } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, filter, Observable, Subject, switchMap, take, takeUntil, tap } from 'rxjs';
-import { APP_ROUTES } from '../../constants/app-routes.const';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
@@ -117,7 +116,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
       primaryEmail: ['', [Validators.required, Validators.email]],
       githubId: [''],
       telegram: [''],
-      discord: [''],
       phone: [''],
       notes: [''],
       aboutYourself: [''],
@@ -159,7 +157,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
             location: profile.generalInfo?.location?.cityName || '',
             primaryEmail: profile.contacts?.email || '',
             telegram: profile.contacts?.telegram || '',
-            discord: profile.contacts?.discord || '',
             phone: profile.contacts?.phone || '',
             notes: profile.contacts?.notes || '',
             aboutYourself: profile.about || '',
@@ -198,14 +195,13 @@ export class RegisterComponent implements OnInit, OnDestroy {
     }
   }
 
-  onSubmit(): void {
+  async onSubmit(): Promise<void> {
     if (this.form.invalid) {
       this.notificationService.showError('Please fill in all required fields correctly.');
       return;
     }
     if (!this.currentUserGithubId) {
       this.notificationService.showError('GitHub user ID not found. Please sign in again.');
-      this.router.navigate(['/login']);
       return;
     }
 
@@ -229,60 +225,40 @@ export class RegisterComponent implements OnInit, OnDestroy {
         phone: formVal.phone,
         email: formVal.primaryEmail,
         telegram: formVal.telegram,
-        discord: formVal.discord,
         notes: formVal.notes,
       },
       roles: {
-        student: this.isStudentForm,
-        mentor: !this.isStudentForm,
+        student: this.formType === 'student',
+        mentor: this.formType === 'mentor',
         admin: false,
       },
     };
 
-    this.userService
-      .saveUserProfile(this.currentUserGithubId, profileData)
-      .then(async () => {
-        this.notificationService.showSuccess('Your profile has been saved successfully!');
-        localStorage.removeItem(this.storageKey);
+    try {
+      await this.userService.saveUserProfile(this.currentUserGithubId, profileData);
 
-        if (this.isStudentForm && formVal.courses && formVal.courses.length > 0) {
-          for (const courseAlias of formVal.courses) {
-            if (this.currentUserGithubId) {
-              await this.userService.addStudentToCourse(courseAlias, this.currentUserGithubId);
-            }
-          }
-        } else if (!this.isStudentForm && formVal.courses && formVal.courses.length > 0) {
-          const mentorCourseData = {
-            firstName: formVal.firstName,
-            lastName: formVal.lastName,
-            location: formVal.location,
-            primaryEmail: formVal.primaryEmail,
-            telegram: formVal.telegram,
-            discord: formVal.discord,
-            phone: formVal.phone,
-            notes: formVal.notes,
-            aboutYourself: formVal.aboutYourself,
-            languages: formVal.languages,
-            disciplines: formVal.disciplines,
-            studentsCount: formVal.studentsCount,
-            studentsLocation: formVal.studentsLocation,
-          };
-          for (const courseAlias of formVal.courses) {
-            if (this.currentUserGithubId) {
-              await this.userService.addMentorToCourse(
-                courseAlias,
-                this.currentUserGithubId,
-                mentorCourseData,
-              );
-            }
-          }
+      const enrollmentPromises: Promise<void>[] = [];
+
+      for (const courseAlias of formVal.courses) {
+        if (this.formType === 'student') {
+          enrollmentPromises.push(
+            this.userService.enrollInCourse(this.currentUserGithubId, courseAlias),
+          );
+        } else if (this.formType === 'mentor') {
+          enrollmentPromises.push(
+            this.userService.enrollAsMentor(this.currentUserGithubId, courseAlias),
+          );
         }
+      }
 
-        this.router.navigate([APP_ROUTES.LOGIN]);
-      })
-      .catch((error: unknown) => {
-        console.error('Error saving profile:', error);
-        this.notificationService.showError('There was an error saving your profile.');
-      });
+      await Promise.all(enrollmentPromises);
+
+      this.notificationService.showSuccess('Your profile has been saved successfully!');
+      localStorage.removeItem(this.storageKey);
+      this.router.navigate(['/']);
+    } catch (error: unknown) {
+      console.error('Error saving profile or enrolling:', error);
+      this.notificationService.showError('There was an error saving your profile or enrolling.');
+    }
   }
 }
