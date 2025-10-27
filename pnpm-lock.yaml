@@ -48,8 +48,8 @@ importers:
         specifier: 20.0.1
         version: 20.0.1(@angular/core@20.3.2(@angular/compiler@20.3.2)(rxjs@7.8.2)(zone.js@0.15.1))(@ngrx/store@20.0.1(@angular/core@20.3.2(@angular/compiler@20.3.2)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(rxjs@7.8.2)
       '@swimlane/ngx-charts':
-        specifier: ^23.0.1
-        version: 23.0.1(9f01e07d7dbbcf875a225c3771a53103)
+        specifier: ^23.1.0
+        version: 23.1.0(9f01e07d7dbbcf875a225c3771a53103)
       firebase:
         specifier: ^12.3.0
         version: 12.3.0
@@ -2042,8 +2042,8 @@ packages:
   '@socket.io/component-emitter@3.1.2':
     resolution: {integrity: sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==}
 
-  '@swimlane/ngx-charts@23.0.1':
-    resolution: {integrity: sha512-mvdJTjBjUNoDj/R3AopYyVkVNrv0Zsrlh71CIQLVhBOs6PSV1mT3o7ukBFu8ct4w38wTfiGr8G+twHiYM1TEKA==}
+  '@swimlane/ngx-charts@23.1.0':
+    resolution: {integrity: sha512-f2lBc8M9164PtylLDLd98XqO6owSw4LQMT9L/vQovT3nIjMO7t5l9JnytyOB8s5KImo3p+7x+1/HYxBZ5iOVWA==}
     peerDependencies:
       '@angular/animations': 18.x || 19.x || 20.x
       '@angular/cdk': 18.x || 19.x || 20.x
@@ -7719,7 +7719,7 @@ snapshots:
 
   '@socket.io/component-emitter@3.1.2': {}
 
-  '@swimlane/ngx-charts@23.0.1(9f01e07d7dbbcf875a225c3771a53103)':
+  '@swimlane/ngx-charts@23.1.0(9f01e07d7dbbcf875a225c3771a53103)':
     dependencies:
       '@angular/animations': 20.3.2(@angular/core@20.3.2(@angular/compiler@20.3.2)(rxjs@7.8.2)(zone.js@0.15.1))
       '@angular/cdk': 20.2.7(@angular/common@20.3.2(@angular/core@20.3.2(@angular/compiler@20.3.2)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2))(@angular/core@20.3.2(@angular/compiler@20.3.2)(rxjs@7.8.2)(zone.js@0.15.1))(rxjs@7.8.2)
