@@ -47,7 +47,7 @@
     "@ngrx/store": "^20.0.1",
     "@ngrx/store-devtools": "20.0.1",
     "@swimlane/ngx-charts": "^23.0.1",
-    "firebase": "^12.3.0",
+    "firebase": "^12.5.0",
     "firebase-admin": "^13.5.0",
     "ngx-markdown": "^20.1.0",
     "rxjs": "~7.8.2",
